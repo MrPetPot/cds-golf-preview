@@ -566,7 +566,7 @@ function pintarRanking() {
   });
   rankBody.innerHTML = '';
   datos.forEach(p => {
-    const stars = '★'.repeat(p.cercano.stars) + `<span style="opacity:.25">${'★'.repeat(4 - p.cercano.stars)}</span>`;
+    const stars = '★'.repeat(p.cercano.stars) + `<span class="star-off">${'★'.repeat(4 - p.cercano.stars)}</span>`;
     const row = document.createElement('div');
     row.className = 'ranking-row';
     row.innerHTML = `
@@ -667,11 +667,11 @@ if (detailGrid) PROMOS.forEach((p, idx) => {
       <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
 
       <div class="dc-stats">
-        <div><div class="dc-stat-lbl">Promotor</div><div class="dc-stat-val" style="font-size:14px;text-transform:none;font-weight:600;letter-spacing:0;line-height:1.3">${p.promotor}</div></div>
-        <div><div class="dc-stat-lbl">Arquitectura</div><div class="dc-stat-val" style="font-size:14px;text-transform:none;font-weight:600;letter-spacing:0;line-height:1.3">${p.estudio ? p.estudio + `<small style="display:block;font-family:var(--f-sans);font-weight:400;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-top:3px">${p.estudioFuente}</small>` : '<span style="color:var(--text-mute)">No acreditado</span>'}</div></div>
+        <div><div class="dc-stat-lbl">Promotor</div><div class="dc-stat-val texto">${p.promotor}</div></div>
+        <div><div class="dc-stat-lbl">Arquitectura</div><div class="dc-stat-val texto">${p.estudio ? p.estudio + `<small class="dc-stat-src">${p.estudioFuente}</small>` : '<span class="mute">No acreditado</span>'}</div></div>
         <div><div class="dc-stat-lbl">Unidades</div><div class="dc-stat-val large">${p.unidades}</div></div>
-        <div><div class="dc-stat-lbl">Precio</div><div class="dc-stat-val" style="font-size:14px;text-transform:none;font-weight:600;letter-spacing:0;line-height:1.3">${p.precio}</div></div>
-        <div><div class="dc-stat-lbl">Entrega</div><div class="dc-stat-val" style="font-size:18px">${p.entrega}</div></div>
+        <div><div class="dc-stat-lbl">Precio</div><div class="dc-stat-val texto">${p.precio}</div></div>
+        <div><div class="dc-stat-lbl">Entrega</div><div class="dc-stat-val fecha">${p.entrega}</div></div>
       </div>
 
       ${p.derechosGolf ? `<div class="dc-derechos"><span>Derechos de golf</span>${p.derechosGolf}<em>${p.derechosFuente}</em></div>` : ''}
@@ -744,15 +744,15 @@ function renderGolf(filter) {
   const data = filter === 'all' ? COURSES.slice() : COURSES.filter(c => c.stars === parseInt(filter));
   data.sort((a, b) => b.stars - a.stars || a.municipio.localeCompare(b.municipio));
   data.forEach(c => {
-    const stars = '★'.repeat(c.stars) + `<span style="opacity:.2">${'★'.repeat(4 - c.stars)}</span>`;
+    const stars = '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`;
     const row = document.createElement('div');
     row.className = 'golf-tr';
     row.innerHTML = `
       <div><div class="golf-tr-name">${c.name}</div><div class="golf-tr-meta">${c.municipio}</div></div>
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.4">${c.disenador}<br/><span style="color:var(--text-mute);font-size:11px">${c.ano}</span></div>
-      <div style="font-size:12px;color:var(--text-mid);line-height:1.4">${c.hoyos}<br/><span class="acc acc-${String(c.acceso).replace('.', '')}">${c.membresia}</span></div>
-      <div style="font-size:12px;color:var(--text-mid);font-weight:600">€${c.gf}</div>
-      <div style="font-size:11px;color:var(--text-mute);line-height:1.45;font-style:italic">${c.palmares}</div>
+      <div class="golf-td">${c.disenador}<br/><span class="golf-td-sub">${c.ano}</span></div>
+      <div class="golf-td">${c.hoyos}<br/><span class="acc acc-${String(c.acceso).replace('.', '')}">${c.membresia}</span></div>
+      <div class="golf-td golf-td-gf">€${c.gf}</div>
+      <div class="golf-td-palmares">${c.palmares}</div>
       <div class="golf-tr-stars">${stars}<small>${CAT_LABEL[c.stars]}</small></div>`;
     golfBody.appendChild(row);
   });
@@ -811,11 +811,11 @@ function initMap() {
 
   if (!soloCampos) PROMOS.forEach(p => {
     const icon = L.divIcon({
-      html: `<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2C5384,#7FA3C9);border:2.5px solid #fff;box-shadow:0 2px 10px rgba(15,23,38,.42);display:flex;align-items:center;justify-content:center;font-family:Antonio,sans-serif;font-size:14px;font-weight:700;color:#FFFFFF">${p.rank}</div>`,
-      className: '', iconSize: [28, 28], iconAnchor: [14, 14]
+      html: `<div class="pin-promo-num">${p.rank}</div>`,
+      className: 'pin-promo', iconSize: [28, 28], iconAnchor: [14, 14]
     });
     L.marker([p.lat, p.lng], { icon, zIndexOffset: 1000 }).addTo(map)
-      .bindPopup(`<b>${p.name}</b><br/><span style="color:#374151">${p.sub} · ${p.municipio}</span><br/><span style="color:#1E3A5F;font-size:11px;font-weight:700;letter-spacing:.04em">SCORE ${p.total}/100 · DESDE ${p.precioDesde}</span>`);
+      .bindPopup(`<b>${p.name}</b><br/><span class="pop-sub">${p.sub} · ${p.municipio}</span><br/><span class="pop-score">SCORE ${p.total}/100 · DESDE ${p.precioDesde}</span>`);
 
     // Polylines a los campos ★★★+ — resueltas por id, no por nombre.
     p.campos.filter(c => c.stars >= 3).forEach(c => {
@@ -826,16 +826,14 @@ function initMap() {
     });
   });
 
-  const colors = { 4: '#88A53C', 3: '#6E9130', 2: '#558025', 1: '#3E5F1C' };
-  const strokes = { 4: '#0F1726', 3: '#0F1726', 2: '#FFFFFF', 1: '#FFFFFF' };
   COURSES.forEach(c => {
     const size = c.stars === 4 ? 16 : (c.stars === 3 ? 12 : c.stars === 2 ? 10 : 8);
     const icon = L.divIcon({
-      html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${colors[c.stars]};border:2px solid ${strokes[c.stars]};box-shadow:0 1px 4px rgba(15,23,38,.35)"></div>`,
-      className: '', iconSize: [size, size], iconAnchor: [size / 2, size / 2]
+      html: '',
+      className: 'pin-campo pin-campo-' + c.stars, iconSize: [size, size], iconAnchor: [size / 2, size / 2]
     });
     L.marker([c.lat, c.lng], { icon }).addTo(map)
-      .bindPopup(`<b>${c.name}</b><br/><span style="color:#374151">${c.municipio}</span><br/><span style="color:#F2BB16;font-weight:700">${'★'.repeat(c.stars)}</span> · ${c.hoyos} · <span style="color:#6B7280">${c.membresia}</span>`);
+      .bindPopup(`<b>${c.name}</b><br/><span class="pop-sub">${c.municipio}</span><br/><span class="pop-stars">${'★'.repeat(c.stars)}</span> · ${c.hoyos} · <span class="mute">${c.membresia}</span>`);
   });
 }
 initMap();

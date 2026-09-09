@@ -5,45 +5,7 @@
 <title>Costa del Golf 3D — Campos y promociones del ranking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-<style>
-  :root{ --ink:#1E3A5F; --cream:#FAFAFB; --y1:#1E3A5F; --y3:#3E6BA0; --y4:#7FA3C9; --panel:rgba(12,12,12,.88); }
-  html,body{margin:0;height:100%;font-family:'Source Sans Pro',Arial,sans-serif;background:#101114}
-  gmp-map-3d{position:absolute;inset:0}
-  .panel{position:absolute;top:22px;left:22px;z-index:10;background:var(--panel);color:var(--cream);
-    backdrop-filter:blur(8px);padding:18px 22px;max-width:320px;border-left:3px solid var(--y3)}
-  .panel .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--y3);margin:0 0 6px}
-  .panel h1{font-family:Antonio;font-size:26px;margin:0 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em}
-  .panel p{font-size:12px;line-height:1.5;margin:0;color:#cfc9ba}
-  .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:10px;letter-spacing:.06em;color:#cfc9ba}
-  .leyenda span{display:inline-flex;align-items:center;gap:5px}
-  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-  .controls{position:absolute;bottom:26px;left:22px;z-index:10;display:flex;gap:7px;flex-wrap:wrap;max-width:calc(100% - 44px)}
-  .controls button{background:var(--panel);color:var(--cream);border:1px solid rgba(62,107,160,.5);
-    padding:8px 13px;font-size:11.5px;letter-spacing:.04em;cursor:pointer;font-family:'Source Sans Pro'}
-  .controls button:hover{background:var(--y3);color:var(--ink)}
-  .controls button.on{background:var(--y3);color:var(--ink);font-weight:600}
-  #ficha{position:absolute;top:22px;right:22px;z-index:10;background:var(--panel);color:var(--cream);
-    backdrop-filter:blur(8px);padding:18px 22px;width:300px;border-left:3px solid var(--y3);display:none}
-  #ficha .sub{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--y3);margin:0 0 4px}
-  #ficha h2{font-family:Antonio;font-size:22px;margin:0 0 4px;text-transform:uppercase;font-weight:700;line-height:1.02}
-  #ficha .meta{font-size:12px;color:#cfc9ba;line-height:1.55}
-  #ficha .score{font-family:Antonio;font-size:38px;color:var(--y4);font-weight:700;margin:8px 0 0}
-  #ficha .score small{font-size:14px;color:#8b8676;font-family:'Source Sans Pro'}
-  #ficha .stars{color:var(--amarillo);letter-spacing:2px}
-  #ficha .cerrar{position:absolute;top:8px;right:10px;background:none;border:none;color:#8b8676;font-size:16px;cursor:pointer}
-  #filtros{position:absolute;bottom:26px;right:22px;z-index:10;display:flex;gap:7px}
-  #filtros button{background:var(--panel);color:var(--cream);border:1px solid rgba(62,107,160,.35);padding:8px 12px;font-size:11px;cursor:pointer}
-  #filtros button.on{background:var(--y3);color:var(--ink);font-weight:600}
-  #keyGate{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:#101114;color:var(--cream)}
-  #keyGate .box{max-width:460px;padding:34px;border-left:3px solid var(--y3);background:#191b1f}
-  #keyGate h2{font-family:Antonio;margin:0 0 4px;font-size:24px;text-transform:uppercase}
-  #keyGate .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--y3);margin:0 0 12px}
-  #keyGate p{font-size:13px;line-height:1.55;color:#cfc9ba}
-  #keyGate input{width:100%;box-sizing:border-box;padding:11px;margin:12px 0;background:#101114;border:1px solid #3a3a3a;color:var(--cream);font-size:13px}
-  #keyGate button{background:var(--y3);color:var(--ink);border:0;padding:11px 20px;font-size:13px;font-weight:700;cursor:pointer}
-  #keyGate small{color:#77716b;font-size:11px;display:block;margin-top:10px;line-height:1.5}
-  @media(max-width:760px){ .panel{max-width:calc(100% - 44px)} #ficha{top:auto;bottom:88px;right:22px;left:22px;width:auto} #filtros{display:none} }
-</style>
+<link rel="stylesheet" href="assets/mapa-3d.css">
 </head>
 <body>
 <div id="keyGate">
@@ -56,19 +18,19 @@
     <small>La key se envía solo a Google y se recuerda en este navegador (localStorage). Restríngela en Google Cloud a http://localhost:8721 y, más adelante, al dominio de publicación. 61 campos · 14 promociones · matriz v1.2.</small>
   </div>
 </div>
-<div class="panel" style="display:none" id="infoPanel">
+<div class="panel" id="infoPanel" hidden>
   <p class="sub">Sotogrande → Vélez-Málaga · Google 3D</p>
   <h1>Costa del Golf</h1>
   <p>61 campos valorados 1–4★ y las 14 promociones del ranking. Pulsa cualquier marcador. Arrastrar: mover · ctrl+arrastrar: inclinar/rotar · rueda: zoom.</p>
   <div class="leyenda">
-    <span><span class="dot" style="background:linear-gradient(135deg,#1E3A5F,#3E6BA0);border:1.5px solid #fff"></span>Promoción (nº = posición)</span>
-    <span><span class="dot" style="background:#3E6BA0"></span>★★★★</span>
-    <span><span class="dot" style="background:#2C5384"></span>★★★</span>
-    <span><span class="dot" style="background:#1E3A5F"></span>★★</span>
-    <span><span class="dot" style="background:#243B52"></span>★</span>
+    <span><span class="dot dot-promo"></span>Promoción (nº = posición)</span>
+    <span><span class="dot dot-4"></span>★★★★</span>
+    <span><span class="dot dot-3"></span>★★★</span>
+    <span><span class="dot dot-2"></span>★★</span>
+    <span><span class="dot dot-1"></span>★</span>
   </div>
 </div>
-<div class="controls" style="display:none" id="ctrl">
+<div class="controls" id="ctrl" hidden>
   <button onclick="fly(V.general,this)">Vista general</button>
   <button onclick="fly(V.sotogrande,this)">Sotogrande</button>
   <button onclick="fly(V.cortesin,this)">Finca Cortesín</button>
@@ -77,14 +39,14 @@
   <button onclick="fly(V.mijas,this)">Mijas · La Cala</button>
   <button onclick="orbita()">Órbita</button>
 </div>
-<div id="filtros" style="display:none">
+<div id="filtros" hidden>
   <button class="on" data-f="all">Todo</button>
   <button data-f="4">Solo 4★</button>
   <button data-f="34">3★+</button>
   <button data-f="promos">Solo promociones</button>
 </div>
-<div id="ficha"><button class="cerrar" onclick="ficha.style.display='none'">✕</button><div id="fichaBody"></div></div>
-<gmp-map-3d id="mapa" style="display:none" mode="hybrid"></gmp-map-3d>
+<div id="ficha"><button class="cerrar" onclick="ficha.hidden=true">✕</button><div id="fichaBody"></div></div>
+<gmp-map-3d id="mapa" mode="hybrid" hidden></gmp-map-3d>
 
 <script src="key.js" onerror="void 0"></script>
 <script>
@@ -118,11 +80,11 @@ async function initMapa(){
   const { Map3DElement, Marker3DInteractiveElement, AltitudeMode } = await google.maps.importLibrary('maps3d');
   const { PinElement } = await google.maps.importLibrary('marker');
   ficha = document.getElementById('ficha');
-  document.getElementById('keyGate').style.display='none';
-  ['infoPanel','ctrl','filtros'].forEach(id=>document.getElementById(id).style.display=id==='infoPanel'?'block':'flex');
+  document.getElementById('keyGate').hidden=true;
+  ['infoPanel','ctrl','filtros'].forEach(id=>document.getElementById(id).hidden=false);
 
   mapa = document.getElementById('mapa');
-  mapa.style.display='block';
+  mapa.hidden=false;
   Object.assign(mapa, { center:{lat:V.general.lat, lng:V.general.lng, altitude:0},
     range:V.general.range, tilt:V.general.tilt, heading:V.general.heading });
 
@@ -169,10 +131,10 @@ function mostrarFicha(kind,d){
   }else{
     b.innerHTML=`<p class="sub">Campo de golf · ${ACC_LBL[d.acc]||d.memb}</p>
       <h2>${d.n}</h2>
-      <div class="meta"><span class="stars">${'★'.repeat(d.s)}</span><span style="opacity:.3">${'★'.repeat(4-d.s)}</span><br>
+      <div class="meta"><span class="stars">${'★'.repeat(d.s)}</span><span class="star-off">${'★'.repeat(4-d.s)}</span><br>
       ${d.m} · ${d.dis}, ${d.ano}<br>Green fee €${d.gf}</div>`;
   }
-  ficha.style.display='block';
+  ficha.hidden=false;
 }
 
 function vuelaA(lat,lng,range){
@@ -195,7 +157,7 @@ document.querySelectorAll('#filtros button').forEach(btn=>{
     marcadores.forEach(m=>{
       const vis = f==='all' || (f==='promos' ? m._kind==='promo'
                 : m._kind==='promo' || (f==='4' ? m._stars===4 : m._stars>=3));
-      m.style.display = vis ? '' : 'none';
+      m.hidden = !vis;
     });
   };
 });
