@@ -42,3 +42,14 @@
 .star-off{opacity:.3}
 #ficha{display:block}
 [hidden]{display:none!important}
+
+/* Diagnóstico de carga */
+#diag{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:70;width:min(520px,calc(100% - 44px));
+  background:var(--panel);color:var(--cream);backdrop-filter:blur(8px);padding:26px 28px 24px;border-left:3px solid var(--y3)}
+#diag .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--y3);margin:0 0 8px}
+#diag h2{font-family:Antonio;font-size:24px;text-transform:uppercase;margin:0 0 10px;font-weight:700;line-height:1.05}
+#diag .diag-texto{font-size:13.5px;line-height:1.55;color:#cfc9ba;margin:0 0 10px}
+#diag code{background:rgba(255,255,255,.08);padding:1px 6px;font-size:12.5px}
+#diag .diag-codigo{display:inline-block;margin-left:8px;font-size:10px;letter-spacing:.14em;color:#8b8676}
+#diag .diag-origen{font-size:11px;color:#8b8676;margin:0 0 16px}
+#diag button{background:var(--y3);color:var(--ink);border:0;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer}

@@ -46,6 +46,13 @@
   <button data-f="promos">Solo promociones</button>
 </div>
 <div id="ficha"><button class="cerrar" onclick="ficha.hidden=true">✕</button><div id="fichaBody"></div></div>
+<div id="diag" hidden>
+  <p class="sub">El mapa 3D no ha cargado</p>
+  <h2 class="diag-titulo"></h2>
+  <p class="diag-texto"></p>
+  <p class="diag-origen"></p>
+  <button onclick="cambiarKey()">Cambiar la key</button>
+</div>
 <gmp-map-3d id="mapa" mode="hybrid" hidden></gmp-map-3d>
 
 <script src="key.js" onerror="void 0"></script>
@@ -67,14 +74,29 @@ async function start(key){
   try{ localStorage.setItem('gmapkey', key); }catch(e){}
   const s=document.createElement('script');
   s.src='https://maps.googleapis.com/maps/api/js?key='+encodeURIComponent(key)+'&v=beta&libraries=maps3d,marker&loading=async&callback=initMapa';
-  s.onerror=()=>{ alert('No se pudo cargar Maps JavaScript API. Revisa la key.'); try{localStorage.removeItem('gmapkey');}catch(_){} location.reload(); };
+  s.onerror=()=>diagnostico('ScriptLoadError','No se ha podido descargar el script de Google Maps: revisa la conexión o un bloqueador de contenido.');
   document.head.appendChild(s);
 }
-window.gm_authFailure = () => {
-  alert('Google rechazó la key (¿Maps JavaScript API habilitada? ¿restricciones de referrer? ¿facturación?).');
-  try{ localStorage.removeItem('gmapkey'); }catch(_){}
-  location.reload();
+// ── Diagnóstico: Google solo explica el fallo en la consola; aquí se traduce a un aviso legible ──
+const CAUSAS={
+  RefererNotAllowedMapError:['La key no admite esta dirección','En Google Cloud → Credenciales → tu key → "Restricciones de sitios web", añade el dominio desde el que abres el mapa: <code>'+location.origin+'/*</code>. Si lo abres desde varios (localhost y GitHub Pages), añade los dos.'],
+  ApiNotActivatedMapError:['Maps JavaScript API no está activada','En Google Cloud → APIs y servicios → Biblioteca, activa <b>Maps JavaScript API</b> en el mismo proyecto de la key.'],
+  BillingNotEnabledMapError:['El proyecto no tiene facturación','Los mapas 3D requieren una cuenta de facturación vinculada al proyecto (hay franquicia gratuita mensual).'],
+  InvalidKeyMapError:['La key no es válida','Copia de nuevo la key desde Google Cloud → Credenciales y vuelve a pegarla.'],
+  ExpiredKeyMapError:['La key ha caducado','Genera una nueva en Google Cloud → Credenciales.'],
+  ProjectDeniedMapError:['El proyecto tiene el acceso denegado','Revisa en Google Cloud que el proyecto esté activo y con facturación.'],
 };
+function diagnostico(codigo,detalle){
+  const d=document.getElementById('diag'); if(!d) return;
+  const c=CAUSAS[codigo]||['Google no ha podido cargar el mapa 3D','Código: <code>'+(codigo||'desconocido')+'</code>. '+(detalle||'')];
+  d.querySelector('.diag-titulo').textContent=c[0];
+  d.querySelector('.diag-texto').innerHTML=c[1]+(codigo&&CAUSAS[codigo]?' <span class="diag-codigo">'+codigo+'</span>':'');
+  d.querySelector('.diag-origen').textContent='Abierto desde '+location.origin;
+  d.hidden=false;
+}
+window.gm_authFailure = () => { if(!document.getElementById('diag').dataset.visto) diagnostico(document.getElementById('diag').dataset.codigo||'AuthFailure'); };
+(function(){ const orig=console.error; console.error=function(){ try{ const s=[...arguments].map(String).join(' '); const m=s.match(/([A-Za-z]+MapError)/); if(m){ const d=document.getElementById('diag'); if(d){ d.dataset.codigo=m[1]; d.dataset.visto='1'; diagnostico(m[1]); } } }catch(e){} return orig.apply(console,arguments); }; })();
+function cambiarKey(){ try{ localStorage.removeItem('gmapkey'); }catch(_){} location.href=location.pathname; }
 
 async function initMapa(){
   const { Map3DElement, Marker3DInteractiveElement, AltitudeMode } = await google.maps.importLibrary('maps3d');
