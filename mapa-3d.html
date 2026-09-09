@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Costa del Golf 3D — Campos y promociones del ranking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{ --ink:#1E3A5F; --cream:#FAFAFB; --y1:#1E3A5F; --y3:#3E6BA0; --y4:#7FA3C9; --panel:rgba(12,12,12,.88); }
+  html,body{margin:0;height:100%;font-family:'Source Sans Pro',Arial,sans-serif;background:#101114}
+  gmp-map-3d{position:absolute;inset:0}
+  .panel{position:absolute;top:22px;left:22px;z-index:10;background:var(--panel);color:var(--cream);
+    backdrop-filter:blur(8px);padding:18px 22px;max-width:320px;border-left:3px solid var(--y3)}
+  .panel .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--y3);margin:0 0 6px}
+  .panel h1{font-family:Antonio;font-size:26px;margin:0 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:-.005em}
+  .panel p{font-size:12px;line-height:1.5;margin:0;color:#cfc9ba}
+  .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:10px;letter-spacing:.06em;color:#cfc9ba}
+  .leyenda span{display:inline-flex;align-items:center;gap:5px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .controls{position:absolute;bottom:26px;left:22px;z-index:10;display:flex;gap:7px;flex-wrap:wrap;max-width:calc(100% - 44px)}
+  .controls button{background:var(--panel);color:var(--cream);border:1px solid rgba(62,107,160,.5);
+    padding:8px 13px;font-size:11.5px;letter-spacing:.04em;cursor:pointer;font-family:'Source Sans Pro'}
+  .controls button:hover{background:var(--y3);color:var(--ink)}
+  .controls button.on{background:var(--y3);color:var(--ink);font-weight:600}
+  #ficha{position:absolute;top:22px;right:22px;z-index:10;background:var(--panel);color:var(--cream);
+    backdrop-filter:blur(8px);padding:18px 22px;width:300px;border-left:3px solid var(--y3);display:none}
+  #ficha .sub{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--y3);margin:0 0 4px}
+  #ficha h2{font-family:Antonio;font-size:22px;margin:0 0 4px;text-transform:uppercase;font-weight:700;line-height:1.02}
+  #ficha .meta{font-size:12px;color:#cfc9ba;line-height:1.55}
+  #ficha .score{font-family:Antonio;font-size:38px;color:var(--y4);font-weight:700;margin:8px 0 0}
+  #ficha .score small{font-size:14px;color:#8b8676;font-family:'Source Sans Pro'}
+  #ficha .stars{color:var(--amarillo);letter-spacing:2px}
+  #ficha .cerrar{position:absolute;top:8px;right:10px;background:none;border:none;color:#8b8676;font-size:16px;cursor:pointer}
+  #filtros{position:absolute;bottom:26px;right:22px;z-index:10;display:flex;gap:7px}
+  #filtros button{background:var(--panel);color:var(--cream);border:1px solid rgba(62,107,160,.35);padding:8px 12px;font-size:11px;cursor:pointer}
+  #filtros button.on{background:var(--y3);color:var(--ink);font-weight:600}
+  #keyGate{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:#101114;color:var(--cream)}
+  #keyGate .box{max-width:460px;padding:34px;border-left:3px solid var(--y3);background:#191b1f}
+  #keyGate h2{font-family:Antonio;margin:0 0 4px;font-size:24px;text-transform:uppercase}
+  #keyGate .sub{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--y3);margin:0 0 12px}
+  #keyGate p{font-size:13px;line-height:1.55;color:#cfc9ba}
+  #keyGate input{width:100%;box-sizing:border-box;padding:11px;margin:12px 0;background:#101114;border:1px solid #3a3a3a;color:var(--cream);font-size:13px}
+  #keyGate button{background:var(--y3);color:var(--ink);border:0;padding:11px 20px;font-size:13px;font-weight:700;cursor:pointer}
+  #keyGate small{color:#77716b;font-size:11px;display:block;margin-top:10px;line-height:1.5}
+  @media(max-width:760px){ .panel{max-width:calc(100% - 44px)} #ficha{top:auto;bottom:88px;right:22px;left:22px;width:auto} #filtros{display:none} }
+</style>
+</head>
+<body>
+<div id="keyGate">
+  <div class="box">
+    <p class="sub">Malashpina · Costa del Sol Golf Residences</p>
+    <h2>Costa del Golf en 3D</h2>
+    <p>Introduce tu API key de Google Cloud con <strong>Maps JavaScript API</strong> habilitada. También funciona como <code>?key=TU_KEY</code>, o creando <code>key.js</code> junto a este archivo con <code>const GMAPS_KEY='AIza…';</code></p>
+    <input id="keyInput" type="text" placeholder="AIza..." autocomplete="off">
+    <button onclick="start(document.getElementById('keyInput').value.trim())">Cargar mapa</button>
+    <small>La key se envía solo a Google y se recuerda en este navegador (localStorage). Restríngela en Google Cloud a http://localhost:8721 y, más adelante, al dominio de publicación. 61 campos · 14 promociones · matriz v1.2.</small>
+  </div>
+</div>
+<div class="panel" style="display:none" id="infoPanel">
+  <p class="sub">Sotogrande → Vélez-Málaga · Google 3D</p>
+  <h1>Costa del Golf</h1>
+  <p>61 campos valorados 1–4★ y las 14 promociones del ranking. Pulsa cualquier marcador. Arrastrar: mover · ctrl+arrastrar: inclinar/rotar · rueda: zoom.</p>
+  <div class="leyenda">
+    <span><span class="dot" style="background:linear-gradient(135deg,#1E3A5F,#3E6BA0);border:1.5px solid #fff"></span>Promoción (nº = posición)</span>
+    <span><span class="dot" style="background:#3E6BA0"></span>★★★★</span>
+    <span><span class="dot" style="background:#2C5384"></span>★★★</span>
+    <span><span class="dot" style="background:#1E3A5F"></span>★★</span>
+    <span><span class="dot" style="background:#243B52"></span>★</span>
+  </div>
+</div>
+<div class="controls" style="display:none" id="ctrl">
+  <button onclick="fly(V.general,this)">Vista general</button>
+  <button onclick="fly(V.sotogrande,this)">Sotogrande</button>
+  <button onclick="fly(V.cortesin,this)">Finca Cortesín</button>
+  <button onclick="fly(V.valley,this)">Golf Valley</button>
+  <button onclick="fly(V.este,this)">Marbella Este</button>
+  <button onclick="fly(V.mijas,this)">Mijas · La Cala</button>
+  <button onclick="orbita()">Órbita</button>
+</div>
+<div id="filtros" style="display:none">
+  <button class="on" data-f="all">Todo</button>
+  <button data-f="4">Solo 4★</button>
+  <button data-f="34">3★+</button>
+  <button data-f="promos">Solo promociones</button>
+</div>
+<div id="ficha"><button class="cerrar" onclick="ficha.style.display='none'">✕</button><div id="fichaBody"></div></div>
+<gmp-map-3d id="mapa" style="display:none" mode="hybrid"></gmp-map-3d>
+
+<script src="key.js" onerror="void 0"></script>
+<script>
+const DATA = {"courses": [{"id": "real-club-valderrama", "n": "Real Club Valderrama", "m": "Sotogrande", "s": 4, "acc": 0.5, "memb": "Privado de socios", "dis": "R. Trent Jones Sr.", "ano": 1974, "gf": "500–575", "lat": 36.286, "lng": -5.319}, {"id": "real-club-de-golf-sotogrande", "n": "Real Club de Golf Sotogrande", "m": "Sotogrande", "s": 4, "acc": 0.5, "memb": "Privado de socios", "dis": "R. Trent Jones Sr.", "ano": 1964, "gf": "350–475", "lat": 36.296, "lng": -5.298}, {"id": "la-reserva-club-sotogrande", "n": "La Reserva Club Sotogrande", "m": "Sotogrande", "s": 4, "acc": 1, "memb": "Semi-privado", "dis": "Cabell B. Robinson", "ano": 2003, "gf": "230–285", "lat": 36.318, "lng": -5.29}, {"id": "finca-cortesin-golf", "n": "Finca Cortesín Golf", "m": "Casares", "s": 4, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 2006, "gf": "350–400", "lat": 36.39646, "lng": -5.22386}, {"id": "real-club-de-golf-las-brisas", "n": "Real Club de Golf Las Brisas", "m": "Marbella · Nueva Andalucía", "s": 4, "acc": 0.5, "memb": "Privado de socios", "dis": "R. Trent Jones Sr.", "ano": 1968, "gf": "250–310", "lat": 36.50542, "lng": -4.96799}, {"id": "aloha-golf-club", "n": "Aloha Golf Club", "m": "Marbella · Nueva Andalucía", "s": 3, "acc": 0.5, "memb": "Privado de socios", "dis": "Javier Arana", "ano": 1975, "gf": "200–260", "lat": 36.51186, "lng": -4.95917}, {"id": "los-naranjos-golf", "n": "Los Naranjos Golf", "m": "Marbella · Nueva Andalucía", "s": 3, "acc": 1, "memb": "Privado / resort", "dis": "R. Trent Jones Sr.", "ano": 1977, "gf": "150–200", "lat": 36.50139, "lng": -4.94951}, {"id": "real-club-de-golf-guadalmina-sur", "n": "Real Club de Golf Guadalmina Sur", "m": "San Pedro", "s": 3, "acc": 0.5, "memb": "Privado de socios", "dis": "Javier Arana", "ano": 1959, "gf": "110–150", "lat": 36.482, "lng": -4.989}, {"id": "rio-real-golf", "n": "Río Real Golf", "m": "Marbella Este", "s": 3, "acc": 1, "memb": "Resort", "dis": "Javier Arana", "ano": 1965, "gf": "130–175", "lat": 36.51276, "lng": -4.84457}, {"id": "marbella-club-golf-resort", "n": "Marbella Club Golf Resort", "m": "Benahavís", "s": 3, "acc": 1, "memb": "Privado / hotel", "dis": "Dave Thomas", "ano": 1999, "gf": "180–240", "lat": 36.49892, "lng": -5.06003}, {"id": "la-quinta-golf", "n": "La Quinta Golf", "m": "Benahavís", "s": 3, "acc": 1, "memb": "Resort", "dis": "Piñero & Garrido", "ano": 1989, "gf": "110–150", "lat": 36.51265, "lng": -4.99664}, {"id": "flamingos-villa-padierna", "n": "Flamingos Villa Padierna", "m": "Benahavís", "s": 3, "acc": 1, "memb": "Resort de lujo", "dis": "A. García Garrido", "ano": 2002, "gf": "140–185", "lat": 36.48, "lng": -5.025}, {"id": "san-roque-club-old", "n": "San Roque Club Old", "m": "San Roque", "s": 3, "acc": 1, "memb": "Privado / resort", "dis": "Dave Thomas + Seve", "ano": 1990, "gf": "150–200", "lat": 36.293, "lng": -5.35}, {"id": "la-cala-resort-asia", "n": "La Cala Resort Asia", "m": "Mijas", "s": 3, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 1991, "gf": "110–150", "lat": 36.555, "lng": -4.685}, {"id": "mijas-golf-los-lagos", "n": "Mijas Golf Los Lagos", "m": "Mijas Costa", "s": 3, "acc": 1, "memb": "Resort", "dis": "R. Trent Jones Sr.", "ano": 1976, "gf": "90–130", "lat": 36.55014, "lng": -4.66271}, {"id": "golf-torrequebrada", "n": "Golf Torrequebrada", "m": "Benalmádena", "s": 3, "acc": 1, "memb": "Semi-privado", "dis": "Pepe Gancedo", "ano": 1976, "gf": "110–150", "lat": 36.58603, "lng": -4.54924}, {"id": "la-zagaleta-old", "n": "La Zagaleta Old", "m": "Benahavís", "s": 3, "acc": 0, "memb": "Estrict. privado", "dis": "Bradford Benz", "ano": 1991, "gf": "Solo socios", "lat": 36.527, "lng": -5.025}, {"id": "la-hacienda-alcaidesa-links", "n": "La Hacienda Alcaidesa Links", "m": "La Línea", "s": 2, "acc": 1, "memb": "Resort", "dis": "Alliss & Clark", "ano": 1992, "gf": "110–150", "lat": 36.234, "lng": -5.331}, {"id": "la-hacienda-heathland", "n": "La Hacienda Heathland", "m": "La Línea", "s": 2, "acc": 1, "memb": "Resort", "dis": "Dave Thomas", "ano": 2007, "gf": "110–150", "lat": 36.231, "lng": -5.325}, {"id": "san-roque-club-new", "n": "San Roque Club New", "m": "San Roque", "s": 2, "acc": 1, "memb": "Resort", "dis": "Dye & Ballesteros", "ano": 2003, "gf": "110–150", "lat": 36.293, "lng": -5.353}, {"id": "la-canada-golf", "n": "La Cañada Golf", "m": "Sotogrande", "s": 2, "acc": 1, "memb": "Municipal", "dis": "Trent Jones / Thomas", "ano": 1982, "gf": "80–110", "lat": 36.29479, "lng": -5.30936}, {"id": "the-alto-club-almenara", "n": "The Alto Club (Almenara)", "m": "Sotogrande Alto", "s": 2, "acc": 1, "memb": "Resort", "dis": "Dave Thomas", "ano": 1998, "gf": "100–150", "lat": 36.301, "lng": -5.297}, {"id": "dona-julia-golf", "n": "Doña Julia Golf", "m": "Casares", "s": 2, "acc": 1, "memb": "Público", "dis": "A. García Garrido", "ano": 2005, "gf": "75–110", "lat": 36.39917, "lng": -5.24387}, {"id": "la-duquesa-golf", "n": "La Duquesa Golf", "m": "Manilva", "s": 2, "acc": 1, "memb": "Semi-privado", "dis": "R. Trent Jones Sr.", "ano": 1987, "gf": "65–95", "lat": 36.3513, "lng": -5.23521}, {"id": "atalaya-old", "n": "Atalaya Old", "m": "Estepona", "s": 2, "acc": 1, "memb": "Semi-privado", "dis": "B. von Limburger", "ano": 1968, "gf": "90–130", "lat": 36.485, "lng": -5.013}, {"id": "atalaya-new", "n": "Atalaya New", "m": "Estepona", "s": 2, "acc": 1, "memb": "Semi-privado", "dis": "Paul Krings", "ano": 1990, "gf": "70–100", "lat": 36.491, "lng": -5.018}, {"id": "el-paraiso-golf", "n": "El Paraíso Golf", "m": "Estepona", "s": 2, "acc": 0.5, "memb": "Privado de socios", "dis": "G. Player & R. Kirby", "ano": 1973, "gf": "100–130", "lat": 36.49, "lng": -5.025}, {"id": "estepona-golf", "n": "Estepona Golf", "m": "Estepona", "s": 2, "acc": 1, "memb": "Público", "dis": "J.L. López Martínez", "ano": 1989, "gf": "65–95", "lat": 36.41297, "lng": -5.21219}, {"id": "valle-romano-golf", "n": "Valle Romano Golf", "m": "Estepona", "s": 2, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 2010, "gf": "95–130", "lat": 36.42917, "lng": -5.19651}, {"id": "azata-golf", "n": "Azata Golf", "m": "Estepona", "s": 2, "acc": 1, "memb": "Público", "dis": "Stirling & Martin", "ano": 2020, "gf": "75–110", "lat": 36.41728, "lng": -5.20059}, {"id": "los-arqueros-golf", "n": "Los Arqueros Golf", "m": "Benahavís", "s": 2, "acc": 1, "memb": "Resort", "dis": "Severiano Ballesteros", "ano": 1991, "gf": "95–130", "lat": 36.523, "lng": -5.01}, {"id": "alferini-villa-padierna", "n": "Alferini Villa Padierna", "m": "Benahavís", "s": 2, "acc": 1, "memb": "Resort", "dis": "C. Guerrero Bautista", "ano": 2007, "gf": "140–185", "lat": 36.485, "lng": -5.03}, {"id": "la-zagaleta-los-barrancos", "n": "La Zagaleta Los Barrancos", "m": "Benahavís", "s": 2, "acc": 0, "memb": "Estrict. privado", "dis": "Bradford Benz", "ano": 2005, "gf": "Solo socios", "lat": 36.53, "lng": -5.022}, {"id": "guadalmina-norte", "n": "Guadalmina Norte", "m": "San Pedro", "s": 2, "acc": 0.5, "memb": "Privado de socios", "dis": "Folco Nardi", "ano": 1973, "gf": "85–115", "lat": 36.484, "lng": -4.992}, {"id": "higueron-marbella-golf", "n": "Higuerón Marbella Golf", "m": "Marbella Este", "s": 2, "acc": 1, "memb": "Resort", "dis": "R. Trent Jones Jr.", "ano": 1989, "gf": "90–130", "lat": 36.513, "lng": -4.813}, {"id": "santa-maria-golf", "n": "Santa María Golf", "m": "Elviria", "s": 2, "acc": 1, "memb": "Semi-privado", "dis": "A. García Garrido", "ano": 1991, "gf": "80–115", "lat": 36.50999, "lng": -4.76803}, {"id": "santa-clara-golf-marbella", "n": "Santa Clara Golf Marbella", "m": "Marbella Este", "s": 2, "acc": 1, "memb": "Público", "dis": "E. Canales Busquets", "ano": 2001, "gf": "75–110", "lat": 36.50641, "lng": -4.82042}, {"id": "cabopino-golf", "n": "Cabopino Golf", "m": "Cabopino", "s": 2, "acc": 1, "memb": "Público", "dis": "Juan Ligués Creus", "ano": 1990, "gf": "65–95", "lat": 36.49443, "lng": -4.7398}, {"id": "la-cala-resort-america", "n": "La Cala Resort América", "m": "Mijas", "s": 2, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 1991, "gf": "110–150", "lat": 36.553, "lng": -4.685}, {"id": "la-cala-resort-europa", "n": "La Cala Resort Europa", "m": "Mijas", "s": 2, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 2005, "gf": "100–140", "lat": 36.53315, "lng": -4.72089}, {"id": "mijas-golf-los-olivos", "n": "Mijas Golf Los Olivos", "m": "Mijas Costa", "s": 2, "acc": 1, "memb": "Resort", "dis": "R. Trent Jones Sr.", "ano": 1984, "gf": "80–115", "lat": 36.54946, "lng": -4.66869}, {"id": "santana-golf", "n": "Santana Golf", "m": "La Cala", "s": 2, "acc": 1, "memb": "Resort", "dis": "Cabell B. Robinson", "ano": 2004, "gf": "95–130", "lat": 36.5434, "lng": -4.69336}, {"id": "el-chaparral-golf", "n": "El Chaparral Golf", "m": "Mijas Costa", "s": 2, "acc": 1, "memb": "Resort", "dis": "Pepe Gancedo", "ano": 1991, "gf": "80–115", "lat": 36.51645, "lng": -4.66341}, {"id": "calanova-golf", "n": "Calanova Golf", "m": "La Cala", "s": 2, "acc": 1, "memb": "Resort", "dis": "J. García Mayoral", "ano": 2006, "gf": "75–110", "lat": 36.50965, "lng": -4.7031}, {"id": "miraflores-golf", "n": "Miraflores Golf", "m": "Mijas Costa", "s": 2, "acc": 1, "memb": "Semi-privado", "dis": "Folco Nardi", "ano": 1990, "gf": "65–95", "lat": 36.50186, "lng": -4.70313}, {"id": "parador-malaga-golf", "n": "Parador Málaga Golf", "m": "Churriana", "s": 2, "acc": 1, "memb": "Resort", "dis": "H.S. Colt (1925)", "ano": 1925, "gf": "75–110", "lat": 36.65342, "lng": -4.47781}, {"id": "real-club-guadalhorce", "n": "Real Club Guadalhorce", "m": "Campanillas", "s": 2, "acc": 0.5, "memb": "Privado de socios", "dis": "K. Kuronen", "ano": 1990, "gf": "75–110", "lat": 36.713, "lng": -4.56}, {"id": "lauro-golf", "n": "Lauro Golf", "m": "Alhaurín de la Torre", "s": 2, "acc": 1, "memb": "Resort", "dis": "Folco Nardi", "ano": 1992, "gf": "65–95", "lat": 36.65176, "lng": -4.6314}, {"id": "alhaurin-golf", "n": "Alhaurín Golf", "m": "Alhaurín el Grande", "s": 2, "acc": 1, "memb": "Resort", "dis": "Severiano Ballesteros", "ano": 1994, "gf": "70–100", "lat": 36.60887, "lng": -4.70518}, {"id": "real-club-el-candado", "n": "Real Club El Candado", "m": "Málaga Este", "s": 2, "acc": 0.5, "memb": "Privado de socios", "dis": "C. Fernández Caleya", "ano": 1965, "gf": "55–75", "lat": 36.72, "lng": -4.347}, {"id": "anoreta-golf", "n": "Añoreta Golf", "m": "Rincón Victoria", "s": 2, "acc": 1, "memb": "Resort", "dis": "J.M. Cañizares", "ano": 1990, "gf": "75–105", "lat": 36.72765, "lng": -4.23661}, {"id": "baviera-golf", "n": "Baviera Golf", "m": "Caleta de Vélez", "s": 2, "acc": 1, "memb": "Público", "dis": "J.M. Cañizares", "ano": 2001, "gf": "70–95", "lat": 36.755, "lng": -4.08}, {"id": "magna-marbella", "n": "Magna Marbella", "m": "Nueva Andalucía", "s": 1, "acc": 1, "memb": "Público", "dis": "C.B. Robinson", "ano": 2002, "gf": "30–45", "lat": 36.50582, "lng": -4.97874}, {"id": "greenlife-golf", "n": "Greenlife Golf", "m": "Elviria Hills", "s": 1, "acc": 1, "memb": "Público", "dis": "Greenlife", "ano": 2000, "gf": "25–40", "lat": 36.50539, "lng": -4.77954}, {"id": "dama-de-noche", "n": "Dama de Noche", "m": "Río Verde", "s": 1, "acc": 1, "memb": "Público", "dis": "E. Canales", "ano": 1991, "gf": "35–55", "lat": 36.498, "lng": -4.945}, {"id": "tramores-villa-padierna", "n": "Tramores Villa Padierna", "m": "Benahavís", "s": 1, "acc": 1, "memb": "Resort", "dis": "C. Guerrero", "ano": 2007, "gf": "80–110", "lat": 36.482, "lng": -5.027}, {"id": "el-higueral", "n": "El Higueral", "m": "Benahavís", "s": 1, "acc": 1, "memb": "Público", "dis": "Roderick Segar", "ano": 2008, "gf": "45–65", "lat": 36.50161, "lng": -5.02311}, {"id": "casares-costa-golf", "n": "Casares Costa Golf", "m": "Casares", "s": 1, "acc": 1, "memb": "Público", "dis": "J.C. Martínez", "ano": 2002, "gf": "35–50", "lat": 36.413, "lng": -5.231}, {"id": "la-resina-golf", "n": "La Resina Golf", "m": "Estepona", "s": 1, "acc": 1, "memb": "Público", "dis": "Cooke & Smith", "ano": 2005, "gf": "30–45", "lat": 36.475, "lng": -5.018}, {"id": "la-noria-golf", "n": "La Noria Golf", "m": "La Cala", "s": 1, "acc": 1, "memb": "Público", "dis": "F. Navarro Pastor", "ano": 2003, "gf": "35–55", "lat": 36.523, "lng": -4.69}, {"id": "la-siesta-golf", "n": "La Siesta Golf", "m": "Calahonda", "s": 1, "acc": 1, "memb": "Público", "dis": "E. Canales", "ano": 1990, "gf": "30–45", "lat": 36.49528, "lng": -4.72233}], "promos": [{"id": "villas-alamos", "n": "Las Villas de los Álamos", "sub": "La Reserva de Sotogrande", "m": "Sotogrande (Cádiz)", "rank": 1, "total": 81, "A": 50, "B": 31, "desde": "€830.000", "u": 49, "lat": 36.3175, "lng": -5.292, "top10": true}, {"id": "marea-missoni", "n": "MAREA by Missoni", "sub": "Finca Cortesín · Hotel · Golf · Spa", "m": "Casares", "rank": 2, "total": 79, "A": 45, "B": 34, "desde": "€1.000.000", "u": 68, "lat": 36.379, "lng": -5.224, "top10": true}, {"id": "village-verde", "n": "Village Verde", "sub": "La Reserva de Sotogrande", "m": "Sotogrande (Cádiz)", "rank": 3, "total": 76, "A": 50, "B": 26, "desde": "€830.000", "u": 122, "lat": 36.318, "lng": -5.29, "top10": true}, {"id": "quercus", "n": "Real de La Quinta · Quercus", "sub": "Future Banyan Tree Residences", "m": "Benahavís", "rank": 4, "total": 58, "A": 27, "B": 31, "desde": "€1.300.000", "u": 36, "lat": 36.515, "lng": -5, "top10": true}, {"id": "epic-fendi", "n": "EPIC Marbella by Fendi", "sub": "Casa Branded Residences", "m": "Marbella", "rank": 5, "total": 55, "A": 21, "B": 34, "desde": "€1.750.000", "u": 56, "lat": 36.516, "lng": -4.911, "top10": true}, {"id": "mc-hills", "n": "Marbella Club Hills", "sub": "Fase 2", "m": "Benahavís", "rank": 6, "total": 54, "A": 30, "B": 24, "desde": "€690.000", "u": 126, "lat": 36.495, "lng": -5.045, "top10": true}, {"id": "tiara", "n": "Tiara", "sub": "La Quinta · NVOGA", "m": "Benahavís", "rank": 6, "total": 54, "A": 32, "B": 22, "desde": "€1.550.000", "u": 56, "lat": 36.51, "lng": -4.972, "top10": true}, {"id": "zew", "n": "ZEW", "sub": "by Concept Homes", "m": "Marbella", "rank": 8, "total": 51, "A": 20, "B": 31, "desde": "€1.500.000", "u": 20, "lat": 36.503, "lng": -4.81, "top10": true}, {"id": "soul-marbella", "n": "Soul Marbella Sunlife", "sub": "Santa Clara Resort", "m": "Marbella", "rank": 9, "total": 46, "A": 24, "B": 22, "desde": "€1.294.000", "u": 68, "lat": 36.495, "lng": -4.823, "top10": true}, {"id": "velaya", "n": "Vélaya Estepona", "sub": "Stoneweg Living", "m": "Estepona", "rank": 9, "total": 46, "A": 21, "B": 25, "desde": "€792.000", "u": 38, "lat": 36.473, "lng": -5.005, "top10": true}, {"id": "higueron-valley", "n": "Higuerón Valley", "sub": "Higuerón Resort", "m": "Fuengirola", "rank": 11, "total": 44, "A": 21, "B": 23, "desde": "€595.000", "u": 224, "lat": 36.553, "lng": -4.595, "top10": false}, {"id": "the-view", "n": "The View Marbella", "sub": "Las Colinas de Marbella", "m": "Benahavís", "rank": 12, "total": 42, "A": 27, "B": 15, "desde": "€799.000", "u": 119, "lat": 36.51, "lng": -4.97, "top10": false}, {"id": "calanova", "n": "Calanova Collection", "sub": "Avantespacia", "m": "Mijas", "rank": 13, "total": 35, "A": 22, "B": 13, "desde": "€520.000", "u": 154, "lat": 36.52, "lng": -4.692, "top10": false}, {"id": "quintessence", "n": "Quintessence Marbella", "sub": "Altos de Los Monteros", "m": "Marbella", "rank": 14, "total": 33, "A": 16, "B": 17, "desde": "€575.000", "u": 96, "lat": 36.499, "lng": -4.787, "top10": false}]};
+const ACC_LBL = {1:'Reservable',0.5:'Privado de socios',0:'Estrictamente privado'};
+const V = {
+  general:   {lat:36.42, lng:-4.95, range:95000, tilt:55, heading:-8},
+  sotogrande:{lat:36.295,lng:-5.30, range:11000, tilt:60, heading:-12},
+  cortesin:  {lat:36.38, lng:-5.225,range:8000,  tilt:60, heading:-20},
+  valley:    {lat:36.50, lng:-4.965,range:9500,  tilt:62, heading:-5},
+  este:      {lat:36.50, lng:-4.79, range:11000, tilt:60, heading:-10},
+  mijas:     {lat:36.53, lng:-4.67, range:13000, tilt:58, heading:-15},
+};
+let mapa, ficha, marcadores=[];
+
+async function start(key){
+  if(!key) return;
+  try{ localStorage.setItem('gmapkey', key); }catch(e){}
+  const s=document.createElement('script');
+  s.src='https://maps.googleapis.com/maps/api/js?key='+encodeURIComponent(key)+'&v=beta&libraries=maps3d,marker&loading=async&callback=initMapa';
+  s.onerror=()=>{ alert('No se pudo cargar Maps JavaScript API. Revisa la key.'); try{localStorage.removeItem('gmapkey');}catch(_){} location.reload(); };
+  document.head.appendChild(s);
+}
+window.gm_authFailure = () => {
+  alert('Google rechazó la key (¿Maps JavaScript API habilitada? ¿restricciones de referrer? ¿facturación?).');
+  try{ localStorage.removeItem('gmapkey'); }catch(_){}
+  location.reload();
+};
+
+async function initMapa(){
+  const { Map3DElement, Marker3DInteractiveElement, AltitudeMode } = await google.maps.importLibrary('maps3d');
+  const { PinElement } = await google.maps.importLibrary('marker');
+  ficha = document.getElementById('ficha');
+  document.getElementById('keyGate').style.display='none';
+  ['infoPanel','ctrl','filtros'].forEach(id=>document.getElementById(id).style.display=id==='infoPanel'?'block':'flex');
+
+  mapa = document.getElementById('mapa');
+  mapa.style.display='block';
+  Object.assign(mapa, { center:{lat:V.general.lat, lng:V.general.lng, altitude:0},
+    range:V.general.range, tilt:V.general.tilt, heading:V.general.heading });
+
+  const COL={4:'#3E6BA0',3:'#2C5384',2:'#1E3A5F',1:'#243B52'};
+  const BORDE={4:'#1E3A5F',3:'#1E3A5F',2:'#FFFFFF',1:'#FFFFFF'};
+  const ESC={4:1.35,3:1.1,2:0.85,1:0.68};
+
+  DATA.courses.forEach(c=>{
+    const m = new Marker3DInteractiveElement({
+      position:{lat:c.lat, lng:c.lng, altitude:40},
+      altitudeMode:'RELATIVE_TO_MESH', extruded:true,
+      label: c.s>=3 ? c.n : ''
+    });
+    const pin = new PinElement({ background:COL[c.s], borderColor:BORDE[c.s],
+      glyphColor:'#FAFAFB', glyph:String(c.s)+'★', scale:ESC[c.s] });
+    m.append(pin);
+    m.addEventListener('gmp-click', ()=>{ mostrarFicha('course',c); vuelaA(c.lat,c.lng,3200); });
+    m._kind='course'; m._stars=c.s;
+    mapa.append(m); marcadores.push(m);
+  });
+
+  DATA.promos.forEach(p=>{
+    const m = new Marker3DInteractiveElement({
+      position:{lat:p.lat, lng:p.lng, altitude:70},
+      altitudeMode:'RELATIVE_TO_MESH', extruded:true,
+      label: p.n, zIndex: 10
+    });
+    const pin = new PinElement({ background:'#1E3A5F', borderColor:'#FFFFFF',
+      glyphColor:'#FFFFFF', glyph:String(p.rank), scale:1.5 });
+    m.append(pin);
+    m.addEventListener('gmp-click', ()=>{ mostrarFicha('promo',p); vuelaA(p.lat,p.lng,2600); });
+    m._kind='promo';
+    mapa.append(m); marcadores.push(m);
+  });
+}
+
+function mostrarFicha(kind,d){
+  const b=document.getElementById('fichaBody');
+  if(kind==='promo'){
+    b.innerHTML=`<p class="sub">${d.top10?'Top 10 · Posición '+d.rank:'Mención honorífica · '+d.rank}</p>
+      <h2>${d.n}</h2>
+      <div class="meta">${d.sub} · ${d.m}<br>${d.u} unidades · desde ${d.desde}</div>
+      <div class="score">${d.total}<small> / 100 · golf ${d.A}/60 · calidad ${d.B}/40</small></div>`;
+  }else{
+    b.innerHTML=`<p class="sub">Campo de golf · ${ACC_LBL[d.acc]||d.memb}</p>
+      <h2>${d.n}</h2>
+      <div class="meta"><span class="stars">${'★'.repeat(d.s)}</span><span style="opacity:.3">${'★'.repeat(4-d.s)}</span><br>
+      ${d.m} · ${d.dis}, ${d.ano}<br>Green fee €${d.gf}</div>`;
+  }
+  ficha.style.display='block';
+}
+
+function vuelaA(lat,lng,range){
+  mapa.flyCameraTo({ endCamera:{ center:{lat,lng,altitude:0}, range, tilt:62, heading:0 }, durationMillis:2200 });
+}
+function fly(v,btn){
+  if(btn){document.querySelectorAll('.controls button').forEach(x=>x.classList.remove('on'));btn.classList.add('on');}
+  mapa.flyCameraTo({ endCamera:{ center:{lat:v.lat,lng:v.lng,altitude:0}, range:v.range, tilt:v.tilt, heading:v.heading }, durationMillis:2800 });
+}
+function orbita(){
+  mapa.flyCameraAround({ camera:{ center:{lat:36.46,lng:-4.99,altitude:0}, range:12000, tilt:60 },
+    durationMillis:60000, rounds:1 });
+}
+
+document.querySelectorAll('#filtros button').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('#filtros button').forEach(x=>x.classList.remove('on'));
+    btn.classList.add('on');
+    const f=btn.dataset.f;
+    marcadores.forEach(m=>{
+      const vis = f==='all' || (f==='promos' ? m._kind==='promo'
+                : m._kind==='promo' || (f==='4' ? m._stars===4 : m._stars>=3));
+      m.style.display = vis ? '' : 'none';
+    });
+  };
+});
+
+const urlKey = new URLSearchParams(location.search).get('key');
+let stored=null; try{ stored=localStorage.getItem('gmapkey'); }catch(e){}
+if(urlKey) start(urlKey);
+else if(typeof GMAPS_KEY!=='undefined' && GMAPS_KEY) start(GMAPS_KEY);
+else if(stored){ document.getElementById('keyInput').value=stored; start(stored); }
+</script>
+</body>
+</html>

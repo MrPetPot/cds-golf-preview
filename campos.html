@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Los campos · Costa del Sol Golf Residences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body>
+<nav class="topnav" aria-label="Secciones de la guía">
+  <a class="topnav-brand" href="index.html"><b>Costa del Golf</b><small>Malashpina · Guía editorial</small></a>
+  <div class="topnav-links"><a href="index.html">Inicio</a><a href="metodologia.html">Método</a><a href="campos.html" aria-current="page">Campos</a><a href="ranking.html" class="nav-ranking">Ranking</a><a href="fuentes.html">Fuentes</a></div>
+</nav>
+<div id="shell"><main id="main">
+    <figure class="banda">
+      <img src="images/zona/nueva-andalucia.jpg" alt="Nueva Andalucía, con el Golf Valley en primer plano y La Concha al fondo" loading="lazy"/>
+      <figcaption>Nueva Andalucía · el Golf Valley desde el aire <em>Archivo Malashpina</em></figcaption>
+    </figure>
+    <section id="campos" class="reveal">
+      <div class="sec-eyebrow">02 · Los campos</div>
+      <h2 class="sec-title">Sesenta y un campos. <em>Cinco</em> de élite mundial.</h2>
+      <p class="sec-lede">De ★ a ★★★★ cruzando Top 100 Golf Courses, Leadingcourses, palmarés y diseñador. Filtra por nivel.</p>
+      <div class="galeria" id="galeriaCampos"></div>
+      <p class="galeria-nota" id="galeriaNota"></p>
+
+      <div class="golf-filter" id="golfFilter">
+        <button class="active" data-f="all">Todos (61)</button>
+        <button data-f="4">★★★★ (5)</button>
+        <button data-f="3">★★★ (12)</button>
+        <button data-f="2">★★ (35)</button>
+        <button data-f="1">★ (9)</button>
+      </div>
+
+      <div class="golf-table">
+        <div class="golf-th">
+          <div>Campo · Municipio</div>
+          <div>Diseñador · Año</div>
+          <div>Hoyos · Membresía</div>
+          <div>Green fee</div>
+          <div>Palmarés</div>
+          <div style="text-align:right">Categoría</div>
+        </div>
+        <div id="golfBody"></div>
+      </div>
+    </section>
+    <section id="mapa" class="reveal">
+      <div class="sec-eyebrow">La geografía</div>
+      <h2 class="sec-title">De Casares a Vélez-Málaga, <em>de un vistazo</em>.</h2>
+      <p class="sec-lede">Cada punto es un campo; el tamaño y el tono, su categoría.</p>
+      <div class="map-wrap">
+        <div id="bigMap" data-modo="campos"><noscript><div style="padding:60px;text-align:center;color:#6E6A5C">Active JavaScript para ver el mapa interactivo.</div></noscript></div>
+        <div id="mapFallback">Mapa no disponible — se requiere conexión a internet para cargar los tiles.</div>
+      </div>
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot g4"></span> Campo ★★★★ (élite)</div>
+        <div class="legend-item"><span class="legend-dot g3"></span> Campo ★★★ (premium)</div>
+        <div class="legend-item"><span class="legend-dot g2"></span> Campo ★★ (comercial)</div>
+        <div class="legend-item"><span class="legend-dot g1"></span> Campo ★ (funcional)</div>
+      </div>
+      <div class="siguiente"><a href="ranking.html"><small>Siguiente</small><b>El ranking →</b></a></div>
+    </section>
+
+    <footer>
+      <div>
+        <div class="foot-brand">Malashpina Creativos</div>
+        <div class="foot-tag">Branding, comunicación y marketing inmobiliario premium en la Costa del Sol. Esta guía es un proof of work editorial: criterio público, cálculo reproducible y una lista abierta de lo que aún no está comprobado.</div>
+      </div>
+      <div>
+        <div class="foot-col-title">Contacto</div>
+        <div class="foot-col-item">Málaga · España</div>
+        <div class="foot-col-item">malashpina.com</div>
+        <div class="foot-col-item">hello@malashpina.com</div>
+      </div>
+      <div>
+        <div class="foot-col-title">Esta edición</div>
+        <div class="foot-col-item">Edición #01 · rev. septiembre 2026</div>
+        <div class="foot-col-item">Matriz v1.8 · próxima revisión octubre 2026</div>
+        <div class="foot-col-item">14 promociones · 61 campos</div>
+      </div>
+      <div class="foot-copy">
+        <span>© 2026 Malashpina Creativos · Datos públicos auditados</span>
+        <span>Costa del Sol · Golf Residences · #01</span>
+      </div>
+    </footer>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>
