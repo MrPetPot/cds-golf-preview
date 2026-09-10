@@ -1092,28 +1092,6 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .golf-filter button .star,
 .legend-item .star { color: var(--amarillo); }
 
-/* ═══════════════════════════════════════════════
-   ZONA DE GOLF · el verde manda en mapa y campos.
-   La zona de propiedades (ranking y fichas) se queda en azul.
-═══════════════════════════════════════════════ */
-#mapa .sec-eyebrow, #campos .sec-eyebrow { color: var(--verde-2); }
-#mapa .sec-eyebrow::before, #campos .sec-eyebrow::before { background: var(--verde-2); }
-#mapa .sec-title em, #campos .sec-title em { color: var(--verde-2); }
-#mapa .galeria-nota, #campos .galeria-nota { color: var(--text-mute); }
-
-#campos .acc-1 { color: var(--verde-2); border-color: var(--verde-line); background: var(--verde-soft); }
-#campos .golf-tr-stars small { color: var(--verde-2); }
-#campos .golf-filter button:hover { border-color: var(--verde-line); color: var(--verde-2); }
-#campos .golf-filter button.active {
-  border-color: var(--verde-2); color: var(--verde-2); background: var(--verde-soft);
-}
-#campos .golf-tr:hover { background: var(--verde-soft); }
-#campos .gc-cred a { color: var(--verde-2); border-bottom-color: var(--verde-line); }
-#campos .gc figcaption strong { color: var(--verde-2); }
-#campos .caveat { border-left-color: var(--verde-2); }
-#mapa .map-wrap { border-color: var(--verde-line); }
-#mapa .legend-item { color: var(--text-mid); }
-.banda figcaption em { color: var(--verde-1); opacity: 1; }
 
 /* ═══════════════════════════════════════════════
    WEB EN PÁGINAS · nav superior, acordeón, bullets
@@ -1165,6 +1143,69 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .nota-bloque h4 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 22px; margin: 0 0 14px; letter-spacing: -.005em; }
 .notas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 40px; }
 .notas-grid .nota-bloque { margin-top: 0; }
+/* ═══════════════════════════════════════════════
+   COLOR SECUNDARIO POR PÁGINA
+   navy (defecto) · campos = verde · ranking = oro
+═══════════════════════════════════════════════ */
+:root {
+  --oro-1: #C8A45C;         /* Oro claro — sobre imagen y fondos oscuros */
+  --oro-2: #B48F3C;         /* Oro medio — titulares grandes (3,1:1 en blanco) */
+  --oro-3: #8A6D28;         /* Oro oscuro — texto pequeño (4,9:1 en blanco) */
+  --oro-soft: rgba(200,164,92,.14);
+  --oro-line: rgba(138,109,40,.48);
+}
+body {
+  --sec: var(--y-3);            /* filetes, em de titular, puntos */
+  --sec-text: var(--y-1);       /* texto pequeño y etiquetas */
+  --sec-soft: var(--y-soft);
+  --sec-line: rgba(62,107,160,.5);
+  --sec-img: var(--y-4);        /* acento sobre imagen */
+}
+body[data-pagina="campos"] { --sec: var(--verde-2); --sec-text: var(--verde-2); --sec-soft: var(--verde-soft); --sec-line: var(--verde-line); --sec-img: var(--verde-1); }
+body[data-pagina="ranking"] { --sec: var(--oro-2); --sec-text: var(--oro-3); --sec-soft: var(--oro-soft); --sec-line: var(--oro-line); --sec-img: var(--oro-1); }
+
+body[data-pagina] .sec-eyebrow { color: var(--sec-text); }
+body[data-pagina] .sec-eyebrow::before { background: var(--sec); }
+body[data-pagina] .sec-title em { color: var(--sec); }
+body[data-pagina] .caveat, body[data-pagina] .method-note, body[data-pagina] .dc-rationale { border-left-color: var(--sec); }
+body[data-pagina] .caveat-title, body[data-pagina] .dc-rationale strong, body[data-pagina] .method-row-pts,
+body[data-pagina] .r-pos, body[data-pagina] .r-score-num, body[data-pagina] .sb-val,
+body[data-pagina] .sb-table .sb-total th, body[data-pagina] .sb-table .sb-total td,
+body[data-pagina] .ranking-head [data-sort].sorted, body[data-pagina] .pop-score,
+body[data-pagina] .course-mini-time sup, body[data-pagina] .golf-tr-stars small,
+body[data-pagina] .gc figcaption strong, body[data-pagina] .btn-linea, body[data-pagina] .paso-cta { color: var(--sec-text); }
+body[data-pagina] .tag, body[data-pagina] .acc-1 { color: var(--sec-text); border-color: var(--sec-line); background: var(--sec-soft); }
+body[data-pagina] .dc-rank-badge { color: var(--sec-text); }
+body[data-pagina] .gc-cred a { color: var(--sec-text); border-bottom-color: var(--sec-line); }
+body[data-pagina] .golf-filter button:hover { border-color: var(--sec-line); color: var(--sec-text); }
+body[data-pagina] .golf-filter button.active { border-color: var(--sec); color: var(--sec-text); background: var(--sec-soft); }
+body[data-pagina] .golf-tr:hover { background: var(--sec-soft); }
+body[data-pagina] .map-wrap { border-color: var(--sec-line); }
+body[data-pagina] .siguiente a:hover, body[data-pagina] .btn-linea:hover { background: var(--sec-text); border-color: var(--sec-text); color: #FFFFFF; }
+body[data-pagina] .dc-loc strong { color: var(--sec-img); }
+body[data-pagina] .banda figcaption em { color: var(--sec-img); opacity: 1; }
+body[data-pagina="ranking"] .paso.destacado .paso-cta, body[data-pagina="ranking"] .siguiente a:hover small { color: var(--oro-1); }
+body[data-pagina="ranking"] .pin-promo-num { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
+body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
+
+/* Código de color de la columna "Hoyos · membresía" */
+.mem {
+  display: inline-block; margin-top: 4px; padding: 2px 7px 3px;
+  font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  border: 1px solid; border-radius: 2px; vertical-align: middle; white-space: nowrap;
+}
+.mem-pub { color: #3E5F1C; border-color: #558025; background: rgba(85,128,37,.12); }
+.mem-res { color: #8A5A12; border-color: #E9A93A; background: rgba(233,169,58,.18); }
+.mem-soc { color: #8C3F0A; border-color: #D8731F; background: rgba(216,115,31,.16); }
+.mem-cer { color: #8B1E14; border-color: #C0392B; background: rgba(192,57,43,.12); }
+.mem-leyenda { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 14px; font-size: 11px; letter-spacing: .06em; color: var(--text-mid); }
+.mem-leyenda span { display: inline-flex; align-items: center; gap: 7px; }
+.mem-dot { width: 10px; height: 10px; border: 1px solid; border-radius: 2px; display: inline-block; }
+.mem-dot.mem-pub { background: #558025; border-color: #3E5F1C; }
+.mem-dot.mem-res { background: #E9A93A; border-color: #8A5A12; }
+.mem-dot.mem-soc { background: #D8731F; border-color: #8C3F0A; }
+.mem-dot.mem-cer { background: #C0392B; border-color: #8B1E14; }
+
 /* Card única que agrupa las cuatro notas del método */
 .notas-card { border: 1px solid var(--line); background: var(--bg-1); padding: 34px 40px 12px; margin-top: 40px; }
 .notas-card .sec-eyebrow { margin-bottom: 6px; }

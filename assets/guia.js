@@ -442,6 +442,13 @@ const ACCESO = {
   'Estrict. privado': 0
 };
 const ACCESO_LBL = { 1: 'Reservable', 0.5: 'Socios', 0: 'Cerrado' };
+// Código de color de la columna "Hoyos · membresía": verde → naranja claro → naranja oscuro → rojo.
+function nivelAcceso(m) {
+  if (m === 'Público' || m === 'Municipal') return 'pub';
+  if (m === 'Estrict. privado') return 'cer';
+  if (m === 'Privado de socios' || m === 'Privado') return 'soc';
+  return 'res';   // Resort, Resort de lujo, Semi-privado, Privado / resort, Privado / hotel
+}
 
 const CX = {};
 COURSES.forEach(c => {
@@ -750,7 +757,7 @@ function renderGolf(filter) {
     row.innerHTML = `
       <div><div class="golf-tr-name">${c.name}</div><div class="golf-tr-meta">${c.municipio}</div></div>
       <div class="golf-td">${c.disenador}<br/><span class="golf-td-sub">${c.ano}</span></div>
-      <div class="golf-td">${c.hoyos}<br/><span class="acc acc-${String(c.acceso).replace('.', '')}">${c.membresia}</span></div>
+      <div class="golf-td">${c.hoyos}<br/><span class="mem mem-${nivelAcceso(c.membresia)}">${c.membresia}</span></div>
       <div class="golf-td golf-td-gf">€${c.gf}</div>
       <div class="golf-td-palmares">${c.palmares}</div>
       <div class="golf-tr-stars">${stars}<small>${CAT_LABEL[c.stars]}</small></div>`;
