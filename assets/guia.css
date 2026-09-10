@@ -1188,6 +1188,10 @@ body[data-pagina="ranking"] .paso.destacado .paso-cta, body[data-pagina="ranking
 body[data-pagina="ranking"] .pin-promo-num { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
 body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
 
+/* Filas alternas de la tabla de campos */
+#golfBody .golf-tr:nth-child(even) { background: rgba(30,58,95,.035); }
+#golfBody .golf-tr:hover { background: var(--sec-soft); }
+
 /* Código de color de la columna "Hoyos · membresía" */
 .mem {
   display: inline-block; margin-top: 4px; padding: 2px 7px 3px;

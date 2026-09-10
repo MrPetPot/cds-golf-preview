@@ -612,10 +612,14 @@ if (rankBody) pintarRanking();
 
 // Los rótulos de recuento se calculan: con empates, el top 10 puede contener más de diez.
 (() => {
-  const top = PROMOS.filter(p => p.top10).length, men = PROMOS.length - top;
+  const top = PROMOS.filter(p => p.top10).length;
   const num = n => ['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce'][n] || n;
   const t = document.getElementById('tituloRanking');
-  if (t) t.innerHTML = `Las <em>${num(top)} del top 10</em> — y ${men === 1 ? 'la mención honorífica' : 'las ' + num(men) + ' menciones honoríficas'}.`;
+  if (t) t.innerHTML = `Las <em>${num(top)} del top 10</em>.`;
+  const l = document.getElementById('ledeRanking');
+  if (l) l.textContent = `${num(top).replace(/^./, c => c.toUpperCase())} promociones en orden. Abre cada una para ver su desglose criterio a criterio.`;
+  const m = document.getElementById('tituloMapaRanking');
+  if (m) m.innerHTML = `Las ${num(top)}, <em>sobre el mapa</em>.`;
   const f = document.getElementById('tituloFichas');
   if (f) f.innerHTML = `${num(PROMOS.length).replace(/^./, c => c.toUpperCase())} fichas, <em>criterio a criterio</em>.`;
 })();
@@ -631,7 +635,9 @@ const FILAS_B = [['b1', 'Firma arquitectónica / branded', 10], ['b2', 'Exclusiv
 
 const detailGrid = document.getElementById('detailGrid');
 // Acordeón nativo: <details>. La cabecera con imagen es el banner cerrado y crece al abrir.
-if (detailGrid) PROMOS.forEach((p, idx) => {
+// En la página del ranking solo se publican las promociones del top 10 (las menciones se conservan en los datos).
+const PUBLICADAS = PROMOS.filter(p => p.top10);
+if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const card = document.createElement('details');
   card.className = 'detail-card promo';
   card.id = 'ficha-' + p.id;
@@ -816,7 +822,7 @@ function initMap() {
   window.addEventListener('scroll', function onScroll() { map.invalidateSize(); window.removeEventListener('scroll', onScroll); }, { once: true });
   new IntersectionObserver(es => es.forEach(e => e.isIntersecting && map.invalidateSize())).observe(el);
 
-  if (!soloCampos) PROMOS.forEach(p => {
+  if (!soloCampos) PUBLICADAS.forEach(p => {
     const icon = L.divIcon({
       html: `<div class="pin-promo-num">${p.rank}</div>`,
       className: 'pin-promo', iconSize: [28, 28], iconAnchor: [14, 14]
