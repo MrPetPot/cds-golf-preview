@@ -1105,17 +1105,37 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.topnav-brand { text-decoration: none; color: var(--text); line-height: 1; }
-.topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 19px; letter-spacing: .01em; display: block; }
-.topnav-links { display: flex; gap: 2px; }
+.topnav-brand { text-decoration: none; color: var(--text); line-height: 1; min-width: 0; }
+.topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 19px; letter-spacing: .01em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Menú desplegable */
+.topnav-menu { position: relative; flex: none; }
+.topnav-toggle {
+  display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 4px 0 16px;
+  background: transparent; border: 1px solid var(--line-strong); cursor: pointer; color: var(--text);
+  font-family: var(--f-sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700;
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.topnav-toggle:hover, .topnav-toggle[aria-expanded="true"] { background: var(--marengo); border-color: var(--marengo); color: #FFFFFF; }
+.topnav-toggle-icon { width: 36px; height: 36px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.topnav-toggle-icon i { display: block; width: 16px; height: 2px; background: currentColor; transition: transform .25s var(--ease), opacity .2s; }
+.topnav-toggle[aria-expanded="true"] .topnav-toggle-icon i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.topnav-toggle[aria-expanded="true"] .topnav-toggle-icon i:nth-child(2) { opacity: 0; }
+.topnav-toggle[aria-expanded="true"] .topnav-toggle-icon i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.topnav-links {
+  position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; z-index: 70;
+  display: flex; flex-direction: column; padding: 8px 0;
+  background: var(--bg-0); border: 1px solid var(--line-strong); box-shadow: 0 18px 48px rgba(30,58,95,.16);
+}
+.topnav-links[hidden] { display: none; }
 .topnav-links a {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700;
-  color: var(--text-mid); text-decoration: none; padding: 22px 13px 20px;
-  border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap;
+  color: var(--text-mid); text-decoration: none; padding: 13px 22px;
+  border-left: 3px solid transparent; transition: color .2s, background-color .2s, border-color .2s; white-space: nowrap;
 }
-.topnav-links a:hover { color: var(--text); }
-.topnav-links a[aria-current="page"] { color: var(--text); border-bottom-color: var(--oro-2); }
+.topnav-links a:hover { color: var(--text); background: var(--bg-2); }
+.topnav-links a[aria-current="page"] { color: var(--text); border-left-color: var(--oro-2); }
 .topnav-links a.nav-ranking { color: var(--y-1); }
+@media (max-width: 640px) { .topnav-brand b { font-size: 15px; white-space: normal; line-height: 1.05; } .topnav-toggle-actual { display: none; } .topnav-toggle { padding-left: 4px; } }
 
 /* Portada · los tres pasos */
 .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }

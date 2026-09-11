@@ -888,6 +888,16 @@ function pintarEstrellas(raiz) {
 pintarEstrellas();
 
 
+/* Menú desplegable del nav */
+(function () {
+  const btn = document.querySelector('.topnav-toggle'), menu = document.getElementById('menuPaginas');
+  if (!btn || !menu) return;
+  const abrir = v => { menu.hidden = !v; btn.setAttribute('aria-expanded', String(v)); };
+  btn.addEventListener('click', () => abrir(menu.hidden));
+  document.addEventListener('click', e => { if (!menu.hidden && !e.target.closest('.topnav-menu')) abrir(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { abrir(false); btn.focus(); } });
+})();
+
 /* Reveal on scroll — defensivo: el contenido es visible sin JS */
 (function () {
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
