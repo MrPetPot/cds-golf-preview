@@ -1195,6 +1195,7 @@ body[data-pagina="ranking"] { --sec: var(--oro-2); --sec-text: var(--oro-3); --s
 body[data-pagina] .sec-eyebrow { color: var(--sec-text); }
 body[data-pagina] .sec-eyebrow::before { background: var(--sec); }
 body[data-pagina] .sec-title em { color: var(--sec); }
+body[data-pagina="index"] .sec-title em { color: var(--oro-2); }   /* portada: el énfasis del titular en dorado */
 body[data-pagina] .caveat, body[data-pagina] .method-note, body[data-pagina] .dc-rationale { border-left-color: var(--sec); }
 body[data-pagina] .caveat-title, body[data-pagina] .dc-rationale strong, body[data-pagina] .method-row-pts,
 body[data-pagina] .r-pos, body[data-pagina] .r-score-num, body[data-pagina] .sb-val,
