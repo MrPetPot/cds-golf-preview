@@ -1180,7 +1180,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   --oro-3: #8A6D28;         /* Oro oscuro — texto pequeño (4,9:1 en blanco) */
   --oro-soft: rgba(200,164,92,.14);
   --oro-line: rgba(138,109,40,.48);
-  --marengo: #374151;       /* Gris marengo — fondo de las tarjetas en mouse over */
+  --marengo: #1A1A1A;       /* Negro al 90 % — fondo de tarjetas y botón del menú en mouse over (antes marengo #374151) */
 }
 body {
   --sec: var(--y-3);            /* filetes, em de titular, puntos */
