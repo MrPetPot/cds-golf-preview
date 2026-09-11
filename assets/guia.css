@@ -11,13 +11,13 @@
   --line: rgba(30,58,95,.10);
   --line-strong: rgba(30,58,95,.24);
 
-  --y-1: #1E3A5F;           /* Navy Blue — acentos y texto pequeño (9:1 sobre blanco) */
+  --y-1: #1A1A1A;           /* Negro al 90 % — acentos y texto pequeño (antes navy #1E3A5F) */
   --y-2: #2C5384;
   --y-3: #3E6BA0;           /* navy medio — filetes y detalles */
   --y-4: #7FA3C9;           /* navy claro — highlights */
   --y-soft: rgba(30,58,95,.09);
 
-  --text: #1E3A5F;          /* Navy Blue — titulares */
+  --text: #1A1A1A;          /* Negro al 90 % — titulares (antes navy #1E3A5F) */
   --text-mid: #374151;      /* Charcoal — cuerpo */
   --text-mute: #6B7280;     /* gris medio — labels */
 
@@ -1311,7 +1311,7 @@ details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font
 }
 .siguiente a small { font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; }
 .siguiente a b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 24px; letter-spacing: -.005em; }
-.siguiente a:hover { background: #1E3A5F; color: #FFFFFF; border-color: #1E3A5F; }
+.siguiente a:hover { background: var(--text); color: #FFFFFF; border-color: var(--text); }
 .siguiente a:hover small { color: var(--oro-1); }
 
 @media (max-width: 900px) { .pasos { grid-template-columns: 1fr; } .notas-grid { grid-template-columns: 1fr; }
@@ -1351,7 +1351,7 @@ details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font
 .puntos.ancha { max-width: 820px; }
 .enlace-3d { margin: -8px 0 26px; }
 .btn-linea { display: inline-block; border: 1px solid var(--line-strong); padding: 10px 18px; font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--y-1); text-decoration: none; }
-.btn-linea:hover { background: #1E3A5F; color: #FFFFFF; border-color: #1E3A5F; }
+.btn-linea:hover { background: var(--text); color: #FFFFFF; border-color: var(--text); }
 .th-derecha { text-align: right; }
 .fuentes-nota { display: block; font-size: 12px; line-height: 1.5; color: var(--text-mute); margin: 2px 0 10px; }
 /* Marcadores del mapa Leaflet */
