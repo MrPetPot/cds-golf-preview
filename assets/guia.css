@@ -1107,7 +1107,6 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 }
 .topnav-brand { text-decoration: none; color: var(--text); line-height: 1; }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 19px; letter-spacing: .01em; display: block; }
-.topnav-brand small { display: block; font-size: 8.5px; letter-spacing: .32em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; margin-top: 3px; }
 .topnav-links { display: flex; gap: 2px; }
 .topnav-links a {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700;
