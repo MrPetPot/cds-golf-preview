@@ -1129,9 +1129,16 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .paso-num { font-family: var(--f-display); font-weight: 700; font-size: 46px; line-height: 1; color: var(--oro-2); }
 .paso h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 28px; line-height: 1.02; margin: 16px 0 14px; letter-spacing: -.005em; }
 .paso-cta { margin-top: auto; padding-top: 22px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 700; color: var(--y-1); }
-.paso.destacado { background: #1E3A5F; color: #FFFFFF; border-color: #1E3A5F; }
-.paso.destacado .paso-cta { color: var(--oro-1); }
-.paso.destacado .puntos li { color: rgba(255,255,255,.86); }
+/* Gama de grises: cada tarjeta un punto más oscura que la anterior */
+.pasos .paso:nth-child(1) { background: var(--bg-1); }
+.pasos .paso:nth-child(2) { background: var(--bg-2); }
+.pasos .paso:nth-child(3) { background: var(--bg-3); border-color: var(--line-strong); }
+/* Mouse over: gris marengo y texto en blanco, además de la elevación */
+.paso, .paso h3, .paso .puntos li, .paso .puntos li strong, .paso-num, .paso-cta { transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease); }
+.pasos .paso:hover { background: var(--marengo); border-color: var(--marengo); color: #FFFFFF; }
+.paso:hover h3, .paso:hover .puntos li strong { color: #FFFFFF; }
+.paso:hover .puntos li { color: rgba(255,255,255,.86); }
+.paso:hover .paso-num, .paso:hover .paso-cta { color: var(--oro-1); }
 
 /* Bullets editoriales */
 .puntos { list-style: none; margin: 0; padding: 0; }
@@ -1153,6 +1160,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   --oro-3: #8A6D28;         /* Oro oscuro — texto pequeño (4,9:1 en blanco) */
   --oro-soft: rgba(200,164,92,.14);
   --oro-line: rgba(138,109,40,.48);
+  --marengo: #374151;       /* Gris marengo — fondo de las tarjetas en mouse over */
 }
 body {
   --sec: var(--y-3);            /* filetes, em de titular, puntos */
@@ -1184,7 +1192,7 @@ body[data-pagina] .map-wrap { border-color: var(--sec-line); }
 body[data-pagina] .siguiente a:hover, body[data-pagina] .btn-linea:hover { background: var(--sec-text); border-color: var(--sec-text); color: #FFFFFF; }
 body[data-pagina] .dc-loc strong { color: var(--sec-img); }
 body[data-pagina] .banda figcaption em { color: var(--sec-img); opacity: 1; }
-body[data-pagina="ranking"] .paso.destacado .paso-cta, body[data-pagina="ranking"] .siguiente a:hover small { color: var(--oro-1); }
+body[data-pagina="ranking"] .siguiente a:hover small { color: var(--oro-1); }
 body[data-pagina="ranking"] .pin-promo-num { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
 body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135deg, var(--oro-3), var(--oro-1)); }
 
