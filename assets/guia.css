@@ -160,7 +160,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: rgba(0,0,0,.20);
+  background: rgba(0,0,0,.30);
 }
 @media (max-width: 900px) { .hero::before { background-image: url('../images/hero/hero-golf-m.jpg'); } }
 .hero-top {
