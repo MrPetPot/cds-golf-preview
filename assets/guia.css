@@ -1115,7 +1115,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap;
 }
 .topnav-links a:hover { color: var(--text); }
-.topnav-links a[aria-current="page"] { color: var(--text); border-bottom-color: var(--amarillo); }
+.topnav-links a[aria-current="page"] { color: var(--text); border-bottom-color: var(--oro-2); }
 .topnav-links a.nav-ranking { color: var(--y-1); }
 
 /* Portada · los tres pasos */
@@ -1126,17 +1126,17 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
 }
 .paso:hover { border-color: var(--line-strong); box-shadow: 0 14px 44px rgba(30,58,95,.09); transform: translateY(-2px); }
-.paso-num { font-family: var(--f-display); font-weight: 700; font-size: 46px; line-height: 1; color: var(--amarillo); }
+.paso-num { font-family: var(--f-display); font-weight: 700; font-size: 46px; line-height: 1; color: var(--oro-2); }
 .paso h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 28px; line-height: 1.02; margin: 16px 0 14px; letter-spacing: -.005em; }
 .paso-cta { margin-top: auto; padding-top: 22px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 700; color: var(--y-1); }
 .paso.destacado { background: #1E3A5F; color: #FFFFFF; border-color: #1E3A5F; }
-.paso.destacado .paso-cta { color: var(--amarillo); }
+.paso.destacado .paso-cta { color: var(--oro-1); }
 .paso.destacado .puntos li { color: rgba(255,255,255,.86); }
 
 /* Bullets editoriales */
 .puntos { list-style: none; margin: 0; padding: 0; }
 .puntos li { position: relative; padding-left: 18px; font-size: 15px; line-height: 1.5; color: var(--text-mid); margin-bottom: 9px; }
-.puntos li::before { content: ''; position: absolute; left: 0; top: .58em; width: 8px; height: 8px; background: var(--amarillo); }
+.puntos li::before { content: ''; position: absolute; left: 0; top: .58em; width: 8px; height: 8px; background: var(--oro-2); }
 .puntos li strong { color: var(--text); font-weight: 700; }
 .puntos.compacta li { font-size: 14px; margin-bottom: 6px; }
 .nota-bloque { border: 1px solid var(--line); background: var(--bg-1); padding: 28px 30px 20px; margin-top: 24px; }
@@ -1223,7 +1223,7 @@ body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135d
 .claves { list-style: none; margin: 0 0 26px; padding: 0 0 24px; border-bottom: 1px solid var(--line);
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
 .claves li { position: relative; padding-left: 18px; font-size: 14.5px; line-height: 1.45; color: var(--text-mid); }
-.claves li::before { content: ''; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--amarillo); }
+.claves li::before { content: ''; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--oro-2); }
 .claves li strong { color: var(--text); font-weight: 700; }
 
 /* Acordeón del ranking */
@@ -1246,7 +1246,7 @@ details.promo > summary .dc-head::before {
   text-shadow: 0 1px 8px rgba(15,23,38,.7);
 }
 details.promo[open] > summary .dc-head::before { content: '−'; }
-details.promo > summary:focus-visible .dc-head { outline: 3px solid var(--amarillo); outline-offset: -3px; }
+details.promo > summary:focus-visible .dc-head { outline: 3px solid var(--oro-1); outline-offset: -3px; }
 /* Estado cerrado: una línea de título, solo el municipio, sitio para el score y sin rótulo © */
 details.promo:not([open]) > summary .dc-head-inner { max-width: none; padding-right: 130px; }
 details.promo:not([open]) > summary .dc-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1264,7 +1264,7 @@ details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font
 .siguiente a small { font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; }
 .siguiente a b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 24px; letter-spacing: -.005em; }
 .siguiente a:hover { background: #1E3A5F; color: #FFFFFF; border-color: #1E3A5F; }
-.siguiente a:hover small { color: var(--amarillo); }
+.siguiente a:hover small { color: var(--oro-1); }
 
 @media (max-width: 900px) { .pasos { grid-template-columns: 1fr; } .notas-grid { grid-template-columns: 1fr; }
   .notas-card { padding: 28px 24px 8px; }
