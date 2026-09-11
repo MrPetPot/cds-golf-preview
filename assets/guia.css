@@ -1196,6 +1196,7 @@ body[data-pagina] .sec-eyebrow { color: var(--sec-text); }
 body[data-pagina] .sec-eyebrow::before { background: var(--sec); }
 body[data-pagina] .sec-title em { color: var(--oro-2); }              /* énfasis de titular en dorado en todas las páginas… */
 body[data-pagina="campos"] .sec-title em { color: var(--sec); }     /* …salvo Campos, que va en verde */
+.sec-title em.linea-oro { display: block; color: var(--oro-2) !important; font-size: calc(1em + 4px); margin-top: .04em; }   /* frase destacada en línea propia, dorada y 4 px mayor */
 body[data-pagina] .caveat, body[data-pagina] .method-note, body[data-pagina] .dc-rationale { border-left-color: var(--sec); }
 body[data-pagina] .caveat-title, body[data-pagina] .dc-rationale strong, body[data-pagina] .method-row-pts,
 body[data-pagina] .r-pos, body[data-pagina] .r-score-num, body[data-pagina] .sb-val,
