@@ -758,19 +758,37 @@ function renderGolf(filter) {
   data.sort((a, b) => b.stars - a.stars || a.municipio.localeCompare(b.municipio));
   data.forEach(c => {
     const stars = '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`;
-    const row = document.createElement('div');
-    row.className = 'golf-tr';
-    row.innerHTML = `
-      <div><div class="golf-tr-name">${c.name}</div><div class="golf-tr-meta">${c.municipio}</div></div>
-      <div class="golf-td">${c.disenador}<br/><span class="golf-td-sub">${c.ano}</span></div>
-      <div class="golf-td">${c.hoyos}<br/><span class="mem mem-${nivelAcceso(c.membresia)}">${c.membresia}</span></div>
-      <div class="golf-td golf-td-gf">€${c.gf}</div>
-      <div class="golf-td-palmares">${c.palmares}</div>
-      <div class="golf-tr-stars">${stars}<small>${CAT_LABEL[c.stars]}</small></div>`;
-    golfBody.appendChild(row);
+    const f = c.foto;
+    const etiqueta = !f ? '' : f.placeholder ? '<span class="cc-tag">Placeholder</span>' : f.licPendiente ? '<span class="cc-tag">© pendiente</span>' : '';
+    const imagen = f
+      ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>`
+      : `<div class="cc-sin"><b>${c.name}</b><span>Sin fotografía · press kit pendiente</span></div>`;
+    const credito = f ? `<span class="cc-cred">${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito}</span>` : '';
+    const card = document.createElement('article');
+    card.className = `cc cc-${c.stars}`;
+    card.innerHTML = `
+      <div class="cc-img">${imagen}${etiqueta}<span class="cc-cat">${CAT_LABEL[c.stars]}</span></div>
+      <div class="cc-body">
+        <div class="cc-stars">${stars}</div>
+        <h3 class="cc-name">${c.name}</h3>
+        <div class="cc-meta">${c.municipio} · ${c.disenador}, ${c.ano}</div>
+        <dl class="cc-datos">
+          <div><dt>Hoyos</dt><dd>${c.hoyos}</dd></div>
+          <div><dt>Green fee</dt><dd>€${c.gf}</dd></div>
+          <div class="cc-acceso"><dt>Acceso</dt><dd><span class="mem mem-${nivelAcceso(c.membresia)}">${c.membresia}</span></dd></div>
+        </dl>
+        <p class="cc-palmares">${c.palmares}</p>
+        ${credito}
+      </div>`;
+    golfBody.appendChild(card);
   });
 }
-if (golfBody) renderGolf('all');
+if (golfBody) {
+  renderGolf('all');
+  const conFoto = COURSES.filter(c => c.foto), n = conFoto.filter(c => !c.foto.placeholder).length, pend = conFoto.filter(c => c.foto.licPendiente).length;
+  const g = document.getElementById('galeriaNota');
+  if (g) g.textContent = `${n} de los 61 campos tienen fotografía: ${n - pend} de licencia libre verificada o de archivo propio, y ${pend} pendientes de autorización escrita. Los ${61 - n} restantes esperan press kit.`;
+}
 
 document.querySelectorAll('#golfFilter button').forEach(btn => {
   btn.addEventListener('click', () => {
