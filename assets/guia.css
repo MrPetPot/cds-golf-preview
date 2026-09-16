@@ -1369,7 +1369,7 @@ body[data-pagina="metodologia"] .sec-title::before { background: var(--oro-2); }
 @media (max-width: 640px) { .campos-grid { grid-template-columns: 1fr; gap: 18px; } }
 
 /* Notas al método: desplegables sobrios (solo el «+»), separados por líneas */
-.notas-lista { border-top: 1px solid var(--line); }
+.notas-lista { border-top: 0; }
 .nota-item { border-bottom: 1px solid var(--line); }
 .nota-item:last-child { border-bottom: 0; }
 .nota-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr 28px; gap: 12px; align-items: center; padding: 22px 0; }
