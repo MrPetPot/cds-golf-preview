@@ -1273,6 +1273,7 @@ footer .foot-col-item a:hover { color: var(--text); }
 /* Bloque B · Calidad y exclusividad: fondo dorado al 10 % (oro claro #C8A45C) */
 .method-grid .method-block:nth-child(2) { background: rgba(200,164,92,.10); border-color: rgba(200,164,92,.40); }
 .method-grid .method-block:first-child h3 { color: var(--v01-4); }   /* título del Bloque A en verde oscuro (verdes_01 · 4) */
+.method-grid .method-block:nth-child(2) h3 { color: var(--oro-3); }   /* título del Bloque B en oro oscuro (4,9:1 sobre el fondo) */
 
 /* La función de puntuación (Método) */
 .formula-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 30px; margin-top: 40px; }
