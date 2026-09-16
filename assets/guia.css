@@ -1279,13 +1279,13 @@ footer .foot-col-item a:hover { color: var(--text); }
 .formula-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 30px; margin-top: 40px; }
 .sub-cabecera { margin-top: 72px; }
 .sub-cabecera .sec-eyebrow { font-size: clamp(34px, 4vw, 56px); }
-.formula-card { margin-top: 28px; }
+.formula-card { margin-top: 28px; padding: 40px 40px 34px; }
 .formula-head h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 30px; line-height: 1; margin: 0 0 10px; letter-spacing: -.005em; }
 .formula-head p { margin: 0 0 8px; font-size: 15px; line-height: 1.5; color: var(--text-mid); max-width: 720px; }
-.formula-lista { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.formula-lista { display: flex; flex-direction: column; gap: 18px; margin-top: 18px; }
 .formula-item { border: 1px solid var(--line); background: var(--bg-0); transition: border-color .25s var(--ease), box-shadow .25s var(--ease); }
 .formula-item:hover, .formula-item[open] { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(30,58,95,.07); }
-.formula-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 44px 1fr 28px; gap: 12px; align-items: center; padding: 16px 20px 16px 22px; }
+.formula-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 44px 1fr 28px; gap: 12px; align-items: center; padding: 26px 26px 26px 28px; }
 .formula-item > summary::-webkit-details-marker { display: none; }
 .fi-num, .fi-titulo { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: -.005em; }
 .fi-num { color: var(--oro-2); }
@@ -1295,28 +1295,28 @@ footer .foot-col-item a:hover { color: var(--text); }
 .fi-chevron::before, .fi-chevron::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: var(--text); transform: translate(-50%,-50%); transition: transform .25s var(--ease); }
 .fi-chevron::after { transform: translate(-50%,-50%) rotate(90deg); }
 .formula-item[open] .fi-chevron::after { transform: translate(-50%,-50%) rotate(0deg); }
-.fi-detalle { padding: 4px 20px 22px 78px; box-sizing: border-box; }
+.fi-detalle { padding: 6px 28px 34px 84px; box-sizing: border-box; }
 .formula-item > summary { transition: background-color .25s var(--ease); }
 .formula-item > summary:hover { background: var(--bg-1); }
-.fi-detalle .formula { margin-bottom: 4px; }
+.fi-detalle .formula { margin-bottom: 14px; }
 .formula { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 20px; line-height: 1.5; color: var(--text); overflow-x: auto; padding-bottom: 2px; }
 .formula var { font-style: italic; }
 .formula sub, .formula sup { font-size: .62em; line-height: 0; }
 .formula .sum { font-size: 1.35em; line-height: 0; vertical-align: -.08em; }
 .formula .sum sub, .formula .sum sup { font-size: .45em; }
 .formula .cond { display: block; font-size: 14px; color: var(--text-mute); margin-top: 6px; }
-.fi-detalle p { margin: 10px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--text-mid); max-width: 820px; }
+.fi-detalle p { margin: 18px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--text-mid); max-width: 820px; }
 .fi-detalle p var { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 1.08em; }
-.escalas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 28px; margin-top: 4px; }
-.escalas > div { display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 1.4; }
+.escalas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; margin-top: 10px; }
+.escalas > div { display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.4; }
 .escalas b { font-family: 'Times New Roman', Times, Georgia, serif; font-weight: 700; font-size: 16px; color: var(--text); }
 .escalas b var { font-style: italic; }
 .escalas span { color: var(--text-mid); }
-.formula-prueba { margin-top: 6px; padding: 22px 26px 18px; border-left: 3px solid var(--oro-2); background: var(--bg-0); }
+.formula-prueba { margin-top: 26px; padding: 30px 32px 26px; border-left: 3px solid var(--oro-2); background: var(--bg-0); }
 .formula-prueba h4 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 22px; margin: 0 0 10px; letter-spacing: -.005em; }
 .formula-prueba p { margin: 0 0 14px; font-size: 15px; line-height: 1.55; color: var(--text); }
 .formula-prueba code { font-size: 12.5px; background: var(--bg-2); padding: 1px 6px; }
-@media (max-width: 900px) { .formula-card { padding: 28px 24px 22px; } .escalas { grid-template-columns: 1fr; } .formula-item > summary { grid-template-columns: 34px 1fr 24px; padding: 16px 14px 16px 16px; } .fi-detalle { padding: 0 14px 18px 14px; } .formula { font-size: 17px; } }
+@media (max-width: 900px) { .formula-card { padding: 28px 24px 22px; } .escalas { grid-template-columns: 1fr; } .formula-item > summary { grid-template-columns: 34px 1fr 24px; padding: 20px 16px; } .fi-detalle { padding: 4px 16px 24px 16px; } .formula { font-size: 17px; } }
 
 /* Intercambio de estilos: el número y nombre del capítulo van en la fuente display; la frase, en versalitas con filete */
 .sec-eyebrow {
