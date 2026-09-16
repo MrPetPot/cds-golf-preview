@@ -1367,7 +1367,7 @@ footer .foot-col-item a:hover { color: var(--text); }
 @media (max-width: 640px) { .campos-grid { grid-template-columns: 1fr; gap: 18px; } }
 
 /* Card única que agrupa las cuatro notas del método */
-.notas-card { border: 1px solid var(--line); background: transparent; padding: 34px 40px 12px; margin-top: 40px; }
+.notas-card { border: 1px solid var(--line); background: transparent; padding: 34px 40px 12px; margin-top: 80px; }
 .notas-card .sec-eyebrow { margin-bottom: 6px; }
 .notas-card .notas-grid { gap: 0; margin-top: 0; }
 .notas-card .nota-bloque { border: 0; background: transparent; padding: 26px 0 20px; }
