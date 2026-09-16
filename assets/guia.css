@@ -1295,7 +1295,7 @@ footer .foot-col-item a:hover { color: var(--text); }
 .fi-chevron { position: relative; width: 28px; height: 28px; }
 .fi-chevron::before, .fi-chevron::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: var(--text); transform: translate(-50%,-50%); transition: transform .25s var(--ease); }
 .fi-chevron::after { transform: translate(-50%,-50%) rotate(90deg); }
-.formula-item[open] .fi-chevron::after { transform: translate(-50%,-50%) rotate(0deg); }
+.formula-item[open] .fi-chevron::after, .nota-item[open] .fi-chevron::after { transform: translate(-50%,-50%) rotate(0deg); }
 .fi-detalle { padding: 6px 28px 34px 84px; box-sizing: border-box; }
 .formula-item > summary { transition: background-color .25s var(--ease); }
 .formula-item > summary:hover { background: var(--bg-1); }
@@ -1366,6 +1366,15 @@ footer .foot-col-item a:hover { color: var(--text); }
 .cc-cred a { color: var(--verde-2); text-decoration: none; border-bottom: 1px solid var(--verde-line); }
 .campos-nota { margin: 22px 0 0; }
 @media (max-width: 640px) { .campos-grid { grid-template-columns: 1fr; gap: 18px; } }
+
+/* Notas al método: desplegables sobrios (solo el «+»), separados por líneas */
+.notas-lista { border-top: 1px solid var(--line); }
+.nota-item { border-bottom: 1px solid var(--line); }
+.nota-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr 28px; gap: 12px; align-items: center; padding: 22px 0; }
+.nota-item > summary::-webkit-details-marker { display: none; }
+.ni-titulo { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 22px; line-height: 1; letter-spacing: -.005em; color: var(--text); }
+.ni-detalle { padding: 0 40px 24px 0; box-sizing: border-box; }
+.ni-detalle .puntos { margin: 0; }
 
 /* Card única que agrupa las cuatro notas del método */
 .notas-card { border: 1px solid var(--line); background: transparent; padding: 34px 40px 12px; margin-top: 80px; }

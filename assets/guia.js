@@ -937,10 +937,10 @@ pintarEstrellas();
 (function () {
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('animate' in document.body)) return;
-  const items = [...document.querySelectorAll('details.formula-item')];
+  const grupos = [[...document.querySelectorAll('details.formula-item')], [...document.querySelectorAll('details.nota-item')]];
   const opts = { duration: 340, easing: 'cubic-bezier(.25,.46,.45,.94)' };
   const cerrar = d => {
-    const det = d.querySelector('.fi-detalle');
+    const det = d.querySelector('.fi-detalle, .ni-detalle');
     if (!d.open || !det) return;
     if (d._anim) d._anim.cancel();
     det.style.overflow = 'hidden';
@@ -948,7 +948,7 @@ pintarEstrellas();
     d._anim.onfinish = () => { d.open = false; det.style.height = det.style.overflow = ''; d._anim = null; };
   };
   const abrir = d => {
-    const det = d.querySelector('.fi-detalle');
+    const det = d.querySelector('.fi-detalle, .ni-detalle');
     if (d.open || !det) return;
     if (d._anim) d._anim.cancel();
     d.open = true;
@@ -957,16 +957,16 @@ pintarEstrellas();
     d._anim = det.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], opts);
     d._anim.onfinish = () => { det.style.height = det.style.overflow = ''; d._anim = null; };
   };
-  items.forEach(d => {
+  grupos.forEach(items => items.forEach(d => {
     const sum = d.querySelector('summary');
     if (!sum) return;
     sum.addEventListener('click', e => {
       e.preventDefault();
       if (d.open) { cerrar(d); return; }
-      items.forEach(o => { if (o !== d) cerrar(o); });   // solo una abierta: la anterior se retrae
+      items.forEach(o => { if (o !== d) cerrar(o); });   // solo una abierta por grupo: la anterior se retrae
       abrir(d);
     });
-  });
+  }));
 })();
 
 /* Reveal on scroll — defensivo: el contenido es visible sin JS */
