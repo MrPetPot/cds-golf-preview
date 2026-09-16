@@ -1266,10 +1266,10 @@ footer .foot-col-item a:hover { color: var(--text); }
   --v01-3: #4E9A1F;   /* verde medio */
   --v01-4: #2E5A17;   /* verde oscuro */
   --v01-5: #4A5A6A;   /* gris pizarra */
-  --v01-2-20: rgba(141,191,70,.20);   /* verde claro al 20 % */
+  --v01-2-10: rgba(141,191,70,.10);   /* verde claro al 10 % — tonos muy suaves */
 }
-/* Bloque A · Entorno de golf: fondo verde claro al 20 % */
-.method-grid .method-block:first-child { background: var(--v01-2-20); border-color: rgba(141,191,70,.55); }
+/* Bloque A · Entorno de golf: fondo verde claro al 10 % */
+.method-grid .method-block:first-child { background: var(--v01-2-10); border-color: rgba(141,191,70,.40); }
 
 /* La función de puntuación (Método) */
 .formula-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 30px; margin-top: 40px; }
