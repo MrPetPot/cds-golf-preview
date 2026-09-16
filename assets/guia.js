@@ -934,6 +934,32 @@ pintarEstrellas();
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { abrir(false); btn.focus(); } });
 })();
 
+/* Cards desplegables de la función: apertura y cierre animados (altura), sin JS siguen funcionando como <details> */
+(function () {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('animate' in document.body)) return;
+  document.querySelectorAll('details.formula-item').forEach(d => {
+    const sum = d.querySelector('summary'), det = d.querySelector('.fi-detalle');
+    if (!sum || !det) return;
+    let anim = null;
+    const opts = { duration: 340, easing: 'cubic-bezier(.25,.46,.45,.94)' };
+    sum.addEventListener('click', e => {
+      e.preventDefault();
+      if (anim) anim.cancel();
+      det.style.overflow = 'hidden';
+      if (d.open) {
+        anim = det.animate([{ height: det.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], opts);
+        anim.onfinish = () => { d.open = false; det.style.height = det.style.overflow = ''; anim = null; };
+      } else {
+        d.open = true;
+        const h = det.offsetHeight;
+        anim = det.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], opts);
+        anim.onfinish = () => { det.style.height = det.style.overflow = ''; anim = null; };
+      }
+    });
+  });
+})();
+
 /* Reveal on scroll — defensivo: el contenido es visible sin JS */
 (function () {
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
