@@ -1383,7 +1383,7 @@ body[data-pagina="metodologia"] .sec-title::before { background: var(--oro-2); }
 .ni-detalle .puntos { margin: 0; }
 
 /* Card única que agrupa las cuatro notas del método */
-.notas-card { border: 1px solid var(--line); background: transparent; padding: 34px 40px 12px; margin-top: 80px; }
+.notas-card { border: 0; background: transparent; padding: 0; margin-top: 80px; }   /* sin card: el bloque va directamente sobre la página */
 .notas-card .sec-eyebrow { margin-bottom: 6px; font-size: clamp(34px, 4vw, 56px); }   /* mismo cuerpo que «Cómo funciona el algoritmo» */
 .notas-card .notas-grid { gap: 0; margin-top: 0; }
 .notas-card .nota-bloque { border: 0; background: transparent; padding: 26px 0 20px; }
@@ -1439,7 +1439,7 @@ details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font
 .siguiente a:hover small { color: var(--oro-1); }
 
 @media (max-width: 900px) { .pasos { grid-template-columns: 1fr; } .notas-grid { grid-template-columns: 1fr; }
-  .notas-card { padding: 28px 24px 8px; }
+  .notas-card { padding: 0; }
   .notas-card .nota-bloque { padding: 22px 0 18px !important; border-left: 0 !important; }
   .notas-card .nota-bloque:nth-child(n+2) { border-top: 1px solid var(--line); } }
 @media (max-width: 760px) {
