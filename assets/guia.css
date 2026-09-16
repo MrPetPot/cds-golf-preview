@@ -1326,6 +1326,7 @@ footer .foot-col-item a:hover { color: var(--text); }
   letter-spacing: .42em; text-transform: uppercase; padding-left: 54px; margin-bottom: 28px; max-width: none;
 }
 .sec-title::before { content: ''; position: absolute; left: 0; top: .85em; width: 40px; height: 2px; background: var(--sec); }
+body[data-pagina="metodologia"] .sec-title::before { background: var(--oro-2); }   /* Método: filetes en dorado */
 .sec-title em.linea-oro { display: inline; font-size: inherit; margin: 0; }
 @media (max-width: 640px) { .sec-title { padding-left: 0; } .sec-title::before { display: none; } }
 
