@@ -519,6 +519,24 @@ PROMOS.forEach((p, i) => {
 });
 
 /* ═══════════════════════════════════
+   PRUEBA DE IMPARCIALIDAD (Método) · se calcula, no se escribe
+═══════════════════════════════════ */
+(() => {
+  const el = document.getElementById('pruebaImparcialidad');
+  if (!el) return;
+  const datos = PROMOS.map(p => ({ name: p.name, d: p.score.a1 + p.score.a2 + p.score.a3 + p.score.a4 + p.score.b2 + p.score.b3, total: p.total }))
+    .sort((a, b) => b.d - a.d || a.name.localeCompare(b.name));
+  const podioDatos = datos.slice(0, 3).map(x => x.name), podioTotal = PROMOS.slice(0, 3).map(p => p.name);
+  const mismoPodio = podioDatos.every(n => podioTotal.includes(n));
+  const lider = datos.filter(x => x.d === datos[0].d).map(x => x.name);
+  const fmt = xs => xs.length === 1 ? xs[0] : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1];
+  el.innerHTML = `Si se anulan los cuatro criterios editoriales (a<sub>5</sub>, a<sub>6</sub>, b<sub>1</sub>, b<sub>4</sub> = 0) y se ordena solo por los 65 puntos que salen de la base de datos, `
+    + `${lider.length > 1 ? `empatan en cabeza <strong>${fmt(lider)}</strong> con ${datos[0].d} puntos` : `sigue primera <strong>${lider[0]}</strong> con ${datos[0].d} puntos`}, `
+    + `${mismoPodio ? 'y el podio es el mismo que el publicado' : 'y el podio cambia respecto al publicado'}: `
+    + datos.slice(0, 3).map((x, i) => `${x.name} (${x.d})`).join(' · ') + '. La opinión editorial no fabrica al número uno.';
+})();
+
+/* ═══════════════════════════════════
    AUDITORÍA DE INTEGRIDAD (automática)
 ═══════════════════════════════════ */
 const hav = (a, b, c, d) => {
