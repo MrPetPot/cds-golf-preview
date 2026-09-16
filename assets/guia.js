@@ -146,9 +146,10 @@ const FOTOS_CAMPO = {
  },
  "finca-cortesin-golf": {
    "src": "images/golf/finca-cortesin-golf.jpg",
-   "pie": "Calles del recorrido con la sierra de Casares al fondo.",
-   "credito": "Wikimedia Commons · CC BY-SA 3.0 · Walter Schärer (Panoramio)",
-   "url": "https://commons.wikimedia.org/wiki/File:Please_check_out_the_full_travelogue_at_http-travelmemo.com-%5Ep%3D4663_-_panoramio_(3).jpg"
+   "pie": "Calles y búnkeres con la Sierra Bermeja al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
  },
  "real-club-de-golf-las-brisas": {
   "src": "images/golf/real-club-de-golf-las-brisas.jpg",
