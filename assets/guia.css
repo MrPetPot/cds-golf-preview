@@ -1259,6 +1259,18 @@ footer .foot-col-item a { color: inherit; text-decoration: none; border-bottom: 
 footer .foot-col-item a:hover { color: var(--text); }
 @media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 28px 24px; } .contacto-datos > div { grid-template-columns: 1fr; gap: 4px; } }
 
+/* Paleta "verdes_01" (registrada 16 septiembre) */
+:root {
+  --v01-1: #C5E13B;   /* lima */
+  --v01-2: #8DBF46;   /* verde claro */
+  --v01-3: #4E9A1F;   /* verde medio */
+  --v01-4: #2E5A17;   /* verde oscuro */
+  --v01-5: #4A5A6A;   /* gris pizarra */
+  --v01-2-20: rgba(141,191,70,.20);   /* verde claro al 20 % */
+}
+/* Bloque A · Entorno de golf: fondo verde claro al 20 % */
+.method-grid .method-block:first-child { background: var(--v01-2-20); border-color: rgba(141,191,70,.55); }
+
 /* La función de puntuación (Método) */
 .formula-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 30px; margin-top: 40px; }
 .formula-head h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 30px; line-height: 1; margin: 0 0 10px; letter-spacing: -.005em; }
