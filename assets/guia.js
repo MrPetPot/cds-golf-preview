@@ -65,6 +65,30 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "atalaya-new": {
+   "src": "images/golf/atalaya-new.jpg",
+   "pie": "Lago del recorrido de Atalaya (la fuente no identifica si Old o New).",
+   "credito": "Wikimedia Commons · CC BY-SA 3.0 · R-E-AL",
+   "url": "https://commons.wikimedia.org/wiki/File:2009-03-12-Atalaya-1.JPG"
+ },
+ "parador-malaga-golf": {
+   "src": "images/golf/parador-malaga-golf.jpg",
+   "pie": "Green frente al edificio del Parador.",
+   "credito": "Wikimedia Commons · CC BY-SA 4.0 · Paradores",
+   "url": "https://commons.wikimedia.org/wiki/File:Parador_de_M%C3%A1laga_Golf4.jpg"
+ },
+ "mijas-golf-los-olivos": {
+   "src": "images/golf/mijas-golf-los-olivos.jpg",
+   "pie": "Calle de Los Olivos con la urbanización al fondo.",
+   "credito": "Wikimedia Commons · CC BY 3.0 · Roger Husvik (Panoramio)",
+   "url": "https://commons.wikimedia.org/wiki/File:Los_Olivos_-_panoramio.jpg"
+ },
+ "estepona-golf": {
+   "src": "images/golf/estepona-golf.jpg",
+   "pie": "Vista desde el tee del hoyo 10, el hoyo emblema del club.",
+   "credito": "Wikimedia Commons · CC BY 3.0 · TheLegalEditor",
+   "url": "https://commons.wikimedia.org/wiki/File:View_from_10th_Tee.jpg"
+ },
  "real-club-valderrama": {
   "src": "images/golf/real-club-valderrama.jpg",
   "pie": "Green y bunkers del campo.",
@@ -121,11 +145,10 @@ const FOTOS_CAMPO = {
   "licPendiente": true
  },
  "finca-cortesin-golf": {
-  "src": "images/golf/finca-cortesin-golf.jpg",
-  "pie": null,
-  "credito": "Placeholder · pedir press kit al club",
-  "url": null,
-  "placeholder": true
+   "src": "images/golf/finca-cortesin-golf.jpg",
+   "pie": "Calles del recorrido con la sierra de Casares al fondo.",
+   "credito": "Wikimedia Commons · CC BY-SA 3.0 · Walter Schärer (Panoramio)",
+   "url": "https://commons.wikimedia.org/wiki/File:Please_check_out_the_full_travelogue_at_http-travelmemo.com-%5Ep%3D4663_-_panoramio_(3).jpg"
  },
  "real-club-de-golf-las-brisas": {
   "src": "images/golf/real-club-de-golf-las-brisas.jpg",
