@@ -1297,8 +1297,12 @@ footer .foot-col-item a:hover { color: var(--text); }
 .fi-chevron::after { transform: translate(-50%,-50%) rotate(90deg); }
 .formula-item[open] .fi-chevron::after, .nota-item[open] .fi-chevron::after { transform: translate(-50%,-50%) rotate(0deg); }
 .fi-detalle { padding: 6px 28px 34px 84px; box-sizing: border-box; }
-.formula-item > summary { transition: background-color .25s var(--ease); }
-.formula-item > summary:hover { background: var(--bg-1); }
+/* Mouse over como el botón «Siguiente»: fondo negro, texto blanco, número en oro claro */
+.formula-item > summary, .fi-num, .fi-titulo, .fi-chevron::before, .fi-chevron::after { transition: background-color .25s var(--ease), color .25s var(--ease); }
+.formula-item > summary:hover { background: var(--text); }
+.formula-item > summary:hover .fi-titulo { color: #FFFFFF; }
+.formula-item > summary:hover .fi-num { color: var(--oro-1); }
+.formula-item > summary:hover .fi-chevron::before, .formula-item > summary:hover .fi-chevron::after { background: #FFFFFF; }
 .fi-detalle .formula { margin-top: 18px; }
 .formula { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 20px; line-height: 1.5; color: var(--text); overflow-x: auto; padding-bottom: 2px; }
 .formula var { font-style: italic; }
