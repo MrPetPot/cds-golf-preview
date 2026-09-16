@@ -1285,17 +1285,18 @@ footer .foot-col-item a:hover { color: var(--text); }
 .formula-lista { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
 .formula-item { border: 1px solid var(--line); background: var(--bg-0); transition: border-color .25s var(--ease), box-shadow .25s var(--ease); }
 .formula-item:hover, .formula-item[open] { border-color: var(--line-strong); box-shadow: 0 10px 30px rgba(30,58,95,.07); }
-.formula-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 44px 1fr 28px; gap: 12px; align-items: start; padding: 18px 20px 18px 22px; }
+.formula-item > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 44px 1fr 28px; gap: 12px; align-items: center; padding: 16px 20px 16px 22px; }
 .formula-item > summary::-webkit-details-marker { display: none; }
-.fi-num { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1; color: var(--oro-2); padding-top: 4px; }
-.fi-cuerpo { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-.fi-titulo { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); }
+.fi-num, .fi-titulo { font-family: var(--f-display); font-weight: 700; font-size: 22px; line-height: 1; text-transform: uppercase; letter-spacing: -.005em; }
+.fi-num { color: var(--oro-2); }
+.fi-titulo { color: var(--text); }
 .formula-item[open] .fi-titulo { color: var(--oro-3); }
-.fi-chevron { position: relative; width: 28px; height: 28px; margin-top: 2px; }
+.fi-chevron { position: relative; width: 28px; height: 28px; }
 .fi-chevron::before, .fi-chevron::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: var(--text); transform: translate(-50%,-50%); transition: transform .25s var(--ease); }
 .fi-chevron::after { transform: translate(-50%,-50%) rotate(90deg); }
 .formula-item[open] .fi-chevron::after { transform: translate(-50%,-50%) rotate(0deg); }
-.fi-detalle { padding: 0 20px 22px 78px; }
+.fi-detalle { padding: 4px 20px 22px 78px; }
+.fi-detalle .formula { margin-bottom: 4px; }
 .formula { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 20px; line-height: 1.5; color: var(--text); overflow-x: auto; padding-bottom: 2px; }
 .formula var { font-style: italic; }
 .formula sub, .formula sup { font-size: .62em; line-height: 0; }

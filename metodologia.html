@@ -61,40 +61,44 @@
           <details class="formula-item" open>
             <summary>
               <span class="fi-num">01</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">La suma</span><div class="formula"><var>S</var>(<var>p</var>) = <var>A</var>(<var>p</var>) + <var>B</var>(<var>p</var>) = <span class="sum">&sum;<sub><var>i</var>=1</sub><sup>6</sup></span> <var>a<sub>i</sub></var>(<var>p</var>) + <span class="sum">&sum;<sub><var>j</var>=1</sub><sup>4</sup></span> <var>b<sub>j</sub></var>(<var>p</var>)<span class="cond">0 &le; <var>A</var> &le; 60 &nbsp;·&nbsp; 0 &le; <var>B</var> &le; 40</span></div></span>
+              <span class="fi-titulo">La suma</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>S</var>(<var>p</var>) = <var>A</var>(<var>p</var>) + <var>B</var>(<var>p</var>) = <span class="sum">&sum;<sub><var>i</var>=1</sub><sup>6</sup></span> <var>a<sub>i</sub></var>(<var>p</var>) + <span class="sum">&sum;<sub><var>j</var>=1</sub><sup>4</sup></span> <var>b<sub>j</sub></var>(<var>p</var>)<span class="cond">0 &le; <var>A</var> &le; 60 &nbsp;·&nbsp; 0 &le; <var>B</var> &le; 40</span></div>
             <p>La puntuación de una promoción <var>p</var> es la suma de seis criterios de entorno de golf y cuatro de proyecto. No hay factores multiplicativos ni ajustes posteriores: 100 puntos, diez sumandos.</p>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">02</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Jugabilidad</span><div class="formula"><var>&alpha;</var>(<var>c</var>) = 1 si el campo es resort, público, municipal o semi-privado &nbsp;·&nbsp; &frac12; si es privado de socios &nbsp;·&nbsp; 0 si es estrictamente privado</div></span>
+              <span class="fi-titulo">Jugabilidad</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>&alpha;</var>(<var>c</var>) = 1 si el campo es resort, público, municipal o semi-privado &nbsp;·&nbsp; &frac12; si es privado de socios &nbsp;·&nbsp; 0 si es estrictamente privado</div>
             <p>Coeficiente de jugabilidad. Sale de la columna «membresía» de la base de campos, no de un juicio por promoción.</p>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">03</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Densidad efectiva</span><div class="formula"><var>C</var><sub>15</sub>(<var>p</var>) = { <var>c</var> : <var>t</var>(<var>p</var>,<var>c</var>) &le; 15 min } &nbsp;&nbsp;&nbsp; <var>E</var><sub>4</sub>(<var>p</var>) = <span class="sum">&sum;<sub><var>c</var>&isin;<var>C</var><sub>15</sub>, <var>s</var>(<var>c</var>)=4</sub></span> <var>&alpha;</var>(<var>c</var>) &nbsp;&nbsp;&nbsp; <var>E</var><sub>3</sub>(<var>p</var>) = <span class="sum">&sum;<sub><var>c</var>&isin;<var>C</var><sub>15</sub>, <var>s</var>(<var>c</var>)&ge;3</sub></span> <var>&alpha;</var>(<var>c</var>)</div></span>
+              <span class="fi-titulo">Densidad efectiva</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>C</var><sub>15</sub>(<var>p</var>) = { <var>c</var> : <var>t</var>(<var>p</var>,<var>c</var>) &le; 15 min } &nbsp;&nbsp;&nbsp; <var>E</var><sub>4</sub>(<var>p</var>) = <span class="sum">&sum;<sub><var>c</var>&isin;<var>C</var><sub>15</sub>, <var>s</var>(<var>c</var>)=4</sub></span> <var>&alpha;</var>(<var>c</var>) &nbsp;&nbsp;&nbsp; <var>E</var><sub>3</sub>(<var>p</var>) = <span class="sum">&sum;<sub><var>c</var>&isin;<var>C</var><sub>15</sub>, <var>s</var>(<var>c</var>)&ge;3</sub></span> <var>&alpha;</var>(<var>c</var>)</div>
             <p><var>t</var>(<var>p</var>,<var>c</var>) es el tiempo en coche medido con OSRM sobre la red viaria de OpenStreetMap, de la coordenada de la promoción al club house; <var>s</var>(<var>c</var>) es la categoría del campo (★ a ★★★★). <var>E</var><sub>4</sub> y <var>E</var><sub>3</sub> son la densidad efectiva de campos de élite y premium: un campo que no se puede jugar cuenta la mitad o nada.</p>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">04</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Escalas</span><div class="formula"><var>c</var>* = arg&thinsp;min { <var>t</var>(<var>p</var>,<var>c</var>) : <var>s</var>(<var>c</var>) &ge; 2 }</div></span>
+              <span class="fi-titulo">Escalas</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>c</var>* = arg&thinsp;min { <var>t</var>(<var>p</var>,<var>c</var>) : <var>s</var>(<var>c</var>) &ge; 2 }</div>
             <div class="escalas">
               <div><b><var>a</var><sub>1</sub> = <var>f</var><sub>1</sub>(<var>s</var>(<var>c</var>*))</b><span>★★★★ → 15 · ★★★ → 10 · ★★ → 5</span></div>
               <div><b><var>a</var><sub>2</sub> = <var>f</var><sub>2</sub>(<var>E</var><sub>4</sub>)</b><span>&ge;3 → 12 · &ge;2 → 8 · &ge;1 → 5 · &gt;0 → 2 · 0 → 0</span></div>
@@ -109,30 +113,33 @@
           <details class="formula-item">
             <summary>
               <span class="fi-num">05</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Cota editorial</span><div class="formula"><var>a</var><sub>5</sub>, <var>a</var><sub>6</sub>, <var>b</var><sub>1</sub>, <var>b</var><sub>4</sub> &isin; editorial, con <var>a</var><sub>5</sub> + <var>a</var><sub>6</sub> + <var>b</var><sub>1</sub> + <var>b</var><sub>4</sub> &le; 35<span class="cond"><var>a</var><sub>5</sub> = 0 si el campo propio no está entregado &nbsp;·&nbsp; <var>b</var><sub>1</sub> &le; 7 si la marca no está entregada</span></div></span>
+              <span class="fi-titulo">Cota editorial</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>a</var><sub>5</sub>, <var>a</var><sub>6</sub>, <var>b</var><sub>1</sub>, <var>b</var><sub>4</sub> &isin; editorial, con <var>a</var><sub>5</sub> + <var>a</var><sub>6</sub> + <var>b</var><sub>1</sub> + <var>b</var><sub>4</sub> &le; 35<span class="cond"><var>a</var><sub>5</sub> = 0 si el campo propio no está entregado &nbsp;·&nbsp; <var>b</var><sub>1</sub> &le; 7 si la marca no está entregada</span></div>
             <p>Los cuatro criterios de juicio (bonus in-resort, comunicación viaria, firma arquitectónica y amenities) pesan como máximo 35 puntos y llevan su justificación escrita, visible en cada ficha. Dos restricciones automáticas impiden puntuar promesas: lo no entregado no suma.</p>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">06</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Posición</span><div class="formula">rank(<var>p</var>) = 1 + |{ <var>q</var> : <var>S</var>(<var>q</var>) &gt; <var>S</var>(<var>p</var>) }|</div></span>
+              <span class="fi-titulo">Posición</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula">rank(<var>p</var>) = 1 + |{ <var>q</var> : <var>S</var>(<var>q</var>) &gt; <var>S</var>(<var>p</var>) }|</div>
             <p>Posición por ordenación competitiva: los empates comparten puesto y el siguiente salta. Nadie escribe el número a mano.</p>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">07</span>
-              <span class="fi-cuerpo"><span class="fi-titulo">Actualización continua</span><div class="formula"><var>S</var><sub><var>t</var></sub>(<var>p</var>) = <var>F</var>(<var>D</var><sub><var>t</var></sub>)</div></span>
+              <span class="fi-titulo">Actualización continua</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
+              <div class="formula"><var>S</var><sub><var>t</var></sub>(<var>p</var>) = <var>F</var>(<var>D</var><sub><var>t</var></sub>)</div>
             <p><strong>Actualización continua.</strong> La puntuación es una función pura de la base de datos <var>D</var> en el instante <var>t</var>: precios, unidades, apertura de campos, cambios de acceso o de tiempos. Cuando un dato cambia, el ranking entero se recalcula al recargar la página; cada recálculo es una nueva edición fechada. Esta: datos revisados el 11 de septiembre de 2026; precios recogidos en abril–mayo de 2026; tiempos medidos en agosto de 2026.</p>
             </div>
           </details>
