@@ -659,7 +659,6 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const card = document.createElement('details');
   card.className = 'detail-card promo';
   card.id = 'ficha-' + p.id;
-  if (idx === 0) card.open = true;
   const desglose = (filas, tot, max) => `
     <table class="sb-table">
       ${filas.map(([k, lbl, mx]) => `<tr><th>${lbl}<span>${p.why[k]}</span></th><td>${p.score[k]}<small>/${mx}</small></td></tr>`).join('')}
