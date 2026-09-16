@@ -1270,6 +1270,8 @@ footer .foot-col-item a:hover { color: var(--text); }
 }
 /* Bloque A · Entorno de golf: fondo verde claro al 10 % */
 .method-grid .method-block:first-child { background: var(--v01-2-10); border-color: rgba(141,191,70,.40); }
+/* Bloque B · Calidad y exclusividad: fondo dorado al 10 % (oro claro #C8A45C) */
+.method-grid .method-block:nth-child(2) { background: rgba(200,164,92,.10); border-color: rgba(200,164,92,.40); }
 
 /* La función de puntuación (Método) */
 .formula-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 30px; margin-top: 40px; }
