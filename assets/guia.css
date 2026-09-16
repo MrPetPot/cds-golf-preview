@@ -1298,16 +1298,16 @@ footer .foot-col-item a:hover { color: var(--text); }
 .fi-detalle { padding: 6px 28px 34px 84px; box-sizing: border-box; }
 .formula-item > summary { transition: background-color .25s var(--ease); }
 .formula-item > summary:hover { background: var(--bg-1); }
-.fi-detalle .formula { margin-bottom: 14px; }
+.fi-detalle .formula { margin-top: 18px; }
 .formula { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 20px; line-height: 1.5; color: var(--text); overflow-x: auto; padding-bottom: 2px; }
 .formula var { font-style: italic; }
 .formula sub, .formula sup { font-size: .62em; line-height: 0; }
 .formula .sum { font-size: 1.35em; line-height: 0; vertical-align: -.08em; }
 .formula .sum sub, .formula .sum sup { font-size: .45em; }
 .formula .cond { display: block; font-size: 14px; color: var(--text-mute); margin-top: 6px; }
-.fi-detalle p { margin: 18px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--text-mid); max-width: 820px; }
+.fi-detalle p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--text-mid); max-width: 820px; }
 .fi-detalle p var { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 1.08em; }
-.escalas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; margin-top: 10px; }
+.escalas { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; margin-top: 18px; }
 .escalas > div { display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.4; }
 .escalas b { font-family: 'Times New Roman', Times, Georgia, serif; font-weight: 700; font-size: 16px; color: var(--text); }
 .escalas b var { font-style: italic; }
