@@ -65,6 +65,55 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "la-zagaleta-los-barrancos": {
+   "src": "images/golf/la-zagaleta-los-barrancos.jpg",
+   "pie": "Calle con lago y palmeras, el mar al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-zagaleta-old": {
+   "src": "images/golf/la-zagaleta-old.jpg",
+   "pie": "Green y búnkeres entre el bosque.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "flamingos-villa-padierna": {
+   "src": "images/golf/flamingos-villa-padierna.jpg",
+   "pie": "Vista aérea con el hotel Villa Padierna.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "san-roque-club-new": {
+   "src": "images/golf/san-roque-club-new.jpg",
+   "pie": "Vista aérea con el lago.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "san-roque-club-old": {
+   "src": "images/golf/san-roque-club-old.jpg",
+   "pie": "Calle entre alcornoques.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-quinta-golf": {
+   "src": "images/golf/la-quinta-golf.jpg",
+   "pie": "Lago con palmeras y La Concha al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "alhaurin-golf": {
+   "src": "images/golf/alhaurin-golf.jpg",
+   "pie": "Lago del recorrido con la sierra detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "atalaya-new": {
    "src": "images/golf/atalaya-new.jpg",
    "pie": "Lago del recorrido de Atalaya (la fuente no identifica si Old o New).",
@@ -152,11 +201,11 @@ const FOTOS_CAMPO = {
    "licPendiente": true
  },
  "real-club-de-golf-las-brisas": {
-  "src": "images/golf/real-club-de-golf-las-brisas.jpg",
-  "pie": null,
-  "credito": "Placeholder · pedir press kit al club",
-  "url": null,
-  "placeholder": true
+   "src": "images/golf/real-club-de-golf-las-brisas.jpg",
+   "pie": "Green entre palmeras con La Concha al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
  },
  "aloha-golf-club": {
   "src": "images/golf/aloha-golf-club.jpg",
