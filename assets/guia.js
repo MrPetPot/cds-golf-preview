@@ -938,24 +938,34 @@ pintarEstrellas();
 (function () {
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('animate' in document.body)) return;
-  document.querySelectorAll('details.formula-item').forEach(d => {
-    const sum = d.querySelector('summary'), det = d.querySelector('.fi-detalle');
-    if (!sum || !det) return;
-    let anim = null;
-    const opts = { duration: 340, easing: 'cubic-bezier(.25,.46,.45,.94)' };
+  const items = [...document.querySelectorAll('details.formula-item')];
+  const opts = { duration: 340, easing: 'cubic-bezier(.25,.46,.45,.94)' };
+  const cerrar = d => {
+    const det = d.querySelector('.fi-detalle');
+    if (!d.open || !det) return;
+    if (d._anim) d._anim.cancel();
+    det.style.overflow = 'hidden';
+    d._anim = det.animate([{ height: det.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], opts);
+    d._anim.onfinish = () => { d.open = false; det.style.height = det.style.overflow = ''; d._anim = null; };
+  };
+  const abrir = d => {
+    const det = d.querySelector('.fi-detalle');
+    if (d.open || !det) return;
+    if (d._anim) d._anim.cancel();
+    d.open = true;
+    det.style.overflow = 'hidden';
+    const h = det.offsetHeight;
+    d._anim = det.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], opts);
+    d._anim.onfinish = () => { det.style.height = det.style.overflow = ''; d._anim = null; };
+  };
+  items.forEach(d => {
+    const sum = d.querySelector('summary');
+    if (!sum) return;
     sum.addEventListener('click', e => {
       e.preventDefault();
-      if (anim) anim.cancel();
-      det.style.overflow = 'hidden';
-      if (d.open) {
-        anim = det.animate([{ height: det.offsetHeight + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], opts);
-        anim.onfinish = () => { d.open = false; det.style.height = det.style.overflow = ''; anim = null; };
-      } else {
-        d.open = true;
-        const h = det.offsetHeight;
-        anim = det.animate([{ height: '0px', opacity: 0 }, { height: h + 'px', opacity: 1 }], opts);
-        anim.onfinish = () => { det.style.height = det.style.overflow = ''; anim = null; };
-      }
+      if (d.open) { cerrar(d); return; }
+      items.forEach(o => { if (o !== d) cerrar(o); });   // solo una abierta: la anterior se retrae
+      abrir(d);
     });
   });
 })();
