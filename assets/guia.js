@@ -102,14 +102,14 @@ const FOTOS_CAMPO = {
  },
  "san-roque-club-new": {
    "src": "images/golf/san-roque-club-new.jpg",
-   "pie": "Vista aérea con el lago.",
+   "pie": "Green junto al lago al atardecer.",
    "credito": "Archivo Malashpina · origen por confirmar",
    "url": null,
    "licPendiente": true
  },
  "san-roque-club-old": {
    "src": "images/golf/san-roque-club-old.jpg",
-   "pie": "Calle entre alcornoques.",
+   "pie": "Calle de subida al cortijo del club house, entre alcornoques.",
    "credito": "Archivo Malashpina · origen por confirmar",
    "url": null,
    "licPendiente": true
