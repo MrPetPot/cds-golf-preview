@@ -280,6 +280,17 @@ const FOTOS_CAMPO = {
  }
 };
 
+/* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
+const FOTOS_FICHA = {
+ "la-quinta-golf": {
+   "src": "images/golf/la-quinta-golf-ficha.jpg",
+   "pie": "Green junto al lago, con el pueblo al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ }
+};
+
 const PROMOS = [
 
   { id:'villas-alamos', render:{ dominio:"sotograndehome.com", pie:"Villa con piscina y jardín." }, name:'Las Villas de los Álamos', sub:'ACCIONA Inmobiliaria',
@@ -742,6 +753,25 @@ const FILAS_B = [['b1', 'Firma arquitectónica / branded', 10], ['b2', 'Exclusiv
 const detailGrid = document.getElementById('detailGrid');
 // Acordeón nativo: <details>. La cabecera con imagen es el banner cerrado y crece al abrir.
 // En la página del ranking solo se publican las promociones del top 10 (las menciones se conservan en los datos).
+// El campo de referencia de una promoción (el ★★+ más cercano) se ilustra en su ficha.
+// Si el campo tiene segunda imagen registrada, se usa esa; si no, la misma de la página de campos.
+function fotoReferencia(p) {
+  const c = p.cercano;
+  const f = (typeof FOTOS_FICHA !== 'undefined' && FOTOS_FICHA[c.id]) || c.foto;
+  if (!f) return '';
+  const cuando = c.min === 0 ? 'in-resort' : 'a ' + c.min + '′';
+  const cred = f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito;
+  return `<figure class="dc-ref">
+      <img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>
+      <figcaption>
+        <span class="dc-ref-lbl">Campo de referencia</span>
+        <strong>${c.name}</strong>
+        <span class="dc-ref-meta">${'★'.repeat(c.stars)} · ${cuando} · ${ACCESO_LBL[c.acceso].toLowerCase()}</span>
+        <span class="dc-ref-cred">${cred}</span>
+      </figcaption>
+    </figure>`;
+}
+
 const PUBLICADAS = PROMOS.filter(p => p.top10);
 if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const card = document.createElement('details');
@@ -802,6 +832,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
       <div class="dc-cols">
       <div class="dc-courses">
+        ${fotoReferencia(p)}
         <div class="dc-courses-title">Campos en ≤15 minutos en coche</div>
         ${p.campos.slice().sort((a, b) => a.min - b.min).map(c => {
           const t = c.nota === 'In-resort' ? 'In-resort' : c.min + ' min' + (c.fuera ? ' · fuera de 15′' : '');
