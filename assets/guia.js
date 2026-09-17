@@ -65,6 +65,20 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "los-arqueros-golf": {
+   "src": "images/golf/los-arqueros-golf.jpg",
+   "pie": "Green junto al lago, enmarcado por palmeras.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "alferini-villa-padierna": {
+   "src": "images/golf/alferini-villa-padierna.jpg",
+   "pie": "Calle descendiendo el valle, entre las lomas de Benahavís.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "la-zagaleta-los-barrancos": {
    "src": "images/golf/la-zagaleta-los-barrancos.jpg",
    "pie": "Calle con lago y palmeras, el mar al fondo.",
@@ -169,10 +183,11 @@ const FOTOS_CAMPO = {
   "url": "https://commons.wikimedia.org/wiki/File%3AAtalaya_Golf_%26_Country_Club_en_Estepona.jpg"
  },
  "mijas-golf-los-lagos": {
-  "src": "images/golf/mijas-golf-los-lagos.jpg",
-  "pie": "Acceso y edificio de club.",
-  "credito": "Wikimedia Commons · CC BY-SA 3.0 · Tyk",
-  "url": "https://commons.wikimedia.org/wiki/File%3AEl_Green_Andaluz%2C_Mijas_Golf_07.jpg"
+   "src": "images/golf/mijas-golf-los-lagos.jpg",
+   "pie": "Vista aérea de los lagos que dan nombre al recorrido.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
  },
  "la-hacienda-heathland": {
   "src": "images/golf/la-hacienda-heathland.jpg",
