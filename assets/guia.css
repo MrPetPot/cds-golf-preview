@@ -1205,7 +1205,12 @@ body[data-pagina] .ranking-head [data-sort].sorted, body[data-pagina] .pop-score
 body[data-pagina] .course-mini-time sup, body[data-pagina] .golf-tr-stars small,
 body[data-pagina] .gc figcaption strong, body[data-pagina] .btn-linea, body[data-pagina] .paso-cta { color: var(--sec-text); }
 body[data-pagina] .tag, body[data-pagina] .acc-1 { color: var(--sec-text); border-color: var(--sec-line); background: var(--sec-soft); }
-body[data-pagina] .dc-rank-badge { color: var(--sec-text); }
+/* Titular del banner: posición, nombre y municipio en la misma línea y cuerpo */
+.dc-rank-badge { display: none; }
+.dc-title .dc-t-rank { color: var(--oro-1); margin-right: .34em; }
+.dc-title .dc-t-name { color: #FFFFFF; }
+.dc-title .dc-t-loc { color: var(--greige); margin-left: .34em; }
+details.promo > summary .dc-loc { color: rgba(255,255,255,.72); }
 body[data-pagina] .gc-cred a { color: var(--sec-text); border-bottom-color: var(--sec-line); }
 body[data-pagina] .golf-filter button:hover { border-color: var(--sec-line); color: var(--sec-text); }
 body[data-pagina] .golf-filter button.active { border-color: var(--sec); color: var(--sec-text); background: var(--sec-soft); }
@@ -1434,7 +1439,6 @@ details.promo:not([open]) > summary .dc-head-inner { max-width: none; padding-ri
 details.promo:not([open]) > summary .dc-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 details.promo:not([open]) > summary .dc-loc-extra { display: none; }
 details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none; }
-details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font-size: 11px; padding: 6px 10px; }
 
 /* Enlace "siguiente" al pie de cada página */
 .siguiente { display: flex; justify-content: flex-end; margin-top: 72px; }
@@ -1462,7 +1466,7 @@ details.promo:not([open]) > summary .dc-rank-badge { top: 18px; left: 22px; font
   details.promo:not([open]) > summary .dc-head-inner { padding-right: 84px; }
   details.promo:not([open]) > summary .dc-title { font-size: 22px; }
   details.promo:not([open]) > summary .dc-loc { font-size: 12px; }
-  details.promo:not([open]) > summary .dc-rank-badge { top: 12px; left: 14px; font-size: 10px; padding: 5px 8px; }
+  details.promo:not([open]) > summary .dc-t-rank, details.promo:not([open]) > summary .dc-t-loc { display: none; }
   details.promo > summary .dc-head::before { right: 20px; top: 14px; font-size: 24px; }
   details.promo > summary .detail-card-placeholder-tag { right: 54px; top: 14px; }
   details.promo > summary .dc-score-overlay { font-size: 34px; bottom: 16px; right: 20px; }

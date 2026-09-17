@@ -799,12 +799,10 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     <header class="dc-head">
       <img class="dc-head-bg" src="${media.src}" alt="${media.pie || p.name + ' — ' + p.municipio}" loading="lazy"
            onerror="this.style.display='none';this.parentElement.classList.add('sin-img')"/>
-      <div class="dc-rank-badge">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</div>
       <div class="detail-card-placeholder-tag">${media.tag}</div>
       <div class="dc-head-inner">
-        <div class="dc-eyebrow">${p.top10 ? 'Top 10 · Posición ' + p.rank : 'Mención honorífica · ' + p.rank}</div>
-        <h3 class="dc-title">${p.name}</h3>
-        <div class="dc-loc"><strong>${p.municipio}</strong><span class="dc-loc-extra"> · ${p.zona} · ${p.sub}</span></div>
+        <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
+        <div class="dc-loc"><span class="dc-loc-extra">${p.zona} · ${p.sub}</span></div>
         ${media.pie ? `<div class="dc-img-pie">${media.pie}<em>${media.nota}</em></div>` : ''}
       </div>
       <div class="dc-score-overlay">${p.total}<small>/ 100</small></div>
