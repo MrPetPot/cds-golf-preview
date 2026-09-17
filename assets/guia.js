@@ -65,6 +65,111 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "tramores-villa-padierna": {
+   "src": "images/golf/tramores-villa-padierna.jpg",
+   "pie": "Green rodeado de jacarandas en flor.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "santa-clara-golf-marbella": {
+   "src": "images/golf/santa-clara-golf-marbella.jpg",
+   "pie": "Lago con fuente entre palmeras, a contraluz.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "miraflores-golf": {
+   "src": "images/golf/miraflores-golf.jpg",
+   "pie": "Green y calle sobre el valle, con la sierra detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-siesta-golf": {
+   "src": "images/golf/la-siesta-golf.jpg",
+   "pie": "Calle entre arbolado, con el mar al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-noria-golf": {
+   "src": "images/golf/la-noria-golf.jpg",
+   "pie": "Lago con fuente junto al green.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-canada-golf": {
+   "src": "images/golf/la-canada-golf.jpg",
+   "pie": "Vista aérea del recorrido con su lago.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-cala-resort-america": {
+   "src": "images/golf/la-cala-resort-america.jpg",
+   "pie": "Salida hacia el lago, con la sierra de Mijas detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-hacienda-alcaidesa-links": {
+   "src": "images/golf/la-hacienda-alcaidesa-links.jpg",
+   "pie": "Green del links con el Peñón de Gibraltar al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "greenlife-golf": {
+   "src": "images/golf/greenlife-golf.jpg",
+   "pie": "Lago con fuente, entre las calles del recorrido.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "dona-julia-golf": {
+   "src": "images/golf/dona-julia-golf.jpg",
+   "pie": "Calle descendiendo hacia el mar.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "el-chaparral-golf": {
+   "src": "images/golf/el-chaparral-golf.jpg",
+   "pie": "Green entre pinos, con el Mediterráneo al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "calanova-golf": {
+   "src": "images/golf/calanova-golf.jpg",
+   "pie": "Calle abierta sobre las lomas de La Cala.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "baviera-golf": {
+   "src": "images/golf/baviera-golf.jpg",
+   "pie": "Lago frente a la casa club, con la Axarquía al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "azata-golf": {
+   "src": "images/golf/azata-golf.jpg",
+   "pie": "Green junto al lago al atardecer, con el mar detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "the-alto-club-almenara": {
+   "src": "images/golf/the-alto-club-almenara.jpg",
+   "pie": "Amanecer sobre el recorrido, entre alcornoques.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "el-paraiso-golf": {
    "src": "images/golf/el-paraiso-golf.jpg",
    "pie": "Lago con fuente entre calles, y La Concha al fondo.",
@@ -318,7 +423,16 @@ const FOTOS_CAMPO = {
 /* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 
 /* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
+
+/* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 const FOTOS_FICHA = {
+ "calanova-golf": {
+   "src": "images/golf/calanova-golf-ficha.jpg",
+   "pie": "Lago del recorrido, con el mar al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "guadalmina-norte": {
    "src": "images/golf/guadalmina-norte-ficha.jpg",
    "pie": "Calle del recorrido, con el pueblo detrás.",
@@ -326,9 +440,23 @@ const FOTOS_FICHA = {
    "url": null,
    "licPendiente": true
  },
+ "la-canada-golf": {
+   "src": "images/golf/la-canada-golf-ficha.jpg",
+   "pie": "Calle con la sierra y la bahía al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "la-quinta-golf": {
    "src": "images/golf/la-quinta-golf-ficha.jpg",
    "pie": "Green junto al lago, con el pueblo al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "santa-clara-golf-marbella": {
+   "src": "images/golf/santa-clara-golf-marbella-ficha.jpg",
+   "pie": "Vista aérea del campo y su casa club.",
    "credito": "Archivo Malashpina · origen por confirmar",
    "url": null,
    "licPendiente": true
