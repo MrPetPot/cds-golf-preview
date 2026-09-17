@@ -81,14 +81,14 @@ const FOTOS_CAMPO = {
  },
  "la-zagaleta-los-barrancos": {
    "src": "images/golf/la-zagaleta-los-barrancos.jpg",
-   "pie": "Calle con lago y palmeras, el mar al fondo.",
+   "pie": "Calle con lago y palmeras; al fondo, el mar y África.",
    "credito": "Archivo Malashpina · origen por confirmar",
    "url": null,
    "licPendiente": true
  },
  "la-zagaleta-old": {
    "src": "images/golf/la-zagaleta-old.jpg",
-   "pie": "Green y búnkeres entre el bosque.",
+   "pie": "El valle de La Zagaleta al atardecer, con las calles descolgándose entre el pinar.",
    "credito": "Archivo Malashpina · origen por confirmar",
    "url": null,
    "licPendiente": true
