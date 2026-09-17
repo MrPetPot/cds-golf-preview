@@ -65,6 +65,41 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "el-paraiso-golf": {
+   "src": "images/golf/el-paraiso-golf.jpg",
+   "pie": "Lago con fuente entre calles, y La Concha al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "magna-marbella": {
+   "src": "images/golf/magna-marbella.jpg",
+   "pie": "Green y calle con la sierra de Nueva Andalucía al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "guadalmina-norte": {
+   "src": "images/golf/guadalmina-norte.jpg",
+   "pie": "Búnker de entrada a green, con San Pedro al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "el-higueral": {
+   "src": "images/golf/el-higueral.jpg",
+   "pie": "Green rodeado de agua, con la sierra de Benahavís detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "dama-de-noche": {
+   "src": "images/golf/dama-de-noche.jpg",
+   "pie": "Green al atardecer: el campo se juega también de noche, con luz artificial.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "los-arqueros-golf": {
    "src": "images/golf/los-arqueros-golf.jpg",
    "pie": "Green junto al lago, enmarcado por palmeras.",
@@ -281,7 +316,16 @@ const FOTOS_CAMPO = {
 };
 
 /* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
+
+/* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 const FOTOS_FICHA = {
+ "guadalmina-norte": {
+   "src": "images/golf/guadalmina-norte-ficha.jpg",
+   "pie": "Calle del recorrido, con el pueblo detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "la-quinta-golf": {
    "src": "images/golf/la-quinta-golf-ficha.jpg",
    "pie": "Green junto al lago, con el pueblo al fondo.",
