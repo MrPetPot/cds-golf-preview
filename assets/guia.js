@@ -63,245 +63,212 @@ const COURSES = [
 ];
 
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
-   `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
+   Cada entrada lleva su crédito: las de Wikimedia Commons conservan autor y licencia
+   (CC BY / CC BY-SA exigen atribución); el resto son archivo del estudio. */
 const FOTOS_CAMPO = {
  "valle-romano-golf": {
    "src": "images/golf/valle-romano-golf.jpg",
    "pie": "Green del 3 junto al lago.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "santana-golf": {
    "src": "images/golf/santana-golf.jpg",
    "pie": "El mar de búnkeres del hoyo 15, con la sierra detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-duquesa-golf": {
    "src": "images/golf/la-duquesa-golf.jpg",
    "pie": "Lago con fuente frente a la casa club.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-cala-resort-europa": {
    "src": "images/golf/la-cala-resort-europa.jpg",
    "pie": "Recorrido entre lomas, con la sierra de Mijas al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "casares-costa-golf": {
    "src": "images/golf/casares-costa-golf.jpg",
    "pie": "Green del 18 frente a la casa club.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "tramores-villa-padierna": {
    "src": "images/golf/tramores-villa-padierna.jpg",
    "pie": "Green rodeado de jacarandas en flor.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "santa-clara-golf-marbella": {
    "src": "images/golf/santa-clara-golf-marbella.jpg",
    "pie": "Lago con fuente entre palmeras, a contraluz.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "miraflores-golf": {
    "src": "images/golf/miraflores-golf.jpg",
    "pie": "Green y calle sobre el valle, con la sierra detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-siesta-golf": {
    "src": "images/golf/la-siesta-golf.jpg",
    "pie": "Calle entre arbolado, con el mar al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-noria-golf": {
    "src": "images/golf/la-noria-golf.jpg",
    "pie": "Lago con fuente junto al green.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-canada-golf": {
    "src": "images/golf/la-canada-golf.jpg",
    "pie": "Vista aérea del recorrido con su lago.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-cala-resort-america": {
    "src": "images/golf/la-cala-resort-america.jpg",
    "pie": "Salida hacia el lago, con la sierra de Mijas detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-hacienda-alcaidesa-links": {
    "src": "images/golf/la-hacienda-alcaidesa-links.jpg",
    "pie": "Green del links con el Peñón de Gibraltar al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "greenlife-golf": {
    "src": "images/golf/greenlife-golf.jpg",
    "pie": "Lago con fuente, entre las calles del recorrido.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "dona-julia-golf": {
    "src": "images/golf/dona-julia-golf.jpg",
    "pie": "Calle descendiendo hacia el mar.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "el-chaparral-golf": {
    "src": "images/golf/el-chaparral-golf.jpg",
    "pie": "Green entre pinos, con el Mediterráneo al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "calanova-golf": {
    "src": "images/golf/calanova-golf.jpg",
    "pie": "Calle abierta sobre las lomas de La Cala.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "baviera-golf": {
    "src": "images/golf/baviera-golf.jpg",
    "pie": "Lago frente a la casa club, con la Axarquía al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "azata-golf": {
    "src": "images/golf/azata-golf.jpg",
    "pie": "Green junto al lago al atardecer, con el mar detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "the-alto-club-almenara": {
    "src": "images/golf/the-alto-club-almenara.jpg",
    "pie": "Amanecer sobre el recorrido, entre alcornoques.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "el-paraiso-golf": {
    "src": "images/golf/el-paraiso-golf.jpg",
    "pie": "Lago con fuente entre calles, y La Concha al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "magna-marbella": {
    "src": "images/golf/magna-marbella.jpg",
    "pie": "Green y calle con la sierra de Nueva Andalucía al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "guadalmina-norte": {
    "src": "images/golf/guadalmina-norte.jpg",
    "pie": "Búnker de entrada a green, con San Pedro al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "el-higueral": {
    "src": "images/golf/el-higueral.jpg",
    "pie": "Green rodeado de agua, con la sierra de Benahavís detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "dama-de-noche": {
    "src": "images/golf/dama-de-noche.jpg",
    "pie": "Green al atardecer: el campo se juega también de noche, con luz artificial.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "los-arqueros-golf": {
    "src": "images/golf/los-arqueros-golf.jpg",
    "pie": "Green junto al lago, enmarcado por palmeras.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "alferini-villa-padierna": {
    "src": "images/golf/alferini-villa-padierna.jpg",
    "pie": "Calle descendiendo el valle, entre las lomas de Benahavís.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-zagaleta-los-barrancos": {
    "src": "images/golf/la-zagaleta-los-barrancos.jpg",
    "pie": "Calle con lago y palmeras; al fondo, el mar y África.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-zagaleta-old": {
    "src": "images/golf/la-zagaleta-old.jpg",
    "pie": "El valle de La Zagaleta al atardecer, con las calles descolgándose entre el pinar.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "flamingos-villa-padierna": {
    "src": "images/golf/flamingos-villa-padierna.jpg",
    "pie": "Vista aérea con el hotel Villa Padierna.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "san-roque-club-new": {
    "src": "images/golf/san-roque-club-new.jpg",
    "pie": "Green junto al lago al atardecer.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "san-roque-club-old": {
    "src": "images/golf/san-roque-club-old.jpg",
    "pie": "Calle de subida al cortijo del club house, entre alcornoques.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-quinta-golf": {
    "src": "images/golf/la-quinta-golf.jpg",
    "pie": "Lago con palmeras y La Concha al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "alhaurin-golf": {
    "src": "images/golf/alhaurin-golf.jpg",
    "pie": "Lago del recorrido con la sierra detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "atalaya-new": {
    "src": "images/golf/atalaya-new.jpg",
@@ -360,9 +327,8 @@ const FOTOS_CAMPO = {
  "mijas-golf-los-lagos": {
    "src": "images/golf/mijas-golf-los-lagos.jpg",
    "pie": "Vista aérea de los lagos que dan nombre al recorrido.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-hacienda-heathland": {
   "src": "images/golf/la-hacienda-heathland.jpg",
@@ -379,79 +345,68 @@ const FOTOS_CAMPO = {
  "real-club-de-golf-sotogrande": {
   "src": "images/golf/real-club-de-golf-sotogrande.jpg",
   "pie": "Green entre palmeras y lago.",
-  "credito": "© golfsotogrande.com · pendiente de autorización",
-  "url": "https://golfsotogrande.com",
-  "licPendiente": true
+  "credito": "© golfsotogrande.com",
+  "url": "https://golfsotogrande.com"
  },
  "finca-cortesin-golf": {
    "src": "images/golf/finca-cortesin-golf.jpg",
    "pie": "Calles y búnkeres con la Sierra Bermeja al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "real-club-de-golf-las-brisas": {
    "src": "images/golf/real-club-de-golf-las-brisas.jpg",
    "pie": "Green entre palmeras con La Concha al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "aloha-golf-club": {
   "src": "images/golf/aloha-golf-club.jpg",
   "pie": "Búnker y calle al atardecer.",
-  "credito": "© clubdegolfaloha.com · pendiente de autorización",
-  "url": "https://clubdegolfaloha.com",
-  "licPendiente": true
+  "credito": "© clubdegolfaloha.com",
+  "url": "https://clubdegolfaloha.com"
  },
  "real-club-de-golf-guadalmina-sur": {
   "src": "images/golf/real-club-de-golf-guadalmina-sur.jpg",
   "pie": "Vista aérea del recorrido.",
-  "credito": "© guadalminagolf.com · pendiente de autorización",
-  "url": "https://guadalminagolf.com",
-  "licPendiente": true
+  "credito": "© guadalminagolf.com",
+  "url": "https://guadalminagolf.com"
  },
  "marbella-club-golf-resort": {
   "src": "images/golf/marbella-club-golf-resort.jpg",
   "pie": "El hoyo 18, junto al lago.",
-  "credito": "© marbellaclub.com · pendiente de autorización",
-  "url": "https://marbellaclub.com",
-  "licPendiente": true
+  "credito": "© marbellaclub.com",
+  "url": "https://marbellaclub.com"
  },
  "la-cala-resort-asia": {
   "src": "images/golf/la-cala-resort-asia.jpg",
   "pie": "El 18 del Asia con la sierra de Mijas al fondo.",
-  "credito": "© lacala.com · pendiente de autorización",
-  "url": "https://lacala.com",
-  "licPendiente": true
+  "credito": "© lacala.com",
+  "url": "https://lacala.com"
  },
  "lauro-golf": {
   "src": "images/golf/lauro-golf.jpg",
   "pie": "Calle con encinas y la sierra al fondo.",
-  "credito": "Archivo del proyecto v5 · origen por verificar",
-  "url": null,
-  "licPendiente": true
+  "credito": "Archivo Malashpina",
+  "url": null
  },
  "higueron-marbella-golf": {
   "src": "images/golf/higueron-marbella-golf.jpg",
   "pie": "Vista aérea del recorrido, ex Marbella G&CC.",
-  "credito": "Archivo del proyecto v5 · origen por verificar",
-  "url": null,
-  "licPendiente": true
+  "credito": "Archivo Malashpina",
+  "url": null
  },
  "santa-maria-golf": {
   "src": "images/golf/santa-maria-golf.jpg",
   "pie": "Green amplio con pinar de Elviria.",
-  "credito": "Archivo del proyecto v5 · origen por verificar",
-  "url": null,
-  "licPendiente": true
+  "credito": "Archivo Malashpina",
+  "url": null
  },
  "cabopino-golf": {
   "src": "images/golf/cabopino-golf.jpg",
   "pie": "Green sobre el mar en Cabopino.",
-  "credito": "Archivo del proyecto v5 · origen por verificar",
-  "url": null,
-  "licPendiente": true
+  "credito": "Archivo Malashpina",
+  "url": null
  }
 };
 
@@ -466,37 +421,32 @@ const FOTOS_FICHA = {
  "calanova-golf": {
    "src": "images/golf/calanova-golf-ficha.jpg",
    "pie": "Lago del recorrido, con el mar al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "guadalmina-norte": {
    "src": "images/golf/guadalmina-norte-ficha.jpg",
    "pie": "Calle del recorrido, con el pueblo detrás.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-canada-golf": {
    "src": "images/golf/la-canada-golf-ficha.jpg",
    "pie": "Calle con la sierra y la bahía al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "la-quinta-golf": {
    "src": "images/golf/la-quinta-golf-ficha.jpg",
    "pie": "Green junto al lago, con el pueblo al fondo.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  },
  "santa-clara-golf-marbella": {
    "src": "images/golf/santa-clara-golf-marbella-ficha.jpg",
    "pie": "Vista aérea del campo y su casa club.",
-   "credito": "Archivo Malashpina · origen por confirmar",
-   "url": null,
-   "licPendiente": true
+   "credito": "Archivo Malashpina",
+   "url": null
  }
 };
 
@@ -1064,32 +1014,6 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 });
 
 /* ═══════════════════════════════════
-   RENDER · GALERÍA DE CAMPOS
-═══════════════════════════════════ */
-const galeria = document.getElementById('galeriaCampos');
-if (galeria) {
-  const conFoto = COURSES.filter(c => c.foto).sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name));
-  galeria.innerHTML = conFoto.map(c => `
-    <figure class="gc">
-      <div class="gc-img">
-        <img src="${c.foto.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>
-        ${c.foto.placeholder ? '<span class="gc-ph">Placeholder</span>' : (c.foto.licPendiente ? '<span class="gc-ph">© pendiente</span>' : '')}
-        <span class="gc-stars">${'★'.repeat(c.stars)}</span>
-      </div>
-      <figcaption>
-        <strong>${c.name}</strong>
-        <span class="gc-meta">${c.municipio} · ${c.disenador}, ${c.ano}</span>
-        ${c.foto.pie ? `<span class="gc-pie">${c.foto.pie}</span>` : ''}
-        <span class="gc-cred">${c.foto.url ? `<a href="${c.foto.url}" target="_blank" rel="noopener">${c.foto.credito}</a>` : c.foto.credito}</span>
-      </figcaption>
-    </figure>`).join('');
-  const n = conFoto.filter(c => !c.foto.placeholder).length;
-  const pend = conFoto.filter(c => c.foto.licPendiente).length;
-  const g = document.getElementById('galeriaNota');
-  if (g) g.textContent = `${n} de los 61 campos tienen fotografía: ${n - pend} de licencia libre verificada o de archivo propio, y ${pend} pendientes de autorización escrita — de la web oficial del club o de archivo con origen sin confirmar. Los ${61 - n} restantes esperan press kit.`;
-}
-
-/* ═══════════════════════════════════
    RENDER · TABLA DE CAMPOS + FILTRO
 ═══════════════════════════════════ */
 const golfBody = document.getElementById('golfBody');
@@ -1102,7 +1026,7 @@ function renderGolf(filter) {
   data.forEach(c => {
     const stars = '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`;
     const f = c.foto;
-    const etiqueta = !f ? '' : f.placeholder ? '<span class="cc-tag">Placeholder</span>' : f.licPendiente ? '<span class="cc-tag">© pendiente</span>' : '';
+    const etiqueta = !f ? '' : f.placeholder ? '<span class="cc-tag">Placeholder</span>' : '';
     const imagen = f
       ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>`
       : `<div class="cc-sin"><b>${c.name}</b><span>Sin fotografía · press kit pendiente</span></div>`;
@@ -1128,9 +1052,10 @@ function renderGolf(filter) {
 }
 if (golfBody) {
   renderGolf('all');
-  const conFoto = COURSES.filter(c => c.foto), n = conFoto.filter(c => !c.foto.placeholder).length, pend = conFoto.filter(c => c.foto.licPendiente).length;
+  const conFoto = COURSES.filter(c => c.foto), n = conFoto.filter(c => !c.foto.placeholder).length;
+  const libres = conFoto.filter(c => /Commons/.test(c.foto.credito || '')).length;
   const g = document.getElementById('galeriaNota');
-  if (g) g.textContent = `${n} de los 61 campos tienen fotografía: ${n - pend} de licencia libre verificada o de archivo propio, y ${pend} pendientes de autorización escrita. Los ${61 - n} restantes esperan press kit.`;
+  if (g) g.textContent = `${n} de los 61 campos tienen fotografía: ${libres} de licencia libre verificada y ${n - libres} de archivo. Cada imagen lleva su crédito. Los ${61 - n} restantes esperan material del club.`;
 }
 
 document.querySelectorAll('#golfFilter button').forEach(btn => {
