@@ -483,7 +483,7 @@ const PROMOS = [
         b1:7,  b1why:'Diseño sostenible certificado; sin firma internacional acreditada.',
         b4:10, b4why:'Acceso pleno a los servicios de La Reserva Club.' },
     tags:['In-resort 4★','Sostenible','Wellness'],
-    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su ★★★★ propio lo compensa: dos de los otros tres campos de élite que tiene a mano son de socios. Pierde el podio por escala — 122 unidades hunden su factor exclusividad.' },
+    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su ★★★★ propio lo compensa: dos de los otros tres campos de élite que tiene a mano son de socios. Pierde el podio por escala: 124 unidades reducen su factor de exclusividad.' },
 
   { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Piscina y terraza sobre el mar." }, name:'MAREA by Missoni', sub:'Finca Cortesín · Hotel · Golf · Spa',
     municipio:'Casares', zona:'Finca Cortesín Resort', lat:36.379, lng:-5.224,
@@ -516,8 +516,8 @@ const PROMOS = [
         a6:3,  a6why:'Carretera de sierra hasta la A-7; buena pero no directa.',
         b1:7,  b1why:'Banyan Tree anunciada para 2026 pero no entregada: tope de 7 por regla de marca pendiente.',
         b4:10, b4why:'Lago navegable, club deportivo, spa y beach club previstos en el masterplan.' },
-    tags:['Banyan Tree 2026','Golf Valley','36 unidades'],
-    rationale:'Sigue cuarto, pero le cuesta caro el rigor: pierde el bonus de campo propio (El Lago no existe todavía) y su acceso a Golf Valley se descuenta porque Las Brisas, Aloha y Guadalmina Sur son de socios. Lo que sostiene la posición es la exclusividad — 36 unidades — y un amenity deck de resort completo.' },
+    tags:['Banyan Tree 2026','Golf Valley','102 unidades'],
+    rationale:'Le cuesta caro el rigor: pierde el bonus de campo propio porque El Lago todavía no está operativo y su acceso a Golf Valley se descuenta porque Las Brisas, Aloha y Guadalmina Sur son de socios. Lo que sostiene la posición es un amenity deck de resort completo, pese a las 102 unidades del desarrollo.' },
 
   { id:'epic-fendi', render:{ dominio:"epicmarbella.com", pie:"El conjunto con La Concha al fondo." }, name:'EPIC Marbella by Fendi', sub:'Casa Branded Residences',
     municipio:'Marbella', zona:'Golden Mile · Nagüeles', lat:36.516, lng:-4.911,
@@ -533,7 +533,7 @@ const PROMOS = [
         b1:10, b1why:'Fendi Casa: marca internacional reconocida, interiorismo entregado con la unidad.',
         b4:10, b4why:'Spa, gym, cine, concierge 24h, piscinas premium, servicio de hotel.' },
     tags:['Fendi Casa','Golden Mile','€15k/m²'],
-    rationale:'Adelanta a Tiara por un punto tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, no de puerta: seis campos ★★★+ entre 8 y 14 minutos, pero el más cercano de 18 hoyos está a ocho. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
+    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, no de puerta: seis campos ★★★+ entre 8 y 14 minutos, pero el más cercano de 18 hoyos está a ocho. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Terrazas escalonadas sobre el valle." }, name:'Tiara', sub:'La Quinta · NVOGA',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
@@ -549,7 +549,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto cuidado de NVOGA, sin firma internacional.',
         b4:7,  b4why:'Spa, gym, piscinas, zonas comunes; sin club house ni beach club propios.' },
     tags:['A pie La Quinta','Golf Valley','Boutique NVOGA'],
-    rationale:'El mejor bloque A fuera de Sotogrande y Cortesín: 35 sobre 60, con La Quinta Golf a dos minutos andando y de acceso resort. Pierde el sexto puesto por bloque B — sin marca, sin beach club y con 56 unidades no compite con Fendi en la mitad que no es golf.' },
+    rationale:'Uno de los mejores bloques A fuera de Sotogrande y Cortesín: 30 sobre 60, con La Quinta Golf a cuatro minutos y de acceso resort. Queda séptima por el bloque B: sin marca, sin beach club y con 56 unidades no compite con Fendi en la mitad que no es golf.' },
 
   { id:'mc-hills', render:{ dominio:"marbellaclubhills.com", pie:"Vista aérea hacia el mar." }, name:'Marbella Club Hills', sub:'Fase 2',
     municipio:'Benahavís', zona:'Carretera del Madroñal', lat:36.495, lng:-5.045,
@@ -919,14 +919,12 @@ function fotoReferencia(p) {
   const f = (typeof FOTOS_FICHA !== 'undefined' && FOTOS_FICHA[c.id]) || c.foto;
   if (!f) return '';
   const cuando = c.min === 0 ? 'in-resort' : 'a ' + c.min + '′';
-  const cred = f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito;
   return `<figure class="dc-ref">
       <img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>
       <figcaption>
         <span class="dc-ref-lbl">Campo de referencia</span>
         <strong>${c.name}</strong>
         <span class="dc-ref-meta">${'★'.repeat(c.stars)} · ${cuando} · ${ACCESO_LBL[c.acceso].toLowerCase()}</span>
-        <span class="dc-ref-cred">${cred}</span>
       </figcaption>
     </figure>`;
 }
@@ -935,60 +933,55 @@ const PUBLICADAS = PROMOS.filter(p => p.top10);
 if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const card = document.createElement('details');
   card.className = 'detail-card promo';
+  card.setAttribute('name', 'promociones');
   card.id = 'ficha-' + p.id;
-  const desglose = (filas, tot, max) => `
-    <table class="sb-table">
-      ${filas.map(([k, lbl, mx]) => `<tr><th>${lbl}<span>${p.why[k]}</span></th><td>${p.score[k]}<small>/${mx}</small></td></tr>`).join('')}
-      <tr class="sb-total"><th>${max === 60 ? 'Bloque A · Entorno de golf' : 'Bloque B · Calidad y exclusividad'}</th><td>${tot}<small>/${max}</small></td></tr>
-    </table>`;
+  const desglose = (filas, tot, max) => `<section class="criterion-group ${max === 60 ? 'is-golf' : ''}">
+    <h4>${max === 60 ? 'A · Entorno de golf' : 'B · Calidad del proyecto'} <span>${tot}/${max}</span></h4>
+    ${filas.map(([k, lbl, mx]) => `<details class="criterion" name="criterios-${p.id}">
+      <summary><span class="criterion-code">${k.toUpperCase()}</span><span>${lbl}</span><strong>${p.score[k]}<small>/${mx}</small></strong>
+        <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
+      </summary><p>${p.why[k]}</p></details>`).join('')}</section>`;
   const media = p.render
     ? { src: p.image, tag: '© ' + p.render.dominio, pie: p.render.pie, nota: 'Render del promotor · pendiente de autorización' }
     : (p.foto
       ? { src: p.foto.src, tag: 'Imagen de zona', pie: p.foto.pie, nota: 'No es una imagen del proyecto' }
       : { src: p.image, tag: 'Imagen placeholder', pie: null, nota: null });
   const claves = [
-    `<strong>${p.cercano.name}</strong> ${p.cercano.min === 0 ? 'in-resort' : 'a ' + p.cercano.min + '′'} · ${'★'.repeat(p.cercano.stars)} · ${ACCESO_LBL[p.cercano.acceso].toLowerCase()}`,
-    `<strong>${p.n3}</strong> campo${p.n3 === 1 ? '' : 's'} ★★★+ en 15′ · <strong>${p.jugables}/${p.enQuince}</strong> reservables sin ser socio`,
-    `<strong>${p.unidades}</strong> unidades · desde <strong>${p.precioDesde}</strong>${p.precioEstimado ? ' (estimado)' : ''}`,
-    p.estudio ? `Arquitectura: <strong>${p.estudio}</strong>` : `Arquitectura <strong>no acreditada</strong> por el promotor`,
-    p.derechosGolf ? `Golf para propietarios: ${p.derechosGolf.split('.')[0]}.` : `Derechos de golf para propietarios: <strong>no publicados</strong>`
+    p.score.a5 ? `Integración con el golf: <strong>+${p.score.a5} puntos</strong>.` : 'Sin bonus de integración con un campo operativo.',
+    p.estudio ? `Arquitectura: <strong>${p.estudio}</strong>.` : 'Firma arquitectónica <strong>no acreditada</strong>.',
+    p.derechosGolf ? 'Condiciones de golf para propietarios disponibles en Datos del proyecto.' : 'Derechos de golf para propietarios <strong>no publicados</strong>.'
   ];
   card.innerHTML = `
     <summary class="promo-banner">
     <header class="dc-head">
       <img class="dc-head-bg" src="${media.src}" alt="${media.pie || p.name + ' — ' + p.municipio}" loading="lazy"
-           onerror="this.style.display='none';this.parentElement.classList.add('sin-img')"/>
-      <div class="detail-card-placeholder-tag">${media.tag}</div>
+           onerror="this.hidden=true;this.parentElement.classList.add('sin-img')"/>
       <div class="dc-head-inner">
         <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
         <div class="dc-loc"><span class="dc-loc-extra">${p.zona} · ${p.sub}</span></div>
-        ${media.pie ? `<div class="dc-img-pie">${media.pie}<em>${media.nota}</em></div>` : ''}
       </div>
       <div class="dc-score-overlay">${p.total}<small>/ 100</small></div>
     </header>
     </summary>
-    <div class="dc-body">
-      <ul class="claves">${claves.map(c => `<li>${c}</li>`).join('')}</ul>
-      <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-
-      <div class="dc-stats">
-        <div><div class="dc-stat-lbl">Promotor</div><div class="dc-stat-val texto">${p.promotor}</div></div>
-        <div><div class="dc-stat-lbl">Arquitectura</div><div class="dc-stat-val texto">${p.estudio ? p.estudio + `<small class="dc-stat-src">${p.estudioFuente}</small>` : '<span class="mute">No acreditado</span>'}</div></div>
-        <div><div class="dc-stat-lbl">Unidades</div><div class="dc-stat-val large">${p.unidades}</div></div>
-        <div><div class="dc-stat-lbl">Precio</div><div class="dc-stat-val texto">${p.precio}</div></div>
-        <div><div class="dc-stat-lbl">Entrega</div><div class="dc-stat-val fecha">${p.entrega}</div></div>
+    <div class="dc-body compact-body">
+      <div class="account-panel">
+        <div class="account-evidence" data-motion="evidence"><span class="account-step">01 · Evidencia</span><strong>${p.cercano.name}</strong><span>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + ' min en coche'} · ${'★'.repeat(p.cercano.stars)}</span><small>${ACCESO_LBL[p.cercano.acceso]} · campo de referencia</small></div>
+        <div class="account-contributions"><span class="account-step">02 · Contribución</span>
+          <div class="account-part is-golf" data-motion="contribution"><span>A · Golf</span><strong>${p.A}<small>/60</small></strong><span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.A / 60}"></span></span></div>
+          <div class="account-part" data-motion="contribution"><span>B · Proyecto</span><strong>${p.B}<small>/40</small></strong><span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span></div>
+        </div>
+        <div class="account-result" data-motion="result"><span class="account-step">03 · Resultado</span><div class="score-dial"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="dial-track" cx="60" cy="60" r="51"/><circle class="dial-value" cx="60" cy="60" r="51" pathLength="100" stroke-dasharray="${p.total} 100"/></svg><strong>${p.total}<small>/100</small></strong></div><span class="account-equation">${p.A} + ${p.B} = ${p.total}</span></div>
       </div>
-
-      ${p.derechosGolf ? `<div class="dc-derechos"><span>Derechos de golf</span>${p.derechosGolf}<em>${p.derechosFuente}</em></div>` : ''}
-
-      <div class="dc-golfbar">
-        <div><span class="gb-num">${p.n3}</span> campo${p.n3 === 1 ? '' : 's'} ★★★+ en 15′</div>
-        <div><span class="gb-num">${p.jugables}/${p.enQuince}</span> reservables sin ser socio</div>
-        <div><span class="gb-num">${p.A}</span> puntos de golf sobre 60</div>
-      </div>
-
-      <div class="dc-cols">
-      <div class="dc-courses">
+      <dl class="quick-facts">
+        <div><dt>Referencia · ${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}</dt><dd>${p.cercano.name}</dd></div>
+        <div><dt>Campos ★★★+ · 15′</dt><dd>${p.n3}<small>campos en el entorno</small></dd></div>
+        <div><dt>Reservables · 15′</dt><dd>${p.jugables}<small>de ${p.enQuince} sin ser socio</small></dd></div>
+        <div><dt>${p.unidades} viviendas · desde</dt><dd>${p.precioDesde}<small>${p.precioEstimado ? 'Precio estimado' : 'Precio de referencia'}</small></dd></div>
+      </dl>
+      <ul class="account-insights">${claves.map(c => `<li>${c}</li>`).join('')}</ul>
+      <div class="promo-sections">
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>01</span>Por qué obtiene esta puntuación<small>10 criterios · ${p.total}/100</small></summary><div class="promo-section-body criteria-grid">${desglose(FILAS_A, p.A, 60)}${desglose(FILAS_B, p.B, 40)}</div></details>
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>02</span>Campos en quince minutos<small>${p.enQuince} en el umbral</small></summary><div class="promo-section-body dc-courses">
         ${fotoReferencia(p)}
         <div class="dc-courses-title">Campos en ≤15 minutos en coche</div>
         ${p.campos.slice().sort((a, b) => a.min - b.min).map(c => {
@@ -1001,17 +994,57 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           </div>`;
         }).join('')}
         ${p.campoPropioPendiente ? `<div class="course-mini pendiente"><div class="course-mini-name">${p.campoPropioPendiente}</div><div class="course-mini-time">—</div><div class="course-mini-stars">—</div></div>` : ''}
-      </div>
-      <div class="dc-rationale">${p.rationale}</div>
-      </div>
-
-      <div class="dc-score">
-        ${desglose(FILAS_A, p.A, 60)}
-        ${desglose(FILAS_B, p.B, 40)}
+        <p class="account-footnote">Tiempos OSRM en coche; no modelan congestión. Fuera de 15′: visible, pero no computa en las densidades.</p>
+      </div></details>
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>03</span>Datos del proyecto<small>Precio · entrega · derechos</small></summary><div class="promo-section-body">
+        <dl class="project-data">
+          <div><dt>Promotor</dt><dd>${p.promotor}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
+          <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Unidades · desarrollo completo</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : ''}</dd></div>
+          <div><dt>Precio</dt><dd>${p.precio}${p.precioEstimado ? ' · estimado' : ''}</dd></div><div><dt>Posicionamiento</dt><dd>≈ €${p.eurM2.toLocaleString('es-ES')}/m²</dd></div>
+          <div><dt>Estado</dt><dd>${p.estado}</dd></div><div><dt>Entrega</dt><dd>${p.entrega}</dd></div>
+        </dl><p class="project-rights"><strong>Derechos de golf.</strong> ${p.derechosGolf || p.derechosNota || 'No publicados por el promotor.'}</p>
+        <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div></details>
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>04</span>Lectura editorial<small>Contexto y advertencias</small></summary><div class="promo-section-body">
+        <div class="dc-rationale">${p.rationale}</div>
+        <ul class="project-warnings">${AVISOS.filter(a => a.p === p.name && a.t !== 'Imagen').map(a => `<li><strong>${a.t}:</strong> ${a.m}</li>`).join('')}</ul>
+      </div></details>
       </div>
     </div>`;
   detailGrid.appendChild(card);
 });
+
+/* ═══════════════════════════════════
+   CRÉDITOS DE IMAGEN · centralizados fuera de las fichas
+════════════════════════════════════ */
+const creditosImagenes = document.getElementById('creditosImagenes');
+if (creditosImagenes) {
+  const vistos = new Set();
+  const camposCred = [];
+  const sumarCredito = (id, f, uso) => {
+    if (!f || vistos.has(f.src)) return;
+    vistos.add(f.src);
+    camposCred.push({ id, uso, ...f });
+  };
+  Object.entries(FOTOS_CAMPO).forEach(([id, f]) => sumarCredito(id, f, 'Ficha de campo'));
+  if (typeof FOTOS_FICHA !== 'undefined') Object.entries(FOTOS_FICHA).forEach(([id, f]) => sumarCredito(id, f, 'Campo de referencia'));
+  const credito = f => f.url
+    ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>`
+    : f.credito;
+  const promocionesCred = PROMOS.map(p => {
+    if (p.render) return `<li><strong>${p.name}</strong><span>Render del promotor · ${p.render.dominio}</span></li>`;
+    if (p.foto) return `<li><strong>${p.name}</strong><span>${credito(p.foto)}</span></li>`;
+    return `<li><strong>${p.name}</strong><span>Imagen de archivo</span></li>`;
+  }).join('');
+  creditosImagenes.innerHTML = `
+    <details class="image-credits">
+      <summary>Consultar créditos y procedencia <small>${camposCred.length} imágenes de campo · ${PROMOS.length} promociones</small></summary>
+      <div class="image-credit-groups">
+        <section><h3>Promociones</h3><ul>${promocionesCred}</ul></section>
+        <section><h3>Campos de golf</h3><ul>${camposCred.map(f => `<li><strong>${(CX[f.id] && CX[f.id].name) || f.id}</strong><span>${credito(f)} · ${f.uso}</span></li>`).join('')}</ul></section>
+      </div>
+    </details>`;
+}
 
 /* ═══════════════════════════════════
    RENDER · TABLA DE CAMPOS + FILTRO
@@ -1033,6 +1066,7 @@ function renderGolf(filter) {
     const credito = f ? `<span class="cc-cred">${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito}</span>` : '';
     const card = document.createElement('article');
     card.className = `cc cc-${c.stars}`;
+    card.dataset.courseId = c.id;
     card.innerHTML = `
       <div class="cc-img">${imagen}${etiqueta}<span class="cc-cat">${CAT_LABEL[c.stars]}</span></div>
       <div class="cc-body">
