@@ -65,6 +65,41 @@ const COURSES = [
 /* Fotografía de campos. `placeholder:true` = sin imagen real.
    `licPendiente:true` = pendiente de autorización escrita antes de publicar. */
 const FOTOS_CAMPO = {
+ "valle-romano-golf": {
+   "src": "images/golf/valle-romano-golf.jpg",
+   "pie": "Green del 3 junto al lago.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "santana-golf": {
+   "src": "images/golf/santana-golf.jpg",
+   "pie": "El mar de búnkeres del hoyo 15, con la sierra detrás.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-duquesa-golf": {
+   "src": "images/golf/la-duquesa-golf.jpg",
+   "pie": "Lago con fuente frente a la casa club.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "la-cala-resort-europa": {
+   "src": "images/golf/la-cala-resort-europa.jpg",
+   "pie": "Recorrido entre lomas, con la sierra de Mijas al fondo.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
+ "casares-costa-golf": {
+   "src": "images/golf/casares-costa-golf.jpg",
+   "pie": "Green del 18 frente a la casa club.",
+   "credito": "Archivo Malashpina · origen por confirmar",
+   "url": null,
+   "licPendiente": true
+ },
  "tramores-villa-padierna": {
    "src": "images/golf/tramores-villa-padierna.jpg",
    "pie": "Green rodeado de jacarandas en flor.",
@@ -419,6 +454,8 @@ const FOTOS_CAMPO = {
   "licPendiente": true
  }
 };
+
+/* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 
 /* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 
