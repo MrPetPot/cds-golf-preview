@@ -953,6 +953,21 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   ];
   card.innerHTML = `
     <summary class="promo-banner">
+    <div class="dc-flip">
+      <div class="dc-flip-inner">
+        <div class="dc-face dc-front">
+          <span class="dc-f-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</span>
+          <span class="dc-f-name">${p.name}</span>
+          <span class="dc-f-score">${p.total}<small>/ 100</small></span>
+        </div>
+        <div class="dc-face dc-back" aria-hidden="true">
+          <span class="dc-f-label">Evidencia · campo de referencia</span>
+          <span class="dc-f-prueba">${p.cercano.name} · ${p.cercano.min === 0 ? 'in-resort' : 'a ' + p.cercano.min + '′'} · ${'★'.repeat(p.cercano.stars)} · ${ACCESO_LBL[p.cercano.acceso].toLowerCase()}</span>
+          <span class="dc-f-loc">${p.municipio} · ${p.zona}</span>
+        </div>
+      </div>
+      <span class="dc-f-plus" aria-hidden="true">+</span>
+    </div>
     <header class="dc-head">
       <img class="dc-head-bg" src="${media.src}" alt="${media.pie || p.name + ' — ' + p.municipio}" loading="lazy"
            onerror="this.hidden=true;this.parentElement.classList.add('sin-img')"/>

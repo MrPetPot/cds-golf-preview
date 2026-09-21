@@ -1349,6 +1349,44 @@ body[data-pagina="metodologia"] .sec-title::before { background: var(--oro-2); }
 .dc-ref-cred { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mute); margin-top: 3px; }
 .dc-ref-cred a { color: var(--text-mute); text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 
+/* ═══════════════════════════════════════════════
+   BANNER CERRADO DEL RANKING · banda sin foto que gira sobre el eje
+   horizontal (rotateX) y enseña la evidencia. Abierto, vuelve la foto.
+═══════════════════════════════════════════════ */
+details.promo > summary .dc-flip { display: block; position: relative; perspective: 1400px; }
+details.promo[open] > summary .dc-flip { display: none; }
+details.promo:not([open]) > summary .dc-head { display: none; }
+details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid var(--oro-1); outline-offset: -3px; }
+.dc-flip-inner { position: relative; min-height: 148px; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.72,.2,1); }
+.dc-face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: grid; align-items: center; padding: 0 120px 0 44px; background: var(--text); color: #FFFFFF;
+}
+.dc-front { grid-template-columns: auto minmax(0, 1fr) auto; gap: 36px; }
+.dc-f-rank { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(48px, 5.2vw, 68px); line-height: 1; letter-spacing: -.01em; color: var(--oro-1); white-space: nowrap; }
+.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.02; letter-spacing: -.005em; color: #FFFFFF; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dc-f-score { font-family: var(--f-display); font-weight: 700; font-size: clamp(64px, 6.4vw, 88px); line-height: 1; letter-spacing: -.02em; color: #FFFFFF; white-space: nowrap; text-align: right; }
+.dc-f-score small { display: block; font-family: var(--f-sans); font-size: 10px; letter-spacing: .3em; font-weight: 600; color: rgba(255,255,255,.85); margin-top: 6px; }
+.dc-back { transform: rotateX(180deg); grid-template-columns: 1fr; align-content: center; gap: 8px; background: #242424; border-left: 4px solid var(--oro-1); }
+.dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); }
+.dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
+.dc-f-loc { font-size: 14px; color: var(--greige); }
+.dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: #FFFFFF; pointer-events: none; }
+/* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  details.promo:not([open]) > summary:hover .dc-flip-inner,
+  details.promo:not([open]) > summary:focus-visible .dc-flip-inner { transform: rotateX(180deg); }
+}
+@media (max-width: 640px) {
+  .dc-flip-inner { min-height: 112px; }
+  .dc-face { padding: 0 64px 0 20px; }
+  .dc-front { gap: 16px; }
+  .dc-f-rank { font-size: 28px; }
+  .dc-f-name { font-size: 18px; white-space: normal; }
+  .dc-f-score { font-size: 44px; }
+  .dc-f-plus { right: 20px; }
+}
+
 /* Cards de campos (sustituyen a galería + tabla) */
 .campos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; margin-top: 26px; }
 .cc {
