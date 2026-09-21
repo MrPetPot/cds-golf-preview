@@ -1253,7 +1253,8 @@ body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135d
 .contacto-persona span { color: var(--text-mute); font-weight: 400; }
 .contacto-datos { margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .contacto-datos > div { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.contacto-datos dt { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); padding-top: 3px; }
+.contacto-datos dt { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); padding-top: 3px; }
+.ico-contacto { width: 16px; height: 16px; flex: none; color: var(--sec-text); }
 .contacto-datos dd { margin: 0; font-size: 17px; color: var(--text); }
 .contacto-datos a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--sec-line); transition: color .2s; }
 .contacto-datos a:hover { color: var(--sec-text); }
