@@ -190,11 +190,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--f-display);
   font-size: clamp(38px, 6.6vw, 108px);
   font-weight: 700;
-  line-height: .96;
+  line-height: .98;
   letter-spacing: -.005em;
   text-transform: uppercase;
   color: #FFFFFF;
-  opacity: .85;
+  opacity: .80;
   margin-bottom: 32px;
   text-shadow: 0 2px 34px rgba(15,23,38,.5);
 }
