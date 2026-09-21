@@ -1,5 +1,5 @@
 /* Cuenta trazable · V2. La información permanece visible sin movimiento. */
-.motion-tools, .motion-progress, .motion-filter-result, .motion-note { display: none; }
+.motion-progress, .motion-filter-result, .motion-note { display: none; }
 .motion-progress[hidden] { display: none !important; }
 
 /* ── Ficha de promoción: lectura inmediata ── */
@@ -141,16 +141,6 @@
 
 /* ── Movimiento escritorio ── */
 @media (min-width: 1024px) and (pointer: fine) {
-  .motion-ready .motion-tools {
-    display: flex; position: fixed; top: 76px; right: 24px; z-index: 59;
-    justify-content: flex-end; padding: 0; color: var(--text); font: 13px var(--f-sans);
-  }
-  .motion-tools button {
-    color: var(--text); background: rgba(255,255,255,.95); border: 1px solid var(--greige);
-    box-shadow: 0 4px 18px rgba(26,26,26,.12); padding: 8px 13px; font: inherit; cursor: pointer;
-  }
-  .motion-tools button:focus-visible { outline: 2px solid var(--oro-3); outline-offset: 3px; }
-  .motion-tools button:disabled { cursor: default; }
   .motion-ready .motion-progress {
     display: block; position: fixed; bottom: 0; left: 0; right: 0; height: 3px;
     z-index: 1000; pointer-events: none;

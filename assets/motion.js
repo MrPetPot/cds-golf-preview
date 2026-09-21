@@ -6,7 +6,6 @@
   const desktop = matchMedia('(min-width: 1024px) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const root = document.documentElement;
-  const pauseKey = 'cds-motion-paused';
   const animations = new Set();
   const timers = new Set();
   const clockTasks = new Set();
@@ -18,7 +17,6 @@
   const titleOriginals = titleLines.map(el => el.innerHTML);
   const golf = document.querySelector('#golfBody');
   const filter = document.querySelector('#golfFilter');
-  let paused = false;
   let active = false;
   let frame = 0;
   let progressDirty = true;
@@ -30,15 +28,6 @@
   let heroVideoDone = false;
 
   heroVideo?.addEventListener('ended', () => { heroVideoDone = true; });
-
-  try { paused = localStorage.getItem(pauseKey) === 'true'; } catch (_) { /* Optional persistence. */ }
-
-  const tools = document.createElement('div');
-  tools.className = 'motion-tools';
-  const button = document.createElement('button');
-  button.type = 'button';
-  tools.append(button);
-  document.querySelector('#main')?.prepend(tools);
 
   const progress = document.createElement('div');
   progress.className = 'motion-progress';
@@ -346,12 +335,7 @@
     stop();
     const eligible = desktop.matches;
     root.classList.toggle('motion-ready', eligible);
-    button.disabled = reduced.matches;
-    button.textContent = reduced.matches
-      ? 'Movimiento reducido · preferencia del sistema'
-      : paused ? 'Reanudar movimiento' : 'Pausar movimiento';
-    button.setAttribute('aria-pressed', String(paused || reduced.matches));
-    if (!eligible || reduced.matches || paused || document.hidden) return;
+    if (!eligible || reduced.matches || document.hidden) return;
     active = true;
     progress.hidden = false;
     progress.removeAttribute('aria-hidden');
@@ -364,12 +348,6 @@
     if (heroVideo) { heroVideo.hidden = false; if (!heroVideoDone) heroVideo.play().catch(() => {}); }
     schedule();
   }
-
-  button.addEventListener('click', () => {
-    paused = !paused;
-    try { localStorage.setItem(pauseKey, String(paused)); } catch (_) { /* Optional persistence. */ }
-    sync();
-  });
 
   filter?.addEventListener('click', captureGolfRects, true);
   filter?.addEventListener('click', () => {
