@@ -27,6 +27,9 @@
   let previousGolfRects = null;
   let heroPlayed = false;
   let titlePlayed = false;
+  let heroVideoDone = false;
+
+  heroVideo?.addEventListener('ended', () => { heroVideoDone = true; });
 
   try { paused = localStorage.getItem(pauseKey) === 'true'; } catch (_) { /* Optional persistence. */ }
 
@@ -358,17 +361,9 @@
     startObservers();
     animateHero();
     animateTitle();
-    if (heroVideo) { heroVideo.hidden = false; heroVideo.play().catch(() => {}); }
+    if (heroVideo) { heroVideo.hidden = false; if (!heroVideoDone) heroVideo.play().catch(() => {}); }
     schedule();
   }
-
-  // «loop» nativo no siempre reinicia con preload="none" (el navegador libera el buffer
-  // al llegar al final y no vuelve a por él solo). Se fuerza el reinicio a mano.
-  heroVideo?.addEventListener('ended', () => {
-    if (!active) return;
-    heroVideo.currentTime = 0;
-    heroVideo.play().catch(() => {});
-  });
 
   button.addEventListener('click', () => {
     paused = !paused;
