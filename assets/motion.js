@@ -11,6 +11,7 @@
   const timers = new Set();
   const clockTasks = new Set();
   const revealed = new WeakSet();
+  const heroVideo = document.querySelector('.hero-video');
   const heroValues = [...document.querySelectorAll('.hero-stat-value')];
   const heroFinal = heroValues.map(el => el.textContent.trim());
   const titleLines = [...document.querySelectorAll('.hero-title > span')];
@@ -313,6 +314,7 @@
     document.querySelectorAll('.account-panel.is-tracing').forEach(el => el.classList.remove('is-tracing'));
     restoreHero();
     restoreTitle();
+    if (heroVideo) { heroVideo.hidden = true; heroVideo.pause(); }
     setGolfCount();
   }
 
@@ -356,6 +358,7 @@
     startObservers();
     animateHero();
     animateTitle();
+    if (heroVideo) { heroVideo.hidden = false; heroVideo.play().catch(() => {}); }
     schedule();
   }
 
