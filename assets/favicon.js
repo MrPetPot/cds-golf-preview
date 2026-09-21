@@ -4,6 +4,7 @@
 
   const LETRAS = [...'PRIME&GOLF'];
   const MS = 920;
+  const VUELTAS = 2;
   const LADO = 64;
 
   const canvas = document.createElement('canvas');
@@ -56,10 +57,13 @@
     link.type = 'image/png';
     link.href = frames[0];
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Dos vueltas y se detiene en la P: el último paso cae otra vez en frames[0].
+    const pasos = frames.length * VUELTAS;
     let i = 0;
-    setInterval(() => {
-      i = (i + 1) % frames.length;
-      link.href = frames[i];
+    const reloj = setInterval(() => {
+      i += 1;
+      link.href = frames[i % frames.length];
+      if (i >= pasos) clearInterval(reloj);
     }, MS);
   }
 
