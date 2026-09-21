@@ -194,6 +194,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: -.005em;
   text-transform: uppercase;
   color: #FFFFFF;
+  opacity: .85;
   margin-bottom: 32px;
   text-shadow: 0 2px 34px rgba(15,23,38,.5);
 }
