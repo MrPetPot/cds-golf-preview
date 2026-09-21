@@ -3,7 +3,7 @@
   'use strict';
 
   const LETRAS = [...'PRIME&GOLF'];
-  const MS = 460;
+  const MS = 920;
   const LADO = 64;
 
   const canvas = document.createElement('canvas');
