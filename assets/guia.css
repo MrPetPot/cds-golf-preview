@@ -1246,7 +1246,7 @@ body[data-pagina="ranking"] .legend-dot.promo { background: linear-gradient(135d
 .mem-dot.mem-cer { background: #C0392B; border-color: #8B1E14; }
 
 /* Página de contacto */
-.contacto-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; margin-top: 40px; align-items: start; }
+.contacto-grid { display: grid; grid-template-columns: minmax(0,520px); gap: 28px; margin-top: 40px; align-items: start; }
 .contacto-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 34px; }
 .contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 34px; line-height: 1; letter-spacing: -.005em; }
 .contacto-persona { margin: 10px 0 26px; font-size: 15px; color: var(--text-mid); font-weight: 600; }
