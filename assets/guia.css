@@ -1357,7 +1357,7 @@ details.promo > summary .dc-flip { display: block; position: relative; perspecti
 details.promo[open] > summary .dc-flip { display: none; }
 details.promo:not([open]) > summary .dc-head { display: none; }
 details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid var(--oro-1); outline-offset: -3px; }
-.dc-flip-inner { position: relative; min-height: 148px; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.72,.2,1); }
+.dc-flip-inner { position: relative; min-height: 118px; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.72,.2,1); }
 .dc-face {
   position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   display: grid; align-items: center; padding: 0 120px 0 44px; background: var(--text); color: #FFFFFF;
@@ -1380,7 +1380,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   details.promo:not([open]) > summary:focus-visible .dc-f-plus { color: #FFFFFF; }
 }
 @media (max-width: 640px) {
-  .dc-flip-inner { min-height: 112px; }
+  .dc-flip-inner { min-height: 92px; }
   .dc-face { padding: 0 64px 0 20px; }
   .dc-front { gap: 16px; }
   .dc-f-rank { font-size: 28px; }
