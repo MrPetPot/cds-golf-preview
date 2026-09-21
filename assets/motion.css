@@ -206,7 +206,18 @@
   .project-data > div { border-right: 0; }
 }
 
+/* Titular del hero: entrada carácter a carácter, en orden de lectura. La especificidad
+   de dos clases gana a «.hero-title span» (guia.css) sin depender del orden de los <link>. */
+.hero-title .hero-split { display: block; white-space: nowrap; }
+.hero-title .hero-char {
+  display: inline-block; opacity: 0; transform: translateY(65%);
+  animation: hero-char-in .46s cubic-bezier(.2,.72,.2,1) both;
+  animation-delay: calc(var(--i, 0) * 14ms);
+}
+@keyframes hero-char-in { to { opacity: 1; transform: translateY(0); } }
+
 @media (prefers-reduced-motion: reduce) {
   .motion-progress { display: none !important; }
   .account-panel::before, .measure-fill { animation: none !important; transition: none !important; }
+  .hero-title .hero-char { animation: none !important; opacity: 1; transform: none; }
 }

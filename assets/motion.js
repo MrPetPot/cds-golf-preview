@@ -13,6 +13,8 @@
   const revealed = new WeakSet();
   const heroValues = [...document.querySelectorAll('.hero-stat-value')];
   const heroFinal = heroValues.map(el => el.textContent.trim());
+  const titleLines = [...document.querySelectorAll('.hero-title > span')];
+  const titleOriginals = titleLines.map(el => el.innerHTML);
   const golf = document.querySelector('#golfBody');
   const filter = document.querySelector('#golfFilter');
   let paused = false;
@@ -23,6 +25,7 @@
   let mutation = null;
   let previousGolfRects = null;
   let heroPlayed = false;
+  let titlePlayed = false;
 
   try { paused = localStorage.getItem(pauseKey) === 'true'; } catch (_) { /* Optional persistence. */ }
 
@@ -155,6 +158,56 @@
     });
   }
 
+  // Titular del hero: entra carácter a carácter, en orden de lectura, una sola vez.
+  // El HTML de partida ya es el texto final (SEO, sin JS, movimiento reducido); esto solo lo trocea al vuelo.
+  function splitTitleChars() {
+    let i = 0;
+    function fragmentOf(nodes) {
+      const frag = document.createDocumentFragment();
+      nodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          [...node.textContent].forEach(ch => {
+            const span = document.createElement('span');
+            span.className = 'hero-char';
+            span.style.setProperty('--i', i++);
+            span.textContent = ch === ' ' ? '\u00A0' : ch;
+            frag.appendChild(span);
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const clone = document.createElement(node.tagName.toLowerCase());
+          clone.appendChild(fragmentOf([...node.childNodes]));
+          frag.appendChild(clone);
+        }
+      });
+      return frag;
+    }
+    titleLines.forEach(lineEl => {
+      const label = lineEl.textContent.trim();
+      const built = fragmentOf([...lineEl.childNodes]);
+      lineEl.setAttribute('aria-label', label);
+      lineEl.innerHTML = '';
+      const wrap = document.createElement('span');
+      wrap.className = 'hero-split';
+      wrap.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(built);
+      lineEl.appendChild(wrap);
+    });
+  }
+
+  function animateTitle() {
+    if (!active || titlePlayed || !titleLines.length) return;
+    titlePlayed = true;
+    splitTitleChars();
+  }
+
+  function restoreTitle() {
+    titleLines.forEach((lineEl, index) => {
+      if (lineEl.innerHTML === titleOriginals[index]) return;
+      lineEl.innerHTML = titleOriginals[index];
+      lineEl.removeAttribute('aria-label');
+    });
+  }
+
   function reveal(el, delay = 0, distance = 28) {
     return play(el, [
       { transform: `translateY(${distance}px)`, opacity: 0, clipPath: 'inset(0 0 18% 0)' },
@@ -259,6 +312,7 @@
     progress.setAttribute('aria-hidden', 'true');
     document.querySelectorAll('.account-panel.is-tracing').forEach(el => el.classList.remove('is-tracing'));
     restoreHero();
+    restoreTitle();
     setGolfCount();
   }
 
@@ -301,6 +355,7 @@
     window.addEventListener('resize', scheduleProgress, { passive: true });
     startObservers();
     animateHero();
+    animateTitle();
     schedule();
   }
 
