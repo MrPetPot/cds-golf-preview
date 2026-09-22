@@ -1538,12 +1538,27 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 /* ── Atlas de relaciones (ranking). Lienzo propio, sin teselas. ── */
 .atlas { display: grid; grid-template-columns: minmax(0,1fr) 300px; border: 1px solid var(--text); background: #141414; }
 .atlas-lienzo { position: relative; min-width: 0; }
-.atlas-svg { display: block; width: 100%; height: auto; }
-.at-rejilla line { stroke: rgba(255,255,255,.07); stroke-width: 1; }
+.atlas-svg { display: block; width: 100%; height: auto; touch-action: none; }
+.atlas-svg.at-arrastrando { cursor: grabbing; }
+.at-rejilla line { stroke: rgba(255,255,255,.07); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.at-costa polyline { fill: none; stroke: rgba(255,255,255,.3); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.at-nucleo-m { fill: rgba(255,255,255,.5); }
+.at-nucleo-may .at-nucleo-m { fill: rgba(255,255,255,.82); }
+.at-nucleo-may .at-sitio { fill: rgba(255,255,255,.72); letter-spacing: .22em; }
+.atlas-zoom { position: absolute; top: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; }
+.atlas-zoom button {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  background: rgba(20,20,20,.78); border: 1px solid rgba(255,255,255,.34); color: #FFFFFF;
+  font-family: var(--f-sans); font-size: 15px; line-height: 1; cursor: pointer;
+  transition: background-color .2s, color .2s, opacity .2s;
+}
+.atlas-zoom button:hover:not(:disabled) { background: #FFFFFF; color: #141414; }
+.atlas-zoom button:disabled { opacity: .3; cursor: default; }
+.atlas-zoom button:focus-visible { outline: 2px solid var(--oro-1); outline-offset: 2px; }
 .at-sitio { fill: rgba(255,255,255,.46); font-family: var(--f-sans); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-anchor: middle; }
 .at-mar { fill: rgba(255,255,255,.13); font-family: var(--f-display); font-size: 26px; letter-spacing: .34em; text-anchor: middle; }
-.at-linea { stroke: var(--verde-1); opacity: .2; transition: opacity .25s, stroke .25s; }
-.at-guia { stroke: rgba(255,255,255,.34); stroke-width: 1; }
+.at-linea { stroke: var(--verde-1); opacity: .2; transition: opacity .25s, stroke .25s; vector-effect: non-scaling-stroke; }
+.at-guia { stroke: rgba(255,255,255,.34); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .at-ancla { fill: rgba(255,255,255,.7); }
 .at-linea.at-fuera { stroke-dasharray: 3 5; }
 .atlas-svg.at-activo .at-linea { opacity: .04; }
@@ -1555,7 +1570,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-s3 .at-campo-p { fill: #88A53C; }
 .at-s2 .at-campo-p { fill: #6E9130; }
 .at-s1 .at-campo-p { fill: #5E7F2C; }
-.at-cerrado .at-campo-p { fill: none; stroke-width: 1.5; }
+.at-cerrado .at-campo-p { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .at-s4.at-cerrado .at-campo-p { stroke: #B7D06A; }
 .at-s3.at-cerrado .at-campo-p { stroke: #88A53C; }
 .at-s2.at-cerrado .at-campo-p { stroke: #6E9130; }
@@ -1595,12 +1610,14 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .ap-cta { margin: 22px 0 0; width: 100%; background: transparent; border: 1px solid rgba(255,255,255,.34); color: #FFFFFF; font-family: var(--f-sans); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 12px 14px; cursor: pointer; transition: background-color .2s, color .2s; }
 .ap-cta:hover { background: #FFFFFF; color: #141414; }
 .atlas-pie { font-size: 11px; color: var(--text-mute); margin: 10px 0 0; letter-spacing: .04em; }
+.atlas-pie a { color: var(--text-mid); }
 .legend-dot.hueco { background: none; border: 1.5px solid #88A53C; }
 .legend-linea { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid #88A53C; vertical-align: middle; }
 .legend-linea.punteada { border-top-style: dashed; }
 @media (max-width: 900px) {
   .atlas { grid-template-columns: 1fr; }
   .atlas-panel { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .atlas-zoom button { width: 42px; height: 42px; font-size: 18px; }
 }
 /* Marcadores del mapa Leaflet */
 .pin-promo { background: none; border: none; }
