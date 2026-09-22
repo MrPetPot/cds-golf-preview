@@ -1699,6 +1699,291 @@ function pintarEstrellas(raiz) {
 }
 pintarEstrellas();
 
+/* ═══════════════════════════════════
+   FICHA A PANTALLA COMPLETA · una promoción, una pantalla
+
+   Nada de scroll de documento: lo que no cabe se alcanza por solapas o pasando
+   diapositiva, no bajando. A la izquierda manda la imagen —el render y, detrás,
+   los campos que puntúan ese entorno, que es de lo que va la guía—; a la derecha
+   el expediente, ordenado por peso: la nota, el reparto que la produce, los
+   cuatro datos que resumen la operación y, al fondo, el lector con las cuatro
+   lecturas largas.
+
+   Las flechas horizontales pasan diapositiva; las verticales, promoción: se
+   puede recorrer el top 10 entero sin volver al listado. El <details> en línea
+   sigue montado debajo y es lo que ve quien no tiene JS.
+═══════════════════════════════════ */
+(function () {
+  if (!detailGrid || !PUBLICADAS.length) return;
+
+  const FOTO_FICHA = typeof FOTOS_FICHA !== 'undefined' ? FOTOS_FICHA : {};
+  const esc = s => String(s == null ? '' : s);
+  const estrellas = n => '★'.repeat(n) + '<span class="star-off">' + '★'.repeat(4 - n) + '</span>';
+  const cuando = c => (c.min === 0 ? 'in-resort' : 'a ' + c.min + '′');
+
+  /* ── Diapositivas: el proyecto primero, después su entorno por cercanía ── */
+  function diapos(p) {
+    const lista = [];
+    if (p.render) {
+      lista.push({ src: p.image, rot: 'El proyecto', tit: p.name, meta: p.sub,
+        pie: p.render.pie, cred: '© ' + p.render.dominio + ' · render del promotor' });
+    } else if (p.foto) {
+      lista.push({ src: p.foto.src, rot: 'La zona', tit: p.name, meta: p.sub,
+        pie: p.foto.pie, cred: p.foto.credito + ' · no es una imagen del proyecto' });
+    }
+    p.campos.slice().sort((a, b) => a.min - b.min).forEach(c => {
+      const f = FOTO_FICHA[c.id] || c.foto;
+      if (!f || f.placeholder) return;
+      lista.push({
+        src: f.src,
+        rot: c === p.cercano ? 'Campo de referencia' : 'En el entorno',
+        tit: c.name,
+        meta: estrellas(c.stars) + ' · ' + cuando(c) + ' · ' + ACCESO_LBL[c.acceso].toLowerCase()
+          + (c.disenador ? ' · ' + c.disenador : '') + (c.ano ? ', ' + c.ano : ''),
+        pie: f.pie, cred: f.credito
+      });
+    });
+    return lista;
+  }
+
+  /* ── Las cuatro lecturas largas. Reutilizan las clases que ya visten la ficha
+        en línea, para que la pantalla completa no invente un segundo idioma. ── */
+  const grupo = (p, filas, tot, max) => `<section class="criterion-group ${max === 60 ? 'is-golf' : ''}">
+      <h4>${max === 60 ? 'A · Entorno de golf' : 'B · Calidad del proyecto'} <span>${tot}/${max}</span></h4>
+      ${filas.map(([k, lbl, mx]) => `<div class="ff-crit">
+        <span class="criterion-code">${k.toUpperCase()}</span>
+        <span class="ff-crit-lbl">${lbl}</span>
+        <strong>${p.score[k]}<small>/${mx}</small></strong>
+        <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
+        <p>${p.why[k]}</p>
+      </div>`).join('')}</section>`;
+
+  const LECTURAS = [
+    { id: 'reparto', rot: 'Por qué esta nota', sub: p => '10 criterios · ' + p.total + '/100',
+      html: p => `<div class="ff-criterios">${grupo(p, FILAS_A, p.A, 60)}${grupo(p, FILAS_B, p.B, 40)}</div>` },
+    { id: 'campos', rot: 'Campos en 15′', sub: p => p.enQuince + ' en el umbral',
+      html: p => `<div class="dc-courses">
+        ${p.campos.slice().sort((a, b) => a.min - b.min).map(c => {
+          const t = c.nota === 'In-resort' ? 'In-resort' : c.min + ' min' + (c.fuera ? ' · fuera de 15′' : '');
+          const nota = c.nota && ['In-resort', 'A pie'].indexOf(c.nota) === -1 ? ` <em>· ${c.nota}</em>` : '';
+          return `<div class="course-mini${c.fuera ? ' pendiente' : ''}">
+            <div class="course-mini-name">${c.name}${nota}<span class="acc acc-${String(c.acceso).replace('.', '')}">${ACCESO_LBL[c.acceso]}</span></div>
+            <div class="course-mini-time">${t}</div>
+            <div class="course-mini-stars">${estrellas(c.stars)}</div></div>`;
+        }).join('')}
+        ${p.campoPropioPendiente ? `<div class="course-mini pendiente"><div class="course-mini-name">${p.campoPropioPendiente}</div><div class="course-mini-time">—</div><div class="course-mini-stars">—</div></div>` : ''}
+        <p class="account-footnote">Tiempos OSRM en coche; no modelan congestión. Fuera de 15′: visible, pero no computa en las densidades.</p>
+      </div>` },
+    { id: 'proyecto', rot: 'El proyecto', sub: p => p.unidades + ' viviendas · ' + p.entrega,
+      html: p => `<dl class="project-data">
+          <div><dt>Promotor</dt><dd>${p.promotor}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
+          <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Unidades</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : ''}</dd></div>
+          <div><dt>Precio</dt><dd>${p.precio}${p.precioEstimado ? ' · estimado' : ''}</dd></div><div><dt>Posicionamiento</dt><dd>≈ €${p.eurM2.toLocaleString('es-ES')}/m²</dd></div>
+          <div><dt>Estado</dt><dd>${p.estado}</dd></div><div><dt>Entrega</dt><dd>${p.entrega}</dd></div>
+        </dl>
+        <p class="project-rights"><strong>Derechos de golf.</strong> ${p.derechosGolf || p.derechosNota || 'No publicados por el promotor.'}</p>
+        <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` },
+    { id: 'lectura', rot: 'Lectura editorial', sub: p => AVISOS.filter(a => a.p === p.name && a.t !== 'Imagen').length ? 'Con advertencias' : 'Contexto',
+      html: p => {
+        const av = AVISOS.filter(a => a.p === p.name && a.t !== 'Imagen');
+        return `<div class="dc-rationale">${p.rationale}</div>
+          ${av.length ? `<ul class="project-warnings">${av.map(a => `<li><strong>${a.t}:</strong> ${a.m}</li>`).join('')}</ul>` : ''}`;
+      } }
+  ];
+
+  /* ── Armazón, una sola vez ── */
+  const ff = document.createElement('div');
+  ff.className = 'ff';
+  ff.id = 'fichaPantalla';
+  ff.hidden = true;
+  ff.setAttribute('role', 'dialog');
+  ff.setAttribute('aria-modal', 'true');
+  ff.setAttribute('aria-label', 'Ficha de la promoción');
+  ff.innerHTML = `
+    <div class="ff-media">
+      <div class="ff-slides" id="ffSlides"></div>
+      <div class="ff-media-pie">
+        <div class="ff-slide-info" id="ffInfo"></div>
+        <div class="ff-slide-ctl">
+          <button type="button" class="ff-b" id="ffPrev" aria-label="Imagen anterior">‹</button>
+          <span class="ff-cuenta" id="ffCuenta" aria-live="polite"></span>
+          <button type="button" class="ff-b" id="ffNext" aria-label="Imagen siguiente">›</button>
+        </div>
+      </div>
+      <div class="ff-pasos" id="ffPasos" aria-hidden="true"></div>
+    </div>
+    <div class="ff-exp">
+      <div class="ff-exp-top">
+        <div class="ff-ident">
+          <span class="ff-rank" id="ffRank"></span>
+          <h2 class="ff-name" id="ffName"></h2>
+          <span class="ff-nota" id="ffNota"></span>
+        </div>
+        <p class="ff-loc" id="ffLoc"></p>
+        <div class="ff-barras" id="ffBarras"></div>
+        <dl class="ff-facts" id="ffFacts"></dl>
+      </div>
+      <div class="ff-lector">
+        <div class="ff-tabs" role="tablist" id="ffTabs"></div>
+        <div class="ff-panel" id="ffPanel" role="tabpanel" tabindex="0"></div>
+      </div>
+    </div>
+    <nav class="ff-marco" aria-label="Navegación de la ficha">
+      <button type="button" class="ff-b ff-cerrar" id="ffCerrar" aria-label="Cerrar la ficha">×</button>
+      <div class="ff-salto">
+        <button type="button" class="ff-b" id="ffArriba" aria-label="Promoción anterior">↑</button>
+        <span class="ff-salto-lbl" id="ffSaltoLbl"></span>
+        <button type="button" class="ff-b" id="ffAbajo" aria-label="Promoción siguiente">↓</button>
+      </div>
+    </nav>`;
+  document.body.appendChild(ff);
+
+  const $ = id => ff.querySelector('#' + id);
+  const elSlides = $('ffSlides'), elInfo = $('ffInfo'), elCuenta = $('ffCuenta'), elPasos = $('ffPasos');
+  const elTabs = $('ffTabs'), elPanel = $('ffPanel');
+  let iPromo = -1, iDia = 0, diaActual = [], devolverFoco = null;
+
+  /* ── Pintado ── */
+  function pintar(p) {
+    $('ffRank').textContent = p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank;
+    $('ffName').textContent = p.name;
+    $('ffNota').innerHTML = p.total + '<small>/100</small>';
+    $('ffLoc').textContent = [p.municipio, p.zona].filter(Boolean).join(' · ');
+
+    $('ffBarras').innerHTML = [['A · Entorno de golf', p.A, 60], ['B · Calidad del proyecto', p.B, 40]]
+      .map(([lbl, v, max], i) => `<div class="ff-barra${i ? '' : ' is-golf'}">
+        <span class="ff-barra-lbl">${lbl}</span>
+        <strong>${v}<small>/${max}</small></strong>
+        <span class="measure-track"><span class="measure-fill" style="--ratio:${v / max}"></span></span>
+      </div>`).join('');
+
+    $('ffFacts').innerHTML = [
+      ['Campo de referencia', p.cercano.name, estrellas(p.cercano.stars) + ' · ' + cuando(p.cercano)],
+      ['Campos ★★★+ en 15′', p.n3, 'de ' + p.enQuince + ' en el umbral'],
+      ['Reservables sin ser socio', p.jugables, 'de ' + p.enQuince],
+      ['Desde', p.precioDesde, p.unidades + ' viviendas · ' + (p.precioEstimado ? 'estimado' : 'referencia')]
+    ].map(([dt, dd, sub]) => `<div><dt>${dt}</dt><dd>${dd}</dd><span>${sub}</span></div>`).join('');
+
+    elTabs.innerHTML = LECTURAS.map((l, i) => `<button type="button" role="tab" class="ff-tab${i ? '' : ' is-on'}"
+      aria-selected="${i ? 'false' : 'true'}" data-i="${i}"><b>${l.rot}</b><small>${l.sub(p)}</small></button>`).join('');
+    verLectura(0, p);
+
+    diaActual = diapos(p);
+    elSlides.innerHTML = diaActual.map((d, i) => `<figure class="ff-slide${i ? '' : ' is-on'}">
+        <img src="${d.src}" alt="${esc(d.tit)}" ${i ? 'loading="lazy"' : ''}
+             onerror="this.closest('.ff-slide').classList.add('sin-img')"/>
+      </figure>`).join('');
+    elPasos.innerHTML = diaActual.map(() => '<i></i>').join('');
+    verDiapo(0);
+
+    const sig = PUBLICADAS[(iPromo + 1) % PUBLICADAS.length];
+    $('ffSaltoLbl').innerHTML = `<b>${String(iPromo + 1).padStart(2, '0')}</b><span>/ ${String(PUBLICADAS.length).padStart(2, '0')}</span>`;
+    $('ffAbajo').setAttribute('aria-label', 'Siguiente: ' + sig.name);
+  }
+
+  function verLectura(i, p) {
+    elPanel.innerHTML = LECTURAS[i].html(p);
+    elPanel.scrollTop = 0;
+    [...elTabs.children].forEach((b, j) => {
+      b.classList.toggle('is-on', i === j);
+      b.setAttribute('aria-selected', i === j ? 'true' : 'false');
+    });
+  }
+
+  function verDiapo(i) {
+    if (!diaActual.length) return;
+    iDia = (i + diaActual.length) % diaActual.length;
+    const d = diaActual[iDia];
+    [...elSlides.children].forEach((s, j) => s.classList.toggle('is-on', j === iDia));
+    [...elPasos.children].forEach((s, j) => s.classList.toggle('is-on', j === iDia));
+    elInfo.innerHTML = `<span class="ff-slide-rot">${d.rot}</span>
+      <strong>${d.tit}</strong>
+      <span class="ff-slide-meta">${d.meta}</span>
+      <small>${[d.pie, d.cred].filter(Boolean).join(' · ')}</small>`;
+    elCuenta.textContent = (iDia + 1) + ' / ' + diaActual.length;
+  }
+
+  /* ── Abrir, cerrar, saltar ── */
+  function abrir(i, foco) {
+    iPromo = (i + PUBLICADAS.length) % PUBLICADAS.length;
+    if (foco) devolverFoco = foco;
+    pintar(PUBLICADAS[iPromo]);
+    if (ff.hidden) {
+      ff.hidden = false;
+      document.documentElement.classList.add('ff-abierta');
+      requestAnimationFrame(() => ff.classList.add('is-on'));
+      document.addEventListener('keydown', teclado, true);
+    }
+    history.replaceState(null, '', '#f/' + PUBLICADAS[iPromo].id);
+    $('ffCerrar').focus({ preventScroll: true });
+  }
+
+  function cerrar() {
+    if (ff.hidden) return;
+    ff.classList.remove('is-on');
+    ff.hidden = true;
+    document.documentElement.classList.remove('ff-abierta');
+    document.removeEventListener('keydown', teclado, true);
+    history.replaceState(null, '', location.pathname + location.search);
+    if (devolverFoco) { devolverFoco.focus({ preventScroll: true }); devolverFoco = null; }
+  }
+
+  function teclado(e) {
+    if (ff.hidden) return;
+    const k = e.key;
+    if (k === 'Escape') { e.preventDefault(); cerrar(); }
+    else if (k === 'ArrowRight') { e.preventDefault(); verDiapo(iDia + 1); }
+    else if (k === 'ArrowLeft') { e.preventDefault(); verDiapo(iDia - 1); }
+    else if (k === 'ArrowDown') { e.preventDefault(); abrir(iPromo + 1); }
+    else if (k === 'ArrowUp') { e.preventDefault(); abrir(iPromo - 1); }
+    else if (k === 'Tab') cepo(e);
+  }
+
+  // Cepo de foco: el diálogo es modal, así que el tabulador no debe escaparse a
+  // la página de debajo, que sigue ahí pero es inerte.
+  function cepo(e) {
+    const f = [...ff.querySelectorAll('button, [tabindex="0"]')].filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const primero = f[0], ultimo = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+  }
+
+  /* ── Cableado ── */
+  $('ffCerrar').addEventListener('click', cerrar);
+  $('ffPrev').addEventListener('click', () => verDiapo(iDia - 1));
+  $('ffNext').addEventListener('click', () => verDiapo(iDia + 1));
+  $('ffArriba').addEventListener('click', () => abrir(iPromo - 1));
+  $('ffAbajo').addEventListener('click', () => abrir(iPromo + 1));
+  elTabs.addEventListener('click', e => {
+    const b = e.target.closest('.ff-tab');
+    if (b) verLectura(+b.dataset.i, PUBLICADAS[iPromo]);
+  });
+  elSlides.addEventListener('click', () => verDiapo(iDia + 1));
+
+  // El banner del ranking abre la pantalla completa en vez de desplegar la ficha
+  // en línea. El <details> se queda montado: sin JS sigue siendo un acordeón.
+  detailGrid.addEventListener('click', e => {
+    const sum = e.target.closest('summary.promo-banner');
+    if (!sum) return;
+    const card = sum.parentElement;
+    const i = PUBLICADAS.findIndex(p => 'ficha-' + p.id === card.id);
+    if (i < 0) return;
+    e.preventDefault();
+    card.open = false;
+    abrir(i, sum);
+  }, true);
+
+  // Enlace directo a una ficha: ranking.html#f/marea-missoni
+  const deHash = () => {
+    const m = /^#f\/(.+)$/.exec(location.hash);
+    if (!m) return;
+    const i = PUBLICADAS.findIndex(p => p.id === m[1]);
+    if (i >= 0) abrir(i);
+  };
+  deHash();
+})();
+
 
 /* Menú desplegable del nav */
 (function () {

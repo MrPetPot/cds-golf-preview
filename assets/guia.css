@@ -1696,6 +1696,148 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .pop-score { color: var(--y-1); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
 .pop-stars { color: var(--amarillo); font-weight: 700; }
 
+/* ── Ficha a pantalla completa ────────────────────────────────────────────
+   Una promocion, una pantalla. Dos columnas: la imagen manda a la izquierda
+   —el render del proyecto y, detras, los campos que puntuan su entorno— y el
+   expediente ocupa la derecha, de arriba abajo por peso. Lo unico que scrollea
+   es el panel del lector; el resto no se mueve, que para eso es una ficha de
+   una pagina. Las clases del contenido largo son las mismas que visten la
+   ficha en linea: aqui solo cambia el marco. */
+html.ff-abierta { overflow: hidden; }
+.ff[hidden] { display: none; }
+.ff {
+  position: fixed; inset: 0; z-index: 200; background: var(--bg-0);
+  display: grid; grid-template-columns: 46% minmax(0,1fr);
+  opacity: 0; transition: opacity .3s var(--ease);
+}
+.ff.is-on { opacity: 1; }
+
+/* Columna de imagen */
+.ff-media { position: relative; overflow: hidden; background: #0F1726; cursor: pointer; }
+.ff-slides { position: absolute; inset: 0; }
+.ff-slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .55s var(--ease); }
+.ff-slide.is-on { opacity: 1; }
+.ff-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ff-slide.sin-img { background: linear-gradient(140deg, #16233A, #0F1726); }
+.ff-media::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(15,23,38,.42) 0%, rgba(15,23,38,0) 34%, rgba(15,23,38,.90) 100%);
+}
+.ff-media-pie {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; color: #FFFFFF;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; padding: 34px 36px 30px;
+}
+.ff-slide-info { min-width: 0; }
+.ff-slide-rot { display: block; font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); }
+.ff-slide-info strong { display: block; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.04; margin-top: 8px; }
+.ff-slide-meta { display: block; font-size: 13px; color: rgba(255,255,255,.88); margin-top: 6px; letter-spacing: .02em; }
+.ff-slide-meta .star-off { -webkit-text-stroke-color: var(--amarillo); }
+.ff-slide-info small { display: block; font-size: 11px; color: rgba(255,255,255,.6); margin-top: 8px; }
+.ff-slide-ctl { display: flex; align-items: center; gap: 10px; flex: none; }
+.ff-cuenta { font-family: var(--f-display); font-size: 14px; letter-spacing: .06em; color: rgba(255,255,255,.8); }
+.ff-pasos { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; gap: 3px; padding: 0 36px 0; }
+.ff-pasos i { flex: 1; height: 2px; background: rgba(255,255,255,.26); transition: background-color .3s; }
+.ff-pasos i.is-on { background: var(--oro-1); }
+
+/* Botones del marco */
+.ff-b {
+  width: 34px; height: 34px; flex: none; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.34); color: #FFFFFF;
+  font-family: var(--f-sans); font-size: 17px; line-height: 1; cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.ff-b:hover { background: #FFFFFF; color: var(--text); border-color: #FFFFFF; }
+.ff-b:focus-visible { outline: 2px solid var(--oro-1); outline-offset: 2px; }
+.ff-marco { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+.ff-marco > * { pointer-events: auto; }
+.ff-salto { position: absolute; top: 24px; left: 36px; display: flex; align-items: center; gap: 10px; }
+.ff-salto-lbl { font-family: var(--f-display); font-size: 15px; color: #FFFFFF; letter-spacing: .04em; }
+.ff-salto-lbl span { color: rgba(255,255,255,.55); margin-left: 2px; }
+.ff-cerrar {
+  position: absolute; top: 24px; right: 30px; width: 38px; height: 38px; font-size: 22px;
+  background: transparent; border-color: var(--line-strong); color: var(--text);
+}
+.ff-cerrar:hover { background: var(--text); color: #FFFFFF; border-color: var(--text); }
+
+/* Columna del expediente */
+.ff-exp { display: grid; grid-template-rows: auto minmax(0,1fr); min-height: 0; }
+.ff-exp-top { padding: 62px 44px 24px; border-bottom: 1px solid var(--line-strong); }
+.ff-ident { display: flex; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; }
+.ff-rank { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 2.4vw, 36px); line-height: 1.04; color: var(--oro-3); }
+.ff-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.4vw, 36px); line-height: 1.04; letter-spacing: -.005em; color: var(--text); margin: 0; }
+.ff-nota { margin-left: auto; font-family: var(--f-display); font-weight: 700; font-size: clamp(44px, 4.8vw, 74px); line-height: .9; letter-spacing: -.02em; color: var(--text); white-space: nowrap; }
+.ff-nota small { font-family: var(--f-sans); font-size: 13px; letter-spacing: .14em; font-weight: 600; color: var(--text-mute); margin-left: 3px; }
+.ff-loc { margin: 10px 0 0; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
+.ff-barras { display: grid; gap: 10px; margin: 26px 0 0; }
+.ff-barra { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: baseline; gap: 4px 12px; }
+.ff-barra-lbl { font-size: 10px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); }
+.ff-barra strong { font-family: var(--f-display); font-size: 22px; line-height: 1; color: var(--text); }
+.ff-barra strong small { font-family: var(--f-sans); font-size: 10px; letter-spacing: .1em; color: var(--text-mute); }
+.ff-barra .measure-track { grid-column: 1 / -1; height: 3px; background: var(--bg-3); display: block; }
+.ff-barra .measure-fill { display: block; height: 100%; width: calc(var(--ratio) * 100%); background: var(--oro-2); }
+.ff-barra.is-golf .measure-fill { background: var(--verde-2); }
+.ff-facts { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0 20px; margin: 26px 0 0; }
+.ff-facts dt { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; }
+.ff-facts dd { margin: 6px 0 0; font-family: var(--f-display); font-weight: 700; font-size: clamp(16px, 1.5vw, 22px); line-height: 1.08; color: var(--text); }
+.ff-facts span { display: block; font-size: 11px; line-height: 1.35; color: var(--text-mute); margin-top: 4px; }
+
+/* Lector: cuatro lecturas, una a la vista. Lo unico que scrollea de la ficha. */
+.ff-lector { display: grid; grid-template-rows: auto minmax(0,1fr); min-height: 0; }
+.ff-tabs { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-bottom: 1px solid var(--line-strong); }
+.ff-tab {
+  display: grid; gap: 3px; text-align: left; padding: 14px 16px; background: var(--bg-1);
+  border: 0; border-right: 1px solid var(--line); cursor: pointer; min-width: 0;
+  transition: background-color .2s, color .2s;
+}
+.ff-tab:last-child { border-right: 0; }
+.ff-tab b { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--text-mid); }
+.ff-tab small { font-size: 10px; color: var(--text-mute); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ff-tab:hover { background: var(--bg-2); }
+.ff-tab.is-on { background: var(--text); }
+.ff-tab.is-on b { color: #FFFFFF; }
+.ff-tab.is-on small { color: rgba(255,255,255,.6); }
+.ff-tab:focus-visible { outline: 2px solid var(--oro-3); outline-offset: -2px; }
+.ff-panel { overflow: auto; padding: 26px 44px 40px; min-height: 0; overscroll-behavior: contain; }
+.ff-panel:focus-visible { outline: 2px solid var(--oro-3); outline-offset: -2px; }
+.ff-criterios { display: grid; gap: 28px; }
+/* criterion-group es un <section> y hereda los 120 px de las secciones de pagina */
+.ff-panel .criterion-group { padding: 0; margin: 0; background: none; border: 0; }
+.ff-panel .criterion-group h4 { margin: 0 0 4px; }
+.ff-crit { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; align-items: baseline; gap: 0 12px; padding: 11px 0 12px; border-bottom: 1px solid var(--line); }
+.ff-crit-lbl { font-size: 13px; color: var(--text); }
+.ff-crit strong { font-family: var(--f-display); font-size: 19px; line-height: 1; color: var(--text); }
+.ff-crit strong small { font-family: var(--f-sans); font-size: 9px; letter-spacing: .1em; color: var(--text-mute); }
+.ff-crit .measure-track { grid-column: 2 / -1; height: 2px; background: var(--bg-3); display: block; margin-top: 8px; }
+.ff-crit .measure-fill { display: block; height: 100%; width: calc(var(--ratio) * 100%); background: var(--oro-2); }
+.ff-criterios .is-golf .ff-crit .measure-fill { background: var(--verde-2); }
+.ff-crit p { grid-column: 2 / -1; margin: 7px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--text-mid); }
+.ff-panel .dc-courses { display: grid; gap: 0; }
+.ff-panel .project-data { margin: 0; }
+.ff-panel .dc-rationale { font-size: 16px; line-height: 1.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ff, .ff-slide { transition: none; }
+}
+@media (max-width: 900px) {
+  /* En una columna el panel se quedaria sin altura: aqui scrollea el expediente
+     entero y las solapas se quedan pegadas arriba mientras se lee. */
+  .ff { grid-template-columns: 1fr; grid-template-rows: 34vh minmax(0,1fr); }
+  .ff-exp { display: block; overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+  .ff-lector { display: block; }
+  .ff-tabs { position: sticky; top: 0; z-index: 2; background: var(--bg-0); }
+  .ff-panel { overflow: visible; }
+  .ff-media-pie { padding: 22px 24px 20px; }
+  .ff-slide-info strong { font-size: 20px; }
+  .ff-salto { top: 16px; left: 24px; }
+  .ff-cerrar { top: 16px; right: 20px; }
+  .ff-exp-top { padding: 22px 24px 20px; }
+  .ff-nota { font-size: 40px; }
+  .ff-facts { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px 20px; }
+  .ff-tab { padding: 11px 12px; }
+  .ff-tab small { display: none; }
+  .ff-panel { padding: 20px 24px 32px; }
+}
+
 /* ── Hero de pagina interior ──────────────────────────────────────────────
    Banda corta, del ancho completo, con el mismo lenguaje que la portada pero
    a media altura: la portada ocupa 92vh, esto se queda en torno al 40 %. Cada
