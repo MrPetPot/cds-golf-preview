@@ -1541,6 +1541,8 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .atlas-lienzo { position: relative; min-width: 0; }
 .atlas-svg { display: block; width: 100%; height: auto; touch-action: none; }
 .atlas-svg.at-arrastrando { cursor: grabbing; }
+/* El mar es el fondo del lienzo; la tierra, un gris más claro encima. */
+.at-tierra polygon { fill: var(--bg-1); }
 .at-rejilla line { stroke: rgba(30,58,95,.09); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .at-costa polyline { fill: none; stroke: rgba(30,58,95,.38); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
 .at-nucleo-m { fill: var(--text-mute); }
