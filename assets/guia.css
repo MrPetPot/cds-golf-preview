@@ -1235,17 +1235,20 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
   font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
   border: 1px solid; border-radius: 2px; vertical-align: middle; white-space: nowrap;
 }
-.mem-pub { color: #3E5F1C; border-color: #558025; background: rgba(85,128,37,.12); }
-.mem-res { color: #8A5A12; border-color: #E9A93A; background: rgba(233,169,58,.18); }
-.mem-soc { color: #8C3F0A; border-color: #D8731F; background: rgba(216,115,31,.16); }
-.mem-cer { color: #8B1E14; border-color: #C0392B; background: rgba(192,57,43,.12); }
+/* Semaforo de acceso: color plano y texto en blanco. El amarillo y el naranja
+   van en su version profunda porque a 9 px el blanco sobre un amarillo vivo no
+   se lee: aun asi el amarillo se queda en 3,3:1, por debajo del 4,5 de la AA. */
+.mem-pub { color: #FFFFFF; background: #4E7A21; border-color: #4E7A21; }
+.mem-res { color: #FFFFFF; background: #B8860B; border-color: #B8860B; }
+.mem-soc { color: #FFFFFF; background: #CC5500; border-color: #CC5500; }
+.mem-cer { color: #FFFFFF; background: #C0392B; border-color: #C0392B; }
 .mem-leyenda { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 14px; font-size: 11px; letter-spacing: .06em; color: var(--text-mid); }
 .mem-leyenda span { display: inline-flex; align-items: center; gap: 7px; }
 .mem-dot { width: 10px; height: 10px; border: 1px solid; border-radius: 2px; display: inline-block; }
-.mem-dot.mem-pub { background: #558025; border-color: #3E5F1C; }
-.mem-dot.mem-res { background: #E9A93A; border-color: #8A5A12; }
-.mem-dot.mem-soc { background: #D8731F; border-color: #8C3F0A; }
-.mem-dot.mem-cer { background: #C0392B; border-color: #8B1E14; }
+.mem-dot.mem-pub { background: #4E7A21; border-color: #4E7A21; }
+.mem-dot.mem-res { background: #B8860B; border-color: #B8860B; }
+.mem-dot.mem-soc { background: #CC5500; border-color: #CC5500; }
+.mem-dot.mem-cer { background: #C0392B; border-color: #C0392B; }
 
 /* Página de contacto */
 .contacto-grid { display: grid; grid-template-columns: minmax(0,520px); gap: 28px; margin-top: 40px; align-items: start; }
