@@ -229,18 +229,18 @@
   // en la barra de cada bloque.
   function animateAccount(detail) {
     if (!detail.open) return;
-    detail.querySelectorAll('.fb').forEach((bloque, index) => reveal(bloque, index * 110, 24));
+    detail.querySelectorAll('.fb').forEach((bloque, index) => reveal(bloque, index * 190, 24));
     detail.querySelectorAll('.fb-cab .measure-fill').forEach((fill, index) => {
       const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
       play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
-        duration: 820, delay: 220 + index * 110, easing: 'cubic-bezier(.2,.72,.2,1)'
+        duration: 1150, delay: 320 + index * 190, easing: 'cubic-bezier(.2,.72,.2,1)'
       });
     });
     animateChain(detail);
     detail.querySelectorAll('.crit .measure-fill').forEach((fill, index) => {
       const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
       play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
-        duration: 620, delay: 380 + Math.min(index, 9) * 40, easing: 'cubic-bezier(.2,.72,.2,1)'
+        duration: 900, delay: 620 + Math.min(index, 9) * 75, easing: 'cubic-bezier(.2,.72,.2,1)'
       });
     });
   }
@@ -251,18 +251,23 @@
   function animateChain(detail) {
     const svg = detail.querySelector('.adn-svg');
     if (!svg) return;
+    const radios = svg.querySelectorAll('.adn-g');
+    // El paso se reparte entre los campos que haya: con cinco se puede ir
+    // despacio y con dieciseis no, o la ultima rama entraria a los cuatro
+    // segundos. La suma total se queda siempre en torno a los dos segundos.
+    const paso = Math.max(72, Math.min(150, 1000 / Math.max(radios.length, 1)));
     reveal(svg.querySelector('.adn-base'), 0, 0);
     play(svg.querySelector('.adn-core'), [{ transform: 'scale(.2)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }],
-      { duration: 420, delay: 120, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
-    svg.querySelectorAll('.adn-g').forEach((g, i) => {
-      const t = 260 + i * 55;
+      { duration: 620, delay: 200, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+    radios.forEach((g, i) => {
+      const t = 420 + i * paso;
       play(g.querySelector('.adn-l'), [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
-        { duration: 420, delay: t, easing: 'cubic-bezier(.2,.72,.2,1)' });
+        { duration: 780, delay: t, easing: 'cubic-bezier(.2,.72,.2,1)' });
       play(g.querySelector('.adn-n'), [{ transform: 'scale(0)' }, { transform: 'scale(1)' }],
-        { duration: 340, delay: t + 260, easing: 'cubic-bezier(.2,.9,.3,1.3)' });
+        { duration: 520, delay: t + 480, easing: 'cubic-bezier(.2,.9,.3,1.3)' });
       const ref = g.querySelector('.adn-ref');
       if (ref) play(ref, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1)' }],
-        { duration: 420, delay: t + 380, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+        { duration: 640, delay: t + 760, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
     });
   }
 
