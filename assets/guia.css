@@ -1377,7 +1377,6 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 /* Las estrellas al mismo cuerpo que en el reverso: en el rótulo de 10 px el glifo
    quedaba desproporcionado y no se leía como una calificación. */
 .dc-f-estrellas { flex: none; font-size: clamp(26px, 2.8vw, 36px); line-height: 1; letter-spacing: .03em; }
-.dc-f-estrellas .star-off { color: rgba(30,58,95,.2); }
 .dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); }
 /* Sin encogerse: si no cabe detras de las estrellas, baja entera a la linea
    siguiente en vez de recortarse con puntos suspensivos. */
@@ -1394,7 +1393,6 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-back .dc-f-nota small { color: rgba(255,255,255,.5); }
 .dc-front .dc-f-nota { color: var(--text); }
 .dc-front .dc-f-nota small { color: var(--text-mute); }
-.dc-f-prueba .star-off { opacity: .3; }   /* tras el giro, negro */
 .dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-prueba { font-family: var(--f-sans); font-weight: 600; font-size: clamp(15px, 1.5vw, 18px); line-height: 1.4; letter-spacing: .01em; color: rgba(255,255,255,.82); }
 .dc-f-loc { font-size: 16px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1554,7 +1552,13 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 }
 
 /* ── Clases que sustituyen a los estilos inline (norma: nada de style="") ── */
-.star-off { opacity: .22; }
+/* Estrella vacia: el mismo amarillo, solo el contorno. Relleno transparente y
+   trazo en em, asi la silueta es la del glifo lleno y el grosor acompana al
+   cuerpo, de los 15 px del mapa a los 36 px de la tarjeta. */
+.star-off, .star-off .star, .ap-off, .ap-off .star { opacity: 1; color: rgba(242,187,22,.3); }
+@supports (-webkit-text-stroke: 1px red) {
+  .star-off, .star-off .star, .ap-off, .ap-off .star { color: transparent; -webkit-text-stroke: .06em var(--amarillo); }
+}
 .mute { color: var(--text-mute); }
 .dc-stat-val.texto { font-size: 14px; text-transform: none; font-weight: 600; letter-spacing: 0; line-height: 1.3; }
 .dc-stat-val.fecha { font-size: 18px; }
@@ -1647,7 +1651,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .ap-hechos strong { color: var(--text); }
 .ap-hechos .ap-fuera { color: var(--text-mute); }
 .ap-estrellas { margin: 8px 0 0; font-size: 14px; color: var(--amarillo); letter-spacing: .06em; }
-.ap-off { color: var(--bg-3); }
+
 .ap-acceso { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-mute); margin-left: 8px; }
 .ap-citas { font-size: 11.5px; color: var(--text-mute); margin: 0; }
 /* Tres columnas fijas: con seis citas, el máximo de la base, nunca pasa de dos filas. */
