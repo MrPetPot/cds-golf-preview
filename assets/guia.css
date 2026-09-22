@@ -1369,23 +1369,36 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 /* La cara frontal usa la misma composición que la de evidencia —filete de acento,
    rótulo fino, titular grande y pie— pero en claro: lo que se rankea son las
    promociones, así que el nombre manda y la cifra acompaña. */
-.dc-front { grid-template-columns: 1fr; align-content: center; gap: 8px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--oro-2); }
+.dc-front { grid-template-columns: minmax(0,1fr) auto; align-content: center; gap: 4px 28px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--oro-2); }
+.dc-front .dc-f-label, .dc-front .dc-f-name, .dc-front .dc-f-loc { grid-column: 1; }
+.dc-front .dc-f-nota { grid-column: 2; grid-row: 1 / 4; align-self: center; }
 .dc-front .dc-f-label { color: var(--oro-3); }
-.dc-front .dc-f-label small { font-family: var(--f-sans); font-size: 9px; letter-spacing: .2em; color: var(--text-mute); }
-.dc-front .dc-f-label .star-off { color: rgba(30,58,95,.22); }
 .dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dc-front .dc-f-loc { color: var(--text-mute); }
-.dc-back { transform: rotateX(180deg); grid-template-columns: 1fr; align-content: center; gap: 8px; background: var(--text); border-left: 4px solid var(--oro-1); }   /* tras el giro, negro */
+.dc-back { transform: rotateX(180deg); grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 0 34px; background: var(--text); border-left: 4px solid var(--oro-1); }
+.dc-b-prueba { display: grid; gap: 8px; min-width: 0; }
+/* La nota: grande y en oro sobre el negro, discreta y en gris cuando no hay giro. */
+.dc-f-nota { font-family: var(--f-display); font-weight: 700; font-size: clamp(38px, 4.4vw, 56px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+.dc-f-nota small { font-family: var(--f-sans); font-size: 10px; letter-spacing: .22em; font-weight: 600; margin-left: 2px; }
+.dc-back .dc-f-nota { color: var(--oro-1); }
+.dc-front .dc-f-nota { justify-self: end; }
+.dc-back .dc-f-nota small { color: rgba(255,255,255,.5); }
+.dc-front .dc-f-nota { color: var(--text); }
+.dc-front .dc-f-nota small { color: var(--text-mute); }
+.dc-f-prueba .star-off { opacity: .3; }   /* tras el giro, negro */
 .dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
 .dc-f-loc { font-size: 14px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease); }
+.dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease), opacity .3s var(--ease); }
 /* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
   details.promo:not([open]) > summary:hover .dc-flip-inner,
   details.promo:not([open]) > summary:focus-visible .dc-flip-inner { transform: rotateX(180deg); }
+  /* Con giro, la nota y el «+» pertenecen al reverso. */
+  .dc-front .dc-f-nota { display: none; }
+  .dc-f-plus { opacity: 0; }
   details.promo:not([open]) > summary:hover .dc-f-plus,
-  details.promo:not([open]) > summary:focus-visible .dc-f-plus { color: #FFFFFF; }
+  details.promo:not([open]) > summary:focus-visible .dc-f-plus { opacity: 1; color: #FFFFFF; }
 }
 @media (max-width: 640px) {
   .dc-flip-inner { min-height: 92px; }
