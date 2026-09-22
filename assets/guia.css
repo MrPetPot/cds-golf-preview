@@ -1369,17 +1369,19 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 /* La cara frontal usa la misma composición que la de evidencia —filete de acento,
    rótulo fino, titular grande y pie— pero en claro: lo que se rankea son las
    promociones, así que el nombre manda y la cifra acompaña. */
-.dc-front { grid-template-columns: minmax(0,1fr) auto; align-content: center; gap: 4px 28px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--oro-2); }
-.dc-front .dc-f-label, .dc-front .dc-f-name, .dc-front .dc-f-loc { grid-column: 1; }
-.dc-front .dc-f-nota { grid-column: 2; grid-row: 1 / 4; align-self: center; }
-.dc-front .dc-f-label { color: var(--oro-3); }
+.dc-front { grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 28px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--oro-2); }
+/* Una sola línea: puesto y nombre pesan igual, las estrellas siguen al nombre y la
+   ubicación va detrás. Si no cabe, pliega por ahí en vez de recortar el nombre. */
+.dc-f-linea { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; min-width: 0; }
+.dc-front .dc-f-label { color: var(--oro-3); font-family: var(--f-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; }
 /* Las estrellas al mismo cuerpo que en el reverso: en el rótulo de 10 px el glifo
    quedaba desproporcionado y no se leía como una calificación. */
-.dc-f-estrellas { flex: none; line-height: 1; letter-spacing: .03em; }
+.dc-f-estrellas { flex: none; font-size: clamp(24px, 2.6vw, 34px); line-height: 1; letter-spacing: .03em; }
 .dc-f-estrellas .star-off { color: rgba(30,58,95,.2); }
-.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); min-width: 0; display: flex; align-items: baseline; gap: 16px; }
-.dc-f-name b { font-weight: inherit; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.dc-front .dc-f-loc { color: var(--text-mute); }
+.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); }
+/* Sin encogerse: si no cabe detras de las estrellas, baja entera a la linea
+   siguiente en vez de recortarse con puntos suspensivos. */
+.dc-front .dc-f-loc { color: var(--text-mute); flex: none; max-width: 100%; }
 .dc-back { transform: rotateX(180deg); grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 0 34px; background: var(--text); border-left: 4px solid var(--oro-1); }
 .dc-b-prueba { display: grid; gap: 8px; min-width: 0; }
 /* La nota: grande y en oro sobre el negro, discreta y en gris cuando no hay giro. */
@@ -1408,14 +1410,22 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 @media (max-width: 640px) {
   .dc-flip-inner { min-height: 92px; }
   .dc-face { padding: 0 64px 0 20px; }
-  .dc-front { gap: 16px; }
+  /* En movil el nombre ocupa dos lineas y la ubicacion se salia de la caja fija.
+     La cara frontal vuelve al flujo para que la tarjeta crezca lo que haga falta;
+     la de evidencia sigue absoluta y se ajusta a esa altura. */
+  .dc-front { gap: 16px; position: relative; inset: auto; padding-top: 16px; padding-bottom: 16px; }
   /* Aquí no cabe todo en una fila: el nombre se pliega y las estrellas fluyen
      detrás del texto, en vez de recortarlo. */
-  .dc-f-name { font-size: 21px; display: block; }
-  .dc-f-name b { display: inline; white-space: normal; overflow: visible; }
-  .dc-f-estrellas { font-size: 15px; margin-left: 8px; white-space: nowrap; }
-  .dc-f-label { font-size: 9px; letter-spacing: .2em; }
+  .dc-f-name { font-size: 21px; }
+  .dc-front .dc-f-label { font-size: 21px; }
+  .dc-f-estrellas { font-size: 15px; white-space: nowrap; }
+  .dc-f-linea { gap: 2px 10px; }
+  /* A 375 px la linea de texto se queda en unos 175 px: la ubicacion no cabe
+     detras de las estrellas, asi que ocupa su propia fila y se pliega entera
+     en lugar de perder el final con puntos suspensivos. */
   .dc-f-loc { font-size: 12px; }
+  .dc-front .dc-f-loc { flex: 1 1 100%; white-space: normal; overflow: visible; }
+  .dc-front .dc-f-nota { font-size: 30px; }
   .dc-f-plus { right: 20px; }
 }
 
