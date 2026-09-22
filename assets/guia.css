@@ -1383,18 +1383,20 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
    siguiente en vez de recortarse con puntos suspensivos. */
 .dc-front .dc-f-loc { color: var(--text-mute); flex: none; max-width: 100%; }
 .dc-back { transform: rotateX(180deg); grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 0 34px; background: var(--text); border-left: 4px solid var(--oro-1); }
-.dc-b-prueba { display: grid; gap: 8px; min-width: 0; }
+.dc-b-prueba { display: grid; gap: 5px; min-width: 0; }
 /* La nota: grande y en oro sobre el negro, discreta y en gris cuando no hay giro. */
 .dc-f-nota { font-family: var(--f-display); font-weight: 700; font-size: clamp(38px, 4.4vw, 56px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
 .dc-f-nota small { font-family: var(--f-sans); font-size: 10px; letter-spacing: .22em; font-weight: 600; margin-left: 2px; }
-.dc-back .dc-f-nota { color: var(--oro-1); }
+/* Tras el giro lo que manda es la nota: es lo que se rankea. El campo de
+   referencia es la prueba que la sostiene, no el titular. */
+.dc-back .dc-f-nota { color: var(--oro-1); font-size: clamp(52px, 5.6vw, 72px); }
 .dc-front .dc-f-nota { justify-self: end; }
 .dc-back .dc-f-nota small { color: rgba(255,255,255,.5); }
 .dc-front .dc-f-nota { color: var(--text); }
 .dc-front .dc-f-nota small { color: var(--text-mute); }
 .dc-f-prueba .star-off { opacity: .3; }   /* tras el giro, negro */
 .dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
+.dc-f-prueba { font-family: var(--f-sans); font-weight: 600; font-size: clamp(15px, 1.5vw, 18px); line-height: 1.4; letter-spacing: .01em; color: rgba(255,255,255,.82); }
 .dc-f-loc { font-size: 16px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease), opacity .3s var(--ease); }
 /* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
