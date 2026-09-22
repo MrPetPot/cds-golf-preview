@@ -473,7 +473,7 @@ const PROMOS = [
         b1:7,  b1why:'Torras y Sierra, estudio nacional de trayectoria; sin marca internacional.',
         b4:7,  b4why:'Jardín privado y piscina en cada casa, pista de pádel; sin club house ni beach club propios.' },
     tags:['Torras y Sierra','49 viviendas','Valderrama a 3′'],
-    rationale:'<strong>Ficha corregida en esta edición.</strong> La promoción no está dentro de La Reserva, como figuraba: ACCIONA la sitúa en <strong>Sotogrande Alto</strong>, y su coordenada publicada la deja a 1,2 km de Valderrama. Pierde el bonus de resort —no está dentro de ninguno— pero gana el mejor acceso del ranking a golf de élite: Valderrama a tres minutos, RCG Sotogrande y San Roque Old a siete. Que ambos sean clubes de socios es justo lo que el coeficiente de jugabilidad descuenta.' },
+    rationale:'<strong>Ficha corregida en esta edición.</strong> La promoción no está dentro de La Reserva, como figuraba: ACCIONA la sitúa en <strong>Sotogrande Alto</strong>, y su coordenada publicada la deja a 1,2 km de Valderrama. Pierde el bonus de resort —no está dentro de ninguno— pero tiene tres campos de élite a tiro: Valderrama a seis minutos, La Reserva a siete y RCG Sotogrande a once. Que Valderrama y RCG sean clubes de socios es justo lo que el coeficiente de jugabilidad descuenta.' },
 
   { id:'village-verde', render:{ dominio:"villageverdesotogrande.com", pie:"El resort al atardecer." }, name:'Village Verde', sub:'La Reserva de Sotogrande',
     municipio:'Sotogrande (Cádiz)', zona:'La Reserva Club', lat:36.28943, lng:-5.32142,
@@ -490,7 +490,7 @@ const PROMOS = [
         b1:7,  b1why:'Diseño sostenible certificado; sin firma internacional acreditada.',
         b4:10, b4why:'Acceso pleno a los servicios de La Reserva Club.' },
     tags:['In-resort 4★','Sostenible','Wellness'],
-    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su ★★★★ propio lo compensa: dos de los otros tres campos de élite que tiene a mano son de socios. Pierde el podio por escala: 124 unidades reducen su factor de exclusividad.' },
+    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su ★★★★ propio lo compensa: los otros dos campos de élite que tiene a mano son de socios. Pierde el podio por escala: 124 unidades reducen su factor de exclusividad.' },
 
   { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Piscina y terraza sobre el mar." }, name:'MAREA by Missoni', sub:'Finca Cortesín · Hotel · Golf · Spa',
     municipio:'Casares', zona:'Finca Cortesín Resort', lat:36.379, lng:-5.224,
@@ -507,7 +507,7 @@ const PROMOS = [
         b1:10, b1why:'Branded residence Missoni Casa — marca reconocida, entregada con el proyecto.',
         b4:10, b4why:'Hotel 5★ GL, spa, beach club, cuatro restaurantes, concierge.' },
     tags:['Branded Missoni','In-resort 4★','Solheim Cup 2023','Beach club'],
-    rationale:'<strong>Nuevo número uno.</strong> Su ★★★★ es el <strong>único del ranking que un propietario puede jugar sin ser socio</strong>. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y el mejor bloque B de la lista. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
+    rationale:'<strong>Nuevo número uno.</strong> Su ★★★★ es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y el bloque B más alto de la lista, que comparte con EPIC Marbella. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
 
   { id:'quercus', render:{ dominio:"realdelaquinta.com", pie:"El lago de Real de La Quinta." }, name:'Real de La Quinta · Quercus', sub:'Future Banyan Tree Residences',
     municipio:'Benahavís', zona:'Real de La Quinta Resort', lat:36.515, lng:-5.000,
@@ -541,7 +541,7 @@ const PROMOS = [
         b1:10, b1why:'Fendi Casa: marca internacional reconocida, interiorismo entregado con la unidad.',
         b4:10, b4why:'Spa, gym, cine, concierge 24h, piscinas premium, servicio de hotel.' },
     tags:['Fendi Casa','Golden Mile','€15k/m²'],
-    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, no de puerta: seis campos ★★★+ entre 8 y 14 minutos, pero el más cercano de 18 hoyos está a ocho. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
+    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, no de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Terrazas escalonadas sobre el valle." }, name:'Tiara', sub:'La Quinta · NVOGA',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
@@ -574,7 +574,7 @@ const PROMOS = [
         b1:7,  b1why:'Marca hotelera Marbella Club; sin estudio de arquitectura acreditado.',
         b4:10, b4why:'Privilegios del Marbella Club Hotel, spa, club house, beach club del hotel.' },
     tags:['In-resort 3★','Brand Marbella Club','Villa Padierna a 5\''],
-    rationale:'La única promoción del top 10 cuyo entorno es íntegramente jugable: Marbella Club Golf, Flamingos, Alferini y Tramores admiten reserva. No tiene ningún ★★★★ en quince minutos y por eso no sube más, pero es la mejor relación entre golf real y precio de entrada del ranking.' },
+    rationale:'Nueve de sus doce campos admiten reserva, empezando por el suyo: Marbella Club Golf, Flamingos, Alferini y Tramores. No tiene ningún ★★★★ en quince minutos y por eso no sube más, pero es la mejor relación entre golf real y precio de entrada del ranking.' },
 
   { id:'zew', render:{ dominio:"Concept Homes · NVOGA", pie:"La entrada de ZEW al atardecer.", origen:'render del promotor · brochure ZEW (Malashpina)' }, name:'ZEW', sub:'by Concept Homes',
     municipio:'Marbella', zona:'Elviria West', lat:36.503, lng:-4.810,
@@ -590,7 +590,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto boutique cuidado; sin firma internacional.',
         b4:7,  b4why:'Piscina, gym, zonas comunes premium; sin resort propio.' },
     tags:['20 unidades','Boutique','A-7 directa','Conflicto declarado'],
-    rationale:'Ocho campos accesibles y ninguno ★★★★, pero todos de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
+    rationale:'Diez campos en quince minutos y ninguno ★★★★, pero nueve de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
 
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
@@ -607,7 +607,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto AEDAS de calidad contrastada; sin firma internacional.',
         b4:7,  b4why:'Sky lounge, spa, gym, piscinas; sin club house propio.' },
     tags:['In-resort','AEDAS','Sky lounge','Mix tipologías'],
-    rationale:'Todo su entorno es jugable pero ninguno pasa de ★★★. El valor está en la ejecución residencial —mezcla de apartamentos y villas, poco habitual— más que en el golf. Es la promoción de esta lista que un golfista compra por comodidad, no por campo.' },
+    rationale:'Siete de sus ocho campos son jugables y ninguno pasa de ★★★. El valor está en la ejecución residencial —mezcla de apartamentos y villas, poco habitual— más que en el golf. Es la promoción de esta lista que un golfista compra por comodidad, no por campo.' },
 
   { id:'higueron-valley', render:{ dominio:"higueron-valley.com", pie:"Terraza con vistas a la bahía." }, name:'Higuerón Valley', sub:'Higuerón Resort',
     municipio:'Fuengirola', zona:'El Higuerón', lat:36.553, lng:-4.595,
@@ -624,7 +624,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto de resort correcto; sin firma internacional.',
         b4:10, b4why:'Hilton Curio, Nagomi Wellness Spa, beach club, siete restaurantes, club deportivo.' },
     tags:['Hilton Curio','Nagomi Spa','AP-7 directa','Beach club'],
-    rationale:'Tres campos ★★★ jugables alrededor y el amenity deck más completo del este de la costa. Le penaliza la escala —224 unidades— y no tener campo propio. Es la puerta de entrada más barata del top 10 y la que menos depende del golf para justificarse.' },
+    rationale:'Dos campos ★★★ jugables alrededor y el amenity deck más completo del este de la costa. Le penaliza la escala —224 unidades— y no tener campo propio. Es la puerta de entrada más barata del top 10 y la que menos depende del golf para justificarse.' },
 
   { id:'velaya', render:{ dominio:"velaya.stonewegliving.com", pie:"El conjunto beachfront." }, name:'Vélaya Estepona', sub:'Stoneweg Living',
     municipio:'Estepona', zona:'Beachfront New Golden Mile', lat:36.473, lng:-5.005,
@@ -640,7 +640,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto beachfront cuidado; sin firma internacional.',
         b4:7,  b4why:'Spa, gym, piscinas, acceso directo a playa.' },
     tags:['Beachfront','38 unidades','Mix tipologías'],
-    rationale:'Sube a la primera mención por descarte ajeno: The View pierde más que ella al aplicar el coeficiente de acceso. Su entorno es modesto en categoría pero íntegramente reservable. Beachfront con 38 unidades y cuatro tipologías; el golf aquí es contexto, no argumento.' },
+    rationale:'Sube a la primera mención por descarte ajeno: The View pierde más que ella al aplicar el coeficiente de acceso. Su entorno es amplio pero desigual: dieciséis campos en quince minutos y cinco de ellos, de socios. Beachfront con 38 unidades y cuatro tipologías; el golf aquí es contexto, no argumento.' },
 
   { id:'the-view', render:{ dominio:"marbella-ev.com", pie:"Bloque residencial sobre Las Colinas." }, name:'The View Marbella', sub:'Las Colinas de Marbella',
     municipio:'Benahavís', zona:'Las Colinas', lat:36.510, lng:-4.97,
@@ -656,7 +656,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto comercial cuidado; sin firma internacional.',
         b4:4,  b4why:'Piscinas, gym, zonas comunes; amenity deck limitado.' },
     tags:['Vistas Golf Valley','119 unidades'],
-    rationale:'La mayor caída del recálculo: seis puntos. Comparte entorno con Tiara y Quercus, pero la mitad de ese entorno son clubes de socios y su bloque B es el más flojo del ranking —15 sobre 40—. Excelente vista sobre Golf Valley; menos golf del que la vista sugiere.' },
+    rationale:'La mayor caída del recálculo: seis puntos. Comparte entorno con Tiara y Quercus, pero la mitad de ese entorno son clubes de socios y su bloque B, 15 sobre 40, solo mejora al de Calanova. Excelente vista sobre Golf Valley; menos golf del que la vista sugiere.' },
 
   { id:'calanova', render:{ dominio:"avantespacia.com", pie:"El conjunto al atardecer, desde la piscina." }, name:'Calanova Collection', sub:'Avantespacia',
     municipio:'Mijas', zona:'La Cala de Mijas', lat:36.520, lng:-4.692,
@@ -672,7 +672,7 @@ const PROMOS = [
         b1:2,  b1why:'Producto comercial estándar.',
         b4:4,  b4why:'Piscinas, gym, zonas comunes.' },
     tags:['In-resort','9 campos en 15\'','Entry level premium'],
-    rationale:'Nueve campos en quince minutos y todos jugables: la mayor densidad de golf reservable de la guía. Ninguno pasa de ★★★. Para quien juega tres veces por semana y no le importa el palmarés, es objetivamente la mejor compra de la lista — y la más barata.' },
+    rationale:'Diez campos en quince minutos y todos jugables: ninguna promoción de la guía tiene una proporción mejor. Ninguno pasa de ★★★. Para quien juega tres veces por semana y no le importa el palmarés, es objetivamente la mejor compra de la lista — y la más barata.' },
 
   { id:'quintessence', render:{ dominio:"quintessencemarbella.com", pie:"El conjunto residencial con la piscina central." }, name:'Quintessence Marbella', sub:'Altos de Los Monteros',
     municipio:'Marbella', zona:'Marbella Este', lat:36.499, lng:-4.787,
@@ -689,7 +689,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto correcto; sin firma diferenciada.',
         b4:4,  b4why:'Piscinas, gym, zonas comunes.' },
     tags:['7 campos en 15\'','Valor precio/m²'],
-    rationale:'Siete campos accesibles y todos jugables, pero dominados por la categoría ★★ — y el más cercano, Greenlife, es un par 3 de nueve hoyos que la matriz v1.1 ya no computa para la distancia mínima. Buena relación precio-localización sin argumento golfístico propio.' }
+    rationale:'Diez campos accesibles y todos jugables, pero dominados por la categoría ★★ — y el más cercano, Greenlife, es un par 3 de nueve hoyos que la matriz v1.1 ya no computa para la distancia mínima. Buena relación precio-localización sin argumento golfístico propio.' }
 ];
 
 /* ═══════════════════════════════════════════════════════════════
