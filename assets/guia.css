@@ -1107,8 +1107,8 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   border-bottom: 1px solid rgba(255,255,255,.14);
 }
 .topnav-brand { text-decoration: none; color: #FFFFFF; line-height: 1; min-width: 0; }
-.topnav-brand em { font-style: normal; color: rgba(255,255,255,.62); }
-.topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 19px; letter-spacing: .01em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topnav-brand em { display: block; font-style: normal; font-family: var(--f-sans); font-size: 9px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.58); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
 .topnav-menu { position: relative; flex: none; }
 .topnav-toggle {
@@ -1137,7 +1137,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,.10); }
 .topnav-links a[aria-current="page"] { color: #FFFFFF; border-left-color: var(--oro-1); }
 .topnav-links a.nav-ranking { color: #FFFFFF; }
-@media (max-width: 640px) { .topnav-brand b { font-size: 15px; white-space: normal; line-height: 1.05; } .topnav-toggle-actual { display: none; } .topnav-toggle { padding-left: 4px; } }
+@media (max-width: 640px) { .topnav-brand b { font-size: 21px; } .topnav-brand em { font-size: 8px; letter-spacing: .18em; margin-top: 3px; } .topnav-toggle-actual { display: none; } .topnav-toggle { padding-left: 4px; } }
 
 /* Portada · los tres pasos */
 .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -1503,7 +1503,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   .notas-card .nota-bloque { padding: 22px 0 18px !important; border-left: 0 !important; }
   .notas-card .nota-bloque:nth-child(n+2) { border-top: 1px solid var(--line); } }
 @media (max-width: 760px) {
-  .topnav { height: auto; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--px) 0; }
+  .topnav { height: auto; min-height: 64px; padding: 10px var(--px); }
   .topnav-links { overflow-x: auto; margin: 0 calc(-1 * var(--px)); padding: 0 var(--px); scrollbar-width: none; }
   .topnav-links::-webkit-scrollbar { display: none; }
   .topnav-links a { padding: 12px 10px 12px; font-size: 10px; letter-spacing: .16em; }
