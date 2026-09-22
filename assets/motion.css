@@ -12,10 +12,14 @@
    tarjeta quedaba desconectada de lo que explicaba. */
 .fb { padding: 22px 24px 24px; margin: 0 0 18px; border: 1px solid var(--line-strong); background: var(--bg-2); }
 .fb-cab { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 8px 14px; }
+/* El rotulo de bloque sin caja: manda la versalita, el cuerpo y el peso. El
+   numero se queda en oro para que se lea como capitulo y no como dato. */
 .account-step {
-  align-self: center; display: inline-block; padding: 4px 7px; background: var(--text); color: #FFFFFF;
-  font-size: 9px; font-weight: 700; letter-spacing: .18em; line-height: 1; text-transform: uppercase; white-space: nowrap;
+  align-self: center; display: inline-block; color: var(--text);
+  font-size: 12px; font-weight: 700; letter-spacing: .22em; line-height: 1.2; text-transform: uppercase; white-space: nowrap;
 }
+.fb-golf .account-step { color: var(--verde-2); }
+.fb-proyecto .account-step, .fb-cuenta .account-step { color: var(--oro-3); }
 .fb-tit { min-width: 0; font-size: 13px; line-height: 1.35; color: var(--text-mid); }
 .fb-nota { font: 700 38px/1 var(--f-display); letter-spacing: -.02em; color: var(--oro-3); white-space: nowrap; }
 .fb-golf .fb-nota { color: var(--verde-2); }
@@ -199,7 +203,6 @@
   .account-panel { grid-template-columns: 1fr; }
   .account-panel::before { display: none; }
   .account-contributions { padding-top: 0; }
-  .account-contributions > .account-step, .account-result > .account-step { position: static; grid-column: 1 / -1; }
   .account-result { min-height: 150px; }
   .quick-facts { grid-template-columns: 1fr 1fr; }
   .quick-facts > div:nth-child(2) { border-right: 0; }
