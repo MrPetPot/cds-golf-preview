@@ -1,78 +1,69 @@
+@charset "UTF-8";
 /* Cuenta trazable · V2. La información permanece visible sin movimiento. */
 .motion-progress, .motion-filter-result, .motion-note { display: none; }
 .motion-progress[hidden] { display: none !important; }
 
 /* ── Ficha de promoción: lectura inmediata ── */
 .compact-body { padding-top: 28px; }
-.account-panel {
-  --panel-gap: 24px;
-  position: relative; display: grid; grid-template-columns: 1.05fr 1.35fr .8fr;
-  gap: var(--panel-gap); padding: 30px; overflow: hidden;
-  border: 1px solid var(--line-strong); background: var(--bg-2);
-}
-.account-panel::before {
-  content: ''; position: absolute; left: 8%; right: 8%; top: 58px; height: 2px;
-  background: linear-gradient(90deg, var(--verde-2) 0 34%, var(--oro-2) 58% 100%);
-  transform-origin: left; z-index: 0; opacity: .46;
-}
-.account-evidence, .account-contributions, .account-result { position: relative; z-index: 1; }
-.account-evidence {
-  display: flex; flex-direction: column; justify-content: center; gap: 7px;
-  min-height: 176px; padding: 20px; border: 1px solid var(--line-strong); border-left: 4px solid var(--verde-2); background: var(--bg-0);
-}
-.account-evidence strong {
-  font: 700 30px/1.04 var(--f-display); text-transform: uppercase; color: var(--text);
-}
-.account-evidence > span:not(.account-step) { font-size: 15px; color: var(--text-mid); }
-.account-evidence small { font-size: 12px; color: var(--text-mute); text-transform: uppercase; letter-spacing: .08em; }
+/* ── Ficha de promocion: primero el proyecto, despues el golf ──
+   Tres bloques con el mismo ritmo: rotulo, titular, nota del bloque y su barra;
+   dentro, los datos; debajo, los criterios que producen esa nota con la razon
+   pegada a cada uno. Antes la razon vivia plegada dentro de un <details> y la
+   tarjeta quedaba desconectada de lo que explicaba. */
+.fb { padding: 22px 24px 24px; margin: 0 0 18px; border: 1px solid var(--line-strong); background: var(--bg-2); }
+.fb-cab { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 8px 14px; }
 .account-step {
-  align-self: flex-start; display: inline-block; padding: 4px 7px; background: var(--text); color: #FFFFFF;
-  font-size: 9px; font-weight: 700; letter-spacing: .18em; line-height: 1; text-transform: uppercase;
+  align-self: center; display: inline-block; padding: 4px 7px; background: var(--text); color: #FFFFFF;
+  font-size: 9px; font-weight: 700; letter-spacing: .18em; line-height: 1; text-transform: uppercase; white-space: nowrap;
 }
-.account-contributions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 46px; }
-.account-contributions > .account-step { position: absolute; top: 8px; left: 0; }
-.account-part {
-  display: grid; grid-template-columns: 1fr auto; align-content: center; gap: 10px 14px;
-  min-height: 132px; padding: 20px; border: 1px solid var(--line-strong); background: var(--bg-0);
-}
-.account-part > span:first-child { font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
-.account-part > strong { font: 700 46px/1 var(--f-display); color: var(--oro-3); }
-.account-part.is-golf > strong { color: var(--verde-2); }
-.account-part strong small { margin-left: 3px; font: 600 13px/1 var(--f-sans); color: var(--text-mute); }
-.measure-track {
-  grid-column: 1 / -1; position: relative; display: block; height: 6px; overflow: hidden; background: var(--bg-3);
-}
-.measure-fill {
-  display: block; width: 100%; height: 100%; background: var(--oro-2);
-  transform: scaleX(var(--ratio, 0)); transform-origin: left;
-}
-.is-golf .measure-fill, .criterion-group.is-golf .measure-fill { background: var(--verde-2); }
-.account-result { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 176px; padding: 20px; border: 1px solid var(--line-strong); background: var(--bg-0); }
-.account-result > .account-step { position: absolute; top: 0; left: 0; }
-.score-dial { position: relative; width: 138px; height: 138px; margin-top: 24px; }
-.score-dial svg { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
-.score-dial circle { fill: none; stroke-width: 8; }
-.dial-track { stroke: var(--bg-3); }
-.dial-value { stroke: var(--oro-2); stroke-linecap: square; }
-.score-dial > strong {
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font: 700 54px/1 var(--f-display); color: var(--text);
-}
-.score-dial > strong small { margin: 22px 0 0 3px; font: 700 11px/1 var(--f-sans); color: var(--text-mute); }
-.account-equation { margin-top: -2px; font: 700 13px/1 var(--f-sans); color: var(--oro-3); letter-spacing: .12em; }
+.fb-tit { min-width: 0; font-size: 13px; line-height: 1.35; color: var(--text-mid); }
+.fb-nota { font: 700 38px/1 var(--f-display); letter-spacing: -.02em; color: var(--oro-3); white-space: nowrap; }
+.fb-golf .fb-nota { color: var(--verde-2); }
+.fb-nota small { margin-left: 2px; font: 600 12px/1 var(--f-sans); letter-spacing: .1em; color: var(--text-mute); }
+.fb-cab .measure-track { grid-column: 1 / -1; height: 3px; margin-top: 2px; }
+.fb-golf .fb-cab .measure-fill, .fb-golf .crit .measure-fill { background: var(--verde-2); }
+.measure-track { grid-column: 1 / -1; position: relative; display: block; height: 6px; overflow: hidden; background: var(--bg-3); }
+.measure-fill { display: block; width: 100%; height: 100%; background: var(--oro-2); transform: scaleX(var(--ratio, 0)); transform-origin: left; }
 
-.quick-facts {
-  display: grid; grid-template-columns: repeat(4, 1fr); margin: 18px 0 0; border: 1px solid var(--line-strong); background: var(--bg-1);
-}
-.quick-facts > div { min-width: 0; padding: 18px 20px; border-right: 1px solid var(--line-strong); }
-.quick-facts > div:last-child { border-right: 0; }
-.quick-facts dt { margin-bottom: 7px; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-mute); }
+.fb-proyecto .project-data, .fb-golf .fb-golf-top { margin-top: 20px; }
+.project-data dd.dd-texto { font-size: 13px; font-weight: 400; }
+.fb-golf-top { display: grid; grid-template-columns: minmax(0,300px) minmax(0,1fr); gap: 18px; }
+.fb-golf-top .dc-ref { margin: 0; background: var(--bg-0); border-color: var(--line-strong); }
+.fb-golf-top .quick-facts { grid-template-columns: 1fr; margin: 0; }
+.fb-golf-top .quick-facts > div { border-right: 0; border-bottom: 1px solid var(--line-strong); }
+.fb-golf-top .quick-facts > div:last-child { border-bottom: 0; }
+.quick-facts { display: grid; border: 1px solid var(--line-strong); background: var(--bg-0); }
+.quick-facts > div { min-width: 0; padding: 15px 18px; }
+.quick-facts dt { margin-bottom: 6px; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text-mute); }
 .quick-facts dd { margin: 0; font: 700 24px/1.05 var(--f-display); text-transform: uppercase; color: var(--text); }
-.quick-facts dd small { display: block; margin-top: 6px; font: 400 11px/1.3 var(--f-sans); text-transform: none; color: var(--text-mute); }
-.account-insights {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 24px; padding: 0; list-style: none;
+.quick-facts dd small { display: block; margin-top: 5px; font: 400 11px/1.3 var(--f-sans); text-transform: none; letter-spacing: .02em; color: var(--text-mute); }
+
+/* Cuatro criterios de proyecto en dos columnas y seis de golf en tres: asi
+   ninguna fila se queda coja. */
+.crit-tira { display: grid; grid-template-columns: 1fr; gap: 0 28px; margin: 14px 0 0; }
+@media (min-width: 901px) {
+  .fb-proyecto .crit-tira { grid-template-columns: 1fr 1fr; }
+  .fb-golf .crit-tira { grid-template-columns: 1fr 1fr 1fr; }
 }
-.account-insights li { padding: 14px 16px; border-left: 3px solid var(--oro-2); background: var(--bg-1); font-size: 13px; line-height: 1.4; color: var(--text-mid); }
+@media (min-width: 641px) and (max-width: 900px) { .crit-tira { grid-template-columns: 1fr 1fr; } }
+.crit { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; align-items: baseline; gap: 0 10px; padding: 12px 0 13px; border-top: 1px solid var(--line-strong); }
+.crit-cod { font: 700 10px/1.7 var(--f-sans); letter-spacing: .1em; color: var(--text-mute); }
+.crit-lbl { font-size: 13px; line-height: 1.35; color: var(--text); }
+.crit > strong { font: 700 20px/1 var(--f-display); color: var(--oro-3); }
+.fb-golf .crit > strong { color: var(--verde-2); }
+.crit > strong small { margin-left: 1px; font: 600 9px/1 var(--f-sans); letter-spacing: .06em; color: var(--text-mute); }
+.crit .measure-track { grid-column: 2 / -1; height: 2px; margin-top: 8px; }
+.crit > p { grid-column: 2 / -1; margin: 7px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-mid); }
+
+.fb-pie { margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line-strong); }
+.fb-pie .project-rights { margin: 0 0 12px; }
+.fb-cuenta { display: flex; align-items: center; gap: 24px; padding: 16px 24px; }
+.fb-eq { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin: 0; }
+.fb-eq b { font: 700 32px/1 var(--f-display); color: var(--text); }
+.fb-eq i { margin-left: -8px; font-style: normal; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-mute); }
+.fb-eq em { font-style: normal; font: 400 20px/1 var(--f-sans); color: var(--text-mute); }
+.fb-eq strong { font: 700 42px/1 var(--f-display); letter-spacing: -.02em; color: var(--oro-3); }
+.fb-eq strong small { margin-left: 2px; font: 600 12px/1 var(--f-sans); letter-spacing: .1em; color: var(--text-mute); }
 
 /* ── Progressive disclosure ── */
 .promo-sections { border-top: 1px solid var(--line); }
@@ -89,7 +80,7 @@
 }
 .promo-section > summary > small { font: 600 11px/1.2 var(--f-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--text-mute); }
 .promo-section > summary::after { content: '+'; grid-column: 4; font: 400 28px/1 var(--f-sans); color: var(--oro-3); }
-.promo-section[open] > summary::after { content: '−'; }
+.promo-section[open] > summary::after { content: '\2212'; }
 .promo-section > summary:focus-visible { outline: 3px solid var(--oro-1); outline-offset: 4px; }
 .promo-section-body { padding: 14px 0 30px 56px; }
 .criteria-grid { display: grid; grid-template-columns: 3fr 2fr; align-items: start; gap: 22px; }
@@ -180,6 +171,13 @@
   .project-data { grid-template-columns: 1fr 1fr; }
   .project-data > div:nth-child(2n) { border-right: 0; }
   .promo-section-body { padding-left: 0; }
+  .fb { padding: 18px 16px 20px; }
+  .fb-cab { grid-template-columns: auto auto; }
+  .fb-tit { grid-column: 1 / -1; order: 3; }
+  .fb-nota { font-size: 30px; }
+  .fb-golf-top { grid-template-columns: 1fr; }
+  .fb-cuenta { padding: 16px; }
+  .fb-eq strong { font-size: 34px; }
 }
 
 @media (max-width: 640px) {

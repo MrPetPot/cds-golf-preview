@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ═══════════════════════════════════════════════
    TOKENS · MALASHPINA EDITORIAL
 ═══════════════════════════════════════════════ */
@@ -999,10 +1000,10 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 
 .ranking-head [data-sort] { cursor: pointer; user-select: none; transition: color .18s; }
 .ranking-head [data-sort]:hover { color: var(--text); }
-.ranking-head [data-sort]::after { content: ' ⇅'; opacity: .35; font-size: 10px; }
+.ranking-head [data-sort]::after { content: ' \21C5'; opacity: .35; font-size: 10px; }
 .ranking-head [data-sort].sorted { color: var(--y-1); }
-.ranking-head [data-sort].sorted[data-dir="asc"]::after { content: ' ↑'; opacity: 1; }
-.ranking-head [data-sort].sorted[data-dir="desc"]::after { content: ' ↓'; opacity: 1; }
+.ranking-head [data-sort].sorted[data-dir="asc"]::after { content: ' \2191'; opacity: 1; }
+.ranking-head [data-sort].sorted[data-dir="desc"]::after { content: ' \2193'; opacity: 1; }
 
 .detail-card-placeholder-tag {
   position: absolute; top: 26px; right: 26px; z-index: 3;
@@ -1511,7 +1512,7 @@ details.promo > summary .dc-head::before {
   font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: #FFFFFF;
   text-shadow: 0 1px 8px rgba(15,23,38,.7);
 }
-details.promo[open] > summary .dc-head::before { content: '−'; }
+details.promo[open] > summary .dc-head::before { content: '\2212'; }
 details.promo > summary:focus-visible .dc-head { outline: 3px solid var(--oro-1); outline-offset: -3px; }
 /* Estado cerrado: una línea de título, solo el municipio, sitio para el score y sin rótulo © */
 details.promo:not([open]) > summary .dc-head-inner { max-width: none; padding-right: 130px; }

@@ -224,29 +224,24 @@
     block.querySelectorAll('.method-row').forEach((row, index) => reveal(row, 90 + index * 52, 22));
   }
 
+  // Al abrir una ficha entran los dos bloques y sus barras crecen desde cero.
+  // Ya no hay panel de cuenta ni dial: la nota vive en la cabecera y el reparto,
+  // en la barra de cada bloque.
   function animateAccount(detail) {
-    const panel = detail.querySelector('.account-panel');
-    if (!panel || !detail.open) return;
-    panel.classList.remove('is-tracing');
-    void panel.offsetWidth;
-    panel.classList.add('is-tracing');
-    reveal(panel.querySelector('[data-motion="evidence"]'), 0, 26);
-    panel.querySelectorAll('[data-motion="contribution"]').forEach((el, index) => {
-      reveal(el, 120 + index * 110, 26);
-      el.querySelectorAll('.measure-fill').forEach(fill => {
-        const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
-        play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
-          duration: 780, delay: 260 + index * 110, easing: 'cubic-bezier(.2,.72,.2,1)'
-        });
+    if (!detail.open) return;
+    detail.querySelectorAll('.fb').forEach((bloque, index) => reveal(bloque, index * 110, 24));
+    detail.querySelectorAll('.fb-cab .measure-fill').forEach((fill, index) => {
+      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
+      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
+        duration: 820, delay: 220 + index * 110, easing: 'cubic-bezier(.2,.72,.2,1)'
       });
     });
-    reveal(panel.querySelector('[data-motion="result"]'), 380, 26);
-    const dial = panel.querySelector('.dial-value');
-    const score = Number.parseFloat(detail.querySelector('.score-dial strong')?.textContent) || 0;
-    if (dial) play(dial, [
-      { strokeDasharray: '0 100', strokeDashoffset: score },
-      { strokeDasharray: `${score} 100`, strokeDashoffset: 0 }
-    ], { duration: 900, delay: 480, easing: 'cubic-bezier(.2,.72,.2,1)' });
+    detail.querySelectorAll('.crit .measure-fill').forEach((fill, index) => {
+      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
+      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
+        duration: 620, delay: 380 + Math.min(index, 9) * 40, easing: 'cubic-bezier(.2,.72,.2,1)'
+      });
+    });
   }
 
   function animateCriteria(section) {
@@ -303,7 +298,6 @@
     window.removeEventListener('resize', scheduleProgress);
     progress.hidden = true;
     progress.setAttribute('aria-hidden', 'true');
-    document.querySelectorAll('.account-panel.is-tracing').forEach(el => el.classList.remove('is-tracing'));
     restoreHero();
     restoreTitle();
     if (heroVideo) { heroVideo.hidden = true; heroVideo.pause(); }

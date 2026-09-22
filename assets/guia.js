@@ -980,22 +980,21 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   card.className = 'detail-card promo';
   card.setAttribute('name', 'promociones');
   card.id = 'ficha-' + p.id;
-  const desglose = (filas, tot, max) => `<section class="criterion-group ${max === 60 ? 'is-golf' : ''}">
-    <h4>${max === 60 ? 'A · Entorno de golf' : 'B · Calidad del proyecto'} <span>${tot}/${max}</span></h4>
-    ${filas.map(([k, lbl, mx]) => `<details class="criterion" name="criterios-${p.id}">
-      <summary><span class="criterion-code">${k.toUpperCase()}</span><span>${lbl}</span><strong>${p.score[k]}<small>/${mx}</small></strong>
-        <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
-      </summary><p>${p.why[k]}</p></details>`).join('')}</section>`;
+  // Cada criterio en una linea: codigo, enunciado, puntos, barra y el porque
+  // debajo. Antes el porque estaba plegado dentro de un <details> y la tarjeta
+  // quedaba desconectada de lo que explicaba.
+  const tira = filas => filas.map(([k, lbl, mx]) => `<div class="crit">
+      <span class="crit-cod">${k.toUpperCase()}</span>
+      <span class="crit-lbl">${lbl}</span>
+      <strong>${p.score[k]}<small>/${mx}</small></strong>
+      <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
+      <p>${p.why[k]}</p>
+    </div>`).join('');
   const media = p.render
     ? { src: p.image, tag: '© ' + p.render.dominio, pie: p.render.pie, nota: 'Render del promotor · pendiente de autorización' }
     : (p.foto
       ? { src: p.foto.src, tag: 'Imagen de zona', pie: p.foto.pie, nota: 'No es una imagen del proyecto' }
       : { src: p.image, tag: 'Imagen placeholder', pie: null, nota: null });
-  const claves = [
-    p.score.a5 ? `Integración con el golf: <strong>+${p.score.a5} puntos</strong>.` : 'Sin bonus de integración con un campo operativo.',
-    p.estudio ? `Arquitectura: <strong>${p.estudio}</strong>.` : 'Firma arquitectónica <strong>no acreditada</strong>.',
-    p.derechosGolf ? 'Condiciones de golf para propietarios disponibles en Datos del proyecto.' : 'Derechos de golf para propietarios <strong>no publicados</strong>.'
-  ];
   card.innerHTML = `
     <summary class="promo-banner">
     <div class="dc-flip">
@@ -1030,25 +1029,54 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </header>
     </summary>
     <div class="dc-body compact-body">
-      <div class="account-panel">
-        <div class="account-evidence" data-motion="evidence"><span class="account-step">01 · Evidencia</span><strong>${p.cercano.name}</strong><span>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + ' min en coche'} · ${'★'.repeat(p.cercano.stars)}</span><small>${ACCESO_LBL[p.cercano.acceso]} · campo de referencia</small></div>
-        <div class="account-contributions"><span class="account-step">02 · Contribución</span>
-          <div class="account-part is-golf" data-motion="contribution"><span>A · Golf</span><strong>${p.A}<small>/60</small></strong><span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.A / 60}"></span></span></div>
-          <div class="account-part" data-motion="contribution"><span>B · Proyecto</span><strong>${p.B}<small>/40</small></strong><span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span></div>
+
+      <section class="fb fb-proyecto">
+        <header class="fb-cab">
+          <span class="account-step">01 · El proyecto</span>
+          <span class="fb-tit">Qué se compra y qué de eso puntúa</span>
+          <span class="fb-nota">${p.B}<small>/40</small></span>
+          <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span>
+        </header>
+        <dl class="project-data">
+          <div><dt>Promotor</dt><dd>${p.promotor}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
+          <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Estado</dt><dd>${p.estado} · ${p.entrega}</dd></div>
+          <div><dt>Desde</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Precio estimado</small>' : '<small>Precio de referencia</small>'}</dd></div>
+          <div><dt>Recorrido de precio</dt><dd class="dd-texto">${p.precio}</dd></div>
+          <div><dt>Posicionamiento</dt><dd>€${p.eurM2.toLocaleString('es-ES')}<small>por m²</small></dd></div>
+          <div><dt>Unidades</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : '<small>desarrollo completo</small>'}</dd></div>
+        </dl>
+        <div class="crit-tira">${tira(FILAS_B)}</div>
+        <div class="fb-pie">
+          <p class="project-rights"><strong>Derechos de golf.</strong> ${p.derechosGolf || p.derechosNota || 'No publicados por el promotor.'}</p>
+          <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
         </div>
-        <div class="account-result" data-motion="result"><span class="account-step">03 · Resultado</span><div class="score-dial"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="dial-track" cx="60" cy="60" r="51"/><circle class="dial-value" cx="60" cy="60" r="51" pathLength="100" stroke-dasharray="${p.total} 100"/></svg><strong>${p.total}<small>/100</small></strong></div><span class="account-equation">${p.A} + ${p.B} = ${p.total}</span></div>
-      </div>
-      <dl class="quick-facts">
-        <div><dt>Referencia · ${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}</dt><dd>${p.cercano.name}</dd></div>
-        <div><dt>Campos ★★★+ · 15′</dt><dd>${p.n3}<small>campos en el entorno</small></dd></div>
-        <div><dt>Reservables · 15′</dt><dd>${p.jugables}<small>de ${p.enQuince} sin ser socio</small></dd></div>
-        <div><dt>${p.unidades} viviendas · desde</dt><dd>${p.precioDesde}<small>${p.precioEstimado ? 'Precio estimado' : 'Precio de referencia'}</small></dd></div>
-      </dl>
-      <ul class="account-insights">${claves.map(c => `<li>${c}</li>`).join('')}</ul>
+      </section>
+
+      <section class="fb fb-golf">
+        <header class="fb-cab">
+          <span class="account-step">02 · El golf</span>
+          <span class="fb-tit">El entorno que puntúa y el campo que lo prueba</span>
+          <span class="fb-nota">${p.A}<small>/60</small></span>
+          <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.A / 60}"></span></span>
+        </header>
+        <div class="fb-golf-top">
+          ${fotoReferencia(p)}
+          <dl class="quick-facts">
+            <div><dt>Distancia al de referencia</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
+            <div><dt>Campos ★★★+ en 15′</dt><dd>${p.n3}<small>de ${p.enQuince} en el umbral</small></dd></div>
+            <div><dt>Reservables sin ser socio</dt><dd>${p.jugables}<small>de ${p.enQuince}</small></dd></div>
+          </dl>
+        </div>
+        <div class="crit-tira">${tira(FILAS_A)}</div>
+      </section>
+
+      <section class="fb fb-cuenta">
+        <span class="account-step">03 · La cuenta</span>
+        <p class="fb-eq"><b>${p.A}</b><i>golf</i> <em>+</em> <b>${p.B}</b><i>proyecto</i> <em>=</em> <strong>${p.total}<small>/100</small></strong></p>
+      </section>
+
       <div class="promo-sections">
-      <details class="promo-section" name="lectura-${p.id}"><summary><span>01</span>Por qué obtiene esta puntuación<small>10 criterios · ${p.total}/100</small></summary><div class="promo-section-body criteria-grid">${desglose(FILAS_A, p.A, 60)}${desglose(FILAS_B, p.B, 40)}</div></details>
-      <details class="promo-section" name="lectura-${p.id}"><summary><span>02</span>Campos en quince minutos<small>${p.enQuince} en el umbral</small></summary><div class="promo-section-body dc-courses">
-        ${fotoReferencia(p)}
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>01</span>Campos en quince minutos<small>${p.enQuince} en el umbral</small></summary><div class="promo-section-body dc-courses">
         <div class="dc-courses-title">Campos en ≤15 minutos en coche</div>
         ${p.campos.slice().sort((a, b) => a.min - b.min).map(c => {
           const t = c.nota === 'In-resort' ? 'In-resort' : c.min + ' min' + (c.fuera ? ' · fuera de 15′' : '');
@@ -1056,22 +1084,13 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           return `<div class="course-mini${c.fuera ? ' pendiente' : ''}">
             <div class="course-mini-name">${c.name}${nota}<span class="acc acc-${String(c.acceso).replace('.', '')}">${ACCESO_LBL[c.acceso]}</span></div>
             <div class="course-mini-time">${t}</div>
-            <div class="course-mini-stars">${'★'.repeat(c.stars)}</div>
+            <div class="course-mini-stars">${'★'.repeat(c.stars)}<span class="star-off">${'★'.repeat(4 - c.stars)}</span></div>
           </div>`;
         }).join('')}
         ${p.campoPropioPendiente ? `<div class="course-mini pendiente"><div class="course-mini-name">${p.campoPropioPendiente}</div><div class="course-mini-time">—</div><div class="course-mini-stars">—</div></div>` : ''}
         <p class="account-footnote">Tiempos OSRM en coche; no modelan congestión. Fuera de 15′: visible, pero no computa en las densidades.</p>
       </div></details>
-      <details class="promo-section" name="lectura-${p.id}"><summary><span>03</span>Datos del proyecto<small>Precio · entrega · derechos</small></summary><div class="promo-section-body">
-        <dl class="project-data">
-          <div><dt>Promotor</dt><dd>${p.promotor}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
-          <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Unidades · desarrollo completo</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : ''}</dd></div>
-          <div><dt>Precio</dt><dd>${p.precio}${p.precioEstimado ? ' · estimado' : ''}</dd></div><div><dt>Posicionamiento</dt><dd>≈ €${p.eurM2.toLocaleString('es-ES')}/m²</dd></div>
-          <div><dt>Estado</dt><dd>${p.estado}</dd></div><div><dt>Entrega</dt><dd>${p.entrega}</dd></div>
-        </dl><p class="project-rights"><strong>Derechos de golf.</strong> ${p.derechosGolf || p.derechosNota || 'No publicados por el promotor.'}</p>
-        <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-      </div></details>
-      <details class="promo-section" name="lectura-${p.id}"><summary><span>04</span>Lectura editorial<small>Contexto y advertencias</small></summary><div class="promo-section-body">
+      <details class="promo-section" name="lectura-${p.id}"><summary><span>02</span>Lectura editorial<small>Contexto y advertencias</small></summary><div class="promo-section-body">
         <div class="dc-rationale">${p.rationale}</div>
         <ul class="project-warnings">${AVISOS.filter(a => a.p === p.name && a.t !== 'Imagen').map(a => `<li><strong>${a.t}:</strong> ${a.m}</li>`).join('')}</ul>
       </div></details>
