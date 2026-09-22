@@ -1520,16 +1520,23 @@ function initAtlas(el) {
     if (!panel) return;
     const enlaces = promos.reduce((s, p) => s + p.campos.length, 0);
     panel.innerHTML = `
-      <div class="ap-tag">El mapa en reposo</div>
-      <p class="ap-intro">Cada punto es un campo y cada número, una promoción del top 10.
-        Las líneas son las <strong>${enlaces} relaciones</strong> que sostienen la puntuación:
-        de una promoción a los campos que tiene alrededor, con sus minutos medidos.</p>
-      <p class="ap-intro">Pasa por encima de cualquier nodo —o púlsalo para fijarlo— y se aísla su red.</p>
-      <dl class="ap-cifras">
-        <div><dt>Campos</dt><dd>${campos.length}</dd></div>
-        <div><dt>Promociones</dt><dd>${promos.length}</dd></div>
-        <div><dt>Relaciones</dt><dd>${enlaces}</dd></div>
-      </dl>`;
+      <div class="ap-cols ap-cols-reposo">
+        <div class="ap-bloque">
+          <div class="ap-tag">El mapa en reposo</div>
+          <p class="ap-intro">Cada punto es un campo y cada número, una promoción del top 10.
+            Las líneas son las <strong>${enlaces} relaciones</strong> que sostienen la puntuación:
+            de una promoción a los campos que tiene alrededor, con sus minutos medidos.</p>
+        </div>
+        <div class="ap-bloque">
+          <p class="ap-intro">Pasa por encima de cualquier nodo —o púlsalo para fijarlo— y se aísla su red.
+            Los botones de la esquina amplían el mapa; arrastrando se desplaza.</p>
+        </div>
+        <dl class="ap-cifras">
+          <div><dt>Campos</dt><dd>${campos.length}</dd></div>
+          <div><dt>Promociones</dt><dd>${promos.length}</dd></div>
+          <div><dt>Relaciones</dt><dd>${enlaces}</dd></div>
+        </dl>
+      </div>`;
   }
 
   function pintarPanelPromo(p) {
@@ -1538,17 +1545,25 @@ function initAtlas(el) {
     const reservables = en15.filter(c => c.acceso === 1).length;
     const fuera = p.campos.length - en15.length;
     panel.innerHTML = `
-      <div class="ap-tag">${String(p.rank).padStart(2, '0')} / ${p.municipio}</div>
-      <h3 class="ap-nombre">${p.name}</h3>
-      <div class="ap-nota"><strong>${p.total}</strong><span>puntos<br>sobre 100</span></div>
-      <p class="ap-split">${p.A} golf + ${p.B} proyecto</p>
-      <ul class="ap-hechos">
-        <li><strong>${en15.length}</strong> campo${en15.length === 1 ? '' : 's'} en quince minutos.</li>
-        <li><strong>${reservables}</strong> admite${reservables === 1 ? '' : 'n'} reserva sin ser socio.</li>
-        <li>El más próximo, <strong>${p.cercano.name}</strong>${p.cercano.min === 0 ? ', in-resort' : `, a ${p.cercano.min}′`}.</li>
-        ${fuera ? `<li class="ap-fuera">${fuera} declarado${fuera === 1 ? '' : 's'} por encima de los quince minutos: no puntúa${fuera === 1 ? '' : 'n'}.</li>` : ''}
-      </ul>
-      <button type="button" class="ap-cta" data-ficha="${p.id}">Abrir la cuenta completa <span aria-hidden="true">↗</span></button>`;
+      <div class="ap-cols">
+        <div class="ap-bloque ap-ident">
+          <div class="ap-tag">${String(p.rank).padStart(2, '0')} / ${p.municipio}</div>
+          <h3 class="ap-nombre">${p.name}</h3>
+        </div>
+        <div class="ap-bloque ap-marcador">
+          <div class="ap-nota"><strong>${p.total}</strong><span>puntos<br>sobre 100</span></div>
+          <p class="ap-split">${p.A} golf + ${p.B} proyecto</p>
+        </div>
+        <ul class="ap-hechos">
+          <li><strong>${en15.length}</strong> campo${en15.length === 1 ? '' : 's'} en quince minutos.</li>
+          <li><strong>${reservables}</strong> admite${reservables === 1 ? '' : 'n'} reserva sin ser socio.</li>
+          <li>El más próximo, <strong>${p.cercano.name}</strong>${p.cercano.min === 0 ? ', in-resort' : `, a ${p.cercano.min}′`}.</li>
+          ${fuera ? `<li class="ap-fuera">${fuera} declarado${fuera === 1 ? '' : 's'} por encima de los quince minutos: no puntúa${fuera === 1 ? '' : 'n'}.</li>` : ''}
+        </ul>
+        <div class="ap-bloque ap-accion">
+          <button type="button" class="ap-cta" data-ficha="${p.id}">Abrir la cuenta completa <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>`;
     const b = panel.querySelector('.ap-cta');
     if (b) b.addEventListener('click', () => {
       const ficha = document.getElementById('ficha-' + p.id);
@@ -1562,21 +1577,27 @@ function initAtlas(el) {
     if (!panel) return;
     const lista = suyas.slice().sort((a, b) => a.rank - b.rank);
     panel.innerHTML = `
-      <div class="ap-tag">Campo · ${c.municipio}</div>
-      <h3 class="ap-nombre">${c.name}</h3>
-      <p class="ap-estrellas">${'★'.repeat(c.stars)}<span class="ap-off">${'★'.repeat(4 - c.stars)}</span>
-        <span class="ap-acceso">${ACCESO_LBL[c.acceso]}</span></p>
-      <ul class="ap-hechos">
-        <li>${c.hoyos} · ${c.disenador}${c.ano ? ' · ' + c.ano : ''}</li>
-        <li>Green fee ${c.gf ? '€' + c.gf : 'no publicado'}.</li>
-      </ul>
-      ${lista.length
-        ? `<p class="ap-citas">Lo cuenta${lista.length === 1 ? '' : 'n'} en su entorno ${lista.length === 1 ? 'una promoción' : lista.length + ' promociones'}:</p>
-           <ul class="ap-quien">${lista.map(p => {
-             const e = p.campos.find(x => x.id === c.id);
-             return `<li><span>${String(p.rank).padStart(2, '0')}</span> ${p.name} <em>${e.min === 0 ? 'in-resort' : e.min + '′'}${e.fuera ? ' · fuera de umbral' : ''}</em></li>`;
-           }).join('')}</ul>`
-        : '<p class="ap-citas">Ninguna promoción del top 10 lo cuenta en su entorno.</p>'}`;
+      <div class="ap-cols ap-cols-campo">
+        <div class="ap-bloque ap-ident">
+          <div class="ap-tag">Campo · ${c.municipio}</div>
+          <h3 class="ap-nombre">${c.name}</h3>
+          <p class="ap-estrellas">${'★'.repeat(c.stars)}<span class="ap-off">${'★'.repeat(4 - c.stars)}</span>
+            <span class="ap-acceso">${ACCESO_LBL[c.acceso]}</span></p>
+        </div>
+        <ul class="ap-hechos">
+          <li>${c.hoyos} · ${c.disenador}${c.ano ? ' · ' + c.ano : ''}</li>
+          <li>Green fee ${c.gf ? '€' + c.gf : 'no publicado'}.</li>
+        </ul>
+        <div class="ap-bloque ap-citado">
+          ${lista.length
+            ? `<p class="ap-citas">Lo cuenta${lista.length === 1 ? '' : 'n'} en su entorno ${lista.length === 1 ? 'una promoción' : lista.length + ' promociones'}:</p>
+               <ul class="ap-quien">${lista.map(p => {
+                 const e = p.campos.find(x => x.id === c.id);
+                 return `<li><span>${String(p.rank).padStart(2, '0')}</span><b>${p.name}</b><em>${e.min === 0 ? 'in-resort' : e.min + '′'}${e.fuera ? ' · fuera' : ''}</em></li>`;
+               }).join('')}</ul>`
+            : '<p class="ap-citas">Ninguna promoción del top 10 lo cuenta en su entorno.</p>'}
+        </div>
+      </div>`;
   }
 
   const lienzo = el.querySelector('.atlas-lienzo') || el;

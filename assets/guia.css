@@ -1537,7 +1537,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .th-derecha { text-align: right; }
 .fuentes-nota { display: block; font-size: 12px; line-height: 1.5; color: var(--text-mute); margin: 2px 0 10px; }
 /* ── Atlas de relaciones (ranking). Lienzo propio, sin teselas. ── */
-.atlas { display: grid; grid-template-columns: minmax(0,1fr) 300px; border: 1px solid var(--line-strong); background: var(--bg-3); }
+.atlas { border: 1px solid var(--line-strong); background: var(--bg-3); }
 .atlas-lienzo { position: relative; min-width: 0; }
 .atlas-svg { display: block; width: 100%; height: auto; touch-action: none; }
 .atlas-svg.at-arrastrando { cursor: grabbing; }
@@ -1588,30 +1588,41 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .atlas-svg.at-activo .at-promo .at-promo-p, .atlas-svg.at-activo .at-promo .at-promo-n { opacity: .45; }
 .atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--text); stroke: var(--text); }
 .atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: var(--bg-0); }
-.atlas-panel { border-left: 1px solid var(--line-strong); padding: 22px 22px 26px; background: var(--bg-0); color: var(--text); min-width: 0; }
+/* Franja bajo el mapa. La altura está reservada de antemano: la ficha de campo
+   crece o mengua según cuántas promociones lo citen, y sin esto el contenido de
+   la página daría un salto en cada hover. */
+.atlas-panel { border-top: 1px solid var(--line-strong); padding: 18px 22px; background: var(--bg-0); color: var(--text); min-height: 142px; display: flex; align-items: center; }
+.ap-cols { display: grid; grid-template-columns: minmax(0,1.15fr) auto minmax(0,1.5fr) auto; gap: 30px; align-items: center; width: 100%; }
+.ap-cols-campo { grid-template-columns: minmax(0,.85fr) minmax(0,.75fr) minmax(0,2.4fr); }
+.ap-cols-reposo { grid-template-columns: minmax(0,1.5fr) minmax(0,1.2fr) auto; }
+.ap-bloque { min-width: 0; }
+.ap-marcador { display: flex; flex-direction: column; justify-content: center; }
+.ap-accion { justify-self: end; }
 .ap-tag { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: var(--text-mute); font-weight: 700; }
-.ap-intro { font-size: 13px; line-height: 1.55; color: var(--text-mid); margin: 12px 0 0; }
+.ap-intro { font-size: 12.5px; line-height: 1.5; color: var(--text-mid); margin: 8px 0 0; }
 .ap-intro strong { color: var(--text); font-weight: 600; }
-.ap-cifras { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line-strong); }
+.ap-cifras { display: grid; grid-template-columns: repeat(3,auto); gap: 26px; margin: 0; padding: 0 0 0 30px; border-left: 1px solid var(--line-strong); }
 .ap-cifras dt { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mute); }
 .ap-cifras dd { margin: 4px 0 0; font-family: var(--f-display); font-size: 26px; line-height: 1; color: var(--text); }
-.ap-nombre { font-family: var(--f-display); font-size: 26px; line-height: 1.04; text-transform: uppercase; margin: 10px 0 0; color: var(--text); }
-.ap-nota { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 0; }
-.ap-nota strong { font-family: var(--f-display); font-size: 54px; line-height: .9; color: var(--text); }
+.ap-nombre { font-family: var(--f-display); font-size: 24px; line-height: 1.04; text-transform: uppercase; margin: 6px 0 0; color: var(--text); }
+.ap-nota { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+.ap-nota strong { font-family: var(--f-display); font-size: 46px; line-height: .9; color: var(--text); }
 .ap-nota span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mute); }
 .ap-split { font-size: 12px; color: var(--text-mid); margin: 6px 0 0; }
-.ap-hechos { list-style: none; margin: 18px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line-strong); display: grid; gap: 9px; font-size: 12.5px; line-height: 1.45; color: var(--text-mid); }
+.ap-hechos { list-style: none; margin: 0; padding: 0 0 0 30px; border-left: 1px solid var(--line-strong); display: grid; gap: 7px; font-size: 12.5px; line-height: 1.45; color: var(--text-mid); }
 .ap-hechos strong { color: var(--text); }
 .ap-hechos .ap-fuera { color: var(--text-mute); }
-.ap-estrellas { margin: 10px 0 0; font-size: 15px; color: var(--amarillo); letter-spacing: .06em; }
+.ap-estrellas { margin: 8px 0 0; font-size: 14px; color: var(--amarillo); letter-spacing: .06em; }
 .ap-off { color: var(--bg-3); }
 .ap-acceso { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--text-mute); margin-left: 8px; }
-.ap-citas { font-size: 12px; color: var(--text-mute); margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--line-strong); }
-.ap-quien { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 7px; font-size: 12.5px; color: var(--text); }
-.ap-quien li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: baseline; }
+.ap-citas { font-size: 11.5px; color: var(--text-mute); margin: 0; }
+/* Tres columnas fijas: con seis citas, el máximo de la base, nunca pasa de dos filas. */
+.ap-quien { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 5px 18px; font-size: 11.5px; color: var(--text); }
+.ap-quien li { display: grid; grid-template-columns: 20px minmax(0,1fr) auto; gap: 6px; align-items: baseline; }
+.ap-quien li b { font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ap-quien span { font-family: var(--f-display); color: var(--oro-3); }
 .ap-quien em { font-style: normal; font-size: 11px; color: var(--text-mute); }
-.ap-cta { margin: 22px 0 0; width: 100%; background: transparent; border: 1px solid var(--line-strong); color: var(--text); font-family: var(--f-sans); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 12px 14px; cursor: pointer; transition: background-color .2s, color .2s; }
+.ap-cta { margin: 0; white-space: nowrap; background: transparent; border: 1px solid var(--line-strong); color: var(--text); font-family: var(--f-sans); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 12px 14px; cursor: pointer; transition: background-color .2s, color .2s; }
 .ap-cta:hover { background: var(--text); color: #FFFFFF; }
 .atlas-pie { font-size: 11px; color: var(--text-mute); margin: 10px 0 0; letter-spacing: .04em; }
 .atlas-pie a { color: var(--text-mid); }
@@ -1626,8 +1637,13 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .legend-linea { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid var(--verde-2); vertical-align: middle; }
 .legend-linea.punteada { border-top-style: dashed; }
 @media (max-width: 900px) {
-  .atlas { grid-template-columns: 1fr; }
-  .atlas-panel { border-left: 0; border-top: 1px solid var(--line-strong); }
+  .atlas-panel { min-height: 0; display: block; padding: 18px; }
+  .ap-cols, .ap-cols-campo, .ap-cols-reposo { grid-template-columns: 1fr; gap: 16px; }
+  .ap-cifras, .ap-hechos { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid var(--line-strong); }
+  .ap-accion { justify-self: stretch; }
+  .ap-cta { width: 100%; }
+  /* Aquí no hay altura reservada que respetar, así que el nombre se lee entero. */
+  .ap-quien { grid-template-columns: 1fr; font-size: 12.5px; }
   .atlas-zoom button { width: 42px; height: 42px; font-size: 18px; }
 }
 /* Marcadores del mapa Leaflet */
