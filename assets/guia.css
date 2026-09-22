@@ -1384,7 +1384,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-back { transform: rotateX(180deg); grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 0 34px; background: var(--text); border-left: 4px solid var(--oro-1); }
 .dc-b-prueba { display: grid; gap: 5px; min-width: 0; }
 /* La nota: grande y en oro sobre el negro, discreta y en gris cuando no hay giro. */
-.dc-f-nota { font-family: var(--f-display); font-weight: 700; font-size: clamp(38px, 4.4vw, 56px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
+.dc-f-nota { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 2.8vw, 36px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
 .dc-f-nota small { font-family: var(--f-sans); font-size: 13px; letter-spacing: .14em; font-weight: 600; margin-left: 3px; }
 /* Tras el giro lo que manda es la nota: es lo que se rankea. El campo de
    referencia es la prueba que la sostiene, no el titular. */
@@ -1421,7 +1421,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-f-estrellas { font-size: 17px; white-space: nowrap; }
   .dc-f-linea { gap: 2px 10px; }
   .dc-f-loc { font-size: 14px; }
-  .dc-front .dc-f-nota { font-size: 30px; }
+  .dc-f-nota { font-size: 23px; }
   .dc-f-plus { right: 20px; }
 }
 
@@ -1695,3 +1695,29 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .pop-sub { color: var(--text-mid); }
 .pop-score { color: var(--y-1); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
 .pop-stars { color: var(--amarillo); font-weight: 700; }
+
+/* ── Hero de pagina interior ──────────────────────────────────────────────
+   Banda corta, del ancho completo, con el mismo lenguaje que la portada pero
+   a media altura: la portada ocupa 92vh, esto se queda en torno al 40 %. Cada
+   pagina trae su plano —el suyo, no uno generico— y el numero de capitulo en
+   oro. Aqui vive el unico <h1> de las interiores, que antes no tenian ninguno.
+   El velo es mas denso que en la portada porque hay planos muy claros (el
+   cenital del green, el cesped a contraluz) sobre los que el blanco se perdia. */
+.hero-pagina { min-height: clamp(280px, 40vh, 420px); padding: 44px var(--px) 44px; justify-content: flex-end; }
+.hero-pagina::after { background: linear-gradient(180deg, rgba(15,23,38,.30) 0%, rgba(15,23,38,.62) 58%, rgba(15,23,38,.84) 100%); }
+.hero-pagina .hero-center { max-width: 760px; }
+.hero-pagina .hero-kicker { font-size: 11px; letter-spacing: .36em; margin-bottom: 16px; color: #CFC8BE; text-shadow: 0 1px 14px rgba(15,23,38,.8); }
+.hero-pagina .hero-title { font-size: clamp(32px, 4.8vw, 64px); opacity: .92; margin-bottom: 16px; }
+.hero-pagina .hero-title b { color: var(--oro-1); font-weight: inherit; }
+.hero-pagina .hero-lede { font-size: 17px; max-width: 580px; color: #FFFFFF; text-shadow: 0 1px 16px rgba(15,23,38,.8); }
+.hero-m::before  { background-image: url('../images/hero/pag-metodo.jpg'); }
+.hero-c::before  { background-image: url('../images/hero/pag-campos.jpg'); }
+.hero-r::before  { background-image: url('../images/hero/pag-ranking.jpg'); }
+.hero-f::before  { background-image: url('../images/hero/pag-fuentes.jpg'); }
+.hero-k::before  { background-image: url('../images/hero/pag-contacto.jpg'); }
+.hero-pagina::before { background-position: 50% 50%; }
+@media (max-width: 640px) {
+  .hero-pagina { min-height: 240px; padding: 32px var(--px) 32px; }
+  .hero-pagina .hero-lede { font-size: 15px; }
+  .hero-pagina .hero-kicker { margin-bottom: 12px; }
+}
