@@ -517,6 +517,7 @@ const PROMOS = [
     precio:'€1.300.000 – €3.000.000', precioDesde:'€1.300.000', precioEstimado:false, eurM2:9000,
     estado:'En construcción', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:'El Lago Club · Jack Nicklaus Design — en desarrollo, no operativo',
+    marcaPendiente:true,
     cursos:[['la-quinta-golf',1,''],['los-arqueros-golf',6,''],['los-naranjos-golf',6,''],['magna-marbella',7,''],['aloha-golf-club',9,''],['el-higueral',9,''],['real-club-de-golf-las-brisas',9,''],['guadalmina-norte',12,''],['real-club-de-golf-guadalmina-sur',12,''],['alferini-villa-padierna',13,''],['atalaya-new',13,''],['atalaya-old',13,''],['el-paraiso-golf',14,''],['la-zagaleta-old',14,''],['dama-de-noche',15,'']],
     d:{ a5:0,  a5why:'Su campo propio (El Lago Club) no está operativo: por regla v1.1 no puntúa hasta la entrega.',
         a6:3,  a6why:'Carretera de sierra hasta la A-7; buena pero no directa.',
@@ -714,10 +715,22 @@ function nivelAcceso(m) {
   return 'res';   // Resort, Resort de lujo, Semi-privado, Privado / resort, Privado / hotel
 }
 
+// Una regla incumplida detiene el cálculo. Preferimos no publicar a publicar mal:
+// un dato que viole la matriz tiene que romper el build, no colarse en silencio.
+function exigir(cond, msg) {
+  if (!cond) throw new Error('Matriz · regla incumplida: ' + msg);
+}
+
 const CX = {};
 COURSES.forEach(c => {
-  c.acceso = ACCESO[c.membresia] !== undefined ? ACCESO[c.membresia] : 1;
+  // Desconocido nunca es máxima puntuación: una membresía nueva sin coeficiente
+  // declarado paraba antes en 1 (acceso total) y habría inflado A2, A3 y A5.
+  exigir(ACCESO[c.membresia] !== undefined, `membresía sin coeficiente de acceso declarado: "${c.membresia}" (${c.name}).`);
+  exigir(c.stars >= 1 && c.stars <= 4, `estrellas fuera de escala en ${c.name}: ${c.stars}.`);
+  exigir(Number.isFinite(c.lat) && Number.isFinite(c.lng), `coordenada no numérica en ${c.name}.`);
+  c.acceso = ACCESO[c.membresia];
   c.foto = FOTOS_CAMPO[c.id] || null;
+  exigir(!CX[c.id], `identificador de campo duplicado: ${c.id}.`);
   CX[c.id] = c;
 });
 
@@ -731,15 +744,23 @@ const escB3 = e => e >= 10000 ? 10 : e >= 7000 ? 7 : e >= 5000 ? 5 : e >= 3500 ?
 const r1 = n => Math.round(n * 10) / 10;
 
 PROMOS.forEach(p => {
+  const vistos = new Set();
   p.campos = p.cursos.map(([id, min, nota]) => {
     const c = CX[id];
-    if (!c) throw new Error('Campo no encontrado en la base: ' + id);
+    exigir(c, `campo no encontrado en la base: ${id} (${p.name}).`);
+    // Una pareja repetida contaría dos veces en A2 y A3.
+    exigir(!vistos.has(id), `pareja promoción–campo duplicada: ${p.name} — ${id}.`);
+    vistos.add(id);
+    exigir(Number.isFinite(min) && min >= 0, `tiempo inválido de ${p.name} a ${id}: ${min}.`);
     return { ...c, min, nota };
   });
+  exigir(p.unidades > 0 && Number.isFinite(p.unidades), `unidades no válidas en ${p.name}: ${p.unidades}.`);
+  exigir(p.eurM2 > 0 && Number.isFinite(p.eurM2), `€/m² no válidos en ${p.name}: ${p.eurM2}.`);
 
   // A1 y A4 sólo consideran campos de ★★+ (fuera pitch & putt y ejecutivos):
   // en un ranking de golf, tener un par-3 de nueve hoyos en la puerta no es golf.
   const elegibles = p.campos.filter(c => c.stars >= 2);
+  exigir(elegibles.length, `${p.name} no tiene ningún campo ★★+ en su entorno: no se puede calcular A1 ni A4.`);
   const cercano = elegibles.reduce((a, b) => b.min < a.min ? b : a);
 
   // Con los tiempos OSRM algunos campos declarados quedan a >15 min: siguen en la
@@ -754,6 +775,21 @@ PROMOS.forEach(p => {
   p.n3 = en15.filter(c => c.stars >= 3).length;
   p.jugables = en15.filter(c => c.acceso === 1).length;
   p.enQuince = en15.length;
+
+  // Las dos restricciones que la metodología anuncia como automáticas y hasta ahora
+  // se cumplían a mano, más los topes de cada criterio de juicio.
+  [['a5', 10], ['a6', 5], ['b1', 10], ['b4', 10]].forEach(([k, max]) => {
+    const v = p.d[k];
+    exigir(Number.isFinite(v) && v >= 0 && v <= max, `${k} fuera de rango en ${p.name}: ${v} (máximo ${max}).`);
+  });
+  exigir(p.d.a5 + p.d.a6 + p.d.b1 + p.d.b4 <= 35,
+    `los cuatro criterios editoriales de ${p.name} suman ${p.d.a5 + p.d.a6 + p.d.b1 + p.d.b4}: el tope declarado es 35.`);
+  // Lo no entregado no suma: sin campo propio operativo no hay bonus de integración,
+  // y una marca anunciada pero no entregada no llega al máximo de firma.
+  exigir(!(p.campoPropioPendiente && p.d.a5 > 0),
+    `${p.name} puntúa a5=${p.d.a5} con su campo propio aún sin entregar (${p.campoPropioPendiente}).`);
+  exigir(!(p.marcaPendiente && p.d.b1 > 7),
+    `${p.name} puntúa b1=${p.d.b1} con la marca anunciada pero no entregada: el tope es 7.`);
 
   p.score = {
     a1: ESC_A1[cercano.stars], a2: escA2(ef4), a3: escA3(ef3), a4: escA4(cercano.min),
@@ -797,7 +833,12 @@ PROMOS.forEach((p, i) => {
   el.innerHTML = `Si se anulan los cuatro criterios editoriales (a<sub>5</sub>, a<sub>6</sub>, b<sub>1</sub>, b<sub>4</sub> = 0) y se ordena solo por los 65 puntos que salen de la base de datos, `
     + `${lider.length > 1 ? `empatan en cabeza <strong>${fmt(lider)}</strong> con ${datos[0].d} puntos` : `sigue primera <strong>${lider[0]}</strong> con ${datos[0].d} puntos`}, `
     + `${mismoPodio ? 'y el podio es el mismo que el publicado' : 'y el podio cambia respecto al publicado'}: `
-    + datos.slice(0, 3).map((x, i) => `${x.name} (${x.d})`).join(' · ') + '. La opinión editorial no fabrica al número uno.';
+    + datos.slice(0, 3).map((x, i) => `${x.name} (${x.d})`).join(' · ') + '. '
+    // La conclusión se ajusta a lo que el cálculo demuestra: con un empate en la base,
+    // lo que acredita es que el podio aguanta, no que el ganador sea ajeno al juicio.
+    + (lider.length > 1
+      ? `El desempate en cabeza, por tanto, <strong>sí lo decide el bloque editorial</strong>: la base deja a ${fmt(lider)} igualadas y son los cuatro criterios de juicio los que ordenan el primer puesto. Lo que esta prueba acredita es que el podio se sostiene sobre los datos, no que el número uno sea independiente de la opinión.`
+      : 'El número uno, por tanto, no lo fabrica la opinión editorial: aguanta sin ella.');
 })();
 
 /* ═══════════════════════════════════
