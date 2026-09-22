@@ -980,6 +980,43 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   card.className = 'detail-card promo';
   card.setAttribute('name', 'promociones');
   card.id = 'ficha-' + p.id;
+  // ── La cadena: el retrato del entorno de golf que produce el bloque A ──
+  // No es un mapa y no pretende serlo: aquí no hay norte ni costa. Tres
+  // variables y ninguna más, para que se lea sin leyenda: el radio son los
+  // minutos —el centro es el cero, así que un campo in-resort queda pegado al
+  // núcleo—, el tamaño del nodo son las estrellas y el relleno dice si se
+  // puede reservar sin ser socio. Cada promoción da una figura distinta porque
+  // los datos son distintos, no porque se dibuje distinto.
+  const adn = () => {
+    const R0 = 22, R15 = 120, C = 150;           // núcleo, anillo de 15′ y centro
+    const radio = m => Math.min(R0 + (m / 15) * (R15 - R0), 134);
+    const rNodo = { 1: 3.6, 2: 5, 3: 6.6, 4: 8.6 };
+    const campos = p.campos.slice().sort((a, b) => a.min - b.min || b.stars - a.stars);
+    const paso = (Math.PI * 2) / campos.length;
+    const nodos = campos.map((c, i) => {
+      // Medio paso de desfase: así el eje vertical queda libre para las
+      // etiquetas de los anillos y ningún nodo se sienta encima de ellas.
+      const ang = -Math.PI / 2 + paso / 2 + i * paso;
+      const r = radio(c.min), x = C + Math.cos(ang) * r, y = C + Math.sin(ang) * r;
+      const abierto = c.acceso === 1;
+      const cls = `adn-n adn-s${c.stars}${abierto ? '' : ' adn-cerrado'}${c.fuera ? ' adn-fuera' : ''}`;
+      const ref = c === p.cercano ? `<circle class="adn-ref" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(rNodo[c.stars] + 4.5).toFixed(1)}"/>` : '';
+      return `<line class="adn-l${abierto ? '' : ' adn-l-socios'}" x1="${C}" y1="${C}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>
+        ${ref}<circle class="${cls}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rNodo[c.stars]}"><title>${c.name} · ${c.min === 0 ? 'in-resort' : c.min + '′'} · ${'★'.repeat(c.stars)} · ${ACCESO_LBL[c.acceso].toLowerCase()}</title></circle>`;
+    }).join('');
+    const anillos = [5, 10, 15].map(m => `<circle class="adn-anillo" cx="${C}" cy="${C}" r="${radio(m).toFixed(1)}"/>
+      <text class="adn-anillo-t" x="${C + 3}" y="${(C - radio(m) + 3).toFixed(1)}">${m}′</text>`).join('');
+    const resumen = `${p.name}: ${p.campos.length} campos en el entorno, ${p.jugables} reservables sin ser socio; el más cercano, ${p.cercano.name}, a ${p.cercano.min === 0 ? 'cero minutos' : p.cercano.min + ' minutos'}.`;
+    return `<figure class="adn">
+      <svg class="adn-svg" viewBox="0 0 300 300" role="img" aria-label="${resumen}">
+        ${anillos}${nodos}
+        <circle class="adn-core" cx="${C}" cy="${C}" r="16"/>
+        <text class="adn-core-t" x="${C}" y="${C + 4}">${p.top10 ? String(p.rank).padStart(2, '0') : p.rank}</text>
+      </svg>
+      <figcaption>Radio, minutos en coche · tamaño, estrellas · hueco, solo socios</figcaption>
+    </figure>`;
+  };
+
   // Cada criterio en una linea: codigo, enunciado, puntos, barra y el porque
   // debajo. Antes el porque estaba plegado dentro de un <details> y la tarjeta
   // quedaba desconectada de lo que explicaba.
@@ -1061,6 +1098,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         </header>
         <div class="fb-golf-top">
           ${fotoReferencia(p)}
+          ${p.rank === 1 ? adn() : ''}
           <dl class="quick-facts">
             <div><dt>Distancia al de referencia</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
             <div><dt>Campos ★★★+ en 15′</dt><dd>${p.n3}<small>de ${p.enQuince} en el umbral</small></dd></div>

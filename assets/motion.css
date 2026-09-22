@@ -27,7 +27,32 @@
 
 .fb-proyecto .project-data, .fb-golf .fb-golf-top { margin-top: 20px; }
 .project-data dd.dd-texto { font-size: 13px; font-weight: 400; }
+/* Tres columnas cuando hay cadena —de momento solo la #01— y dos cuando no. */
 .fb-golf-top { display: grid; grid-template-columns: minmax(0,300px) minmax(0,1fr); gap: 18px; }
+.fb-golf-top:has(.adn) { grid-template-columns: minmax(0,270px) minmax(0,290px) minmax(0,1fr); }
+
+/* ── La cadena ──────────────────────────────────────────────────────────
+   El entorno de golf de una promocion, dibujado desde sus propias relaciones.
+   Sin norte y sin costa: de eso ya se ocupa el atlas. Aqui el radio son los
+   minutos, el tamano son las estrellas y el hueco dice que hay que ser socio.
+   Los tonos son los mismos que usa el atlas sobre fondo claro. */
+.adn { margin: 0; display: flex; flex-direction: column; border: 1px solid var(--line-strong); background: var(--bg-0); }
+.adn-svg { display: block; width: 100%; height: auto; }
+.adn figcaption { padding: 10px 14px 12px; border-top: 1px solid var(--line); font-size: 9.5px; line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mute); }
+.adn-anillo { fill: none; stroke: rgba(30,58,95,.13); stroke-width: 1; }
+.adn-anillo-t { fill: var(--text-mute); font-family: var(--f-sans); font-size: 7.5px; font-weight: 600; letter-spacing: .1em;
+  paint-order: stroke; stroke: var(--bg-0); stroke-width: 2.5px; stroke-linejoin: round; }
+.adn-l { stroke: var(--verde-2); stroke-width: 1; opacity: .34; }
+.adn-l-socios { stroke-dasharray: 2.5 3.5; opacity: .3; }
+.adn-n { stroke-width: 0; }
+.adn-s4 { fill: #2F4A16; } .adn-s3 { fill: #4A6B22; } .adn-s2 { fill: #6E9130; } .adn-s1 { fill: #9CB865; }
+.adn-cerrado { fill: none; stroke-width: 1.5; }
+.adn-cerrado.adn-s4 { stroke: #2F4A16; } .adn-cerrado.adn-s3 { stroke: #4A6B22; }
+.adn-cerrado.adn-s2 { stroke: #6E9130; } .adn-cerrado.adn-s1 { stroke: #9CB865; }
+.adn-fuera { opacity: .42; }
+.adn-ref { fill: none; stroke: var(--oro-2); stroke-width: 1.4; }
+.adn-core { fill: var(--text); }
+.adn-core-t { fill: #FFFFFF; font-family: var(--f-display); font-size: 15px; font-weight: 700; text-anchor: middle; }
 .fb-golf-top .dc-ref { margin: 0; background: var(--bg-0); border-color: var(--line-strong); }
 .fb-golf-top .quick-facts { grid-template-columns: 1fr; margin: 0; }
 .fb-golf-top .quick-facts > div { border-right: 0; border-bottom: 1px solid var(--line-strong); }
@@ -176,6 +201,7 @@
   .fb-tit { grid-column: 1 / -1; order: 3; }
   .fb-nota { font-size: 30px; }
   .fb-golf-top { grid-template-columns: 1fr; }
+  .adn-svg { max-width: 320px; margin: 0 auto; }
   .fb-cuenta { padding: 16px; }
   .fb-eq strong { font-size: 34px; }
 }
