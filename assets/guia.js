@@ -990,7 +990,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       <div class="dc-flip-inner">
         <div class="dc-face dc-front">
           <span class="dc-f-label">${p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank + ' · Mención'}</span>
-          <span class="dc-f-name">${p.name}</span>
+          <span class="dc-f-name"><b>${p.name}</b><span class="dc-f-estrellas">${'★'.repeat(p.cercano.stars)}<span class="star-off">${'★'.repeat(4 - p.cercano.stars)}</span></span></span>
           <span class="dc-f-loc">${p.municipio} · ${p.zona}</span>
           <span class="dc-f-nota">${p.total}<small>/100</small></span>
         </div>

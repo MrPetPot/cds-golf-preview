@@ -1373,7 +1373,12 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-front .dc-f-label, .dc-front .dc-f-name, .dc-front .dc-f-loc { grid-column: 1; }
 .dc-front .dc-f-nota { grid-column: 2; grid-row: 1 / 4; align-self: center; }
 .dc-front .dc-f-label { color: var(--oro-3); }
-.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Las estrellas al mismo cuerpo que en el reverso: en el rótulo de 10 px el glifo
+   quedaba desproporcionado y no se leía como una calificación. */
+.dc-f-estrellas { flex: none; line-height: 1; letter-spacing: .03em; }
+.dc-f-estrellas .star-off { color: rgba(30,58,95,.2); }
+.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); min-width: 0; display: flex; align-items: baseline; gap: 16px; }
+.dc-f-name b { font-weight: inherit; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dc-front .dc-f-loc { color: var(--text-mute); }
 .dc-back { transform: rotateX(180deg); grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 0 34px; background: var(--text); border-left: 4px solid var(--oro-1); }
 .dc-b-prueba { display: grid; gap: 8px; min-width: 0; }
@@ -1404,7 +1409,11 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-flip-inner { min-height: 92px; }
   .dc-face { padding: 0 64px 0 20px; }
   .dc-front { gap: 16px; }
-  .dc-f-name { font-size: 21px; white-space: normal; }
+  /* Aquí no cabe todo en una fila: el nombre se pliega y las estrellas fluyen
+     detrás del texto, en vez de recortarlo. */
+  .dc-f-name { font-size: 21px; display: block; }
+  .dc-f-name b { display: inline; white-space: normal; overflow: visible; }
+  .dc-f-estrellas { font-size: 15px; margin-left: 8px; white-space: nowrap; }
   .dc-f-label { font-size: 9px; letter-spacing: .2em; }
   .dc-f-loc { font-size: 12px; }
   .dc-f-plus { right: 20px; }
