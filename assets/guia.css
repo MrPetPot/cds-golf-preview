@@ -1366,15 +1366,19 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   display: grid; align-items: center; padding: 0 120px 0 44px; background: var(--text); color: #FFFFFF;
 }
-.dc-front { grid-template-columns: auto minmax(0, 1fr) auto; gap: 36px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); }   /* en reposo, gris claro de la web */
-.dc-f-rank { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(48px, 5.2vw, 68px); line-height: 1; letter-spacing: -.01em; color: var(--oro-2); white-space: nowrap; }
-.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.02; letter-spacing: -.005em; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.dc-f-score { font-family: var(--f-display); font-weight: 700; font-size: clamp(64px, 6.4vw, 88px); line-height: 1; letter-spacing: -.02em; color: var(--text); white-space: nowrap; text-align: right; }
-.dc-f-score small { display: block; font-family: var(--f-sans); font-size: 10px; letter-spacing: .3em; font-weight: 600; color: var(--text-mute); margin-top: 6px; }
+/* La cara frontal usa la misma composición que la de evidencia —filete de acento,
+   rótulo fino, titular grande y pie— pero en claro: lo que se rankea son las
+   promociones, así que el nombre manda y la cifra acompaña. */
+.dc-front { grid-template-columns: 1fr; align-content: center; gap: 8px; background: var(--bg-2); color: var(--text); border: 1px solid var(--line); border-left: 4px solid var(--oro-2); }
+.dc-front .dc-f-label { color: var(--oro-3); }
+.dc-front .dc-f-label small { font-family: var(--f-sans); font-size: 9px; letter-spacing: .2em; color: var(--text-mute); }
+.dc-front .dc-f-label .star-off { color: rgba(30,58,95,.22); }
+.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dc-front .dc-f-loc { color: var(--text-mute); }
 .dc-back { transform: rotateX(180deg); grid-template-columns: 1fr; align-content: center; gap: 8px; background: var(--text); border-left: 4px solid var(--oro-1); }   /* tras el giro, negro */
-.dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); }
+.dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
-.dc-f-loc { font-size: 14px; color: var(--greige); }
+.dc-f-loc { font-size: 14px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease); }
 /* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -1387,11 +1391,9 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-flip-inner { min-height: 92px; }
   .dc-face { padding: 0 64px 0 20px; }
   .dc-front { gap: 16px; }
-  /* Los tres elementos pesan casi lo mismo: la nota no manda sobre el nombre. */
-  .dc-f-rank { font-size: 26px; }
   .dc-f-name { font-size: 21px; white-space: normal; }
-  .dc-f-score { font-size: 26px; }
-  .dc-f-score small { font-size: 8px; letter-spacing: .22em; margin-top: 3px; }
+  .dc-f-label { font-size: 9px; letter-spacing: .2em; }
+  .dc-f-loc { font-size: 12px; }
   .dc-f-plus { right: 20px; }
 }
 
