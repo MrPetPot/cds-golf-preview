@@ -1395,7 +1395,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-f-prueba .star-off { opacity: .3; }   /* tras el giro, negro */
 .dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
-.dc-f-loc { font-size: 14px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dc-f-loc { font-size: 16px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease), opacity .3s var(--ease); }
 /* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
@@ -1420,11 +1420,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-front .dc-f-label { font-size: 21px; }
   .dc-f-estrellas { font-size: 15px; white-space: nowrap; }
   .dc-f-linea { gap: 2px 10px; }
-  /* A 375 px la linea de texto se queda en unos 175 px: la ubicacion no cabe
-     detras de las estrellas, asi que ocupa su propia fila y se pliega entera
-     en lugar de perder el final con puntos suspensivos. */
-  .dc-f-loc { font-size: 12px; }
-  .dc-front .dc-f-loc { flex: 1 1 100%; white-space: normal; overflow: visible; }
+  .dc-f-loc { font-size: 14px; }
   .dc-front .dc-f-nota { font-size: 30px; }
   .dc-f-plus { right: 20px; }
 }
