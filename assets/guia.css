@@ -1386,10 +1386,10 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-b-prueba { display: grid; gap: 5px; min-width: 0; }
 /* La nota: grande y en oro sobre el negro, discreta y en gris cuando no hay giro. */
 .dc-f-nota { font-family: var(--f-display); font-weight: 700; font-size: clamp(38px, 4.4vw, 56px); line-height: 1; letter-spacing: -.02em; white-space: nowrap; }
-.dc-f-nota small { font-family: var(--f-sans); font-size: 10px; letter-spacing: .22em; font-weight: 600; margin-left: 2px; }
+.dc-f-nota small { font-family: var(--f-sans); font-size: 13px; letter-spacing: .14em; font-weight: 600; margin-left: 3px; }
 /* Tras el giro lo que manda es la nota: es lo que se rankea. El campo de
    referencia es la prueba que la sostiene, no el titular. */
-.dc-back .dc-f-nota { color: var(--oro-1); font-size: clamp(52px, 5.6vw, 72px); }
+.dc-back .dc-f-nota { color: var(--oro-1); }
 .dc-front .dc-f-nota { justify-self: end; }
 .dc-back .dc-f-nota small { color: rgba(255,255,255,.5); }
 .dc-front .dc-f-nota { color: var(--text); }
