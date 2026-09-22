@@ -1004,7 +1004,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     <div class="dc-flip">
       <div class="dc-flip-inner">
         <div class="dc-face dc-front">
-          <span class="dc-f-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</span>
+          <span class="dc-f-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank + ' · Mención'}</span>
           <span class="dc-f-name">${p.name}</span>
           <span class="dc-f-score">${p.total}<small>/ 100</small></span>
         </div>
@@ -1020,7 +1020,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       <img class="dc-head-bg" src="${media.src}" alt="${media.pie || p.name + ' — ' + p.municipio}" loading="lazy"
            onerror="this.hidden=true;this.parentElement.classList.add('sin-img')"/>
       <div class="dc-head-inner">
-        <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · Top 10' : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
+        <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
         <div class="dc-loc"><span class="dc-loc-extra">${p.zona} · ${p.sub}</span></div>
       </div>
       <div class="dc-score-overlay">${p.total}<small>/ 100</small></div>

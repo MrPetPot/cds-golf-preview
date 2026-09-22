@@ -1387,9 +1387,11 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-flip-inner { min-height: 92px; }
   .dc-face { padding: 0 64px 0 20px; }
   .dc-front { gap: 16px; }
-  .dc-f-rank { font-size: 28px; }
-  .dc-f-name { font-size: 18px; white-space: normal; }
-  .dc-f-score { font-size: 44px; }
+  /* Los tres elementos pesan casi lo mismo: la nota no manda sobre el nombre. */
+  .dc-f-rank { font-size: 26px; }
+  .dc-f-name { font-size: 21px; white-space: normal; }
+  .dc-f-score { font-size: 26px; }
+  .dc-f-score small { font-size: 8px; letter-spacing: .22em; margin-top: 3px; }
   .dc-f-plus { right: 20px; }
 }
 
