@@ -1112,7 +1112,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 /* Menú desplegable */
 .topnav-menu { position: relative; flex: none; }
 .topnav-toggle {
-  display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 4px 0 16px;
+  display: flex; align-items: center; justify-content: center; width: 44px; height: 40px; padding: 0;
   background: transparent; border: 1px solid rgba(255,255,255,.34); cursor: pointer; color: #FFFFFF;
   font-family: var(--f-sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 700;
   transition: background-color .2s, border-color .2s, color .2s;
@@ -1137,7 +1137,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,.10); }
 .topnav-links a[aria-current="page"] { color: #FFFFFF; border-left-color: var(--oro-1); }
 .topnav-links a.nav-ranking { color: #FFFFFF; }
-@media (max-width: 640px) { .topnav-brand b { font-size: 21px; } .topnav-toggle-actual { display: none; } .topnav-toggle { padding-left: 4px; } }
+@media (max-width: 640px) { .topnav-brand b { font-size: 21px; } }
 
 /* Portada · los tres pasos */
 .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
