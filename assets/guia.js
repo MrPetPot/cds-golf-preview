@@ -420,6 +420,12 @@ const FOTOS_CAMPO = {
   "pie": "Lago y palmeral, con el Mediterráneo al fondo.",
   "credito": "Archivo Malashpina",
   "url": null
+ },
+ "la-resina-golf": {
+  "src": "images/golf/la-resina-golf.jpg",
+  "pie": "Calle entre el lago y la hilera de cipreses.",
+  "credito": "Archivo Malashpina",
+  "url": null
  }
 };
 
