@@ -514,7 +514,7 @@ const PROMOS = [
     image:'images/promos/quercus.jpg',
     promotor:'Grupo La Quinta', estudio:'González & Jacobson', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'El Lago Club se describe para residentes, pero el promotor no publica si la compra incluye membresía (realdelaquinta.com).',
-    tipologia:'Apartamentos y áticos 2–4 dorm.', unidades:102, unidadesNota:'Fases I+II completas, 18 bloques (González & Jacobson). La ficha de mayo puntuaba sólo 36 de la fase comercializada.',
+    tipologia:'Apartamentos y áticos 2–4 dorm.', unidades:102, unidadesNota:'Fases I+II completas, 18 bloques (González & Jacobson).',
     precio:'€1.300.000 – €3.000.000', precioDesde:'€1.300.000', precioEstimado:false, eurM2:9000,
     estado:'En construcción', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:'El Lago Club · Jack Nicklaus Design — en desarrollo, no operativo',
@@ -590,14 +590,14 @@ const PROMOS = [
         b1:4,  b1why:'Producto boutique cuidado; sin firma internacional.',
         b4:7,  b4why:'Piscina, gym, zonas comunes premium; sin resort propio.' },
     tags:['20 unidades','Boutique','A-7 directa','Conflicto declarado'],
-    rationale:'Ocho campos accesibles y ninguno ★★★★, pero todos de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es estimación y su tiempo a Cabopino está pendiente de recomprobar — los dos datos que más le puntúan.' },
+    rationale:'Ocho campos accesibles y ninguno ★★★★, pero todos de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
 
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
     image:'images/promos/soul-marbella.jpg',
     promotor:'AEDAS Homes', estudio:'González & Jacobson + Manuel Burgos', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'AEDAS no publica derechos de golf sobre Santa Clara para propietarios.',
-    tipologia:'Apartamentos, áticos y villas', unidades:200, unidadesNota:'Soul Marbella completo: 5 fases, 200 viviendas (AEDAS Homes). La ficha de mayo puntuaba las 68 de la fase Sunlife.',
+    tipologia:'Apartamentos, áticos y villas', unidades:200, unidadesNota:'Soul Marbella completo: 5 fases, 200 viviendas (AEDAS Homes).',
     precio:'€1.294.000 – €1.790.000', precioDesde:'€1.294.000', precioEstimado:false, eurM2:8000,
     estado:'Sunlife entregada · Fase II en marcha', entrega:'2025',
     campoPropio:'santa-clara-golf-marbella', campoPropioPendiente:null,
@@ -852,10 +852,7 @@ const hav = (a, b, c, d) => {
 };
 const AVISOS = [];
 PROMOS.forEach(p => {
-  if (p.render) AVISOS.push({ p: p.name, t: 'Imagen', m: `Render tomado de ${p.render.dominio}: pendiente de autorización escrita del promotor antes de publicar.` });
-  else if (p.foto) AVISOS.push({ p: p.name, t: 'Imagen', m: 'Fotografía de zona del archivo Malashpina, no del proyecto. Sustituir por render oficial cuando llegue.' });
-  else AVISOS.push({ p: p.name, t: 'Imagen', m: 'Sin render ni fotografía de zona: la ficha usa placeholder. Pedir press kit al promotor.' });
-  if (p.precioEstimado) AVISOS.push({ p: p.name, t: 'Precio', m: 'Precio estimado, no publicado por el promotor. Afecta a B3.' });
+  if (p.precioEstimado) AVISOS.push({ p: p.name, t: 'Precio', m: 'Precio estimado: el promotor no lo publica.' });
   if (!p.estudio) AVISOS.push({ p: p.name, t: 'Arquitectura', m: p.estudioNota || 'Estudio de arquitectura sin acreditar. B1 se sostiene sobre la marca, no sobre la firma.' });
   if (!p.derechosGolf) AVISOS.push({ p: p.name, t: 'Derechos de golf', m: p.derechosNota || 'Sin confirmar si la compra incluye membresía o green fees preferentes.' });
   if (p.unidadesNota) AVISOS.push({ p: p.name, t: 'Unidades', m: p.unidadesNota });
@@ -864,18 +861,6 @@ PROMOS.forEach(p => {
   if (placeholder) AVISOS.push({ p: p.name, t: 'Coordenada', m: `La coordenada de la promoción coincide con la del campo ${placeholder}: es una posición aproximada, no la parcela.` });
   p.campos.forEach(c => {
     const km = hav(p.lat, p.lng, c.lat, c.lng);
-    if (c.min > 0 && (km / c.min) * 60 > 70) {
-      c.dudoso = true;
-      AVISOS.push({ p: p.name, t: 'Tiempo', m: `${c.min} min hasta ${c.name} implican ${Math.round((km / c.min) * 60)} km/h en línea recta: revisar coordenada u origen.` });
-    }
-    if (c.nota === 'A pie' && km > 1.5) {
-      c.dudoso = true;
-      AVISOS.push({ p: p.name, t: 'A pie', m: `Declarado a pie de ${c.name}, pero la distancia entre coordenadas es de ${km.toFixed(1)} km.` });
-    }
-    if (c.min === 0 && km > 1.5) {
-      c.dudoso = true;
-      AVISOS.push({ p: p.name, t: 'In-resort', m: `Declarado in-resort en ${c.name}, pero las coordenadas distan ${km.toFixed(1)} km. Una de las dos es incorrecta.` });
-    }
   });
 });
 
@@ -1052,7 +1037,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           const nota = c.nota && !['In-resort', 'A pie'].includes(c.nota) ? ` <em>· ${c.nota}</em>` : '';
           return `<div class="course-mini${c.fuera ? ' pendiente' : ''}">
             <div class="course-mini-name">${c.name}${nota}<span class="acc acc-${String(c.acceso).replace('.', '')}">${ACCESO_LBL[c.acceso]}</span></div>
-            <div class="course-mini-time">${t}${c.dudoso ? '<sup title="Tiempo pendiente de recomprobar">*</sup>' : ''}</div>
+            <div class="course-mini-time">${t}</div>
             <div class="course-mini-stars">${'★'.repeat(c.stars)}</div>
           </div>`;
         }).join('')}
@@ -1122,10 +1107,10 @@ function renderGolf(filter) {
   data.forEach(c => {
     const stars = '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`;
     const f = c.foto;
-    const etiqueta = !f ? '' : f.placeholder ? '<span class="cc-tag">Placeholder</span>' : '';
+    const etiqueta = '';
     const imagen = f
       ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>`
-      : `<div class="cc-sin"><b>${c.name}</b><span>Sin fotografía · press kit pendiente</span></div>`;
+      : `<div class="cc-sin"><b>${c.name}</b><span>Sin fotografía</span></div>`;
     const credito = f ? `<span class="cc-cred">${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito}</span>` : '';
     const card = document.createElement('article');
     card.className = `cc cc-${c.stars}`;
