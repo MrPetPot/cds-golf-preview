@@ -1131,11 +1131,287 @@ if (avisosBox) {
 }
 
 /* ═══════════════════════════════════
-   MAPA · LEAFLET (patrón defensivo)
+   ATLAS · las relaciones, no las carreteras
+   Lienzo propio, sin teselas ni API de terceros: las mismas coordenadas del
+   archivo que alimentan la puntuación, proyectadas sin deformar. Cada línea es
+   una relación promoción→campo con sus minutos de OSRM; ninguna es una ruta.
+═══════════════════════════════════ */
+// Se etiquetan nueve anclas de oeste a este. La posición sale del centroide real
+// de los campos de cada zona, no de una coordenada escrita a mano.
+const ATLAS_ANCLAS = [
+  ['Sotogrande', ['Sotogrande', 'Sotogrande Alto', 'San Roque', 'La Línea']],
+  ['Casares', ['Casares', 'Manilva']],
+  ['Estepona', ['Estepona']],
+  ['Benahavís', ['Benahavís']],
+  ['Marbella', ['Marbella · Nueva Andalucía', 'Nueva Andalucía', 'Río Verde', 'San Pedro']],
+  ['Mijas', ['Mijas', 'Mijas Costa', 'La Cala', 'Calahonda']],
+  ['Benalmádena', ['Benalmádena', 'Alhaurín de la Torre']],
+  ['Málaga', ['Churriana', 'Campanillas']],
+  ['Vélez-Málaga', ['Caleta de Vélez', 'Rincón Victoria']]
+];
+const SVGNS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs) {
+  const n = document.createElementNS(SVGNS, tag);
+  for (const k in attrs) if (attrs[k] !== null && attrs[k] !== undefined) n.setAttribute(k, attrs[k]);
+  return n;
+}
+
+function initAtlas(el) {
+  const W = 1000, H = 500, M = 40;
+  const campos = COURSES.filter(c => typeof c.lat === 'number' && typeof c.lng === 'number');
+  const promos = PUBLICADAS.filter(p => typeof p.lat === 'number' && typeof p.lng === 'number');
+  if (!campos.length) return;
+
+  // Proyección equirectangular con corrección de latitud y escala única en los dos
+  // ejes: la forma del territorio no se deforma para rellenar el lienzo.
+  const pts = campos.concat(promos);
+  const laMin = Math.min(...pts.map(p => p.lat)), laMax = Math.max(...pts.map(p => p.lat));
+  const lnMin = Math.min(...pts.map(p => p.lng)), lnMax = Math.max(...pts.map(p => p.lng));
+  const k = Math.cos((laMin + laMax) / 2 * Math.PI / 180);
+  const esc = Math.min((W - 2 * M) / ((lnMax - lnMin) * k), (H - 2 * M) / (laMax - laMin));
+  const cx = W / 2, cy = H / 2, lnMid = (lnMin + lnMax) / 2, laMid = (laMin + laMax) / 2;
+  const X = ln => cx + (ln - lnMid) * k * esc;
+  const Y = la => cy - (la - laMid) * esc;
+
+  // Relación inversa: qué promociones citan cada campo. No existía en la pieza.
+  const citadoPor = {};
+  promos.forEach(p => p.campos.forEach(c => (citadoPor[c.id] = citadoPor[c.id] || []).push(p)));
+
+  // role="group" y no "img": con "img" los lectores de pantalla podan el subárbol
+  // y los nodos navegables por teclado dejarían de existir para ellos.
+  const svg = sv('svg', {
+    viewBox: `0 0 ${W} ${H}`, class: 'atlas-svg',
+    role: 'group', 'aria-label': `Mapa de relaciones: ${promos.length} promociones y ${campos.length} campos de golf. Cada nodo abre su detalle con Intro.`
+  });
+  const gRejilla = sv('g', { class: 'at-rejilla', 'aria-hidden': 'true' });
+  const gSitios = sv('g', { class: 'at-sitios', 'aria-hidden': 'true' });
+  const gLineas = sv('g', { class: 'at-lineas' });
+  const gCampos = sv('g', { class: 'at-campos' });
+  const gPromos = sv('g', { class: 'at-promos' });
+  svg.append(gRejilla, gSitios, gLineas, gCampos, gPromos);
+
+  for (let i = 1; i < 10; i++) {
+    gRejilla.append(sv('line', { x1: W / 10 * i, y1: 0, x2: W / 10 * i, y2: H }));
+    if (i < 5) gRejilla.append(sv('line', { x1: 0, y1: H / 5 * i, x2: W, y2: H / 5 * i }));
+  }
+
+  ATLAS_ANCLAS.forEach(([etiqueta, zonas]) => {
+    const dentro = campos.filter(c => zonas.indexOf(c.municipio) > -1);
+    if (!dentro.length) return;
+    const la = dentro.reduce((s, c) => s + c.lat, 0) / dentro.length;
+    const ln = dentro.reduce((s, c) => s + c.lng, 0) / dentro.length;
+    const t = sv('text', { x: X(ln), y: Y(la) - 16, class: 'at-sitio' });
+    t.textContent = etiqueta.toUpperCase();
+    gSitios.append(t);
+  });
+  const mar = sv('text', { x: W * .72, y: H - 54, class: 'at-mar' });
+  mar.textContent = 'MEDITERRÁNEO';
+  gSitios.append(mar);
+
+  // ── Nodos de campo: tamaño por estrellas, relleno sólo si se puede reservar.
+  const nodoCampo = {};
+  campos.forEach(c => {
+    const r = c.stars === 4 ? 6 : c.stars === 3 ? 5 : c.stars === 2 ? 4 : 3.2;
+    const reservable = c.acceso === 1;
+    const g = sv('g', {
+      class: `at-campo at-s${c.stars}${reservable ? '' : ' at-cerrado'}`,
+      tabindex: '0', role: 'button',
+      'aria-label': `${c.name}, ${c.municipio}. ${c.stars} estrellas. ${ACCESO_LBL[c.acceso]}.`
+    });
+    g.append(sv('circle', { cx: X(c.lng), cy: Y(c.lat), r, class: 'at-campo-p' }));
+    g.append(sv('circle', { cx: X(c.lng), cy: Y(c.lat), r: r + 7, class: 'at-golpe' }));
+    nodoCampo[c.id] = g;
+    g.__at = { t: 'c', v: c };
+    g.addEventListener('mouseenter', () => verCampo(c));
+    g.addEventListener('click', () => fijarCampo(c));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fijarCampo(c); } });
+    gCampos.append(g);
+  });
+
+  // ── Líneas. En reposo, las 146 se insinúan: el dibujo ya dice "esto es una red".
+  const lineas = [];
+  promos.forEach(p => p.campos.forEach(c => {
+    const l = sv('line', {
+      x1: X(p.lng), y1: Y(p.lat), x2: X(c.lng), y2: Y(c.lat),
+      class: `at-linea${c.fuera ? ' at-fuera' : ''}`,
+      'stroke-width': c.stars >= 3 ? 1.5 : 1
+    });
+    l.dataset.promo = p.id; l.dataset.campo = c.id;
+    lineas.push(l); gLineas.append(l);
+  }));
+
+  // ── Nodos de promoción. Once de las catorce caben en quince kilómetros de costa,
+  // así que los anillos se separan hasta poder leerse y una línea guía los ata a su
+  // coordenada real, que no se mueve: se desplaza la etiqueta, nunca el dato.
+  const SEP = 34;
+  const sitios = promos.map(p => ({ p, x0: X(p.lng), y0: Y(p.lat), x: X(p.lng), y: Y(p.lat) }));
+  for (let it = 0; it < 260; it++) {
+    for (let i = 0; i < sitios.length; i++) for (let j = i + 1; j < sitios.length; j++) {
+      const a = sitios[i], b = sitios[j];
+      let dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.hypot(dx, dy) || .01;
+      if (d < SEP) {
+        const f = (SEP - d) / d * .5;
+        dx *= f; dy *= f;
+        a.x -= dx; a.y -= dy; b.x += dx; b.y += dy;
+      }
+    }
+    sitios.forEach(q => { q.x += (q.x0 - q.x) * .05; q.y += (q.y0 - q.y) * .05; });
+  }
+  sitios.forEach(q => {
+    q.x = Math.min(W - 18, Math.max(18, q.x));
+    q.y = Math.min(H - 18, Math.max(18, q.y));
+  });
+
+  const nodoPromo = {};
+  sitios.forEach(({ p, x0, y0, x, y }) => {
+    const g = sv('g', {
+      class: 'at-promo', tabindex: '0', role: 'button',
+      'aria-label': `${p.rank}. ${p.name}, ${p.municipio}. ${p.total} puntos sobre 100.`
+    });
+    if (Math.hypot(x - x0, y - y0) > 2) {
+      g.append(sv('line', { x1: x0, y1: y0, x2: x, y2: y, class: 'at-guia' }));
+      g.append(sv('circle', { cx: x0, cy: y0, r: 2.4, class: 'at-ancla' }));
+    }
+    g.append(sv('circle', { cx: x, cy: y, r: 13, class: 'at-promo-p' }));
+    const t = sv('text', { x, y: y + 4.5, class: 'at-promo-n' });
+    t.textContent = String(p.rank).padStart(2, '0');
+    g.append(t);
+    nodoPromo[p.id] = g;
+    g.__at = { t: 'p', v: p };
+    g.addEventListener('mouseenter', () => verPromo(p));
+    g.addEventListener('click', () => fijarPromo(p));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fijarPromo(p); } });
+    gPromos.append(g);
+  });
+
+  const panel = document.getElementById('atlasPanel');
+  let fijado = null;
+
+  // Los <g> de SVG reciben el foco pero este motor no despacha ningún evento de
+  // foco sobre ellos, ni capturado en document. Así que con el tabulador el foco
+  // se ve por CSS (:focus-visible) y es Intro o Espacio quien abre el detalle;
+  // cada nodo lleva su aria-label completo, de modo que un lector de pantalla ya
+  // anuncia el contenido al llegar sin necesidad de activarlo.
+  svg.addEventListener('focusin', e => {
+    const n = e.target.closest && e.target.closest('.at-promo, .at-campo');
+    if (!n || !n.__at) return;
+    n.__at.t === 'p' ? verPromo(n.__at.v) : verCampo(n.__at.v);
+  });
+
+  function limpiar() {
+    svg.classList.remove('at-activo');
+    lineas.forEach(l => l.classList.remove('at-on'));
+    Object.values(nodoCampo).forEach(g => g.classList.remove('at-on'));
+    Object.values(nodoPromo).forEach(g => g.classList.remove('at-on'));
+  }
+
+  function verPromo(p) {
+    limpiar();
+    svg.classList.add('at-activo');
+    nodoPromo[p.id].classList.add('at-on');
+    p.campos.forEach(c => nodoCampo[c.id] && nodoCampo[c.id].classList.add('at-on'));
+    lineas.forEach(l => { if (l.dataset.promo === p.id) l.classList.add('at-on'); });
+    pintarPanelPromo(p);
+  }
+
+  function verCampo(c) {
+    limpiar();
+    svg.classList.add('at-activo');
+    nodoCampo[c.id].classList.add('at-on');
+    const suyas = citadoPor[c.id] || [];
+    suyas.forEach(p => nodoPromo[p.id] && nodoPromo[p.id].classList.add('at-on'));
+    lineas.forEach(l => { if (l.dataset.campo === c.id) l.classList.add('at-on'); });
+    pintarPanelCampo(c, suyas);
+  }
+
+  function fijarPromo(p) { fijado = { t: 'p', v: p }; verPromo(p); }
+  function fijarCampo(c) { fijado = { t: 'c', v: c }; verCampo(c); }
+  function soltar() { fijado = null; limpiar(); pintarPanelInicio(); }
+
+  el.addEventListener('mouseleave', () => {
+    if (fijado) { fijado.t === 'p' ? verPromo(fijado.v) : verCampo(fijado.v); }
+    else { limpiar(); pintarPanelInicio(); }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && fijado) soltar(); });
+
+  function pintarPanelInicio() {
+    if (!panel) return;
+    const enlaces = promos.reduce((s, p) => s + p.campos.length, 0);
+    panel.innerHTML = `
+      <div class="ap-tag">El mapa en reposo</div>
+      <p class="ap-intro">Cada punto es un campo y cada número, una promoción del top 10.
+        Las líneas son las <strong>${enlaces} relaciones</strong> que sostienen la puntuación:
+        de una promoción a los campos que tiene alrededor, con sus minutos medidos.</p>
+      <p class="ap-intro">Pasa por encima de cualquier nodo —o púlsalo para fijarlo— y se aísla su red.</p>
+      <dl class="ap-cifras">
+        <div><dt>Campos</dt><dd>${campos.length}</dd></div>
+        <div><dt>Promociones</dt><dd>${promos.length}</dd></div>
+        <div><dt>Relaciones</dt><dd>${enlaces}</dd></div>
+      </dl>`;
+  }
+
+  function pintarPanelPromo(p) {
+    if (!panel) return;
+    const en15 = p.campos.filter(c => !c.fuera);
+    const reservables = en15.filter(c => c.acceso === 1).length;
+    const fuera = p.campos.length - en15.length;
+    panel.innerHTML = `
+      <div class="ap-tag">${String(p.rank).padStart(2, '0')} / ${p.municipio}</div>
+      <h3 class="ap-nombre">${p.name}</h3>
+      <div class="ap-nota"><strong>${p.total}</strong><span>puntos<br>sobre 100</span></div>
+      <p class="ap-split">${p.A} golf + ${p.B} proyecto</p>
+      <ul class="ap-hechos">
+        <li><strong>${en15.length}</strong> campo${en15.length === 1 ? '' : 's'} en quince minutos.</li>
+        <li><strong>${reservables}</strong> admite${reservables === 1 ? '' : 'n'} reserva sin ser socio.</li>
+        <li>El más próximo, <strong>${p.cercano.name}</strong>${p.cercano.min === 0 ? ', in-resort' : `, a ${p.cercano.min}′`}.</li>
+        ${fuera ? `<li class="ap-fuera">${fuera} declarado${fuera === 1 ? '' : 's'} por encima de los quince minutos: no puntúa${fuera === 1 ? '' : 'n'}.</li>` : ''}
+      </ul>
+      <button type="button" class="ap-cta" data-ficha="${p.id}">Abrir la cuenta completa <span aria-hidden="true">↗</span></button>`;
+    const b = panel.querySelector('.ap-cta');
+    if (b) b.addEventListener('click', () => {
+      const ficha = document.getElementById('ficha-' + p.id);
+      if (!ficha) return;
+      ficha.open = true;
+      ficha.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  function pintarPanelCampo(c, suyas) {
+    if (!panel) return;
+    const lista = suyas.slice().sort((a, b) => a.rank - b.rank);
+    panel.innerHTML = `
+      <div class="ap-tag">Campo · ${c.municipio}</div>
+      <h3 class="ap-nombre">${c.name}</h3>
+      <p class="ap-estrellas">${'★'.repeat(c.stars)}<span class="ap-off">${'★'.repeat(4 - c.stars)}</span>
+        <span class="ap-acceso">${ACCESO_LBL[c.acceso]}</span></p>
+      <ul class="ap-hechos">
+        <li>${c.hoyos} · ${c.disenador}${c.ano ? ' · ' + c.ano : ''}</li>
+        <li>Green fee ${c.gf ? '€' + c.gf : 'no publicado'}.</li>
+      </ul>
+      ${lista.length
+        ? `<p class="ap-citas">Lo cuenta${lista.length === 1 ? '' : 'n'} en su entorno ${lista.length === 1 ? 'una promoción' : lista.length + ' promociones'}:</p>
+           <ul class="ap-quien">${lista.map(p => {
+             const e = p.campos.find(x => x.id === c.id);
+             return `<li><span>${String(p.rank).padStart(2, '0')}</span> ${p.name} <em>${e.min === 0 ? 'in-resort' : e.min + '′'}${e.fuera ? ' · fuera de umbral' : ''}</em></li>`;
+           }).join('')}</ul>`
+        : '<p class="ap-citas">Ninguna promoción del top 10 lo cuenta en su entorno.</p>'}`;
+  }
+
+  const lienzo = el.querySelector('.atlas-lienzo') || el;
+  lienzo.querySelectorAll('noscript').forEach(n => n.remove());
+  lienzo.append(svg);
+  pintarPanelInicio();
+}
+
+/* ═══════════════════════════════════
+   MAPA · LEAFLET (patrón defensivo) — sólo la rejilla de campos
 ═══════════════════════════════════ */
 let mapReady = false;
 function initMap() {
   if (mapReady) return;
+  const atlas = document.getElementById('atlas');
+  if (atlas) { mapReady = true; initAtlas(atlas); return; }
   const el = document.getElementById('bigMap');
   if (!el) return;
   const soloCampos = el.dataset.modo === 'campos';

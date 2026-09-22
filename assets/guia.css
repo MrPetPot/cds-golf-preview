@@ -1535,6 +1535,73 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .btn-linea:hover { background: var(--text); color: #FFFFFF; border-color: var(--text); }
 .th-derecha { text-align: right; }
 .fuentes-nota { display: block; font-size: 12px; line-height: 1.5; color: var(--text-mute); margin: 2px 0 10px; }
+/* ── Atlas de relaciones (ranking). Lienzo propio, sin teselas. ── */
+.atlas { display: grid; grid-template-columns: minmax(0,1fr) 300px; border: 1px solid var(--text); background: #141414; }
+.atlas-lienzo { position: relative; min-width: 0; }
+.atlas-svg { display: block; width: 100%; height: auto; }
+.at-rejilla line { stroke: rgba(255,255,255,.07); stroke-width: 1; }
+.at-sitio { fill: rgba(255,255,255,.46); font-family: var(--f-sans); font-size: 11px; font-weight: 600; letter-spacing: .18em; text-anchor: middle; }
+.at-mar { fill: rgba(255,255,255,.13); font-family: var(--f-display); font-size: 26px; letter-spacing: .34em; text-anchor: middle; }
+.at-linea { stroke: var(--verde-1); opacity: .2; transition: opacity .25s, stroke .25s; }
+.at-guia { stroke: rgba(255,255,255,.34); stroke-width: 1; }
+.at-ancla { fill: rgba(255,255,255,.7); }
+.at-linea.at-fuera { stroke-dasharray: 3 5; }
+.atlas-svg.at-activo .at-linea { opacity: .04; }
+.atlas-svg .at-linea.at-on { opacity: .85; }
+.atlas-svg .at-linea.at-on.at-fuera { opacity: .42; stroke: var(--greige); }
+.at-campo-p { transition: opacity .25s, r .2s; }
+.at-golpe { fill: transparent; }
+.at-s4 .at-campo-p { fill: #B7D06A; }
+.at-s3 .at-campo-p { fill: #88A53C; }
+.at-s2 .at-campo-p { fill: #6E9130; }
+.at-s1 .at-campo-p { fill: #5E7F2C; }
+.at-cerrado .at-campo-p { fill: none; stroke-width: 1.5; }
+.at-s4.at-cerrado .at-campo-p { stroke: #B7D06A; }
+.at-s3.at-cerrado .at-campo-p { stroke: #88A53C; }
+.at-s2.at-cerrado .at-campo-p { stroke: #6E9130; }
+.at-s1.at-cerrado .at-campo-p { stroke: #5E7F2C; }
+.atlas-svg.at-activo .at-campo .at-campo-p { opacity: .22; }
+.atlas-svg .at-campo.at-on .at-campo-p { opacity: 1; }
+.at-campo, .at-promo { cursor: pointer; outline: none; }
+.at-campo:focus-visible .at-golpe, .at-promo:focus-visible .at-promo-p { stroke: var(--oro-1); stroke-width: 2; }
+.at-promo-p { fill: #141414; stroke: #FFFFFF; stroke-width: 1.6; transition: opacity .25s, stroke .25s; }
+.at-promo-n { fill: #FFFFFF; font-family: var(--f-display); font-size: 13px; font-weight: 700; text-anchor: middle; transition: opacity .25s; }
+.atlas-svg.at-activo .at-promo .at-promo-p, .atlas-svg.at-activo .at-promo .at-promo-n { opacity: .3; }
+.atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--oro-1); stroke: var(--oro-1); }
+.atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: #141414; }
+.atlas-panel { border-left: 1px solid rgba(255,255,255,.18); padding: 22px 22px 26px; color: #FFFFFF; min-width: 0; }
+.ap-tag { font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.56); font-weight: 700; }
+.ap-intro { font-size: 13px; line-height: 1.55; color: rgba(255,255,255,.74); margin: 12px 0 0; }
+.ap-intro strong { color: #FFFFFF; font-weight: 600; }
+.ap-cifras { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.18); }
+.ap-cifras dt { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5); }
+.ap-cifras dd { margin: 4px 0 0; font-family: var(--f-display); font-size: 26px; line-height: 1; }
+.ap-nombre { font-family: var(--f-display); font-size: 26px; line-height: 1.04; text-transform: uppercase; margin: 10px 0 0; }
+.ap-nota { display: flex; align-items: baseline; gap: 8px; margin: 16px 0 0; }
+.ap-nota strong { font-family: var(--f-display); font-size: 54px; line-height: .9; }
+.ap-nota span { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.56); }
+.ap-split { font-size: 12px; color: rgba(255,255,255,.66); margin: 6px 0 0; }
+.ap-hechos { list-style: none; margin: 18px 0 0; padding: 16px 0 0; border-top: 1px solid rgba(255,255,255,.18); display: grid; gap: 9px; font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,.78); }
+.ap-hechos strong { color: #FFFFFF; }
+.ap-hechos .ap-fuera { color: var(--greige); }
+.ap-estrellas { margin: 10px 0 0; font-size: 15px; color: var(--amarillo); letter-spacing: .06em; }
+.ap-off { color: rgba(255,255,255,.22); }
+.ap-acceso { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-left: 8px; }
+.ap-citas { font-size: 12px; color: rgba(255,255,255,.6); margin: 18px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.18); }
+.ap-quien { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 7px; font-size: 12.5px; }
+.ap-quien li { display: grid; grid-template-columns: 22px 1fr auto; gap: 8px; align-items: baseline; }
+.ap-quien span { font-family: var(--f-display); color: var(--oro-1); }
+.ap-quien em { font-style: normal; font-size: 11px; color: rgba(255,255,255,.52); }
+.ap-cta { margin: 22px 0 0; width: 100%; background: transparent; border: 1px solid rgba(255,255,255,.34); color: #FFFFFF; font-family: var(--f-sans); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 12px 14px; cursor: pointer; transition: background-color .2s, color .2s; }
+.ap-cta:hover { background: #FFFFFF; color: #141414; }
+.atlas-pie { font-size: 11px; color: var(--text-mute); margin: 10px 0 0; letter-spacing: .04em; }
+.legend-dot.hueco { background: none; border: 1.5px solid #88A53C; }
+.legend-linea { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid #88A53C; vertical-align: middle; }
+.legend-linea.punteada { border-top-style: dashed; }
+@media (max-width: 900px) {
+  .atlas { grid-template-columns: 1fr; }
+  .atlas-panel { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+}
 /* Marcadores del mapa Leaflet */
 .pin-promo { background: none; border: none; }
 .pin-promo-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #2C5384, #7FA3C9); border: 2.5px solid #FFFFFF; box-shadow: 0 2px 10px rgba(15,23,38,.42); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-size: 14px; font-weight: 700; color: #FFFFFF; }

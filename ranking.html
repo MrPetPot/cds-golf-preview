@@ -7,7 +7,7 @@
 <title>El ranking · Costa del Sol Golf Residences</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/guia.css">
 <link rel="stylesheet" href="assets/motion.css?v=20260921-4">
@@ -34,19 +34,22 @@
     <section id="mapa" class="reveal">
       <div class="sec-eyebrow">Dónde están</div>
       <h2 class="sec-title" id="tituloMapaRanking">El top 10, <em>sobre el mapa</em>.</h2>
-      <p class="sec-lede">Promociones numeradas por posición; líneas hacia sus campos ★★★+ en quince minutos.</p>
+      <p class="sec-lede">Las mismas coordenadas que alimentan la puntuación, sin mapa de fondo: cada línea es una relación medida entre una promoción y un campo.</p>
       <p class="enlace-3d"><a class="btn-linea" href="mapa-3d.html" target="_blank" rel="noopener">Abrir la Costa del Golf en 3D →</a></p>
-      <div class="map-wrap">
-        <div id="bigMap"><noscript><div class="map-noscript">Active JavaScript para ver el mapa interactivo.</div></noscript></div>
-        <div id="mapFallback">Mapa no disponible — se requiere conexión a internet para cargar los tiles.</div>
+      <div class="atlas" id="atlas">
+        <div class="atlas-lienzo"><noscript><div class="map-noscript">Active JavaScript para ver el mapa de relaciones.</div></noscript></div>
+        <aside class="atlas-panel" id="atlasPanel" aria-live="polite"></aside>
       </div>
       <div class="map-legend">
         <div class="legend-item"><span class="legend-dot promo"></span> Promoción · nº de posición</div>
-        <div class="legend-item"><span class="legend-dot g4"></span> Campo ★★★★</div>
-        <div class="legend-item"><span class="legend-dot g3"></span> Campo ★★★</div>
-        <div class="legend-item"><span class="legend-dot g2"></span> Campo ★★</div>
-        <div class="legend-item"><span class="legend-dot g1"></span> Campo ★</div>
+        <div class="legend-item"><span class="legend-dot g4"></span> ★★★★</div>
+        <div class="legend-item"><span class="legend-dot g3"></span> ★★★</div>
+        <div class="legend-item"><span class="legend-dot g2"></span> ★★</div>
+        <div class="legend-item"><span class="legend-dot g1"></span> ★</div>
+        <div class="legend-item"><span class="legend-dot hueco"></span> Sólo socios o cerrado</div>
+        <div class="legend-item"><span class="legend-linea"></span> Relación medida promoción → campo</div>
       </div>
+      <p class="atlas-pie">Coordenadas del archivo, proyectadas sin deformar · líneas de relación, no carreteras</p>
       <div class="siguiente"><a href="fuentes.html"><small>Y por último</small><b>Las fuentes →</b></a></div>
     </section>
 
@@ -74,7 +77,7 @@
       </div>
     </footer>
 </main></div>
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script src="assets/guia.js"></script>
 <script src="assets/motion.js?v=20260921-6"></script>
 <script src="assets/favicon.js?v=20260921-4"></script>
