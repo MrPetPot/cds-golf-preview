@@ -414,6 +414,12 @@ const FOTOS_CAMPO = {
   "pie": "Green sobre el mar en Cabopino.",
   "credito": "Archivo Malashpina",
   "url": null
+ },
+ "anoreta-golf": {
+  "src": "images/golf/anoreta-golf.jpg",
+  "pie": "Lago y palmeral, con el Mediterráneo al fondo.",
+  "credito": "Archivo Malashpina",
+  "url": null
  }
 };
 
