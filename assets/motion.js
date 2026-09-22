@@ -236,11 +236,33 @@
         duration: 820, delay: 220 + index * 110, easing: 'cubic-bezier(.2,.72,.2,1)'
       });
     });
+    animateChain(detail);
     detail.querySelectorAll('.crit .measure-fill').forEach((fill, index) => {
       const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
       play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
         duration: 620, delay: 380 + Math.min(index, 9) * 40, easing: 'cubic-bezier(.2,.72,.2,1)'
       });
+    });
+  }
+
+  // La cadena se monta al abrir la ficha: primero los anillos, despues cada
+  // radio crece desde el nucleo y el nodo aparece detras. El orden es el del
+  // DOM, que ya viene ordenado por minutos: se dibuja de dentro hacia fuera.
+  function animateChain(detail) {
+    const svg = detail.querySelector('.adn-svg');
+    if (!svg) return;
+    reveal(svg.querySelector('.adn-base'), 0, 0);
+    play(svg.querySelector('.adn-core'), [{ transform: 'scale(.2)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }],
+      { duration: 420, delay: 120, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+    svg.querySelectorAll('.adn-g').forEach((g, i) => {
+      const t = 260 + i * 55;
+      play(g.querySelector('.adn-l'), [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+        { duration: 420, delay: t, easing: 'cubic-bezier(.2,.72,.2,1)' });
+      play(g.querySelector('.adn-n'), [{ transform: 'scale(0)' }, { transform: 'scale(1)' }],
+        { duration: 340, delay: t + 260, easing: 'cubic-bezier(.2,.9,.3,1.3)' });
+      const ref = g.querySelector('.adn-ref');
+      if (ref) play(ref, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1)' }],
+        { duration: 420, delay: t + 380, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
     });
   }
 

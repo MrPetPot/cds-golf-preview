@@ -993,27 +993,40 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     const rNodo = { 1: 3.6, 2: 5, 3: 6.6, 4: 8.6 };
     const campos = p.campos.slice().sort((a, b) => a.min - b.min || b.stars - a.stars);
     const paso = (Math.PI * 2) / campos.length;
+    // Dos versiones del mismo renglon: una en texto plano para el aria-label y
+    // otra con las estrellas marcadas como en el resto de la guia, porque el
+    // pintor de estrellas solo pasa una vez al cargar y esto se escribe despues.
+    const ficha = c => `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'} · ${'★'.repeat(c.stars)} · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
+    const fichaHtml = c => `<b>${c.name}</b> · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'} · <span class="star">${'★'.repeat(c.stars)}</span><span class="star-off"><span class="star">${'★'.repeat(4 - c.stars)}</span></span> · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
     const nodos = campos.map((c, i) => {
       // Medio paso de desfase: así el eje vertical queda libre para las
       // etiquetas de los anillos y ningún nodo se sienta encima de ellas.
       const ang = -Math.PI / 2 + paso / 2 + i * paso;
-      const r = radio(c.min), x = C + Math.cos(ang) * r, y = C + Math.sin(ang) * r;
+      const r = radio(c.min), x = +(C + Math.cos(ang) * r).toFixed(1), y = +(C + Math.sin(ang) * r).toFixed(1);
       const abierto = c.acceso === 1;
       const cls = `adn-n adn-s${c.stars}${abierto ? '' : ' adn-cerrado'}${c.fuera ? ' adn-fuera' : ''}`;
-      const ref = c === p.cercano ? `<circle class="adn-ref" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(rNodo[c.stars] + 4.5).toFixed(1)}"/>` : '';
-      return `<line class="adn-l${abierto ? '' : ' adn-l-socios'}" x1="${C}" y1="${C}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>
-        ${ref}<circle class="${cls}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rNodo[c.stars]}"><title>${c.name} · ${c.min === 0 ? 'in-resort' : c.min + '′'} · ${'★'.repeat(c.stars)} · ${ACCESO_LBL[c.acceso].toLowerCase()}</title></circle>`;
+      const ref = c === p.cercano ? `<circle class="adn-ref" cx="${x}" cy="${y}" r="${(rNodo[c.stars] + 4.5).toFixed(1)}"/>` : '';
+      // El área de toque no es el nodo —que puede medir 3,6 px— sino un disco
+      // transparente de 26: en táctil no hay puntero fino que valga.
+      return `<g class="adn-g" tabindex="0" role="button" aria-label="${ficha(c)}" data-ficha="${fichaHtml(c).replace(/"/g, '&quot;')}">
+        <line class="adn-l${abierto ? '' : ' adn-l-socios'}" x1="${C}" y1="${C}" x2="${x}" y2="${y}" pathLength="1"/>
+        ${ref}<circle class="${cls}" cx="${x}" cy="${y}" r="${rNodo[c.stars]}"/>
+        <circle class="adn-golpe" cx="${x}" cy="${y}" r="13"/>
+      </g>`;
     }).join('');
     const anillos = [5, 10, 15].map(m => `<circle class="adn-anillo" cx="${C}" cy="${C}" r="${radio(m).toFixed(1)}"/>
       <text class="adn-anillo-t" x="${C + 3}" y="${(C - radio(m) + 3).toFixed(1)}">${m}′</text>`).join('');
     const resumen = `${p.name}: ${p.campos.length} campos en el entorno, ${p.jugables} reservables sin ser socio; el más cercano, ${p.cercano.name}, a ${p.cercano.min === 0 ? 'cero minutos' : p.cercano.min + ' minutos'}.`;
     return `<figure class="adn">
-      <svg class="adn-svg" viewBox="0 0 300 300" role="img" aria-label="${resumen}">
-        ${anillos}${nodos}
+      <svg class="adn-svg" viewBox="0 0 300 300" role="group" aria-label="${resumen}">
+        <g class="adn-base">${anillos}</g>${nodos}
         <circle class="adn-core" cx="${C}" cy="${C}" r="16"/>
         <text class="adn-core-t" x="${C}" y="${C + 4}">${p.top10 ? String(p.rank).padStart(2, '0') : p.rank}</text>
       </svg>
-      <figcaption>Radio, minutos en coche · tamaño, estrellas · hueco, solo socios</figcaption>
+      <figcaption>
+        <span class="adn-foco" data-reposo="${fichaHtml(p.cercano).replace(/"/g, '&quot;')}">${fichaHtml(p.cercano)}</span>
+        <span class="adn-leyenda">Radio, minutos · tamaño, estrellas · hueco, solo socios</span>
+      </figcaption>
     </figure>`;
   };
 
@@ -1136,6 +1149,42 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </div>`;
   detailGrid.appendChild(card);
 });
+
+/* ═══════════════════════════════════
+   LA CADENA · señalar un campo escribe su ficha debajo del dibujo
+   El nombre no va rotulado junto a cada nodo: con dieciséis campos el dibujo
+   se vuelve ilegible. Va a un renglón fijo bajo el gráfico, que en reposo
+   muestra el campo de referencia. En táctil el disco de 26 px hace de botón y
+   con teclado responde a Enter o Espacio, porque este motor no dispara eventos
+   de foco sobre los <g> de un SVG.
+════════════════════════════════════ */
+(function () {
+  const escribir = (svg, html) => {
+    const foco = svg.parentElement.querySelector('.adn-foco');
+    if (foco) foco.innerHTML = html || foco.dataset.reposo;   // datos propios, no entrada de nadie
+  };
+  const marcar = (g, on) => {
+    const svg = g.ownerSVGElement;
+    svg.classList.toggle('adn-activo', on);
+    svg.querySelectorAll('.adn-g').forEach(o => o.classList.toggle('adn-on', on && o === g));
+    escribir(svg, on ? g.dataset.ficha : null);
+  };
+  document.addEventListener('pointerover', e => {
+    const g = e.target.closest?.('.adn-g');
+    if (g) marcar(g, true);
+  });
+  document.addEventListener('pointerout', e => {
+    const g = e.target.closest?.('.adn-g');
+    if (g && !g.contains(e.relatedTarget)) marcar(g, false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const g = document.activeElement?.closest?.('.adn-g');
+    if (!g) return;
+    e.preventDefault();
+    marcar(g, !g.classList.contains('adn-on'));
+  });
+})();
 
 /* ═══════════════════════════════════
    CRÉDITOS DE IMAGEN · centralizados fuera de las fichas

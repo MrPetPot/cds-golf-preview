@@ -38,21 +38,34 @@
    Los tonos son los mismos que usa el atlas sobre fondo claro. */
 .adn { margin: 0; display: flex; flex-direction: column; border: 1px solid var(--line-strong); background: var(--bg-0); }
 .adn-svg { display: block; width: 100%; height: auto; }
-.adn figcaption { padding: 10px 14px 12px; border-top: 1px solid var(--line); font-size: 9.5px; line-height: 1.4; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mute); }
+.adn figcaption { padding: 10px 14px 12px; border-top: 1px solid var(--line); line-height: 1.4; text-transform: uppercase; color: var(--text-mute); }
 .adn-anillo { fill: none; stroke: rgba(30,58,95,.13); stroke-width: 1; }
 .adn-anillo-t { fill: var(--text-mute); font-family: var(--f-sans); font-size: 7.5px; font-weight: 600; letter-spacing: .1em;
   paint-order: stroke; stroke: var(--bg-0); stroke-width: 2.5px; stroke-linejoin: round; }
 .adn-l { stroke: var(--verde-2); stroke-width: 1; opacity: .34; }
 .adn-l-socios { stroke-dasharray: 2.5 3.5; opacity: .3; }
-.adn-n { stroke-width: 0; }
+.adn-n { stroke-width: 0; transform-box: fill-box; transform-origin: center; }
 .adn-s4 { fill: #2F4A16; } .adn-s3 { fill: #4A6B22; } .adn-s2 { fill: #6E9130; } .adn-s1 { fill: #9CB865; }
 .adn-cerrado { fill: none; stroke-width: 1.5; }
 .adn-cerrado.adn-s4 { stroke: #2F4A16; } .adn-cerrado.adn-s3 { stroke: #4A6B22; }
 .adn-cerrado.adn-s2 { stroke: #6E9130; } .adn-cerrado.adn-s1 { stroke: #9CB865; }
 .adn-fuera { opacity: .42; }
-.adn-ref { fill: none; stroke: var(--oro-2); stroke-width: 1.4; }
-.adn-core { fill: var(--text); }
+.adn-ref { fill: none; stroke: var(--oro-2); stroke-width: 1.4; transform-box: fill-box; transform-origin: center; }
+.adn-core { fill: var(--text); transform-box: fill-box; transform-origin: center; }
 .adn-core-t { fill: #FFFFFF; font-family: var(--f-display); font-size: 15px; font-weight: 700; text-anchor: middle; }
+.adn-golpe { fill: transparent; }
+.adn-g { cursor: pointer; outline: none; }
+.adn-g .adn-n, .adn-g .adn-l, .adn-g .adn-ref { transition: opacity .2s, r .2s; }
+/* Senalado: lo demas se apaga y el elegido se queda a plena tinta. */
+.adn-svg.adn-activo .adn-g .adn-n { opacity: .18; }
+.adn-svg.adn-activo .adn-g .adn-l { opacity: .1; }
+.adn-svg.adn-activo .adn-g.adn-on .adn-n, .adn-svg.adn-activo .adn-g.adn-on .adn-ref { opacity: 1; }
+.adn-svg.adn-activo .adn-g.adn-on .adn-l { opacity: .85; }
+.adn-g:focus-visible .adn-golpe { stroke: var(--oro-3); stroke-width: 2; }
+.adn figcaption { display: grid; gap: 5px; }
+.adn-foco { min-height: 30px; font-size: 11px; line-height: 1.35; letter-spacing: .02em; text-transform: none; color: var(--text-mid); font-weight: 400; }
+.adn-foco b { font-weight: 700; color: var(--text); }
+.adn-leyenda { font-size: 9px; letter-spacing: .1em; }
 .fb-golf-top .dc-ref { margin: 0; background: var(--bg-0); border-color: var(--line-strong); }
 .fb-golf-top .quick-facts { grid-template-columns: 1fr; margin: 0; }
 .fb-golf-top .quick-facts > div { border-right: 0; border-bottom: 1px solid var(--line-strong); }
