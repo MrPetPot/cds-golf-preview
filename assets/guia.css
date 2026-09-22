@@ -1373,12 +1373,12 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 /* Una sola línea: puesto y nombre pesan igual, las estrellas siguen al nombre y la
    ubicación va detrás. Si no cabe, pliega por ahí en vez de recortar el nombre. */
 .dc-f-linea { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; min-width: 0; }
-.dc-front .dc-f-label { color: var(--oro-3); font-family: var(--f-display); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; }
+.dc-front .dc-f-label { color: var(--oro-3); font-family: var(--f-display); font-size: clamp(26px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -.005em; }
 /* Las estrellas al mismo cuerpo que en el reverso: en el rótulo de 10 px el glifo
    quedaba desproporcionado y no se leía como una calificación. */
-.dc-f-estrellas { flex: none; font-size: clamp(24px, 2.6vw, 34px); line-height: 1; letter-spacing: .03em; }
+.dc-f-estrellas { flex: none; font-size: clamp(26px, 2.8vw, 36px); line-height: 1; letter-spacing: .03em; }
 .dc-f-estrellas .star-off { color: rgba(30,58,95,.2); }
-.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); }
+.dc-f-name { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -.005em; color: var(--text); }
 /* Sin encogerse: si no cabe detras de las estrellas, baja entera a la linea
    siguiente en vez de recortarse con puntos suspensivos. */
 .dc-front .dc-f-loc { color: var(--text-mute); flex: none; max-width: 100%; }
@@ -1394,7 +1394,7 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 .dc-front .dc-f-nota small { color: var(--text-mute); }
 .dc-f-prueba .star-off { opacity: .3; }   /* tras el giro, negro */
 .dc-f-label { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: var(--oro-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
+.dc-f-prueba { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: clamp(26px, 2.8vw, 36px); line-height: 1.05; letter-spacing: -.005em; color: #FFFFFF; }
 .dc-f-loc { font-size: 16px; color: var(--greige); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dc-f-plus { position: absolute; right: 44px; top: 50%; transform: translateY(-50%); z-index: 3; font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--text); pointer-events: none; transition: color .3s var(--ease), opacity .3s var(--ease); }
 /* El giro solo con puntero fino y sin preferencia de movimiento reducido. Táctil y teclado ven la cara frontal completa. */
@@ -1416,9 +1416,9 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
   .dc-front { gap: 16px; position: relative; inset: auto; padding-top: 16px; padding-bottom: 16px; }
   /* Aquí no cabe todo en una fila: el nombre se pliega y las estrellas fluyen
      detrás del texto, en vez de recortarlo. */
-  .dc-f-name { font-size: 21px; }
-  .dc-front .dc-f-label { font-size: 21px; }
-  .dc-f-estrellas { font-size: 15px; white-space: nowrap; }
+  .dc-f-name { font-size: 23px; }
+  .dc-front .dc-f-label { font-size: 23px; }
+  .dc-f-estrellas { font-size: 17px; white-space: nowrap; }
   .dc-f-linea { gap: 2px 10px; }
   .dc-f-loc { font-size: 14px; }
   .dc-front .dc-f-nota { font-size: 30px; }
