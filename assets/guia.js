@@ -1457,8 +1457,13 @@ function sv(tag, attrs) {
 
 function initAtlas(el) {
   const W = 1000, H = 500, M = 40;
+  // Dos modos con el mismo motor: en el ranking se dibujan las promociones y sus
+  // relaciones; en la pagina de campos, solo la rejilla de campos. Quien cita a
+  // cada campo se sigue calculando en los dos, porque el panel lo cuenta igual.
+  const soloCampos = el.dataset.modo === 'campos';
   const campos = COURSES.filter(c => typeof c.lat === 'number' && typeof c.lng === 'number');
-  const promos = PUBLICADAS.filter(p => typeof p.lat === 'number' && typeof p.lng === 'number');
+  const conCoord = PUBLICADAS.filter(p => typeof p.lat === 'number' && typeof p.lng === 'number');
+  const promos = soloCampos ? [] : conCoord;
   const nucleos = typeof NUCLEOS !== 'undefined' ? NUCLEOS : [];
   const costa = typeof COSTA !== 'undefined' ? COSTA : [];
   const tierra = typeof TIERRA !== 'undefined' ? TIERRA : [];
@@ -1478,13 +1483,15 @@ function initAtlas(el) {
 
   // Relación inversa: qué promociones citan cada campo. No existía en la pieza.
   const citadoPor = {};
-  promos.forEach(p => p.campos.forEach(c => (citadoPor[c.id] = citadoPor[c.id] || []).push(p)));
+  conCoord.forEach(p => p.campos.forEach(c => (citadoPor[c.id] = citadoPor[c.id] || []).push(p)));
 
   // role="group" y no "img": con "img" los lectores de pantalla podan el subárbol
   // y los nodos navegables por teclado dejarían de existir para ellos.
   const svg = sv('svg', {
     viewBox: `0 0 ${W} ${H}`, class: 'atlas-svg',
-    role: 'group', 'aria-label': `Mapa de relaciones: ${promos.length} promociones y ${campos.length} campos de golf. Cada nodo abre su detalle con Intro.`
+    role: 'group', 'aria-label': soloCampos
+      ? `Mapa de los ${campos.length} campos de golf de la guía. Cada nodo abre su ficha con Intro.`
+      : `Mapa de relaciones: ${promos.length} promociones y ${campos.length} campos de golf. Cada nodo abre su detalle con Intro.`
   });
   const gTierra = sv('g', { class: 'at-tierra', 'aria-hidden': 'true' });
   const gRejilla = sv('g', { class: 'at-rejilla', 'aria-hidden': 'true' });
@@ -1782,6 +1789,30 @@ function initAtlas(el) {
   function pintarPanelInicio() {
     if (!panel) return;
     const enlaces = promos.reduce((s, p) => s + p.campos.length, 0);
+    if (soloCampos) {
+      const elite = campos.filter(c => c.stars === 4).length;
+      const jugables = campos.filter(c => c.acceso === 1).length;
+      panel.innerHTML = `
+        <div class="ap-cols ap-cols-reposo">
+          <div class="ap-bloque">
+            <div class="ap-tag">El mapa en reposo</div>
+            <p class="ap-intro">Los <strong>${campos.length} campos</strong> de la guía sobre sus coordenadas reales,
+              de Sotogrande a Vélez-Málaga. El tamaño y el tono de cada punto son su categoría;
+              los huecos, los que exigen ser socio.</p>
+          </div>
+          <div class="ap-bloque">
+            <p class="ap-intro">Pasa por encima de cualquier campo —o púlsalo para fijarlo— y verás su ficha
+              y qué promociones del ranking lo cuentan en su entorno. Los botones de la esquina amplían el mapa;
+              arrastrando se desplaza.</p>
+          </div>
+          <dl class="ap-cifras">
+            <div><dt>Campos</dt><dd>${campos.length}</dd></div>
+            <div><dt>De élite</dt><dd>${elite}</dd></div>
+            <div><dt>Reservables</dt><dd>${jugables}</dd></div>
+          </dl>
+        </div>`;
+      return;
+    }
     panel.innerHTML = `
       <div class="ap-cols ap-cols-reposo">
         <div class="ap-bloque">
@@ -1883,7 +1914,7 @@ function initAtlas(el) {
 let mapReady = false;
 function initMap() {
   if (mapReady) return;
-  const atlas = document.getElementById('atlas');
+  const atlas = document.querySelector('.atlas');
   if (atlas) { mapReady = true; initAtlas(atlas); return; }
   const el = document.getElementById('bigMap');
   if (!el) return;

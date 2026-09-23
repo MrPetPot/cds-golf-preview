@@ -7,7 +7,7 @@
 <title>Los campos · Costa del Sol Golf Residences</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/guia.css?v=a41330cb">
 <link rel="stylesheet" href="assets/motion.css?v=20260923-21">
@@ -64,16 +64,18 @@
       <div class="sec-eyebrow">La geografía</div>
       <h2 class="sec-title">De Casares a Vélez-Málaga, <em>de un vistazo</em>.</h2>
       <p class="sec-lede">Cada punto es un campo; el tamaño y el tono, su categoría.</p>
-      <div class="map-wrap">
-        <div id="bigMap" data-modo="campos"><noscript><div class="map-noscript">Active JavaScript para ver el mapa interactivo.</div></noscript></div>
-        <div id="mapFallback">Mapa no disponible — se requiere conexión a internet para cargar los tiles.</div>
+      <div class="atlas" id="atlasCampos" data-modo="campos">
+        <div class="atlas-lienzo"><noscript><div class="map-noscript">Active JavaScript para ver el mapa de los campos.</div></noscript></div>
+        <aside class="atlas-panel" id="atlasPanel" aria-live="polite"></aside>
       </div>
-      <div class="map-legend">
-        <div class="legend-item"><span class="legend-dot g4"></span> Campo ★★★★ (élite)</div>
-        <div class="legend-item"><span class="legend-dot g3"></span> Campo ★★★ (premium)</div>
-        <div class="legend-item"><span class="legend-dot g2"></span> Campo ★★ (comercial)</div>
-        <div class="legend-item"><span class="legend-dot g1"></span> Campo ★ (funcional)</div>
+      <div class="map-legend map-legend-atlas">
+        <div class="legend-item"><span class="legend-dot g4"></span> ★★★★ élite</div>
+        <div class="legend-item"><span class="legend-dot g3"></span> ★★★ premium</div>
+        <div class="legend-item"><span class="legend-dot g2"></span> ★★ comercial</div>
+        <div class="legend-item"><span class="legend-dot g1"></span> ★ funcional</div>
+        <div class="legend-item"><span class="legend-dot hueco"></span> Sólo socios o cerrado</div>
       </div>
+      <p class="atlas-pie">Coordenadas del archivo, proyectadas sin deformar · línea de costa y núcleos de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a></p>
       <div class="siguiente"><a href="ranking.html"><small>Siguiente</small><b>El ranking →</b></a></div>
     </section>
 
@@ -101,8 +103,8 @@
       </div>
     </footer>
 </main></div>
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/guia.js?v=c7d567ef"></script>
+
+<script src="assets/guia.js?v=0a9bcd20"></script>
 <script src="assets/motion.js?v=20260923-6"></script>
 <script src="assets/favicon.js?v=20260921-4"></script>
 </body>
