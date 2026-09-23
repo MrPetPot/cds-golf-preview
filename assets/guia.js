@@ -1582,7 +1582,7 @@ function initAtlas(el) {
     circCampo.push({ punto, golpe, rot, r, y: Y(c.lat) });
     nodoCampo[c.id] = g;
     g.__at = { t: 'c', v: c };
-    g.addEventListener('mouseenter', () => verCampo(c));
+    g.addEventListener('mouseenter', () => { if (!fijado) verCampo(c); });
     g.addEventListener('click', () => fijarCampo(c));
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fijarCampo(c); } });
     gCampos.append(g);
@@ -1619,7 +1619,10 @@ function initAtlas(el) {
     nodoPromo[p.id] = g;
     sitios.push({ p, x0: X(p.lng), y0: Y(p.lat), x: X(p.lng), y: Y(p.lat), guia, ancla, anillo, num });
     g.__at = { t: 'p', v: p };
-    g.addEventListener('mouseenter', () => verPromo(p));
+    // Con algo fijado el raton no roba la seleccion: al ampliar, el mapa se
+    // mueve bajo el cursor y el puntero acababa encima de otro numero, que
+    // borraba las lineas y los rotulos recien aparecidos sin tocar nada.
+    g.addEventListener('mouseenter', () => { if (!fijado) verPromo(p); });
     g.addEventListener('click', () => fijarPromo(p));
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fijarPromo(p); } });
     gPromos.append(g);
@@ -1791,7 +1794,7 @@ function initAtlas(el) {
   // anuncia el contenido al llegar sin necesidad de activarlo.
   svg.addEventListener('focusin', e => {
     const n = e.target.closest && e.target.closest('.at-promo, .at-campo');
-    if (!n || !n.__at) return;
+    if (!n || !n.__at || fijado) return;
     n.__at.t === 'p' ? verPromo(n.__at.v) : verCampo(n.__at.v);
   });
 
