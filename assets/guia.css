@@ -1792,6 +1792,12 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 .hero-pagina { min-height: calc(clamp(280px, 40vh, 420px) + var(--nav-h)); }
 @media (max-width: 640px) { .hero-pagina { min-height: calc(240px + var(--nav-h)); } }
 
+/* La direccion de cada fuente, ya sin enlace: texto de apoyo, no accion. */
+.fuente-url { font-style: italic; font-size: .84em; color: var(--text-mute); word-break: break-word; }
+/* Al ganar cada fuente una linea de direccion, las tres columnas se
+   reequilibran y un rotulo se quedaba solo al pie. */
+.sources-grid strong { break-after: avoid-column; }
+
 /* ── El veredicto y la lista son el mismo relato ───────────────────────
    Entre dos secciones normales hay 240 px y un filete, que es lo que separa
    un capítulo del siguiente. Aquí la lista no abre nada: continúa la pieza
