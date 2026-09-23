@@ -519,7 +519,7 @@ const PROMOS = [
         b1:10, b1why:'Branded residence Missoni Casa — marca reconocida, entregada con el proyecto.',
         b4:10, b4why:'Hotel 5★ GL, spa, beach club, cuatro restaurantes, concierge.' },
     tags:['Branded Missoni','In-resort 4★','Solheim Cup 2023','Beach club'],
-    rationale:'<strong>Nuevo número uno.</strong> Su campo de golf, Finca Cortesín ★★★★, es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y el bloque B más alto de la lista, que comparte con EPIC Marbella. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
+    rationale:'<strong>Nuevo número uno.</strong> Su campo de golf, Finca Cortesín ★★★★, es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y uno de los bloques de proyecto más altos de la lista. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
 
   { id:'quercus', render:{ dominio:"realdelaquinta.com", pie:"El lago de Real de La Quinta." }, name:'Real de La Quinta · Quercus', sub:'Future Banyan Tree Residences',
     municipio:'Benahavís', zona:'Real de La Quinta Resort', lat:36.515, lng:-5.000,
@@ -654,7 +654,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto beachfront cuidado; sin firma internacional.',
         b4:7,  b4why:'Spa, gym, piscinas, acceso directo a playa.' },
     tags:['Beachfront','38 unidades','Mix tipologías'],
-    rationale:'Sube a la primera mención por descarte ajeno: The View pierde más que ella al aplicar el coeficiente de acceso. Su entorno es amplio pero desigual: dieciséis campos en quince minutos y cinco de ellos, de socios. Beachfront con 38 unidades y cuatro tipologías; el golf acompaña a la compra y el mar la explica.' },
+    rationale:'Queda por delante de The View, que pierde más que ella al aplicar el coeficiente de acceso. Su entorno es amplio pero desigual: dieciséis campos en quince minutos y cinco de ellos, de socios. Beachfront con 38 unidades y cuatro tipologías; el golf acompaña a la compra y el mar la explica.' },
 
   { id:'the-view', render:{ dominio:"marbella-ev.com", pie:"Bloque residencial sobre Las Colinas." }, name:'The View Marbella', sub:'Las Colinas de Marbella',
     municipio:'Benahavís', zona:'Las Colinas', lat:36.510, lng:-4.97,
@@ -703,7 +703,88 @@ const PROMOS = [
         b1:4,  b1why:'Producto correcto; sin firma diferenciada.',
         b4:4,  b4why:'Piscinas, gym, zonas comunes.' },
     tags:['7 campos en 15\'','Valor precio/m²'],
-    rationale:'Diez campos accesibles y todos jugables, pero dominados por la categoría ★★ — y el más cercano, Greenlife, es un par 3 de nueve hoyos que la matriz v1.1 ya no computa para la distancia mínima. Buena relación precio-localización sin argumento golfístico propio.' }
+    rationale:'Diez campos accesibles y todos jugables, pero dominados por la categoría ★★ — y el más cercano, Greenlife, es un par 3 de nueve hoyos que la matriz v1.1 ya no computa para la distancia mínima. Buena relación precio-localización sin argumento golfístico propio.' },
+
+  /* ââ Incorporadas en el barrido del 23/09/2026 âââââââââââââââââââââââââ
+     Cuatro promociones que cumplian los requisitos y nunca se habian mirado.
+     Salen del primer longlist documentado (LONGLIST.md) y entran con el techo
+     de precio suprimido. Sus tiempos son OSRM medidos, no declarados. */
+
+  { id:'bentley-puente-romano', render:null, foto:null, image:null,
+    name:'Mirador de Puente Romano', sub:'Furnished by Bentley Home',
+    municipio:'Marbella', zona:'Milla de Oro', lat:36.504509, lng:-4.9241547,
+    promotor:'RGZ Developers', estudio:null, estudioNota:'Interiorismo de Bentley Home con Luxury Living Group; el estudio de arquitectura no se acredita.',
+    derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados: la Milla de Oro no los ofrece.',
+    tipologia:'Dúplex branded 3–4 dorm.', unidades:8,
+    precio:'€3.450.000 – €4.150.000', precioDesde:'€3.450.000', precioEstimado:false, eurM2:9900,
+    eurM2Nota:'€/m² derivado del precio de entrada sobre la unidad menor (350 m²); el promotor no publica el ratio.',
+    estado:'En comercialización', entrega:null,
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['dama-de-noche',5,''],['aloha-golf-club',6,''],['real-club-de-golf-las-brisas',8,''],['magna-marbella',9,''],['los-naranjos-golf',9,''],['real-club-de-golf-guadalmina-sur',11,''],['guadalmina-norte',11,''],['rio-real-golf',12,''],['santa-maria-golf',12,''],['la-quinta-golf',13,''],['atalaya-old',13,''],['atalaya-new',13,''],['los-arqueros-golf',14,''],['el-paraiso-golf',14,''],['el-higueral',15,''],['higueron-marbella-golf',15,'']],
+    d:{ a5:0,  a5why:'En la Milla de Oro, a 50 m del Puente Romano, no en un resort de golf.',
+        a6:2,  a6why:'Depende del bulevar de la Milla de Oro, el tramo urbano que más se colapsa en verano.',
+        b1:10, b1why:'Bentley Home: marca internacional, interiorismo entregado con la unidad.',
+        b4:7,  b4why:'Terrazas privadas con piscina y acceso exclusivo; sin club house ni resort propio.' },
+    tags:['Branded Bentley','8 unidades','Milla de Oro'],
+    rationale:'<strong>La mayor exclusividad de la lista</strong>: ocho dúplex, por debajo de las veinte de ZEW. La marca puntua arriba y el precio por metro tambien. Lo que no acompaña es el golf: dieciseis campos en quince minutos, pero el unico ★★★★ del entorno es Las Brisas y es de socios, igual que Aloha. Vive rodeada de golf que en su mayoria solo puede mirar.' },
+
+  { id:'lagerfeld-villas', render:null, foto:null, image:null,
+    name:'Karl Lagerfeld Villas', sub:'Sierra Blanca Estates',
+    municipio:'Marbella', zona:'Milla de Oro', lat:36.5065204, lng:-4.9192157,
+    coordNota:'Coordenada tomada sobre la Milla de Oro a la altura del Marbella Club: el promotor publica la zona y los 9.000 m² de parcela, no el punto exacto.',
+    promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Diseño en colaboración con Karl Lagerfeld; el estudio de arquitectura no se acredita.',
+    derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
+    tipologia:'Villas branded', unidades:5,
+    precio:'€16.500.000 (Villa St. Germain)', precioDesde:'€16.500.000', precioEstimado:false, eurM2:20000,
+    eurM2Nota:'€/m² estimado: solo se publica el precio de una de las cinco villas y no su superficie construida. Por encima de 10.000 la escala satura, así que la estimacion no altera la puntuacion.',
+    estado:'En construcción', entrega:'2026',
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['dama-de-noche',5,''],['aloha-golf-club',7,''],['real-club-de-golf-las-brisas',9,''],['magna-marbella',10,''],['los-naranjos-golf',10,''],['rio-real-golf',11,''],['santa-maria-golf',11,''],['real-club-de-golf-guadalmina-sur',12,''],['guadalmina-norte',12,''],['la-quinta-golf',14,''],['atalaya-old',14,''],['atalaya-new',14,''],['higueron-marbella-golf',14,''],['los-arqueros-golf',15,''],['santa-clara-golf-marbella',15,''],['el-paraiso-golf',15,'']],
+    d:{ a5:0,  a5why:'En la Milla de Oro, no en resort de golf ni a pie de campo.',
+        a6:2,  a6why:'Mismo bulevar de la Milla de Oro y su congestión estival.',
+        b1:10, b1why:'Primer proyecto residencial de Karl Lagerfeld en el mundo, entregado con el proyecto.',
+        b4:7,  b4why:'Parcela de 9.000 m² y servicio de lujo por villa; sin club house ni beach club propios.' },
+    tags:['Branded Lagerfeld','5 villas','Milla de Oro'],
+    rationale:'<strong>El producto mas caro de la guia</strong> y una de las dos notas maximas de marca. Comparte entorno con Bentley y comparte su problema: el ★★★★ mas cercano es Las Brisas, de socios. El coeficiente de jugabilidad no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
+
+  { id:'tierra-viva', render:null, foto:null, image:null,
+    name:'Tierra Viva', sub:'by Automobili Lamborghini',
+    municipio:'Benahavís', zona:'La Alquería', lat:36.4936707, lng:-5.0210685,
+    promotor:'Dar Global', estudio:null, estudioNota:'Diseño inspirado por Automobili Lamborghini; el estudio de arquitectura no se acredita.',
+    derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
+    tipologia:'Villas 4–6 dorm.', unidades:53,
+    precio:'desde €8.488.653', precioDesde:'€8.488.653', precioEstimado:false, eurM2:10400,
+    eurM2Nota:'€/m² derivado del precio de entrada sobre la villa menor (819 m²).',
+    estado:'En construcción', entrega:'2028',
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['atalaya-old',5,''],['atalaya-new',5,''],['el-higueral',6,''],['el-paraiso-golf',9,''],['alferini-villa-padierna',9,''],['real-club-de-golf-guadalmina-sur',10,''],['guadalmina-norte',10,''],['la-quinta-golf',13,''],['marbella-club-golf-resort',13,''],['los-arqueros-golf',13,''],['tramores-villa-padierna',14,''],['flamingos-villa-padierna',15,''],['magna-marbella',15,''],['los-naranjos-golf',15,''],['real-club-de-golf-las-brisas',15,'']],
+    d:{ a5:0,  a5why:'En La Alquería, no en resort de golf ni a pie de campo.',
+        a6:3,  a6why:'Carretera de La Alquería hasta la A-7; buena pero no directa.',
+        b1:9,  b1why:'Automobili Lamborghini en colaboración de diseño, entregada con el proyecto; no es interiorismo de marca como Fendi o Missoni.',
+        b4:10, b4why:'Piscina con zona de relax, baño turco, sauna y cine en casa por villa.' },
+    tags:['Branded Lamborghini','53 villas','La Alquería'],
+    rationale:'Del mismo promotor que la ganadora, Dar Global, y en el extremo opuesto de la matriz: aqui el golf es vecindario, no argumento. Quince campos en quince minutos, pero el unico ★★★★ esta a quince y es de socios. Entrega en 2028, la mas lejana de la lista.' },
+
+  { id:'spinto-hills', render:null, foto:null, image:null,
+    name:'Spinto Hills', sub:'Casares Costa',
+    municipio:'Casares', zona:'Camarate', lat:36.381273, lng:-5.2108077,
+    coordNota:'Coordenada tomada sobre Casares Costa: las fuentes situan las villas en la zona de Camarate, a unos 2 km de la playa, sin publicar el punto exacto.',
+    promotor:null, promotorNota:'Promotor sin acreditar en las fuentes consultadas.',
+    estudio:'Cacopardo Arquitectos', estudioFuente:'spintohills.homes',
+    derechosGolf:null, derechosNota:'Vistas a Finca Cortesín, sin derechos de golf sobre el campo.',
+    tipologia:'Villas 4–5 dorm.', unidades:17,
+    precio:'€2.150.000 – €2.900.000', precioDesde:'€2.150.000', precioEstimado:false, eurM2:5400,
+    eurM2Nota:'€/m² estimado sobre una superficie construida de unos 400 m²: las fuentes no publican el dato.',
+    estado:'En comercialización', entrega:null,
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['finca-cortesin-golf',5,'Vistas'],['dona-julia-golf',5,''],['la-duquesa-golf',7,''],['estepona-golf',10,''],['casares-costa-golf',10,''],['azata-golf',10,''],['valle-romano-golf',12,'']],
+    d:{ a5:0,  a5why:'Vistas a Finca Cortesín, no dentro: ver un campo no es poder jugarlo.',
+        a6:4,  a6why:'Salida a la A-7 por Casares Costa, con el tramo de subida a Camarate.',
+        b1:4,  b1why:'Cacopardo Arquitectos, estudio de la zona con trayectoria; sin marca internacional.',
+        b4:4,  b4why:'Jardín, piscina y solarium privados por villa; sin zonas comunes de resort.' },
+    tags:['Finca Cortesín a 5′','17 villas','Cacopardo'],
+    rationale:'El <strong>★★★★ reservable mas cercano de toda la guia despues de los dos in-resort</strong>: Finca Cortesin a cinco minutos, de resort y sin ser socio. Le pesa el entorno corto —siete campos en quince minutos, la densidad mas baja de la lista— y un bloque de proyecto sin marca. Golf de primera con producto de segunda linea.' }
+
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -890,6 +971,8 @@ PROMOS.forEach(p => {
   if (!p.derechosGolf) AVISOS.push({ p: p.name, t: 'Derechos de golf', m: p.derechosNota || 'Sin confirmar si la compra incluye membresía o green fees preferentes.' });
   if (p.unidadesNota) AVISOS.push({ p: p.name, t: 'Unidades', m: p.unidadesNota });
   if (p.promotorNota) AVISOS.push({ p: p.name, t: 'Promotor', m: p.promotorNota });
+  if (p.eurM2Nota) AVISOS.push({ p: p.name, t: 'Precio por m²', m: p.eurM2Nota });
+  if (p.coordNota) AVISOS.push({ p: p.name, t: 'Coordenada', m: p.coordNota });
   let placeholder = null;
   COURSES.forEach(c => { if (hav(p.lat, p.lng, c.lat, c.lng) < 0.25) placeholder = c.name; });
   if (placeholder) AVISOS.push({ p: p.name, t: 'Coordenada', m: `La coordenada de la promoción coincide con la del campo ${placeholder}: es una posición aproximada, no la parcela.` });
@@ -956,7 +1039,7 @@ if (rankBody) pintarRanking();
 // Los rótulos de recuento se calculan: con empates, el top 10 puede contener más de diez.
 (() => {
   const top = PROMOS.filter(p => p.top10).length;
-  const num = n => ['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce'][n] || n;
+  const num = n => String(['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'][n] || n);
   const t = document.getElementById('tituloRanking');
   // La ganadora tiene pieza propia arriba, asi que la lista empieza en la segunda.
   const ultima = PROMOS.filter(p => p.top10).slice(-1)[0];
@@ -969,6 +1052,16 @@ if (rankBody) pintarRanking();
   /* El recuento del lede tambien se calcula: tres cifras a mano en la misma
      frase es donde se cuela la contradiccion. El empate lo explican la marca
      de la tarjeta y el marcador de la ficha, que es donde se ve. */
+  /* Los indicadores de portada y el pie salen de la matriz, no del teclado. */
+  const kp = document.getElementById('kpiPromos');
+  if (kp) kp.textContent = PROMOS.length;
+  const pr = PROMOS.map(x => Number(String(x.precioDesde).replace(/[^0-9]/g, ''))).filter(Boolean);
+  const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + 'M' : Math.round(n / 1000) + 'k';
+  const kr = document.getElementById('kpiRango');
+  if (kr && pr.length) kr.textContent = '\u20ac' + mm(Math.min(...pr)) + '\u2013' + mm(Math.max(...pr));
+  const pie = document.getElementById('pieRecuento');
+  if (pie) pie.textContent = `${PROMOS.length} promociones evaluadas \u00b7 top 10 publicado \u00b7 ${COURSES.length} campos`;
+
   const h = document.getElementById('ledeHero');
   if (h) h.textContent = `${num(PROMOS.length).replace(/^./, c => c.toUpperCase())} promociones evaluadas sobre 100. Aqu\u00ed est\u00e1 el top 10 en orden.`;
   const f = document.getElementById('tituloFichas');
@@ -1102,7 +1195,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const PASES = 4;
   const galeria = () => {
     const reales = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id]) ||
-      [{ src: media.src, pie: media.pie, cred: media.tag }];
+      (media.src ? [{ src: media.src, pie: media.pie, cred: media.tag }] : []);
     return Array.from({ length: Math.max(PASES, reales.length) }, (_, i) => reales[i] || null);
   };
   const media = p.render
@@ -1161,7 +1254,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span>
         </header>
         <dl class="project-data">
-          <div><dt>Promotor</dt><dd>${p.promotor}${p.promotorGrupo ? `<small>${p.promotorGrupo}</small>` : ''}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
+          <div><dt>Promotor</dt><dd>${p.promotor || 'No acreditado'}${p.promotorGrupo ? `<small>${p.promotorGrupo}</small>` : ''}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
           <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Estado</dt><dd>${p.estado} · ${p.entrega}</dd></div>
           <div><dt>Desde</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Precio estimado</small>' : '<small>Precio de referencia</small>'}</dd></div>
           <div><dt>Recorrido de precio</dt><dd class="dd-texto">${p.precio}</dd></div>
@@ -1308,10 +1401,10 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       `la ventaja de ${enPuntos(ventaja)} sobre la segunda sale de la otra mitad de la matriz.`;
   } else if (p.A === Math.max(...PUBLICADAS.map(x => x.A)) && p.B === techoB) {
     razon = `<strong>Gana los dos bloques.</strong> ${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto: ` +
-      `nadie más encabeza las dos mitades de la matriz. ${enPuntos(ventaja).replace(/^u/, 'U')} sobre la segunda.`;
+      `nadie más encabeza las dos mitades de la matriz. ${enPuntos(ventaja).replace(/^./, c => c.toUpperCase())} sobre la segunda.`;
   } else {
     razon = `<strong>${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto.</strong> ` +
-      `${enPuntos(ventaja).replace(/^u/, 'U')} sobre ${segunda.name}, que es la segunda.`;
+      `${enPuntos(ventaja).replace(/^./, c => c.toUpperCase())} sobre ${segunda.name}, que es la segunda.`;
   }
 
   /* Descompone el total en sus dos mitades: al ir las dos barras sobre el
@@ -1339,7 +1432,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
      una línea de datos seguidos no dice qué es cada cosa. */
   const dato = (t, v, sub) => v ? `<div><dt>${t}</dt><dd>${v}${sub ? `<small>${sub}</small>` : ''}</dd></div>` : '';
   const tecnica = [
-    dato('Promotor', p.promotor, p.promotorGrupo),
+    dato('Promotor', p.promotor || 'No acreditado', p.promotorGrupo),
     dato('Arquitectura', p.estudio),
     dato('Tipología', p.tipologia),
     dato('Unidades', p.unidades, 'desarrollo completo'),
