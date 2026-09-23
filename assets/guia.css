@@ -1788,7 +1788,14 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .topnav { position: fixed; top: 0; left: 0; right: 0; }
 /* Y como ahora flota, los saltos a un ancla dejan su hueco debajo. */
 html { scroll-padding-top: calc(var(--nav-h) + 18px); }
-.hero .hero-top { padding-top: var(--nav-h); }
+/* Media altura de menú en vez de una entera: el lede ha crecido y el aire de
+   cabecera es lo que menos se echa de menos. Aún quedan 40 px libres bajo la
+   barra, que es más de lo que separa al titular del crédito. */
+.hero .hero-top { padding-top: calc(var(--nav-h) / 2); }
+/* El lede de portada creció a tres líneas y la franja de datos se quedaba a
+   cuatro píxeles del borde inferior: el pie del hero cede lo justo para que
+   los cuatro indicadores sigan entrando en la primera pantalla. */
+.hero:not(.hero-pagina) { padding-bottom: 64px; }
 .hero-pagina { min-height: calc(clamp(280px, 40vh, 420px) + var(--nav-h)); }
 @media (max-width: 640px) { .hero-pagina { min-height: calc(240px + var(--nav-h)); } }
 
