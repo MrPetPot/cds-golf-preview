@@ -949,9 +949,11 @@ if (rankBody) pintarRanking();
   const top = PROMOS.filter(p => p.top10).length;
   const num = n => ['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce'][n] || n;
   const t = document.getElementById('tituloRanking');
-  if (t) t.innerHTML = `Las <em>${num(top)} del top 10</em>.`;
+  // La ganadora tiene pieza propia arriba, asi que la lista empieza en la segunda.
+  const ultima = PROMOS.filter(p => p.top10).slice(-1)[0];
+  if (t) t.innerHTML = `Y detrás, <em>las otras ${num(top - 1)}</em>.`;
   const l = document.getElementById('ledeRanking');
-  if (l) l.textContent = `${num(top).replace(/^./, c => c.toUpperCase())} promociones en orden. Abre cada una para ver su desglose criterio a criterio.`;
+  if (l) l.textContent = `Del puesto 02 al ${String(ultima.rank).padStart(2, '0')}, en orden. Abre cada una para ver su desglose criterio a criterio.`;
   const m = document.getElementById('tituloMapaRanking');
   if (m) m.innerHTML = `Las ${num(top)}, <em>sobre el mapa</em>.`;
   const f = document.getElementById('tituloFichas');
@@ -1233,6 +1235,156 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </div>`;
   detailGrid.appendChild(card);
 });
+
+/* ═══════════════════════════════════
+   LA GANADORA, CON PIEZA PROPIA
+   El documento anuncia un veredicto durante tres páginas y lo soltaba como
+   primera fila de once tarjetas iguales. Aquí el primer puesto tiene su
+   escenario —banda con imagen, nombre a tamaño de portada y la nota como
+   cifra grande— y la lista arranca en el segundo.
+   No se invierte el orden: en un ranking puntuado el primero fija la escala,
+   y quien manda sobre el scroll es el lector. Lo que faltaba no era suspense,
+   era ceremonia.
+   Todo sale de PROMOS, así que si cambia un dato cambia la pieza sola.
+═══════════════════════════════════ */
+(function () {
+  const destino = document.getElementById('ganadora');
+  if (!destino || !PUBLICADAS.length) return;
+
+  const p = PUBLICADAS[0], segunda = PUBLICADAS[1], c = p.cercano;
+  const dosCifras = n => String(n).padStart(2, '0');
+  const pct = (v, max) => Math.round(v / max * 100);
+  const enumerar = xs => xs.length === 1 ? xs[0] : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1];
+  const estrellas = n =>
+    `<span class="star">${'★'.repeat(n)}</span>` +
+    (n < 4 ? `<span class="star-off"><span class="star">${'★'.repeat(4 - n)}</span></span>` : '');
+
+  /* ── El editorial, a la cabecera de la sección ────────────────────
+     El texto ya viene con su primera frase en <strong>: es el titular de la
+     pieza, no una negrita decorativa. Se saca de ahí y sube a tamaño de
+     display, y lo que queda —la prueba— corre al lado como cuerpo. Una
+     afirmación grande y su respaldo, que es la jerarquía que el texto ya
+     tenía escrita. */
+  const cabecera = document.getElementById('veredictoIntro');
+  if (cabecera) {
+    const m = p.rationale.match(/^\s*<strong>(.*?)<\/strong>\s*([\s\S]*)$/);
+    const titular = m ? m[1].replace(/\.$/, '') : '';
+    cabecera.innerHTML = `
+      <div class="ver-intro${titular ? '' : ' ver-intro-sola'}">
+        ${titular ? `<p class="ver-titular">${titular}</p>` : ''}
+        <p class="ver-cuerpo">${m ? m[2] : p.rationale}</p>
+      </div>`;
+  }
+
+  /* ── Por qué gana ────────────────────────────────────────
+     La frase se construye desde los datos y no se escribe a mano: si mañana
+     cambia quién encabeza cada bloque, cambia el texto con él. */
+  const lidera = PUBLICADAS.slice().sort((a, b) => b.A - a.A)[0];
+  const techoB = Math.max(...PUBLICADAS.map(x => x.B));
+  const empatadas = PUBLICADAS.filter(x => x.B === techoB && x !== p).map(x => x.name);
+  const ventaja = p.total - segunda.total;
+  const CIFRA = ['cero', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez'];
+  const enPuntos = n => n === 1 ? 'un punto' : (CIFRA[n] || n) + ' puntos';
+
+  let razon;
+  if (lidera !== p && p.B === techoB) {
+    razon = `<strong>No gana por el golf.</strong> ${lidera.name} la supera en entorno —${lidera.A} de 60 frente a ${p.A}—, ` +
+      `pero ${p.name} firma la mejor nota de proyecto del ranking: <strong>${p.B} de 40</strong>` +
+      (empatadas.length ? `, empatada con ${enumerar(empatadas)}` : '') + '. ' +
+      `Ahí están los ${enPuntos(ventaja)} que la separan de la segunda.`;
+  } else if (p.A === Math.max(...PUBLICADAS.map(x => x.A)) && p.B === techoB) {
+    razon = `<strong>Gana los dos bloques.</strong> ${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto: ` +
+      `nadie más encabeza las dos mitades de la matriz. ${enPuntos(ventaja).replace(/^u/, 'U')} sobre la segunda.`;
+  } else {
+    razon = `<strong>${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto.</strong> ` +
+      `${enPuntos(ventaja).replace(/^u/, 'U')} sobre ${segunda.name}, que es la segunda.`;
+  }
+
+  /* Descompone el total en sus dos mitades: al ir las dos barras sobre el
+     mismo ancho se ve cuál de los dos bloques rinde más en proporción, que
+     es justo lo que cuenta el texto de al lado. */
+  const mitades = `
+    <figure class="gfx">
+      <figcaption class="gana-rot">De dónde salen los ${p.total}</figcaption>
+      <div class="gfx-mitades">
+        <div class="gfx-fila">
+          <span class="gfx-lbl">Entorno de golf</span>
+          <span class="gfx-cifra">${p.A}<small>/60</small></span>
+          <span class="gfx-track"><span class="gfx-fill gfx-golf" style="width:${pct(p.A, 60)}%"></span></span>
+        </div>
+        <div class="gfx-fila">
+          <span class="gfx-lbl">El proyecto</span>
+          <span class="gfx-cifra">${p.B}<small>/40</small></span>
+          <span class="gfx-track"><span class="gfx-fill gfx-proy" style="width:${pct(p.B, 40)}%"></span></span>
+        </div>
+      </div>
+      <p class="gfx-pie">Sobre su propio máximo, el proyecto rinde al ${pct(p.B, 40)} % y el golf al ${pct(p.A, 60)} %.</p>
+    </figure>`;
+
+  /* Cada dato con su etiqueta, en la misma rejilla que la ficha del proyecto:
+     una línea de datos seguidos no dice qué es cada cosa. */
+  const dato = (t, v, sub) => v ? `<div><dt>${t}</dt><dd>${v}${sub ? `<small>${sub}</small>` : ''}</dd></div>` : '';
+  const tecnica = [
+    dato('Promotor', p.promotor),
+    dato('Arquitectura', p.estudio),
+    dato('Tipología', p.tipologia),
+    dato('Unidades', p.unidades, 'desarrollo completo'),
+    dato('Estado', p.estado, p.entrega ? 'entrega ' + p.entrega : ''),
+    dato('Desde', p.precioDesde, p.precio),
+    dato('Posicionamiento', '€' + p.eurM2.toLocaleString('es-ES'), 'por m²'),
+    dato('Campo de referencia', estrellas(c.stars),
+      `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'}`)
+  ].join('');
+
+  const foto = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id] && FOTOS_PROMO[p.id][0]) || null;
+
+  destino.innerHTML = `
+    <div class="gana">
+      <figure class="gana-banda">
+        <img src="${foto ? foto.src : p.image}" alt="${p.name} — ${p.municipio}" loading="eager"/>
+        <figcaption class="gana-cuerpo">
+          <div>
+            <span class="gana-lbl">La ganadora · Edición #01</span>
+            <h3 class="gana-nombre"><span class="gana-puesto">#${dosCifras(p.rank)}</span> ${p.name}</h3>
+            <span class="gana-loc">${p.municipio}${p.zona ? ' · ' + p.zona : ''}</span>
+          </div>
+          <div class="gana-marcador">${p.total}<small>/100</small></div>
+        </figcaption>
+      </figure>
+
+      <div class="gana-intro">
+        <div class="gana-texto">
+          <span class="gana-rot">Por qué gana</span>
+          <p class="gana-razon">${razon}</p>
+        </div>
+        ${mitades}
+      </div>
+
+      <div class="gana-proyecto">
+        <span class="gana-rot">La ficha en corto</span>
+        <dl class="project-data">${tecnica}</dl>
+      </div>
+
+      <div class="gana-acciones">
+        <a class="gana-cta" href="#f/${p.id}" data-abrir-ganadora="${p.id}">
+          <b>Ver la ficha completa</b>
+          <span>Los diez criterios, uno a uno →</span>
+        </a>
+      </div>
+    </div>`;
+
+  /* La tarjeta del primero sale de la lista pero se queda en el DOM: abierta
+     sigue siendo la capa a pantalla completa de siempre, y la llamada de
+     arriba la necesita entera para poder abrirla. */
+  const tarjeta = document.getElementById('ficha-' + p.id);
+  if (tarjeta) tarjeta.classList.add('gana-fuera');
+
+  destino.addEventListener('click', e => {
+    if (!e.target.closest('[data-abrir-ganadora]') || !tarjeta) return;
+    e.preventDefault();
+    tarjeta.open = true;   // el resto lo hace el 'toggle' de la capa
+  });
+})();
 
 /* ═══════════════════════════════════
    LA FICHA ABIERTA, A PANTALLA COMPLETA
