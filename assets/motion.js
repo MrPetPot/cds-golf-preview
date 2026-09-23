@@ -177,7 +177,11 @@
       });
       return frag;
     }
-    titleLines.forEach(lineEl => {
+    titleLines.forEach((lineEl, li) => {
+      // Un respiro antes del remate: la frase se lee en dos tiempos —lo que se
+      // busca y donde— y el remate entra despues de la pausa, no en la misma
+      // tirada. Son ocho turnos, unos 760 ms.
+      if (li > 0 && li === titleLines.length - 1) i += 8;
       const label = lineEl.textContent.trim();
       const built = fragmentOf([...lineEl.childNodes]);
       lineEl.setAttribute('aria-label', label);
