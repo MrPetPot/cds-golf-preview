@@ -1591,6 +1591,17 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-nucleo-may .at-nucleo-m { fill: var(--text); }
 .at-nucleo-may .at-sitio { fill: var(--text-mid); letter-spacing: .22em; }
 .atlas-zoom { position: absolute; top: 12px; right: 12px; display: flex; flex-direction: column; gap: 6px; }
+/* Solo aparece con una ficha fijada: es la salida del zoom. */
+.atlas-volver {
+  position: absolute; top: 12px; left: 12px; display: flex; align-items: center; gap: 8px;
+  padding: 9px 14px; background: var(--text); border: 1px solid var(--text); color: #FFFFFF;
+  font-family: var(--f-sans); font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer; transition: background-color .2s, color .2s;
+}
+.atlas-volver[hidden] { display: none; }
+.atlas-volver span { font-size: 13px; line-height: 1; }
+.atlas-volver:hover { background: var(--oro-3); border-color: var(--oro-3); }
+.atlas-volver:focus-visible { outline: 2px solid var(--oro-1); outline-offset: 2px; }
 .atlas-zoom button {
   width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,.92); border: 1px solid var(--line-strong); color: var(--text);
@@ -1636,8 +1647,10 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .atlas-svg.at-activo .at-campo .at-campo-p { opacity: .2; }
 .atlas-svg .at-campo.at-on .at-campo-p { opacity: 1; }
 .at-campo, .at-promo { cursor: pointer; outline: none; }
-.at-campo:focus-visible .at-golpe, .at-promo:focus-visible .at-promo-p { stroke: var(--oro-3); stroke-width: 2; }
-.at-promo-p { fill: var(--bg-0); stroke: var(--text); stroke-width: 1.6; transition: opacity .25s, fill .25s, stroke .25s; }
+.at-campo:focus-visible .at-golpe, .at-promo:focus-visible .at-promo-p { stroke: var(--oro-3); stroke-width: 2; vector-effect: non-scaling-stroke; }
+/* Sin non-scaling-stroke el contorno engordaba con el zoom: el radio se
+   contraescala pero el trazo no, y a ocho aumentos el circulo se veia macizo. */
+.at-promo-p { fill: var(--bg-0); stroke: var(--text); stroke-width: 1.6; vector-effect: non-scaling-stroke; transition: opacity .25s, fill .25s, stroke .25s; }
 .at-promo-n { fill: var(--text); font-family: var(--f-display); font-size: 13px; font-weight: 700; text-anchor: middle; transition: opacity .25s, fill .25s; }
 /* Los demas numeros no se apagan: son la referencia que permite situar al
    senalado dentro del ranking. Los nucleos de poblacion si, porque ahi son

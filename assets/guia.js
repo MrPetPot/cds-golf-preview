@@ -1712,6 +1712,13 @@ function initAtlas(el) {
   }
 
   const controles = document.createElement('div');
+  const volver = document.createElement('button');
+  volver.type = 'button';
+  volver.className = 'atlas-volver';
+  volver.hidden = true;
+  volver.innerHTML = '<span aria-hidden="true">✕</span> Vista general';
+  volver.addEventListener('click', soltar);
+
   controles.className = 'atlas-zoom';
   const botonMas = document.createElement('button');
   botonMas.type = 'button'; botonMas.textContent = '+';
@@ -1787,10 +1794,20 @@ function initAtlas(el) {
     pintarPanelCampo(c, suyas);
   }
 
-  // Al fijar una promocion el encuadre se cierra sobre ella hasta mostrar poco
-  // mas de un tercio del mapa —2,4 aumentos— con su racimo en el centro: a esa
-  // escala se leen los minutos de cada campo sin perder la linea de costa.
+  // Al fijar una promocion el encuadre se ajusta a su racimo, no a un factor
+  // fijo: los racimos van de 27 unidades de ancho (MAREA) a 229 (Soul Marbella),
+  // asi que una misma ampliacion o deja aire de sobra o corta campos. Se calcula
+  // la caja que contiene la promocion y sus campos, se le deja margen para los
+  // rotulos y se limita entre el cierre minimo y el maximo del mapa.
   const CIERRE = 0.7 / (1.3 * 1.3);
+  function encuadrePromo(p) {
+    const xs = [X(p.lng)], ys = [Y(p.lat)];
+    p.campos.forEach(c => { xs.push(X(c.lng)); ys.push(Y(c.lat)); });
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const ancho = Math.max(x1 - x0, 14) * 1.38, alto = Math.max(y1 - y0, 14) * 1.5;
+    const z = Math.min(ZMAX, Math.max(1 / CIERRE, Math.min(W / ancho, H / alto)));
+    return { z, x: (x0 + x1) / 2, y: (y0 + y1) / 2 };
+  }
   let tween;
   function irA(zDestino, xDestino, yDestino) {
     cancelAnimationFrame(tween);
@@ -1815,10 +1832,12 @@ function initAtlas(el) {
     fijado = { t: 'p', v: p };
     verPromo(p);
     svg.classList.add('at-fijado');
-    irA(Math.min(ZMAX, 1 / CIERRE), X(p.lng), Y(p.lat));
+    volver.hidden = false;
+    const e = encuadrePromo(p);
+    irA(e.z, e.x, e.y);
   }
-  function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); svg.classList.add('at-fijado'); }
-  function soltar() { fijado = null; limpiar(); pintarPanelInicio(); irA(1, W / 2, H / 2); }
+  function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); svg.classList.add('at-fijado'); volver.hidden = false; }
+  function soltar() { fijado = null; volver.hidden = true; limpiar(); pintarPanelInicio(); irA(1, W / 2, H / 2); }
 
   el.addEventListener('mouseleave', () => {
     if (fijado) { fijado.t === 'p' ? verPromo(fijado.v) : verCampo(fijado.v); svg.classList.add('at-fijado'); }
@@ -1938,6 +1957,7 @@ function initAtlas(el) {
   lienzo.querySelectorAll('noscript').forEach(n => n.remove());
   lienzo.append(svg);
   lienzo.append(controles);
+  lienzo.append(volver);
   encuadrar();
   // Al cambiar el ancho cambia la escala física de nodos y rótulos.
   let reencuadre;
