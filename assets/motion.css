@@ -391,7 +391,7 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 .hero-title .hero-char {
   display: inline-block; opacity: 0; transform: translateY(90%);
   animation: hero-char-in .22s cubic-bezier(.16,.84,.34,1) both;
-  animation-delay: calc(var(--i, 0) * 95ms);
+  animation-delay: calc(var(--i, 0) * 68ms);
 }
 @keyframes hero-char-in { to { opacity: 1; transform: translateY(0); } }
 

@@ -1847,6 +1847,9 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 @media (max-width: 640px) { .legal-datos { grid-template-columns: 1fr; gap: 2px 0; }
   .legal-datos dd { margin-bottom: 10px; } }
 
+/* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
+.hero-top .marca { text-transform: none; letter-spacing: .12em; color: #FFFFFF; }
+
 /* ── Estado de la edición ─────────────────────────────────────
    Cierra el capítulo diciendo de dónde sale el censo, qué se ha quedado
    fuera y cuándo se vuelve a mirar. El embudo va arriba, en cifras grandes;
