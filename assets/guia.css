@@ -1140,72 +1140,32 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a.nav-ranking { color: #FFFFFF; }
 @media (max-width: 640px) { .topnav-brand b { font-size: 21px; } }
 
-/* ── Portada · los tres pasos ────────────────────────────────────────────
-   Tarjetas horizontales, apiladas, con el mismo lenguaje que el campo de
-   referencia de la ficha: una banda de imagen con el titulo flotando sobre
-   ella y el contenido debajo. Cada tarjeta lleva el plano del hero de la
-   pagina a la que enlaza, asi que la tarjeta es literalmente una ventana a
-   su capitulo y no una ilustracion decorativa. */
-.pasos { display: grid; gap: 18px; }
+/* Portada · los tres pasos */
+.pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .paso {
-  display: block; border: 1px solid var(--line); background: var(--bg-1); overflow: hidden;
-  text-decoration: none; color: inherit;
-  transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
+  border: 1px solid var(--line); background: var(--bg-1); padding: 34px 30px 30px;
+  display: flex; flex-direction: column; text-decoration: none; color: inherit;
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
 }
-.paso:hover { box-shadow: 0 14px 44px rgba(30,58,95,.12); transform: translateY(-2px); }
-/* La cabecera: imagen a sangre, velo hacia abajo y el rotulo al pie. */
-.paso-img {
-  position: relative; height: 190px; overflow: hidden; background: #0F1726;
-  display: flex; align-items: flex-end; padding: 0 30px 22px;
-}
-.paso-img::before {
-  content: ''; position: absolute; inset: 0;
-  background-size: cover; background-position: 50% 50%; transition: transform .9s var(--ease);
-}
-.paso:hover .paso-img::before { transform: scale(1.04); }
-.paso-img::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(15,23,38,.14) 0%, rgba(15,23,38,.06) 34%, rgba(15,23,38,.86) 100%);
-}
-.paso-m .paso-img::before { background-image: url('../images/hero/pag-metodo.jpg'); }
-.paso-c .paso-img::before { background-image: url('../images/hero/pag-campos.jpg'); }
-.paso-r .paso-img::before { background-image: url('../images/hero/pag-ranking.jpg'); }
-.paso-cab { position: relative; z-index: 1; display: flex; align-items: baseline; gap: 18px; }
-.paso-num { font-family: var(--f-display); font-weight: 700; font-size: 32px; line-height: 1; color: var(--oro-1); }
-.paso h3 {
-  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
-  font-size: clamp(30px, 3.4vw, 44px); line-height: 1.02; margin: 0; letter-spacing: -.005em; color: #FFFFFF;
-}
-/* El cuerpo: los tres argumentos en linea y la llamada al final, a la derecha. */
-.paso-cuerpo {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 34px;
-  align-items: end; padding: 26px 30px 24px;
-}
-.paso-cuerpo .puntos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 28px; }
-.paso-cuerpo .puntos li { margin: 0; }
-.paso-cta { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 700; color: var(--y-1); white-space: nowrap; }
+.paso:hover { border-color: var(--line-strong); box-shadow: 0 14px 44px rgba(30,58,95,.09); transform: translateY(-2px); }
+.paso-num { font-family: var(--f-display); font-weight: 700; font-size: 46px; line-height: 1; color: var(--oro-2); }
+.paso h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 28px; line-height: 1.02; margin: 16px 0 14px; letter-spacing: -.005em; }
+.paso-cta { margin-top: auto; padding-top: 22px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 700; color: var(--y-1); }
 /* Gama de grises: cada tarjeta un punto más oscura que la anterior */
 .pasos .paso:nth-child(1) { background: var(--bg-1); }
 .pasos .paso:nth-child(2) { background: var(--bg-2); }
 .pasos .paso:nth-child(3) { background: var(--bg-3); border-color: var(--line-strong); }
 /* Mouse over: gris marengo y texto en blanco, además de la elevación */
-.paso .puntos li, .paso .puntos li strong, .paso-cta { transition: color .3s var(--ease); }
+.paso, .paso h3, .paso .puntos li, .paso .puntos li strong, .paso-num, .paso-cta { transition: background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease); }
 .pasos .paso:hover { background: var(--marengo); border-color: var(--marengo); color: #FFFFFF; }
-.paso:hover .puntos li strong { color: #FFFFFF; }
+.paso:hover h3, .paso:hover .puntos li strong { color: #FFFFFF; }
 .paso:hover .puntos li { color: rgba(255,255,255,.86); }
-.paso:hover .paso-cta { color: var(--oro-1); }
-@media (max-width: 900px) {
-  .paso-img { height: 150px; padding: 0 20px 18px; }
-  .paso-num { font-size: 26px; }
-  .paso-cuerpo { grid-template-columns: 1fr; padding: 22px 20px 20px; }
-  .paso-cuerpo .puntos { grid-template-columns: 1fr; gap: 0; }
-  .paso-cuerpo .puntos li { margin-bottom: 9px; }
-}
+.paso:hover .paso-num, .paso:hover .paso-cta { color: var(--oro-1); }
 
 /* Bullets editoriales */
 .puntos { list-style: none; margin: 0; padding: 0; }
-.puntos li { position: relative; padding-left: 18px; font-size: 15px; line-height: 1.5; color: var(--text-mid); margin-bottom: 9px; }
-.puntos li::before { content: ''; position: absolute; left: 0; top: .58em; width: 8px; height: 8px; background: var(--oro-2); }
+.puntos li { position: relative; padding-left: 20px; font-size: 15px; line-height: 1.5; color: var(--text-mid); margin-bottom: 9px; }
+.puntos li::before { content: ''; position: absolute; left: 0; top: .72em; width: 11px; height: 1.5px; background: var(--oro-2); }
 .puntos li strong { color: var(--text); font-weight: 700; }
 .puntos.compacta li { font-size: 14px; margin-bottom: 6px; }
 .nota-bloque { border: 1px solid var(--line); background: var(--bg-1); padding: 28px 30px 20px; margin-top: 24px; }
@@ -1529,8 +1489,8 @@ details.promo:not([open]) > summary:focus-visible .dc-flip { outline: 3px solid 
 /* Claves dentro de la ficha */
 .claves { list-style: none; margin: 0 0 26px; padding: 0 0 24px; border-bottom: 1px solid var(--line);
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
-.claves li { position: relative; padding-left: 18px; font-size: 14.5px; line-height: 1.45; color: var(--text-mid); }
-.claves li::before { content: ''; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--oro-2); }
+.claves li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.45; color: var(--text-mid); }
+.claves li::before { content: ''; position: absolute; left: 0; top: .68em; width: 11px; height: 1.5px; background: var(--oro-2); }
 .claves li strong { color: var(--text); font-weight: 700; }
 
 /* Acordeón del ranking */
@@ -1576,7 +1536,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .siguiente a:hover { background: var(--text); color: #FFFFFF; border-color: var(--text); }
 .siguiente a:hover small { color: var(--oro-1); }
 
-@media (max-width: 900px) { .notas-grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) { .pasos { grid-template-columns: 1fr; } .notas-grid { grid-template-columns: 1fr; }
   .notas-card { padding: 0; }
   .notas-card .nota-bloque { padding: 22px 0 18px !important; border-left: 0 !important; }
   .notas-card .nota-bloque:nth-child(n+2) { border-top: 1px solid var(--line); } }
