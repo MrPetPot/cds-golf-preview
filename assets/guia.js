@@ -1573,8 +1573,12 @@ function initAtlas(el) {
     });
     const punto = sv('circle', { cx: X(c.lng), cy: Y(c.lat), r, class: 'at-campo-p' });
     const golpe = sv('circle', { cx: X(c.lng), cy: Y(c.lat), r: r + 7, class: 'at-golpe' });
-    g.append(punto, golpe);
-    circCampo.push({ punto, golpe, r });
+    // El nombre solo aparece al fijar: rotular sesenta y un campos a la vez
+    // convertiria el mapa en un listado.
+    const rot = sv('text', { x: X(c.lng), y: Y(c.lat) - r - 4, class: 'at-campo-t', 'aria-hidden': 'true' });
+    rot.textContent = c.name;
+    g.append(punto, rot, golpe);
+    circCampo.push({ punto, golpe, rot, r, y: Y(c.lat) });
     nodoCampo[c.id] = g;
     g.__at = { t: 'c', v: c };
     g.addEventListener('mouseenter', () => verCampo(c));
@@ -1663,9 +1667,16 @@ function initAtlas(el) {
     const base = Math.min(2.6, Math.max(1, W / ancho));
     escala = zoom / base;
     const z = escala;
-    circCampo.forEach(({ punto, golpe, r }) => {
+    circCampo.forEach(({ punto, golpe, rot, r, y }) => {
       punto.setAttribute('r', r / z);
       golpe.setAttribute('r', (r + 7) / z);
+      // El halo tambien se contraescala: sin eso, a dos aumentos el trazo media
+      // tres cuartos del cuerpo de la letra y se comia el nombre.
+      if (rot) {
+        rot.setAttribute('y', y - (r + 6) / z);
+        rot.style.fontSize = (10 / z) + 'px';
+        rot.style.strokeWidth = (2.6 / z) + 'px';
+      }
     });
     sitios.forEach(s => {
       s.anillo.setAttribute('r', 13 / z);
@@ -1751,7 +1762,7 @@ function initAtlas(el) {
   });
 
   function limpiar() {
-    svg.classList.remove('at-activo');
+    svg.classList.remove('at-activo', 'at-fijado');
     lineas.forEach(l => l.classList.remove('at-on'));
     Object.values(nodoCampo).forEach(g => g.classList.remove('at-on'));
     Object.values(nodoPromo).forEach(g => g.classList.remove('at-on'));
@@ -1803,13 +1814,14 @@ function initAtlas(el) {
     if (arrastre) return;
     fijado = { t: 'p', v: p };
     verPromo(p);
+    svg.classList.add('at-fijado');
     irA(Math.min(ZMAX, 1 / CIERRE), X(p.lng), Y(p.lat));
   }
-  function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); }
+  function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); svg.classList.add('at-fijado'); }
   function soltar() { fijado = null; limpiar(); pintarPanelInicio(); irA(1, W / 2, H / 2); }
 
   el.addEventListener('mouseleave', () => {
-    if (fijado) { fijado.t === 'p' ? verPromo(fijado.v) : verCampo(fijado.v); }
+    if (fijado) { fijado.t === 'p' ? verPromo(fijado.v) : verCampo(fijado.v); svg.classList.add('at-fijado'); }
     else { limpiar(); pintarPanelInicio(); }
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && fijado) soltar(); });
