@@ -45,12 +45,9 @@
     golf.before(golfResult);
   }
 
-  document.querySelectorAll('.method-block').forEach(block => {
-    const note = document.createElement('p');
-    note.className = 'motion-note';
-    note.textContent = 'Capacidad máxima del bloque · no puntuación obtenida';
-    block.querySelector('.method-weight')?.after(note);
-  });
+  /* La nota de «capacidad máxima» se retira: con la entrada del bloque encima y
+     la escala de cada criterio debajo, nadie confunde ya 60 puntos con una nota
+     obtenida, y eran tres renglones de letra pequeña seguidos. */
   const method = document.querySelector('.method-grid');
   if (method) {
     const note = document.createElement('p');
