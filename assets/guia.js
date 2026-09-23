@@ -1182,7 +1182,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           </div>
           <div class="cm-total">
             <strong>${p.total}<small>/100</small></strong>
-            <span class="cm-puesto">${p.top10 ? 'Puesto ' + String(p.rank).padStart(2, '0') + ' de ' + PUBLICADAS.length : 'Mención honorífica'}</span>
+            <span class="cm-lbl">${p.top10 ? 'Puesto ' + String(p.rank).padStart(2, '0') + ' de ' + PUBLICADAS.length : 'Mención honorífica'}</span>
           </div>
         </div>
       </section>
