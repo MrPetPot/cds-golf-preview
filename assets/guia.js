@@ -783,7 +783,69 @@ const PROMOS = [
         b1:4,  b1why:'Cacopardo Arquitectos, estudio de la zona con trayectoria; sin marca internacional.',
         b4:4,  b4why:'Jardín, piscina y solarium privados por villa; sin zonas comunes de resort.' },
     tags:['Finca Cortesín a 5′','17 villas','Cacopardo'],
-    rationale:'El <strong>★★★★ reservable mas cercano de toda la guia despues de los dos in-resort</strong>: Finca Cortesin a cinco minutos, de resort y sin ser socio. Le pesa el entorno corto —siete campos en quince minutos, la densidad mas baja de la lista— y un bloque de proyecto sin marca. Golf de primera con producto de segunda linea.' }
+    rationale:'El <strong>★★★★ reservable mas cercano de toda la guia despues de los dos in-resort</strong>: Finca Cortesin a cinco minutos, de resort y sin ser socio. Le pesa el entorno corto —siete campos en quince minutos, la densidad mas baja de la lista— y un bloque de proyecto sin marca. Golf de primera con producto de segunda linea.' },
+
+  /* ââ Segunda tanda del barrido Â· 23/09/2026 âââââââââââââââââââââââââââ
+     Las tres de las catorce restantes que pasan el suelo de 500.000 â¬ y
+     tienen precio publicado. El resto queda fuera o aplazado, con su motivo
+     escrito en LONGLIST.md. */
+
+  { id:'tyrian-residences', render:null, foto:null, image:null,
+    name:'Tyrian Residences', sub:'Prestige Expo · BZH',
+    municipio:'Estepona', zona:'Primera línea de playa', lat:36.4268068, lng:-5.1468484,
+    coordNota:'Coordenada sobre el casco de Estepona: las fuentes situan el edificio junto al bulevar, en primera linea, sin publicar el punto exacto.',
+    promotor:'Prestige Expo Group + Grupo BZH', estudio:'Yodezeen + Arata Arquitectura', estudioFuente:'ejeprime.com',
+    derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
+    tipologia:'Villas en altura 300–1.060 m²', unidades:40,
+    precio:'€3.500.000 – €6.900.000', precioDesde:'€3.500.000', precioEstimado:false, eurM2:11700,
+    eurM2Nota:'€/m² derivado del precio de entrada sobre la unidad menor (300 m²).',
+    estado:'En construcción · 60 % vendido', entrega:'2026',
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['valle-romano-golf',13,''],['azata-golf',13,''],['estepona-golf',14,'']],
+    d:{ a5:0,  a5why:'Primera línea de playa en Estepona, no en resort de golf.',
+        a6:5,  a6why:'Salida directa a la A-7 por el casco de Estepona.',
+        b1:9,  b1why:'Branded residences con operación hotelera de Besaya y arquitectura de Yodezeen; marca de servicio, no de moda ni de automoción.',
+        b4:10, b4why:'Spa, servicio tipo hotel y garajes de coleccionista.' },
+    tags:['Branded · Besaya','40 unidades','Beachfront'],
+    rationale:'El proyecto con el bloque de proyecto mas completo de la costa este de la guia y, a la vez, el de peor entorno de golf: <strong>tres campos en quince minutos y ninguno pasa de ★★</strong>. Estar en primera linea de playa en el centro de Estepona aleja de todo lo demas. Es la prueba de que la matriz no premia el lujo por si solo.' },
+
+  { id:'aurea-villas', render:null, foto:null, image:null,
+    name:'Aurea Villas', sub:'Estepona Golf',
+    municipio:'Estepona', zona:'Estepona Golf', lat:36.4129726, lng:-5.2121882,
+    promotor:null, promotorNota:'Promotor sin acreditar en las fuentes consultadas.',
+    estudio:null, estudioNota:'Estudio de arquitectura sin acreditar en las fuentes consultadas.',
+    derechosGolf:null, derechosNota:'A pie de Estepona Golf, sin derechos de golf publicados para propietarios.',
+    tipologia:'Villas 3 dorm. + sótano', unidades:10,
+    precio:'€1.440.000 – €1.850.000', precioDesde:'€1.440.000', precioEstimado:false, eurM2:3600,
+    eurM2Nota:'€/m² derivado del precio de entrada sobre los 400 m² construidos que publican las fuentes.',
+    estado:'En construcción', entrega:'2026',
+    campoPropio:'estepona-golf', campoPropioPendiente:null,
+    cursos:[['estepona-golf',0,'A pie de campo'],['azata-golf',9,''],['valle-romano-golf',11,''],['finca-cortesin-golf',12,''],['dona-julia-golf',12,''],['la-duquesa-golf',14,'']],
+    d:{ a5:4,  a5why:'A pie de Estepona Golf (★★ propio, público).',
+        a6:5,  a6why:'Salida directa a la A-7 desde Estepona Golf.',
+        b1:3,  b1why:'Sin estudio acreditado ni marca: el producto se vende por parcela y superficie.',
+        b4:3,  b4why:'Piscina y sótano personalizable por villa; sin zonas comunes de resort.' },
+    tags:['A pie de campo','10 villas','Estepona Golf'],
+    rationale:'Diez villas a pie del campo, con Finca Cortesin ★★★★ a doce minutos y seis campos en el radio. La exclusividad de la escala le da el maximo, pero el bloque de proyecto se queda corto: sin firma, sin marca y sin zonas comunes. <strong>Golf muy accesible con producto sin relato</strong>.' },
+
+  { id:'altura-160', render:null, foto:null, image:null,
+    name:'Altura 160', sub:'Señorío de Cifuentes',
+    municipio:'Benahavís', zona:'La Hacienda del Señorío de Cifuentes', lat:36.4870132, lng:-5.0425696,
+    coordNota:'Coordenada sobre el Cerro de los Jaralillos, que es la referencia publicada de la urbanizacion.',
+    promotor:'Taylor Wimpey España', estudio:null, estudioNota:'Estudio de arquitectura sin acreditar en las fuentes consultadas.',
+    derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
+    tipologia:'Apartamentos y áticos 2–3 dorm.', unidades:60,
+    precio:'desde €585.000', precioDesde:'€585.000', precioEstimado:false, eurM2:4900,
+    eurM2Nota:'€/m² estimado sobre unos 120 m² construidos: las fuentes publican el precio pero no la superficie media.',
+    estado:'En comercialización', entrega:null,
+    campoPropio:null, campoPropioPendiente:null,
+    cursos:[['la-quinta-golf',9,''],['los-arqueros-golf',10,''],['el-higueral',11,''],['real-club-de-golf-guadalmina-sur',11,''],['guadalmina-norte',11,''],['los-naranjos-golf',11,''],['magna-marbella',12,''],['dama-de-noche',12,''],['atalaya-old',13,''],['atalaya-new',13,''],['real-club-de-golf-las-brisas',13,''],['el-paraiso-golf',14,''],['aloha-golf-club',14,'']],
+    d:{ a5:0,  a5why:'Dentro del Señorío de Cifuentes, que no es un resort de golf.',
+        a6:4,  a6why:'Carretera de Benahavís hasta la A-7, corta y sin travesias.',
+        b1:4,  b1why:'Taylor Wimpey, promotor internacional de volumen; sin firma diferenciada.',
+        b4:7,  b4why:'Cuatro piscinas, jardines, bar y conserjeria dentro del Señorío de Cifuentes.' },
+    tags:['13 campos en 15′','Taylor Wimpey','Desde €585.000'],
+    rationale:'<strong>La puerta de entrada mas barata de la guia</strong> y con trece campos en quince minutos, el segundo entorno mas denso de la lista. Le pasa factura el reparto: los buenos de ese radio —Las Brisas y Aloha— son de socios, y el producto es de volumen. Mucho golf alrededor y poco argumento propio.' }
 
 ];
 
