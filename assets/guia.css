@@ -1637,7 +1637,9 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   fill: var(--text); font-family: var(--f-sans); font-size: 9.5px; font-weight: 700; letter-spacing: .04em;
   paint-order: stroke; stroke: var(--bg-0); stroke-width: 2.6px; stroke-linejoin: round;
 }
-.atlas-svg.at-fijado .at-campo.at-on .at-campo-t { opacity: 1; }
+/* El nombre sale al pasar por encima de su punto, no todos a la vez: con
+   quince campos en el racimo de Quercus los rotulos se pisaban. */
+.atlas-svg .at-campo:hover .at-campo-t { opacity: 1; }
 .at-golpe { fill: transparent; }
 /* En fondo claro manda el tono oscuro: a más estrellas, más peso visual. */
 .at-s4 .at-campo-p { fill: #2F4A16; }
@@ -1662,7 +1664,14 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .atlas-svg.at-activo .at-sitios { opacity: .2; }
 /* El nodo senalado se llena con el oro de la casa. Se usa oro-3 y no oro-2
    porque el numero va dentro en blanco: con el claro se quedaba en 3,1:1. */
+/* Fijada: oro macizo con el numero en blanco. Al pasar por encima de otra:
+   aro de oro y numero en oro, que avisa de que es pulsable sin confundirse
+   con la que esta fijada. */
 .atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--oro-3); stroke: var(--oro-3); }
+.atlas-svg .at-promo:hover .at-promo-p { opacity: 1; stroke: var(--oro-3); stroke-width: 2.6; }
+.atlas-svg .at-promo:hover .at-promo-n { opacity: 1; fill: var(--oro-3); }
+.atlas-svg .at-promo.at-on:hover .at-promo-p { stroke-width: 1.6; }
+.atlas-svg .at-promo.at-on:hover .at-promo-n { fill: var(--bg-0); }
 .atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: var(--bg-0); }
 /* Franja bajo el mapa. La altura está reservada de antemano: la ficha de campo
    crece o mengua según cuántas promociones lo citen, y sin esto el contenido de
