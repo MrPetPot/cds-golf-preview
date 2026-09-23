@@ -108,22 +108,6 @@
 .gfx-golf { background: var(--verde-2); }
 .gfx-proy { background: var(--oro-2); }
 
-/* Las once en fila. Altura a escala sobre 100 —la escala real de la
-   puntuación—, así la columna se lee como nota y no como posición. */
-.gfx-ancha { margin-top: 46px; }
-.gfx-cols {
-  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
-  gap: 10px; align-items: end; border-bottom: 1px solid var(--line-strong);
-}
-.gfx-col { display: grid; justify-items: center; gap: 7px; min-width: 0; }
-.gfx-col-v { font: 700 15px/1 var(--f-display); color: var(--text-mute); }
-.gfx-col-t { display: flex; align-items: flex-end; width: 100%; height: 148px; }
-.gfx-col-b { display: block; width: 100%; background: var(--bg-3); transition: background-color .3s var(--ease); }
-.gfx-col-r { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--text-mute); padding-top: 9px; }
-.gfx-col-gana .gfx-col-b { background: var(--oro-2); }
-.gfx-col-gana .gfx-col-v, .gfx-col-gana .gfx-col-r { color: var(--text); }
-.gfx-col:hover .gfx-col-b { background: var(--marengo); }
-
 /* ── La ficha en corto ─────────────────────────────────────────────────
    Reutiliza la rejilla de datos de la ficha del proyecto —etiqueta encima,
    dato debajo, inversión al pasar por encima— en lugar de la línea de
@@ -169,11 +153,7 @@
   .gana-marcador { text-align: left; font-size: clamp(56px, 18vw, 96px); }
   .gana-marcador small { margin-top: 6px; }
   .gana-intro { grid-template-columns: 1fr; gap: 34px; }
-  .gfx-ancha, .gana-proyecto { margin-top: 34px; }
-  .gfx-cols { gap: 5px; }
-  .gfx-col-t { height: 104px; }
-  .gfx-col-v { font-size: 12px; }
-  .gfx-col-r { font-size: 9px; letter-spacing: .04em; }
+  .gana-proyecto { margin-top: 34px; }
   .gana-cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 22px; }
   .gana-cta b { font-size: 21px; }
 }

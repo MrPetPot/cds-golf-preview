@@ -68,32 +68,6 @@
       <p class="gfx-pie">Sobre su propio máximo, el proyecto rinde al ${pct(p.B, 40)} % y el golf al ${pct(p.A, 60)} %.</p>
     </figure>`;
 
-  /* ── Gráfica 2 · las once en fila ───────────────────────────────────
-     Las columnas van a escala sobre 100, que es la escala real de la
-     puntuación: así la altura se puede leer como nota y no como ranking.
-     El pie busca el mayor escalón entre dos puestos consecutivos, que es
-     donde de verdad se parte la tabla. */
-  const saltos = top.map((x, i) => i ? top[i - 1].total - x.total : 0);
-  const mayor = Math.max(...saltos), iSalto = saltos.indexOf(mayor);
-  const arriba = top.slice(0, iSalto).map(x => x.name);
-  const pieTabla = `El mayor escalón de la tabla cae entre el puesto ${dosCifras(top[iSalto - 1].rank)} ` +
-    `y el ${dosCifras(top[iSalto].rank)}: ${mayor} puntos.` +
-    (iSalto <= 2 ? ` ${lista(arriba)} ${iSalto === 1 ? 'juega' : 'juegan'} aparte.` : '');
-
-  const columnas = top.map(x => `
-        <div class="gfx-col${x === p ? ' gfx-col-gana' : ''}" title="${x.name} · ${x.total}/100">
-          <span class="gfx-col-v">${x.total}</span>
-          <span class="gfx-col-t"><span class="gfx-col-b" style="height:${x.total}%"></span></span>
-          <span class="gfx-col-r">${dosCifras(x.rank)}</span>
-        </div>`).join('');
-
-  const tabla = `
-    <figure class="gfx gfx-ancha">
-      <figcaption class="gana-rot">Las ${LETRA[top.length] || top.length}, en fila</figcaption>
-      <div class="gfx-cols">${columnas}</div>
-      <p class="gfx-pie">${pieTabla}</p>
-    </figure>`;
-
   /* ── La ficha en corto ──────────────────────────────────────────────
      Deja de ser una línea de datos seguidos: cada dato con su etiqueta,
      en la misma rejilla que ya usa la ficha del proyecto. */
@@ -136,7 +110,6 @@
         ${mitades}
       </div>
 
-      ${tabla}
 
       <div class="gana-proyecto">
         <span class="gana-rot">La ficha en corto</span>
