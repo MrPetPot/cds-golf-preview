@@ -1735,23 +1735,49 @@ function initAtlas(el) {
   controles.append(botonMas, botonMenos, botonTodo);
 
   // Arrastre para desplazar cuando hay ampliación.
-  let arrastre = null;
+  // El arrastre no se captura al pulsar sino al mover de verdad. Capturar en el
+  // pointerdown redirigia el click posterior al <svg>, asi que en cuanto el mapa
+  // estaba ampliado —zoom > 1— los nodos dejaban de responder al raton: el
+  // navegador entregaba el click al elemento con la captura y no al circulo.
+  // El umbral de cuatro pixeles evita ademas que el temblor de un clic cuente
+  // como arrastre.
+  let pendiente = null, arrastre = null, arrastrado = false, rafDrag = 0, ultimo = null;
   svg.addEventListener('pointerdown', e => {
     if (zoom <= 1) return;
-    arrastre = { x: e.clientX, y: e.clientY, vx: vistaX, vy: vistaY };
-    svg.setPointerCapture(e.pointerId);
-    svg.classList.add('at-arrastrando');
+    pendiente = { id: e.pointerId, x: e.clientX, y: e.clientY, vx: vistaX, vy: vistaY };
   });
   svg.addEventListener('pointermove', e => {
+    if (pendiente && !arrastre) {
+      if (Math.hypot(e.clientX - pendiente.x, e.clientY - pendiente.y) < 4) return;
+      arrastre = pendiente;
+      try { svg.setPointerCapture(arrastre.id); } catch (_) { /* puntero ya suelto */ }
+      svg.classList.add('at-arrastrando');
+    }
     if (!arrastre) return;
-    const caja = svg.getBoundingClientRect();
-    const porPx = (W / zoom) / caja.width;
-    vistaX = arrastre.vx - (e.clientX - arrastre.x) * porPx;
-    vistaY = arrastre.vy - (e.clientY - arrastre.y) * porPx;
-    encuadrar();
+    ultimo = { x: e.clientX, y: e.clientY };
+    // Un reencuadre por fotograma: el pointermove dispara mas de cien veces por
+    // segundo y cada encuadre recoloca los rotulos de las once promociones.
+    if (rafDrag) return;
+    rafDrag = requestAnimationFrame(() => {
+      rafDrag = 0;
+      if (!arrastre || !ultimo) return;
+      const caja = svg.getBoundingClientRect();
+      const porPx = (W / zoom) / caja.width;
+      vistaX = arrastre.vx - (ultimo.x - arrastre.x) * porPx;
+      vistaY = arrastre.vy - (ultimo.y - arrastre.y) * porPx;
+      encuadrar();
+    });
   });
-  ['pointerup', 'pointercancel'].forEach(ev => svg.addEventListener(ev, () => {
-    arrastre = null; svg.classList.remove('at-arrastrando');
+  ['pointerup', 'pointercancel'].forEach(ev => svg.addEventListener(ev, e => {
+    if (arrastre) {
+      try { svg.releasePointerCapture(arrastre.id); } catch (_) { /* ya liberado */ }
+      // El click llega despues del pointerup: la marca sobrevive un tick para que
+      // soltar el arrastre encima de un nodo no lo seleccione.
+      arrastrado = true;
+      setTimeout(() => { arrastrado = false; }, 0);
+    }
+    pendiente = null; arrastre = null; ultimo = null;
+    svg.classList.remove('at-arrastrando');
   }));
 
   const panel = document.getElementById('atlasPanel');
@@ -1828,7 +1854,7 @@ function initAtlas(el) {
   }
 
   function fijarPromo(p) {
-    if (arrastre) return;
+    if (arrastrado) return;
     fijado = { t: 'p', v: p };
     verPromo(p);
     svg.classList.add('at-fijado');
@@ -1836,7 +1862,7 @@ function initAtlas(el) {
     const e = encuadrePromo(p);
     irA(e.z, e.x, e.y);
   }
-  function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); svg.classList.add('at-fijado'); volver.hidden = false; }
+  function fijarCampo(c) { if (arrastrado) return; fijado = { t: 'c', v: c }; verCampo(c); svg.classList.add('at-fijado'); volver.hidden = false; }
   function soltar() { fijado = null; volver.hidden = true; limpiar(); pintarPanelInicio(); irA(1, W / 2, H / 2); }
 
   el.addEventListener('mouseleave', () => {
