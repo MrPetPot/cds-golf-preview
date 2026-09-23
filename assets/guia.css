@@ -1639,11 +1639,10 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-s3 .at-campo-p { fill: #4A6B22; }
 .at-s2 .at-campo-p { fill: #6E9130; }
 .at-s1 .at-campo-p { fill: #9CB865; }
-.at-cerrado .at-campo-p { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.at-s4.at-cerrado .at-campo-p { stroke: #2F4A16; }
-.at-s3.at-cerrado .at-campo-p { stroke: #4A6B22; }
-.at-s2.at-cerrado .at-campo-p { stroke: #6E9130; }
-.at-s1.at-cerrado .at-campo-p { stroke: #9CB865; }
+/* El campo que no se puede reservar va en rojo macizo, el mismo de la etiqueta
+   «estrictamente privado». El tamano sigue diciendo la categoria, asi que no se
+   pierde informacion: el cuerpo son las estrellas y el color, el acceso. */
+.at-cerrado .at-campo-p { fill: #C0392B; stroke: none; }
 .atlas-svg.at-activo .at-campo .at-campo-p { opacity: .2; }
 .atlas-svg .at-campo.at-on .at-campo-p { opacity: 1; }
 .at-campo, .at-promo { cursor: pointer; outline: none; }
@@ -1705,7 +1704,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .map-legend-atlas .legend-dot.g3 { background: #4A6B22; }
 .map-legend-atlas .legend-dot.g2 { background: #6E9130; }
 .map-legend-atlas .legend-dot.g1 { background: #9CB865; }
-.legend-dot.hueco { background: none; border: 1.5px solid #4A6B22; }
+.legend-dot.hueco { background: #C0392B; border-color: #C0392B; }
 .legend-linea { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid var(--verde-2); vertical-align: middle; }
 .legend-linea.punteada { border-top-style: dashed; }
 @media (max-width: 900px) {
