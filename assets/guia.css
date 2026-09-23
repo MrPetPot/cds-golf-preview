@@ -1795,7 +1795,12 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 /* El lede de portada creció a tres líneas y la franja de datos se quedaba a
    cuatro píxeles del borde inferior: el pie del hero cede lo justo para que
    los cuatro indicadores sigan entrando en la primera pantalla. */
-.hero:not(.hero-pagina) { padding-bottom: 64px; }
+.hero:not(.hero-pagina) { padding-bottom: 52px; }
+.hero-lede-tit {
+  display: block; margin-bottom: 10px; font-weight: 600; font-style: normal;
+  letter-spacing: .01em; color: #FFFFFF;
+}
+.hero:not(.hero-pagina) .hero-lede { font-size: 18px; line-height: 1.5; max-width: 720px; }
 .hero-pagina { min-height: calc(clamp(280px, 40vh, 420px) + var(--nav-h)); }
 @media (max-width: 640px) { .hero-pagina { min-height: calc(240px + var(--nav-h)); } }
 
