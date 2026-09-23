@@ -230,7 +230,10 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 .cm-parte .measure-track { grid-column: 1 / -1; height: 3px; background: var(--bg-3); margin-top: 6px; }
 .cm-parte .measure-fill { background: var(--oro-2); }
 .cm-parte.is-golf .measure-fill { background: var(--verde-2); }
-.cm-total { display: grid; justify-items: end; gap: 6px; text-align: right; }
+.cm-total { display: grid; justify-items: end; gap: 8px; text-align: right; }
+/* El puesto no es un rotulo al pie: es el dato que resume la ficha. Va en
+   Antonio, al cuerpo de los sumandos, y con las dos cifras en numeros. */
+.cm-puesto { font-family: var(--f-display); font-weight: 700; font-size: clamp(17px, 1.7vw, 22px); line-height: 1; text-transform: uppercase; letter-spacing: .01em; color: var(--text); }
 .cm-total strong { font-family: var(--f-display); font-weight: 700; font-size: clamp(58px, 6vw, 86px); line-height: .88; letter-spacing: -.025em; color: var(--oro-3); }
 .cm-total strong small { margin-left: 2px; font-family: var(--f-display); font-size: 1em; font-weight: 300; letter-spacing: -.02em; color: var(--text-mute); }
 
