@@ -1634,7 +1634,9 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
    senalado dentro del ranking. Los nucleos de poblacion si, porque ahi son
    rotulo y compiten con la red. */
 .atlas-svg.at-activo .at-sitios { opacity: .2; }
-.atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--text); stroke: var(--text); }
+/* El nodo senalado se llena con el oro de la casa. Se usa oro-3 y no oro-2
+   porque el numero va dentro en blanco: con el claro se quedaba en 3,1:1. */
+.atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--oro-3); stroke: var(--oro-3); }
 .atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: var(--bg-0); }
 /* Franja bajo el mapa. La altura está reservada de antemano: la ficha de campo
    crece o mengua según cuántas promociones lo citen, y sin esto el contenido de
