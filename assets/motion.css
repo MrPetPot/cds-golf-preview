@@ -208,7 +208,9 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 .fb-cuenta { display: flex; align-items: center; gap: 24px; padding: 16px 24px; }
 /* La cuenta en un solo cuerpo: lo que distingue cada pieza es el peso, la
    familia y el color, no el tamano. */
-.fb-eq { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 9px; margin: 0; font-size: 20px; line-height: 1.1; }
+/* Centrados entre si, no sobre la linea base: con cifras de 20 px y rotulos
+   de 12 la base dejaba las versalitas colgando por debajo del eje. */
+.fb-eq { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 9px; margin: 0; font-size: 20px; line-height: 1.1; }
 .fb-eq b { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--text); }
 /* Los rotulos y los operadores toman el cuerpo del rotulo de bloque: las
    cifras mandan y el resto acompana en versalita. */
