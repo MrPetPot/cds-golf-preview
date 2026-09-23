@@ -1191,13 +1191,11 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       </div></details>
       </div>
       <nav class="ficha-pie" aria-label="Seguir por el ranking">
-        <div class="fp-atras">
-          <button type="button" class="fp-volver" data-cerrar-ficha>← Volver al ranking</button>
-          ${idx > 0 ? `<button type="button" class="fp-ant" data-ir-ficha="${PUBLICADAS[idx - 1].id}">Anterior · #${String(PUBLICADAS[idx - 1].rank).padStart(2, '0')} ${PUBLICADAS[idx - 1].name}</button>` : ''}
-        </div>
+        ${idx > 0 ? `<button type="button" class="fp-ant" data-ir-ficha="${PUBLICADAS[idx - 1].id}">← Anterior · #${String(PUBLICADAS[idx - 1].rank).padStart(2, '0')} ${PUBLICADAS[idx - 1].name}</button>` : '<span class="fp-ant fp-ant-vacio"></span>'}
+        <button type="button" class="fp-cta fp-vuelta" data-cerrar-ficha><small>← Volver a</small><b>El ranking</b></button>
         ${PUBLICADAS[idx + 1]
-          ? `<button type="button" class="fp-sig" data-ir-ficha="${PUBLICADAS[idx + 1].id}"><small>Siguiente en el ranking</small><b>#${String(PUBLICADAS[idx + 1].rank).padStart(2, '0')} · ${PUBLICADAS[idx + 1].name}</b></button>`
-          : `<a class="fp-sig" href="fuentes.html"><small>Y para comprobarlo</small><b>Las fuentes →</b></a>`}
+          ? `<button type="button" class="fp-cta fp-sig" data-ir-ficha="${PUBLICADAS[idx + 1].id}"><small>Siguiente en el ranking</small><b>#${String(PUBLICADAS[idx + 1].rank).padStart(2, '0')} · ${PUBLICADAS[idx + 1].name}</b></button>`
+          : `<a class="fp-cta fp-sig" href="fuentes.html"><small>Y para comprobarlo</small><b>Las fuentes →</b></a>`}
       </nav>
     </div>`;
   detailGrid.appendChild(card);
