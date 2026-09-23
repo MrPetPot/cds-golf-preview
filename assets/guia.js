@@ -710,7 +710,7 @@ const PROMOS = [
      Salen del primer longlist documentado (LONGLIST.md) y entran con el techo
      de precio suprimido. Sus tiempos son OSRM medidos, no declarados. */
 
-  { id:'bentley-puente-romano', render:null, foto:null, image:null,
+  { id:'bentley-puente-romano', barrido:true, render:null, foto:null, image:null,
     name:'Mirador de Puente Romano', sub:'Furnished by Bentley Home',
     municipio:'Marbella', zona:'Milla de Oro', lat:36.504509, lng:-4.9241547,
     promotor:'RGZ Developers', estudio:null, estudioNota:'Interiorismo de Bentley Home con Luxury Living Group; el estudio de arquitectura no se acredita.',
@@ -728,7 +728,7 @@ const PROMOS = [
     tags:['Branded Bentley','8 unidades','Milla de Oro'],
     rationale:'<strong>La mayor exclusividad de la lista</strong>: ocho dúplex, por debajo de las veinte de ZEW. La marca puntua arriba y el precio por metro tambien. Lo que no acompaña es el golf: dieciseis campos en quince minutos, pero el unico ★★★★ del entorno es Las Brisas y es de socios, igual que Aloha. Vive rodeada de golf que en su mayoria solo puede mirar.' },
 
-  { id:'lagerfeld-villas', render:null, foto:null, image:null,
+  { id:'lagerfeld-villas', barrido:true, render:null, foto:null, image:null,
     name:'Karl Lagerfeld Villas', sub:'Sierra Blanca Estates',
     municipio:'Marbella', zona:'Milla de Oro', lat:36.5065204, lng:-4.9192157,
     coordNota:'Coordenada tomada sobre la Milla de Oro a la altura del Marbella Club: el promotor publica la zona y los 9.000 m² de parcela, no el punto exacto.',
@@ -747,7 +747,7 @@ const PROMOS = [
     tags:['Branded Lagerfeld','5 villas','Milla de Oro'],
     rationale:'<strong>El producto mas caro de la guia</strong> y una de las dos notas maximas de marca. Comparte entorno con Bentley y comparte su problema: el ★★★★ mas cercano es Las Brisas, de socios. El coeficiente de acceso no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
 
-  { id:'tierra-viva', render:null, foto:null, image:null,
+  { id:'tierra-viva', barrido:true, render:null, foto:null, image:null,
     name:'Tierra Viva', sub:'by Automobili Lamborghini',
     municipio:'Benahavís', zona:'La Alquería', lat:36.4936707, lng:-5.0210685,
     promotor:'Dar Global', estudio:null, estudioNota:'Diseño inspirado por Automobili Lamborghini; el estudio de arquitectura no se acredita.',
@@ -765,7 +765,7 @@ const PROMOS = [
     tags:['Branded Lamborghini','53 villas','La Alquería'],
     rationale:'Del mismo promotor que la ganadora, Dar Global, y en el extremo opuesto de la matriz: aqui el golf es vecindario, no argumento. Quince campos en quince minutos, pero el unico ★★★★ esta a quince y es de socios. Entrega en 2028, la mas lejana de la lista.' },
 
-  { id:'spinto-hills', render:null, foto:null, image:null,
+  { id:'spinto-hills', barrido:true, render:null, foto:null, image:null,
     name:'Spinto Hills', sub:'Casares Costa',
     municipio:'Casares', zona:'Camarate', lat:36.381273, lng:-5.2108077,
     coordNota:'Coordenada tomada sobre Casares Costa: las fuentes situan las villas en la zona de Camarate, a unos 2 km de la playa, sin publicar el punto exacto.',
@@ -790,7 +790,7 @@ const PROMOS = [
      tienen precio publicado. El resto queda fuera o aplazado, con su motivo
      escrito en LONGLIST.md. */
 
-  { id:'tyrian-residences', render:null, foto:null, image:null,
+  { id:'tyrian-residences', barrido:true, render:null, foto:null, image:null,
     name:'Tyrian Residences', sub:'Prestige Expo · BZH',
     municipio:'Estepona', zona:'Primera línea de playa', lat:36.4268068, lng:-5.1468484,
     coordNota:'Coordenada sobre el casco de Estepona: las fuentes situan el edificio junto al bulevar, en primera linea, sin publicar el punto exacto.',
@@ -809,7 +809,7 @@ const PROMOS = [
     tags:['Branded · Besaya','40 unidades','Beachfront'],
     rationale:'El proyecto con el bloque de proyecto mas completo de la costa este de la guia y, a la vez, el de peor entorno de golf: <strong>tres campos en quince minutos y ninguno pasa de ★★</strong>. Estar en primera linea de playa en el centro de Estepona aleja de todo lo demas. Es la prueba de que la matriz no premia el lujo por si solo.' },
 
-  { id:'aurea-villas', render:null, foto:null, image:null,
+  { id:'aurea-villas', barrido:true, render:null, foto:null, image:null,
     name:'Aurea Villas', sub:'Estepona Golf',
     municipio:'Estepona', zona:'Estepona Golf', lat:36.4129726, lng:-5.2121882,
     promotor:null, promotorNota:'Promotor sin acreditar en las fuentes consultadas.',
@@ -828,7 +828,7 @@ const PROMOS = [
     tags:['A pie de campo','10 villas','Estepona Golf'],
     rationale:'Diez villas a pie del campo, con Finca Cortesin ★★★★ a doce minutos y seis campos en el radio. La exclusividad de la escala le da el maximo, pero el bloque de proyecto se queda corto: sin firma, sin marca y sin zonas comunes. <strong>Golf muy accesible con producto sin relato</strong>.' },
 
-  { id:'altura-160', render:null, foto:null, image:null,
+  { id:'altura-160', barrido:true, render:null, foto:null, image:null,
     name:'Altura 160', sub:'Señorío de Cifuentes',
     municipio:'Benahavís', zona:'La Hacienda del Señorío de Cifuentes', lat:36.4870132, lng:-5.0425696,
     coordNota:'Coordenada sobre el Cerro de los Jaralillos, que es la referencia publicada de la urbanizacion.',
@@ -847,6 +847,15 @@ const PROMOS = [
     tags:['13 campos en 15′','Taylor Wimpey','Desde €585.000'],
     rationale:'<strong>La puerta de entrada mas barata de la guia</strong> y con trece campos en quince minutos, el segundo entorno mas denso de la lista. Le pasa factura el reparto: los buenos de ese radio —Las Brisas y Aloha— son de socios, y el producto es de volumen. Mucho golf alrededor y poco argumento propio.' }
 
+];
+
+/* En espera de la proxima edicion. Cumplen el criterio de inclusion pero les
+   falta el dato que decide su puesto, asi que entrar ahora seria estimarlo.
+   Se publican con su motivo: el hueco tambien es informacion. */
+const EN_ESPERA = [
+  { name:'Amenabar Cortesín', municipio:'Casares', motivo:'Dentro de Finca Cortesín, sin precio publicado: la comercialización no ha empezado.' },
+  { name:'Azurean Marbella', municipio:'Benahavís', motivo:'Branded de Hyatt en prelanzamiento, sin precio publicado.' },
+  { name:'Isla Bela', municipio:'Marbella', motivo:'113 viviendas de Gestilar en Nueva Andalucía, sin precio de venta publicado.' }
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2530,6 +2539,58 @@ pintarEstrellas();
 
   if (lead) preparar(lead, 'Prime & Golf · Consulta de comprador');
   if (pro) preparar(pro, 'Prime & Golf · Aportación de promotora');
+})();
+
+/* ═══════════════════════════════════
+   ESTADO DE LA EDICIÓN
+   El ranking vive por ediciones, pero eso no se veía en ninguna parte: las
+   fechas estaban enterradas en el pie y lo que se quedaba fuera no se
+   contaba. Aquí se dice el embudo entero, de dónde salió cada promoción y
+   qué espera turno. Todo sale de los datos menos el censo del barrido, que
+   vive en LONGLIST.md y entra por data-localizadas.
+════════════════════════════════════ */
+(function () {
+  const caja = document.getElementById('estadoEdicion');
+  if (!caja || typeof PROMOS === 'undefined') return;
+
+  const d = caja.dataset;
+  const top = PROMOS.filter(p => p.top10);
+  const puestos = Math.max(...top.map(p => p.rank));
+  const barrido = PROMOS.filter(p => p.barrido);
+  const espera = typeof EN_ESPERA !== 'undefined' ? EN_ESPERA : [];
+  // Con empates, el numero de fichas y el de puestos no tienen por que coincidir:
+  // se dice cuantas los comparten y no se da por hecho que se note.
+  const compartidas = top.filter(p => p.empatadas.length).length;
+
+  const fila = (p) => `<li><b>${p.name}</b> <span>· ${p.municipio}</span>` +
+    (p.top10 ? ` <span>· puesto ${String(p.rank).padStart(2, '0')}</span>` : ' <span>· mención</span>') + '</li>';
+
+  caja.innerHTML = `
+    <dl class="ed-embudo">
+      <div class="ed-paso"><dt>Localizadas</dt>
+        <dd>${d.localizadas}<small>Promociones encontradas en el barrido del mercado</small></dd></div>
+      <div class="ed-paso"><dt>Evaluadas</dt>
+        <dd>${PROMOS.length}<small>Cumplen los cuatro requisitos y tienen los datos para puntuar</small></dd></div>
+      <div class="ed-paso"><dt>Posiciones</dt>
+        <dd>${puestos}<small>${top.length} fichas publicadas${compartidas ? `, de las que ${compartidas} comparten puesto con otra` : ''}</small></dd></div>
+    </dl>
+
+    <div class="ed-columnas">
+      <div class="ed-bloque">
+        <h3>Incorporadas en el barrido</h3>
+        <ul class="ed-lista">${barrido.map(fila).join('')}</ul>
+      </div>
+      <div class="ed-bloque">
+        <h3>En cola para la siguiente edición</h3>
+        <ul class="ed-lista">${espera.map(e =>
+          `<li><b>${e.name}</b> <span>· ${e.municipio}</span><em>${e.motivo}</em></li>`).join('')}</ul>
+      </div>
+    </div>
+
+    <p class="ed-cierre">Datos cerrados a <b>${d.fecha}</b> con la matriz <b>${d.matriz}</b>.
+    Próxima revisión: <b>${d.proxima}</b>. Cambiar un dato recalcula el ranking entero, así que
+    las posiciones pueden moverse entre ediciones. Lo que se queda fuera y por qué está en la
+    <a href="fuentes.html">página de fuentes</a>.</p>`;
 })();
 
 

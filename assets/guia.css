@@ -1847,6 +1847,48 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 @media (max-width: 640px) { .legal-datos { grid-template-columns: 1fr; gap: 2px 0; }
   .legal-datos dd { margin-bottom: 10px; } }
 
+/* ── Estado de la edición ─────────────────────────────────────
+   Cierra el capítulo diciendo de dónde sale el censo, qué se ha quedado
+   fuera y cuándo se vuelve a mirar. El embudo va arriba, en cifras grandes;
+   debajo, dos columnas: lo que entró y lo que espera. */
+.ed-embudo {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid var(--line-strong); background: var(--bg-2); margin-top: 38px;
+}
+.ed-paso { padding: 26px 28px 24px; }
+.ed-paso + .ed-paso { border-left: 1px solid var(--line-strong); }
+.ed-paso dt {
+  font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-mute); margin-bottom: 10px;
+}
+.ed-paso dd { margin: 0; font: 700 clamp(34px, 4.2vw, 52px)/1 var(--f-display); color: var(--text); }
+.ed-paso dd small {
+  display: block; margin-top: 8px; font: 400 12.5px/1.45 var(--f-sans); color: var(--text-mid);
+}
+.ed-paso:last-child dd { color: var(--oro-2); }
+
+.ed-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 34px; }
+.ed-bloque h3 {
+  margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--text-mute);
+}
+.ed-lista { list-style: none; margin: 0; padding: 0; }
+.ed-lista li { padding: 11px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+.ed-lista li:first-child { border-top: 0; padding-top: 0; }
+.ed-lista b { font-weight: 700; color: var(--text); }
+.ed-lista span { color: var(--text-mute); }
+.ed-lista em { display: block; margin-top: 3px; font-size: 12.5px; color: var(--text-mid); }
+.ed-cierre {
+  margin: 34px 0 0; padding-top: 18px; border-top: 1px solid var(--line-strong);
+  font-size: 13px; line-height: 1.55; color: var(--text-mute);
+}
+.ed-cierre b { color: var(--text); font-weight: 700; }
+@media (max-width: 900px) {
+  .ed-embudo { grid-template-columns: 1fr; }
+  .ed-paso + .ed-paso { border-left: 0; border-top: 1px solid var(--line-strong); }
+  .ed-columnas { grid-template-columns: 1fr; gap: 26px; }
+}
+
 /* ── Formularios de contacto ─────────────────────────────────────
    Dos bloques en paralelo: comprador y promotora. Mismo tratamiento de caja
    que la ficha —filete fuerte sobre bg-2— para que los campos blancos se
