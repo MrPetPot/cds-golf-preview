@@ -569,7 +569,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto cuidado de NVOGA, sin firma internacional.',
         b4:7,  b4why:'Spa, gym, piscinas, zonas comunes; sin club house ni beach club propios.' },
     tags:['A pie La Quinta','Golf Valley','Boutique NVOGA'],
-    rationale:'Uno de los mejores bloques A fuera de Sotogrande y Cortesín: 30 sobre 60, con La Quinta Golf a cuatro minutos y de acceso resort. Queda séptima por el bloque B: sin marca, sin beach club y con 56 unidades no compite con Fendi en la mitad que no es golf.' },
+    rationale:'Uno de los mejores bloques A fuera de Sotogrande y Cortesín: 30 sobre 60, con La Quinta Golf a cuatro minutos y de acceso resort. Queda séptima por el bloque B: sin marca, sin beach club y con 56 unidades, Fendi le saca doce puntos en la mitad que puntúa el proyecto.' },
 
   { id:'mc-hills', render:{ dominio:"marbellaclubhills.com", pie:"Vista aérea hacia el mar." }, name:'Marbella Club Hills', sub:'Fase 2',
     municipio:'Benahavís', zona:'Carretera del Madroñal', lat:36.495, lng:-5.045,
@@ -586,7 +586,7 @@ const PROMOS = [
         b1:7,  b1why:'Marca hotelera Marbella Club; sin estudio de arquitectura acreditado.',
         b4:10, b4why:'Privilegios del Marbella Club Hotel, spa, club house, beach club del hotel.' },
     tags:['In-resort 3★','Brand Marbella Club','Villa Padierna a 5\''],
-    rationale:'Nueve de sus doce campos admiten reserva, empezando por el suyo: Marbella Club Golf, Flamingos, Alferini y Tramores. No tiene ningún campo ★★★★ en quince minutos y por eso no sube más, pero es la mejor relación entre golf real y precio de entrada del ranking.' },
+    rationale:'Nueve de sus doce campos admiten reserva, empezando por el suyo: Marbella Club Golf, Flamingos, Alferini y Tramores. Es la mejor relación entre golf real y precio de entrada del ranking. El techo se lo pone la categoría: de sus doce campos en quince minutos, el mejor llega a ★★★.' },
 
   { id:'zew', render:{ dominio:"Concept Homes · NVOGA", pie:"La entrada de ZEW al atardecer.", origen:'render del promotor · brochure ZEW (Malashpina)' }, name:'ZEW', sub:'by Concept Homes',
     municipio:'Marbella', zona:'Elviria West', lat:36.503, lng:-4.810,
@@ -1296,10 +1296,10 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
   let razon;
   if (lidera !== p && p.B === techoB) {
-    razon = `<strong>No gana por el golf.</strong> ${lidera.name} la supera en entorno —${lidera.A} de 60 frente a ${p.A}—, ` +
-      `pero ${p.name} firma la mejor nota de proyecto del ranking: <strong>${p.B} de 40</strong>` +
+    razon = `<strong>La mejor nota de proyecto del ranking:</strong> ${p.B} de 40` +
       (empatadas.length ? `, empatada con ${enumerar(empatadas)}` : '') + '. ' +
-      `Ahí están los ${enPuntos(ventaja)} que la separan de la segunda.`;
+      `En golf suma ${p.A} de 60, por detrás de los ${lidera.A} de ${lidera.name}; ` +
+      `la ventaja de ${enPuntos(ventaja)} sobre la segunda sale de la otra mitad de la matriz.`;
   } else if (p.A === Math.max(...PUBLICADAS.map(x => x.A)) && p.B === techoB) {
     razon = `<strong>Gana los dos bloques.</strong> ${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto: ` +
       `nadie más encabeza las dos mitades de la matriz. ${enPuntos(ventaja).replace(/^u/, 'U')} sobre la segunda.`;
