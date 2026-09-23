@@ -1112,6 +1112,9 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
    la misma Antonio pero en fina. El "/" separa el nombre del descriptor. */
 .topnav-brand em { font-style: normal; font-weight: 300; }
 .topnav-brand .brand-sep { font-weight: 300; color: rgba(255,255,255,.45); margin: 0 .34em; }
+/* El verde claro es el que la guía usa sobre fondo oscuro: 5,8:1 sobre el
+   marengo del menú, de sobra para un cuerpo de 25 px. */
+.topnav-brand .brand-and { color: var(--verde-1); }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
 .topnav-menu { position: relative; flex: none; }
