@@ -1265,16 +1265,13 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
      display, y lo que queda —la prueba— corre al lado como cuerpo. Una
      afirmación grande y su respaldo, que es la jerarquía que el texto ya
      tenía escrita. */
-  const cabecera = document.getElementById('veredictoIntro');
-  if (cabecera) {
-    const m = p.rationale.match(/^\s*<strong>(.*?)<\/strong>\s*([\s\S]*)$/);
-    const titular = m ? m[1].replace(/\.$/, '') : '';
-    cabecera.innerHTML = `
+  const corte = p.rationale.match(/^\s*<strong>(.*?)<\/strong>\s*([\s\S]*)$/);
+  const titular = corte ? corte[1].replace(/\.$/, '') : '';
+  const entradilla = `
       <div class="ver-intro${titular ? '' : ' ver-intro-sola'}">
         ${titular ? `<p class="ver-titular">${titular}</p>` : ''}
-        <p class="ver-cuerpo">${m ? m[2] : p.rationale}</p>
+        <p class="ver-cuerpo">${corte ? corte[2] : p.rationale}</p>
       </div>`;
-  }
 
   /* ── Por qué gana ────────────────────────────────────────
      La frase se construye desde los datos y no se escribe a mano: si mañana
@@ -1340,6 +1337,8 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
   destino.innerHTML = `
     <div class="gana">
+      ${entradilla}
+
       <figure class="gana-banda">
         <img src="${foto ? foto.src : p.image}" alt="${p.name} — ${p.municipio}" loading="eager"/>
         <figcaption class="gana-cuerpo">
