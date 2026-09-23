@@ -1792,6 +1792,16 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 .hero-pagina { min-height: calc(clamp(280px, 40vh, 420px) + var(--nav-h)); }
 @media (max-width: 640px) { .hero-pagina { min-height: calc(240px + var(--nav-h)); } }
 
+/* ── El veredicto y la lista son el mismo relato ───────────────────────
+   Entre dos secciones normales hay 240 px y un filete, que es lo que separa
+   un capítulo del siguiente. Aquí la lista no abre nada: continúa la pieza
+   de la ganadora y empieza en el puesto que ella deja libre. Se le quita el
+   filete y la calle baja a un tercio, para que se lea como "y detrás" y no
+   como un bloque aparte. */
+#veredicto { padding-bottom: 46px; border-bottom: 0; }
+#fichas { padding-top: 38px; }
+@media (max-width: 900px) { #veredicto { padding-bottom: 32px; } #fichas { padding-top: 26px; } }
+
 /* ── La ganadora, con pieza propia ─────────────────────────────
    El primer puesto abre el capítulo con su propio escenario y la lista
    arranca en el segundo. La monta el motor desde PROMOS.
