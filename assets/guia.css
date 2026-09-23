@@ -1820,6 +1820,67 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 #fichas { padding-top: 38px; }
 @media (max-width: 900px) { #veredicto { padding-bottom: 32px; } #fichas { padding-top: 26px; } }
 
+/* ── Formularios de contacto ─────────────────────────────────────
+   Dos bloques en paralelo: comprador y promotora. Mismo tratamiento de caja
+   que la ficha —filete fuerte sobre bg-2— para que los campos blancos se
+   lean igual que las celdas de datos. */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 40px; }
+.form-bloque {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; align-content: start;
+  padding: 32px 30px 30px; border: 1px solid var(--line-strong); background: var(--bg-2);
+}
+.form-bloque > .gana-rot, .form-tit, .form-intro, .campo-ancho, .campo-check,
+.form-nota, .form-enviar, .form-estado { grid-column: 1 / -1; }
+.form-bloque > .gana-rot { margin-bottom: 0; }
+.form-tit {
+  margin: 0; font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(22px, 2.2vw, 30px); line-height: 1.04; letter-spacing: -.005em; color: var(--text);
+}
+.form-intro { margin: 0 0 6px; font-size: 14px; line-height: 1.55; color: var(--text-mid); }
+
+.campo { display: grid; gap: 6px; min-width: 0; }
+.campo > span {
+  font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mute);
+}
+.campo > span i { font-style: normal; color: var(--oro-3); }
+.campo input, .campo select, .campo textarea {
+  width: 100%; padding: 11px 12px; border: 1px solid var(--line-strong); background: var(--bg-0);
+  font: 400 14px/1.4 var(--f-sans); color: var(--text); border-radius: 0; -webkit-appearance: none; appearance: none;
+  transition: border-color .2s var(--ease);
+}
+.campo textarea { resize: vertical; min-height: 92px; }
+.campo select { background-image: none; cursor: pointer; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: none; border-color: var(--oro-3); }
+/* El navegador marca lo obligatorio solo cuando ya se ha intentado enviar. */
+.form-bloque.tocado :invalid { border-color: #B23A2E; }
+
+.campo-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 4px; cursor: pointer; }
+.campo-check input { flex: none; width: 16px; height: 16px; margin-top: 2px; accent-color: var(--oro-3); }
+.campo-check span { font-size: 12.5px; line-height: 1.5; color: var(--text-mid); }
+.campo-check span i { font-style: normal; color: var(--oro-3); }
+
+.form-nota { margin: 0; font-size: 11.5px; line-height: 1.5; font-style: italic; color: var(--text-mute); }
+.form-nota::before { content: '*'; margin-right: .45em; font-style: normal; }
+
+.form-enviar {
+  margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 17px 22px; border: 1px solid var(--marengo); background: var(--marengo); color: #FFFFFF;
+  font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 19px;
+  letter-spacing: -.005em; cursor: pointer; transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.form-enviar:hover { background: transparent; color: var(--text); }
+.form-enviar span { color: var(--oro-1); font-size: 15px; }
+.form-enviar[disabled] { opacity: .55; cursor: default; }
+
+.form-estado { margin: 0; font-size: 13px; line-height: 1.5; min-height: 1px; }
+.form-estado.ok { color: var(--verde-2); font-weight: 600; }
+.form-estado.mal { color: #B23A2E; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .form-grid { grid-template-columns: 1fr; gap: 18px; }
+  .form-bloque { grid-template-columns: 1fr; padding: 24px 22px 22px; }
+}
+
 /* ── La ganadora, con pieza propia ─────────────────────────────
    El primer puesto abre el capítulo con su propio escenario y la lista
    arranca en el segundo. La monta el motor desde PROMOS.

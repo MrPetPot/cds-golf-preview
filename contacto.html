@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;500;600;700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/guia.css?v=c445a950">
+<link rel="stylesheet" href="assets/guia.css?v=17e21a69">
 <link rel="stylesheet" href="assets/motion.css?v=20260923-25">
 </head>
 <body data-pagina="contacto">
@@ -51,6 +51,68 @@
           <a class="btn-linea contacto-cta" href="mailto:p@malashpina.es?subject=Costa%20del%20Sol%20%C2%B7%20Golf%20Residences">Escribir al estudio →</a>
         </div>
       </div>
+      <header class="sub-cabecera" id="contactar">
+        <div class="sec-eyebrow">Escribirnos</div>
+        <h2 class="sec-title">Dos vías según <em>de qué lado estés</em>.</h2>
+        <p class="sec-lede">Una para quien busca comprar y otra para quien construye. Van al mismo buzón, pero con la información que hace falta en cada caso.</p>
+      </header>
+
+      <div class="form-grid">
+
+        <form class="form-bloque" id="formLead" novalidate>
+          <span class="gana-rot">Para compradores</span>
+          <h3 class="form-tit">Me interesa una promoción</h3>
+          <p class="form-intro">Dinos cuál y en qué horquilla te mueves. No comercializamos: te ponemos en contacto con el promotor y te pasamos lo que tengamos documentado.</p>
+
+          <label class="campo"><span>Nombre y apellidos <i>*</i></span><input type="text" name="nombre" required autocomplete="name"></label>
+          <label class="campo"><span>Email <i>*</i></span><input type="email" name="email" required autocomplete="email"></label>
+          <label class="campo"><span>Teléfono</span><input type="tel" name="telefono" autocomplete="tel"></label>
+          <label class="campo"><span>Promoción de interés</span><select name="promocion" id="selectPromos"><option value="">Todavía no lo sé</option></select></label>
+          <label class="campo"><span>Presupuesto</span><select name="presupuesto">
+            <option value="">Prefiero no decirlo</option>
+            <option>500.000 – 1.000.000 €</option>
+            <option>1.000.000 – 2.000.000 €</option>
+            <option>2.000.000 – 5.000.000 €</option>
+            <option>Más de 5.000.000 €</option>
+          </select></label>
+          <label class="campo campo-ancho"><span>Mensaje</span><textarea name="mensaje" rows="4"></textarea></label>
+
+          <label class="campo-check"><input type="checkbox" name="consentimiento" required><span>He leído y acepto que Malashpina Creativos trate mis datos para responder a esta consulta. <i>*</i></span></label>
+          <p class="form-nota">No cedemos datos a terceros sin tu permiso expreso. Puedes pedir su supresión escribiendo a p@malashpina.es.</p>
+
+          <button class="form-enviar" type="submit">Enviar consulta <span>→</span></button>
+          <p class="form-estado" role="status" aria-live="polite"></p>
+        </form>
+
+        <form class="form-bloque" id="formPro" novalidate>
+          <span class="gana-rot">Para promotoras y agencias</span>
+          <h3 class="form-tit">Quiero aportar o corregir</h3>
+          <p class="form-intro">Si tu promoción no está, si un dato de su ficha no es correcto o si tienes material mejor que el publicado, esta es la vía. Se revisa contra fuente y entra en la siguiente edición.</p>
+
+          <label class="campo"><span>Promotora o agencia <i>*</i></span><input type="text" name="empresa" required autocomplete="organization"></label>
+          <label class="campo"><span>Persona de contacto <i>*</i></span><input type="text" name="nombre" required autocomplete="name"></label>
+          <label class="campo"><span>Email <i>*</i></span><input type="email" name="email" required autocomplete="email"></label>
+          <label class="campo"><span>Teléfono</span><input type="tel" name="telefono" autocomplete="tel"></label>
+          <label class="campo"><span>Motivo <i>*</i></span><select name="motivo" required>
+            <option value="">Selecciona</option>
+            <option>Mi promoción no está en la guía</option>
+            <option>Hay un dato incorrecto en su ficha</option>
+            <option>Aporto material gráfico o dosier</option>
+            <option>Aporto precios o fechas actualizados</option>
+            <option>Otro</option>
+          </select></label>
+          <label class="campo"><span>Promoción</span><input type="text" name="promocion" placeholder="Nombre del proyecto"></label>
+          <label class="campo campo-ancho"><span>Qué aportas <i>*</i></span><textarea name="mensaje" rows="4" required placeholder="Datos, correcciones o enlace al material"></textarea></label>
+
+          <label class="campo-check"><input type="checkbox" name="consentimiento" required><span>He leído y acepto que Malashpina Creativos trate mis datos para gestionar esta aportación. <i>*</i></span></label>
+          <p class="form-nota">Aportar información no garantiza entrar en el ranking ni modifica la puntuación: los criterios y sus pesos son los mismos para todas.</p>
+
+          <button class="form-enviar" type="submit">Enviar aportación <span>→</span></button>
+          <p class="form-estado" role="status" aria-live="polite"></p>
+        </form>
+
+      </div>
+
       <div class="siguiente"><a href="index.html"><small>Volver</small><b>A la portada →</b></a></div>
     </section>
 
@@ -79,7 +141,7 @@
     </footer>
 </main></div>
 
-<script src="assets/guia.js?v=4dd78dca"></script>
+<script src="assets/guia.js?v=51ad56c9"></script>
 <script src="assets/motion.js?v=20260923-8"></script>
 <script src="assets/favicon.js?v=20260921-4"></script>
 </body>

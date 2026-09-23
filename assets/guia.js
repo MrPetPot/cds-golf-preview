@@ -2444,6 +2444,91 @@ function pintarEstrellas(raiz) {
 }
 pintarEstrellas();
 
+/* ═══════════════════════════════════
+   FORMULARIOS DE CONTACTO
+   La guia es un sitio estatico: no hay servidor que reciba un POST. Mientras
+   no lo haya, el formulario compone el correo y lo abre en el cliente del
+   visitante, que funciona en cualquier parte y no mete a un tercero entre
+   medias. El dia que haya endpoint —Formspree, Basin, una funcion propia—
+   se rellena ENVIO y pasa a enviarse por fetch sin tocar nada mas.
+════════════════════════════════════ */
+(function () {
+  const ENVIO = '';                       // endpoint https://… o '' para correo
+  const BUZON = 'p@malashpina.es';
+  const lead = document.getElementById('formLead');
+  const pro = document.getElementById('formPro');
+  if (!lead && !pro) return;
+
+  /* El desplegable de promociones sale del ranking, no de una lista a mano:
+     asi nunca ofrece una promocion que ya no este ni deja otra fuera. */
+  const sel = document.getElementById('selectPromos');
+  if (sel && typeof PROMOS !== 'undefined') {
+    PROMOS.forEach(p => {
+      const o = document.createElement('option');
+      o.textContent = (p.top10 ? '#' + String(p.rank).padStart(2, '0') + ' · ' : '') +
+        p.name + ' · ' + p.municipio;
+      sel.appendChild(o);
+    });
+  }
+
+  const ROTULO = {
+    nombre: 'Nombre', email: 'Email', telefono: 'Teléfono', promocion: 'Promoción',
+    presupuesto: 'Presupuesto', empresa: 'Promotora o agencia', motivo: 'Motivo', mensaje: 'Mensaje'
+  };
+
+  const cuerpoDe = form => {
+    const lineas = [];
+    new FormData(form).forEach((v, k) => {
+      if (k === 'consentimiento' || !String(v).trim()) return;
+      lineas.push((ROTULO[k] || k) + ': ' + v);
+    });
+    lineas.push('', '—', 'Enviado desde la guía Prime & Golf · ' + location.href);
+    return lineas.join('\n');
+  };
+
+  const preparar = (form, asunto) => {
+    const estado = form.querySelector('.form-estado');
+    const boton = form.querySelector('.form-enviar');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      form.classList.add('tocado');
+      estado.className = 'form-estado';
+      if (!form.checkValidity()) {
+        estado.classList.add('mal');
+        estado.textContent = 'Faltan campos obligatorios o hay alguno mal escrito.';
+        const primero = form.querySelector(':invalid');
+        if (primero) primero.focus();
+        return;
+      }
+      if (ENVIO) {
+        boton.disabled = true;
+        estado.textContent = 'Enviando…';
+        try {
+          const r = await fetch(ENVIO, {
+            method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form)
+          });
+          if (!r.ok) throw new Error(r.status);
+          form.reset(); form.classList.remove('tocado');
+          estado.classList.add('ok');
+          estado.textContent = 'Recibido. Te contestamos en cuanto lo revisemos.';
+        } catch (err) {
+          estado.classList.add('mal');
+          estado.textContent = 'No se ha podido enviar. Escríbenos a ' + BUZON + ' y lo vemos.';
+        } finally { boton.disabled = false; }
+        return;
+      }
+      location.href = 'mailto:' + BUZON + '?subject=' + encodeURIComponent(asunto) +
+        '&body=' + encodeURIComponent(cuerpoDe(form));
+      estado.classList.add('ok');
+      estado.textContent = 'Se ha abierto tu programa de correo con la consulta preparada. ' +
+        'Si no se ha abierto, escríbenos a ' + BUZON + '.';
+    });
+  };
+
+  if (lead) preparar(lead, 'Prime & Golf · Consulta de comprador');
+  if (pro) preparar(pro, 'Prime & Golf · Aportación de promotora');
+})();
+
 
 /* Menú desplegable del nav */
 (function () {
