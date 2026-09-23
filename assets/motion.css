@@ -103,9 +103,11 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 .fb-golf .account-step { color: var(--verde-2); }
 .fb-proyecto .account-step, .fb-cuenta .account-step { color: var(--oro-3); }
 .fb-tit { min-width: 0; font-size: 13px; line-height: 1.35; color: var(--text-mid); }
+/* El divisor va al mismo cuerpo que la cifra y se distingue por el peso:
+   Antonio light frente a la negrita. Nunca por tamano. */
 .fb-nota { font: 700 38px/1 var(--f-display); letter-spacing: -.02em; color: var(--oro-3); white-space: nowrap; }
 .fb-golf .fb-nota { color: var(--verde-2); }
-.fb-nota small { margin-left: 2px; font: 600 12px/1 var(--f-sans); letter-spacing: .1em; color: var(--text-mute); }
+.fb-nota small { margin-left: 3px; font: 300 1em/1 var(--f-display); letter-spacing: -.01em; color: var(--text-mute); }
 .fb-cab .measure-track { grid-column: 1 / -1; height: 3px; margin-top: 2px; }
 .fb-golf .fb-cab .measure-fill, .fb-golf .crit .measure-fill { background: var(--verde-2); }
 .measure-track { grid-column: 1 / -1; position: relative; display: block; height: 6px; overflow: hidden; background: var(--bg-3); }
@@ -197,7 +199,7 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 .crit-lbl { font-size: 13px; line-height: 1.35; color: var(--text); }
 .crit > strong { font: 700 20px/1 var(--f-display); color: var(--oro-3); }
 .fb-golf .crit > strong { color: var(--verde-2); }
-.crit > strong small { margin-left: 1px; font: 600 9px/1 var(--f-sans); letter-spacing: .06em; color: var(--text-mute); }
+.crit > strong small { margin-left: 2px; font: 300 1em/1 var(--f-display); letter-spacing: -.01em; color: var(--text-mute); }
 .crit .measure-track { grid-column: 2 / -1; height: 2px; margin-top: 8px; }
 .crit > p { grid-column: 2 / -1; margin: 7px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-mid); }
 
@@ -212,7 +214,7 @@ html.ficha-abierta #main .reveal { transform: none !important; }
    cifras mandan y el resto acompana en versalita. */
 .fb-eq i, .fb-eq em { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; color: var(--text-mute); }
 .fb-eq strong { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--oro-3); }
-.fb-eq strong small { font-size: inherit; font-weight: 400; letter-spacing: .04em; color: var(--text-mute); }
+.fb-eq strong small { font-family: var(--f-display); font-size: inherit; font-weight: 300; letter-spacing: -.01em; color: var(--text-mute); }
 
 /* ── Progressive disclosure ── */
 .promo-sections { border-top: 1px solid var(--line); }

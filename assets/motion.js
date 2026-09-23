@@ -274,8 +274,36 @@
     detail.addEventListener('toggle', () => { if (!detail.open) ojo.disconnect(); }, { once: true });
   }
 
+  // Conteo progresivo de las puntuaciones, con el mismo motor que las cifras
+  // del hero de la portada. Solo cuenta el primer nodo de texto: el divisor
+  // —el <small> con «/40»— se queda quieto mientras la cifra sube.
+  function contar(el, duration, delay) {
+    const nodo = el.firstChild;
+    if (!nodo || nodo.nodeType !== Node.TEXT_NODE) return;
+    const final = nodo.nodeValue.trim();
+    const meta = Number.parseFloat(final);
+    if (!Number.isFinite(meta) || meta <= 0) return;
+    const decimales = (final.split(',')[1] || '').length;
+    const pintar = v => v.toFixed(decimales).replace('.', ',');
+    el.setAttribute('aria-label', el.textContent.trim());
+    nodo.nodeValue = pintar(0);
+    const arranca = performance.now() + delay;
+    schedule(now => {
+      if (now < arranca) return true;
+      const raw = Math.min(1, (now - arranca) / duration);
+      const eased = 1 - Math.pow(1 - raw, 3);
+      nodo.nodeValue = raw === 1 ? final : pintar(meta * eased);
+      if (raw === 1) el.removeAttribute('aria-label');
+      return raw < 1;
+    });
+  }
+
   function animarBloque(bloque) {
     reveal(bloque, 0, 24);
+    bloque.querySelectorAll('.fb-nota').forEach(el => contar(el, 1500, 220));
+    bloque.querySelectorAll('.crit > strong').forEach((el, i) => contar(el, 1100, 520 + Math.min(i, 9) * 105));
+    bloque.querySelectorAll('.fb-eq b, .fb-eq strong').forEach((el, i) => contar(el, 1400, 200 + i * 260));
+    bloque.querySelectorAll('.quick-facts dd').forEach((el, i) => contar(el, 1200, 320 + i * 150));
     bloque.querySelectorAll('.fb-cab .measure-fill').forEach(fill => {
       const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
       play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
