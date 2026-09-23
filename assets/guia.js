@@ -553,7 +553,7 @@ const PROMOS = [
         b1:10, b1why:'Fendi Casa: marca internacional reconocida, interiorismo entregado con la unidad.',
         b4:10, b4why:'Spa, gym, cine, concierge 24h, piscinas premium, servicio de hotel.' },
     tags:['Fendi Casa','Golden Mile','€15k/m²'],
-    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, no de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
+    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, más que de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Terrazas escalonadas sobre el valle." }, name:'Tiara', sub:'La Quinta · NVOGA',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
@@ -602,7 +602,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto boutique cuidado; sin firma internacional.',
         b4:7,  b4why:'Piscina, gym, zonas comunes premium; sin resort propio.' },
     tags:['20 unidades','Boutique','A-7 directa','Conflicto declarado'],
-    rationale:'Diez campos en quince minutos y ninguno de ★★★★, pero nueve de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
+    rationale:'Diez campos en quince minutos y ninguno de ★★★★, pero nueve de acceso público o resort: es golf diario, equilibrado y escalable. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
 
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
@@ -621,7 +621,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto AEDAS de calidad contrastada; sin firma internacional.',
         b4:7,  b4why:'Sky lounge, spa, gym, piscinas; sin club house propio.' },
     tags:['In-resort','AEDAS','Sky lounge','Mix tipologías'],
-    rationale:'Siete de sus ocho campos son jugables y ninguno pasa de ★★★. El valor está en la ejecución residencial —mezcla de apartamentos y villas, poco habitual— más que en el golf. Es la promoción de esta lista que un golfista compra por comodidad, no por campo.' },
+    rationale:'Siete de sus ocho campos son jugables y ninguno pasa de ★★★. El valor está en la ejecución residencial —mezcla de apartamentos y villas, poco habitual— más que en el golf. Es la promoción de esta lista que un golfista compra por comodidad: el golf entra en el lote y la decisión se toma en la casa.' },
 
   { id:'higueron-valley', render:{ dominio:"higueron-valley.com", pie:"Terraza con vistas a la bahía." }, name:'Higuerón Valley', sub:'Higuerón Resort',
     municipio:'Fuengirola', zona:'El Higuerón', lat:36.553, lng:-4.595,
@@ -654,7 +654,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto beachfront cuidado; sin firma internacional.',
         b4:7,  b4why:'Spa, gym, piscinas, acceso directo a playa.' },
     tags:['Beachfront','38 unidades','Mix tipologías'],
-    rationale:'Sube a la primera mención por descarte ajeno: The View pierde más que ella al aplicar el coeficiente de acceso. Su entorno es amplio pero desigual: dieciséis campos en quince minutos y cinco de ellos, de socios. Beachfront con 38 unidades y cuatro tipologías; el golf aquí es contexto, no argumento.' },
+    rationale:'Sube a la primera mención por descarte ajeno: The View pierde más que ella al aplicar el coeficiente de acceso. Su entorno es amplio pero desigual: dieciséis campos en quince minutos y cinco de ellos, de socios. Beachfront con 38 unidades y cuatro tipologías; el golf acompaña a la compra y el mar la explica.' },
 
   { id:'the-view', render:{ dominio:"marbella-ev.com", pie:"Bloque residencial sobre Las Colinas." }, name:'The View Marbella', sub:'Las Colinas de Marbella',
     municipio:'Benahavís', zona:'Las Colinas', lat:36.510, lng:-4.97,
