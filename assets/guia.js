@@ -1117,10 +1117,15 @@ if (rankBody) pintarRanking();
   /* Los indicadores de portada y el pie salen de la matriz, no del teclado. */
   const kp = document.getElementById('kpiPromos');
   if (kp) kp.textContent = PROMOS.length;
+  /* El suelo es el criterio de inclusion —500.000, redondo— y no el precio de la
+     promocion mas barata que haya entrado: 520.000 era un accidente de quien
+     ocupaba ese puesto, no lo que la guia dice cubrir. El techo si sale del dato,
+     porque no hay criterio que lo fije. */
+  const SUELO = 500000;
   const pr = PROMOS.map(x => Number(String(x.precioDesde).replace(/[^0-9]/g, ''))).filter(Boolean);
   const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + 'M' : Math.round(n / 1000) + 'k';
   const kr = document.getElementById('kpiRango');
-  if (kr && pr.length) kr.textContent = '\u20ac' + mm(Math.min(...pr)) + '\u2013' + mm(Math.max(...pr));
+  if (kr && pr.length) kr.textContent = '\u20ac' + mm(SUELO) + '\u2013' + mm(Math.max(...pr));
   const pie = document.getElementById('pieRecuento');
   if (pie) pie.textContent = `${PROMOS.length} promociones evaluadas \u00b7 top 10 publicado \u00b7 ${COURSES.length} campos`;
 
