@@ -27,7 +27,9 @@
 .dc-slide.sin-img img { display: none; }
 .dc-hueco-n { margin-top: -30px; font: 700 112px/1 var(--f-display); letter-spacing: -.02em; color: rgba(255,255,255,.2); }
 .dc-hueco-t { padding: 0 24px; font-size: 11px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.46); text-align: center; }
-.dc-pases { position: absolute; top: 24px; right: 26px; z-index: 3; display: flex; align-items: center; gap: 8px; }
+/* A la izquierda: arriba a la derecha vive el +/- que abre y cierra la ficha
+   (.dc-head::before), y los botones se le montaban encima. */
+.dc-pases { position: absolute; top: 22px; left: 26px; z-index: 3; display: flex; align-items: center; gap: 8px; }
 .dc-pase-n { font: 400 13px/1 var(--f-display); letter-spacing: .08em; color: rgba(255,255,255,.82); }
 .dc-pase-b {
   width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
@@ -247,6 +249,7 @@
   .criteria-grid, .image-credit-groups { grid-template-columns: 1fr; }
   .project-data { grid-template-columns: 1fr 1fr; gap: 8px; }
   .promo-section-body { padding-left: 0; }
+  .dc-pases { top: 14px; left: 20px; }
   .fb { padding: 18px 16px 20px; }
   .fb-cab { grid-template-columns: auto auto; }
   .fb-tit { grid-column: 1 / -1; order: 3; }
