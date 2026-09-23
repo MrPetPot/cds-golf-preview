@@ -1700,6 +1700,13 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .pop-score { color: var(--y-1); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
 .pop-stars { color: var(--amarillo); font-weight: 700; }
 
+/* ── Puntualizaciones ─────────────────────────────────────────────────────
+   Las notas al pie de la guia —las que matizan un dato sin ser el dato— se
+   marcan igual en todas partes: asterisco delante y cursiva. Asi se distinguen
+   de un pie de foto o de un rotulo sin depender del contexto. */
+.account-footnote, .atlas-pie, .galeria-nota { font-style: italic; }
+.account-footnote::before, .atlas-pie::before, .galeria-nota::before { content: '*'; margin-right: .45em; font-style: normal; }
+
 /* ── Hero de pagina interior ──────────────────────────────────────────────
    Banda corta, del ancho completo, con el mismo lenguaje que la portada pero
    a media altura: la portada ocupa 92vh, esto se queda en torno al 40 %. Cada
