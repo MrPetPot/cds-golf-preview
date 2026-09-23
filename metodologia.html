@@ -30,14 +30,14 @@
       <div class="hero-center">
         <div class="hero-kicker">Guía editorial · Costa del Sol</div>
         <h1 class="hero-title"><span><b>01</b> · El método</span></h1>
-        <p class="hero-lede">Sesenta puntos de entorno de golf y cuarenta de calidad del proyecto, criterio a criterio.</p>
+        <p class="hero-lede">Así se calcula la posición de cada promoción: qué aporta el entorno de golf, qué aporta el proyecto y dónde interviene el criterio editorial.</p>
       </div>
     </section>
 
     <section id="method" class="reveal">
-      <div class="sec-eyebrow">El reparto</div>
-      <h2 class="sec-title">Cualquiera puede <em>rehacer este cálculo</em>.</h2>
-      <p class="sec-lede">Cada promoción se puntúa sobre 100. Así se reparten los puntos.</p>
+      <div class="sec-eyebrow">La matriz</div>
+      <h2 class="sec-title">100 puntos · diez criterios · <em>dos bloques</em>.</h2>
+      <p class="sec-lede">El entorno de golf aporta hasta 60 puntos; las características de la promoción, hasta 40. Seis criterios, que suman como máximo 65 puntos, se calculan desde los datos registrados; los otros cuatro, hasta 35, requieren una valoración editorial cuya razón se muestra en cada ficha. Fijados los datos y esas valoraciones, el total y el orden salen solos.</p>
       <div class="method-grid">
         <div class="method-block">
           <h3>Bloque A · Entorno de golf</h3>
@@ -64,9 +64,9 @@
         </div>
       </div>
       <header class="sub-cabecera" id="funcion">
-        <div class="sec-eyebrow">Cómo funciona el algoritmo</div>
-        <h2 class="sec-title">Diez sumandos y <em>siete enunciados</em>.</h2>
-        <p class="sec-lede">Lo que sigue es, literalmente, lo que ejecuta el documento al cargarse.</p>
+        <div class="sec-eyebrow">Del dato a la posición</div>
+        <h2 class="sec-title">Así se obtiene <em>cada resultado</em>.</h2>
+        <p class="sec-lede">Las reglas son las mismas para todas las promociones de una edición. Lo que sigue es, literalmente, lo que ejecuta el documento al cargarse; en cada ficha se ve el desglose de puntos y la explicación de los cuatro criterios editoriales.</p>
       </header>
       <div class="formula-card" id="formula">
         <div class="formula-lista">
@@ -84,18 +84,18 @@
           <details class="formula-item">
             <summary>
               <span class="fi-num">02</span>
-              <span class="fi-titulo">Jugabilidad</span>
+              <span class="fi-titulo">Acceso a los campos</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
-              <p>Coeficiente de acceso. Sale de la columna «membresía» de la base de campos, no de un juicio por promoción.</p>
+              <p>Para contar los campos próximos en A2 y A3 se aplica un coeficiente según la modalidad de acceso publicada de cada campo: resort, público, municipal y semiprivado cuentan 1; privado de socios, 0,5; estrictamente privado, 0. Sale de la columna «membresía» de la base de campos, no de un juicio por promoción. Describe el acceso general de un visitante: <strong>no acredita derechos de juego incluidos con la vivienda</strong>, que se indican aparte cuando el promotor los publica.</p>
               <div class="formula"><var>&alpha;</var>(<var>c</var>) = 1 si el campo es resort, público, municipal o semi-privado &nbsp;·&nbsp; &frac12; si es privado de socios &nbsp;·&nbsp; 0 si es estrictamente privado</div>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">03</span>
-              <span class="fi-titulo">Densidad efectiva</span>
+              <span class="fi-titulo">Campos a distancia útil</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
@@ -106,11 +106,11 @@
           <details class="formula-item">
             <summary>
               <span class="fi-num">04</span>
-              <span class="fi-titulo">Escalas</span>
+              <span class="fi-titulo">Los seis criterios calculados</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
-              <p>Seis de los diez criterios son funciones escalonadas de un dato medible: el campo ★★+ más cercano, las densidades efectivas, el tiempo, el número de unidades y el precio por metro cuadrado. Los umbrales son públicos y los mismos para las dieciocho promociones.</p>
+              <p>A1, A2, A3, A4, B2 y B3 se convierten en puntos por tramos: el campo ★★+ más cercano, las densidades efectivas, el tiempo, el número de unidades y el precio por metro cuadrado. Los umbrales son públicos y los mismos para todas las promociones de una edición. Que la conversión sea automática no vuelve ajenas al criterio todas sus entradas: las estrellas de un campo y su modalidad de acceso son clasificaciones decididas antes, y se documentan en <a href="campos.html">Campos</a>.</p>
               <div class="formula"><var>c</var>* = arg&thinsp;min { <var>t</var>(<var>p</var>,<var>c</var>) : <var>s</var>(<var>c</var>) &ge; 2 }</div>
               <div class="escalas">
               <div><b><var>a</var><sub>1</sub> = <var>f</var><sub>1</sub>(<var>s</var>(<var>c</var>*))</b><span>★★★★ → 15 · ★★★ → 10 · ★★ → 5</span></div>
@@ -125,33 +125,33 @@
           <details class="formula-item">
             <summary>
               <span class="fi-num">05</span>
-              <span class="fi-titulo">Cota editorial</span>
+              <span class="fi-titulo">Los cuatro criterios editoriales</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
-              <p>Los cuatro criterios de juicio (bonus in-resort, comunicación viaria, firma arquitectónica y amenities) pesan como máximo 35 puntos y llevan su justificación escrita, visible en cada ficha. Dos restricciones automáticas impiden puntuar promesas: lo no entregado no suma.</p>
+              <p>A5, A6, B1 y B4 —integración con el golf, conexión viaria, arquitectura o marca, y servicios del proyecto— pesan como máximo 35 puntos y llevan su justificación escrita, visible en cada ficha. Dos restricciones automáticas impiden puntuar promesas: un campo propio que aún no opera no da bonus y una marca anunciada pero no entregada no pasa de 7. <strong>Una justificación se puede discutir y rebatir con documentación; no equivale a una medición.</strong></p>
               <div class="formula"><var>a</var><sub>5</sub>, <var>a</var><sub>6</sub>, <var>b</var><sub>1</sub>, <var>b</var><sub>4</sub> &isin; editorial, con <var>a</var><sub>5</sub> + <var>a</var><sub>6</sub> + <var>b</var><sub>1</sub> + <var>b</var><sub>4</sub> &le; 35<span class="cond"><var>a</var><sub>5</sub> = 0 si el campo propio no está entregado &nbsp;·&nbsp; <var>b</var><sub>1</sub> &le; 7 si la marca no está entregada</span></div>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">06</span>
-              <span class="fi-titulo">Posición</span>
+              <span class="fi-titulo">Orden y desempates</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
-              <p>A igualdad de puntuación decide el bloque A, el entorno de golf: son sesenta de los cien puntos y es lo que esta guía mide primero. Si también empata, la calidad del campo de referencia; después, su cercanía; y en último extremo el alfabeto. Dos promociones solo comparten puesto si empatan en los cuatro, y entonces el siguiente número salta.</p>
+              <p>A igualdad de puntuación decide el bloque A, el entorno de golf: son sesenta de los cien puntos y es lo que esta guía mide primero. Si también empata, la calidad del campo de referencia; después, su cercanía. Esos cuatro valores son los que deciden el puesto: cuando coinciden los cuatro, dos promociones lo comparten y el siguiente número salta. El alfabeto no desempata nada, solo fija en qué orden se muestran las que comparten puesto.</p>
               <div class="formula">rank(<var>p</var>) = 1 + |{ <var>q</var> : <var>q</var> ≻ <var>p</var> }| &nbsp;&nbsp;con&nbsp; <var>q</var> ≻ <var>p</var> ⇔ (<var>S<sub>q</sub></var>, <var>A<sub>q</sub></var>, <var>a1<sub>q</sub></var>, −<var>min<sub>q</sub></var>) &gt; (<var>S<sub>p</sub></var>, <var>A<sub>p</sub></var>, <var>a1<sub>p</sub></var>, −<var>min<sub>p</sub></var>)</div>
             </div>
           </details>
           <details class="formula-item">
             <summary>
               <span class="fi-num">07</span>
-              <span class="fi-titulo">Actualización continua</span>
+              <span class="fi-titulo">Ediciones y revisiones</span>
               <span class="fi-chevron" aria-hidden="true"></span>
             </summary>
             <div class="fi-detalle">
-              <p><strong>Actualización continua.</strong> La puntuación es una función pura de la base de datos <var>D</var> en el instante <var>t</var>: precios, unidades, apertura de campos, cambios de acceso o de tiempos. Cuando un dato cambia, el ranking entero se recalcula al recargar la página; cada recálculo es una nueva edición fechada. Esta: datos revisados el 18 de septiembre de 2026; precios recogidos en abril–mayo de 2026; tiempos medidos en agosto de 2026.</p>
+              <p>Cada edición tiene su universo de promociones, su fecha de corte de datos y su versión de matriz. La puntuación es una función de esa base: precios, unidades, apertura de campos, cambios de acceso o de tiempos. Cuando se verifica un cambio se recalcula el conjunto entero y se publica en una revisión fechada. <strong>Lo que ves en pantalla es la edición indicada, no un seguimiento del mercado en tiempo real.</strong> Esta: edición #01, datos cerrados el 23 de septiembre de 2026, matriz v1.8; precios recogidos en abril–mayo de 2026 y tiempos medidos en agosto de 2026. Próxima revisión: octubre 2026.</p>
               <div class="formula"><var>S</var><sub><var>t</var></sub>(<var>p</var>) = <var>F</var>(<var>D</var><sub><var>t</var></sub>)</div>
             </div>
           </details>
@@ -220,7 +220,7 @@
       </div>
       <div>
         <div class="foot-col-title">Esta edición</div>
-        <div class="foot-col-item">Edición #01 · revisada el 18 de septiembre de 2026</div>
+        <div class="foot-col-item">Edición #01 · revisada el 23 de septiembre de 2026</div>
         <div class="foot-col-item">Matriz v1.8 · próxima revisión octubre 2026</div>
         <div class="foot-col-item"><span id="pieRecuento">21 promociones evaluadas · top 10 publicado · 61 campos</span></div>
       </div>
@@ -231,7 +231,7 @@
     </footer>
 </main></div>
 
-<script src="assets/guia.js?v=e6b5d641"></script>
+<script src="assets/guia.js?v=4546e62d"></script>
 <script src="assets/motion.js?v=20260923-8"></script>
 <script src="assets/favicon.js?v=20260921-4"></script>
 </body>

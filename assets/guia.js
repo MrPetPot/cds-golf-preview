@@ -821,7 +821,7 @@ const PROMOS = [
     estado:'En construcción', entrega:'2026',
     campoPropio:'estepona-golf', campoPropioPendiente:null,
     cursos:[['estepona-golf',0,'A pie de campo'],['azata-golf',9,''],['valle-romano-golf',11,''],['finca-cortesin-golf',12,''],['dona-julia-golf',12,''],['la-duquesa-golf',14,'']],
-    d:{ a5:4,  a5why:'A pie de Estepona Golf (★★ propio, público).',
+    d:{ a5:5,  a5why:'A pie de Estepona Golf, sin ser in-resort.',
         a6:5,  a6why:'Salida directa a la A-7 desde Estepona Golf.',
         b1:3,  b1why:'Sin estudio acreditado ni marca: el producto se vende por parcela y superficie.',
         b4:3,  b4why:'Piscina y sótano personalizable por villa; sin zonas comunes de resort.' },
