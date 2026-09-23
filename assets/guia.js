@@ -1776,10 +1776,10 @@ function initAtlas(el) {
     pintarPanelCampo(c, suyas);
   }
 
-  // Al fijar una promocion el encuadre se cierra sobre ella: primero al 70 % de
-  // lo que veia y despues un 30 % mas, asi que acaba mostrando algo menos de la
-  // mitad del mapa con su racimo en el centro.
-  const CIERRE = 0.7 / 1.3;
+  // Al fijar una promocion el encuadre se cierra sobre ella hasta mostrar poco
+  // mas de un tercio del mapa —2,4 aumentos— con su racimo en el centro: a esa
+  // escala se leen los minutos de cada campo sin perder la linea de costa.
+  const CIERRE = 0.7 / (1.3 * 1.3);
   let tween;
   function irA(zDestino, xDestino, yDestino) {
     cancelAnimationFrame(tween);
