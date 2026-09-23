@@ -1775,3 +1775,19 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   .hero-pagina .hero-lede { font-size: 15px; }
   .hero-pagina .hero-kicker { margin-bottom: 12px; }
 }
+
+/* ── El menu vuela sobre el hero ────────────────────────────────
+   En sticky ocupaba su franja en el flujo: la pagina abria con una banda
+   negra de 64 px y la imagen empezaba debajo, y solo al hacer scroll se
+   montaba encima. Fijandolo, el hero arranca en el borde superior y el
+   menu se apoya sobre la imagen desde el primer fotograma.
+   El hero de portada compensa con el aire que tenia (el credito sigue a
+   la misma altura de siempre) y las bandas interiores crecen lo que mide
+   el menu: no se les come imagen, se les da marco. */
+:root { --nav-h: 64px; }
+.topnav { position: fixed; top: 0; left: 0; right: 0; }
+/* Y como ahora flota, los saltos a un ancla dejan su hueco debajo. */
+html { scroll-padding-top: calc(var(--nav-h) + 18px); }
+.hero .hero-top { padding-top: var(--nav-h); }
+.hero-pagina { min-height: calc(clamp(280px, 40vh, 420px) + var(--nav-h)); }
+@media (max-width: 640px) { .hero-pagina { min-height: calc(240px + var(--nav-h)); } }
