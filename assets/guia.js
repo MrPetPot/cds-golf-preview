@@ -1389,7 +1389,12 @@ function renderGolf(filter) {
     const imagen = f
       ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>`
       : `<div class="cc-sin"><b>${c.name}</b><span>Sin fotografía</span></div>`;
-    const credito = f ? `<span class="cc-cred">${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito}</span>` : '';
+    // El credito deja de rotularse en la tarjeta salvo cuando la licencia lo
+    // exige: las de Wikimedia Commons son CC BY o CC BY-SA y la atribucion es
+    // condicion de uso. El material de archivo y los cedidos por los clubes no
+    // llevan nota.
+    const exige = f && /Commons/.test(f.credito || '');
+    const credito = exige ? `<span class="cc-cred">${f.url ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>` : f.credito}</span>` : '';
     const card = document.createElement('article');
     card.className = `cc cc-${c.stars}`;
     card.dataset.courseId = c.id;
@@ -1412,10 +1417,6 @@ function renderGolf(filter) {
 }
 if (golfBody) {
   renderGolf('all');
-  const conFoto = COURSES.filter(c => c.foto), n = conFoto.filter(c => !c.foto.placeholder).length;
-  const libres = conFoto.filter(c => /Commons/.test(c.foto.credito || '')).length;
-  const g = document.getElementById('galeriaNota');
-  if (g) g.textContent = `${n} de los 61 campos tienen fotografía: ${libres} de licencia libre verificada y ${n - libres} de archivo. Cada imagen lleva su crédito. Los ${61 - n} restantes esperan material del club.`;
 }
 
 document.querySelectorAll('#golfFilter button').forEach(btn => {

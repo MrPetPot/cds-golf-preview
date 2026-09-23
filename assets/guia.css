@@ -1512,7 +1512,11 @@ details.promo > summary .dc-head::before {
   font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: #FFFFFF;
   text-shadow: 0 1px 8px rgba(15,23,38,.7);
 }
-details.promo[open] > summary .dc-head::before { content: '\2212'; }
+/* Abierta, el indicador es una X de cierre: grande y de trazo fino, porque el
+   signo menos de 30 px sobre una fotografia no se veia. */
+details.promo[open] > summary .dc-head::before {
+  content: '\00D7'; font-family: var(--f-sans); font-weight: 300; font-size: 46px; line-height: .78;
+}
 details.promo > summary:focus-visible .dc-head { outline: 3px solid var(--oro-1); outline-offset: -3px; }
 /* Estado cerrado: una línea de título, solo el municipio, sitio para el score y sin rótulo © */
 details.promo:not([open]) > summary .dc-head-inner { max-width: none; padding-right: 130px; }
@@ -1548,6 +1552,7 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   details.promo:not([open]) > summary .dc-loc { font-size: 12px; }
   details.promo:not([open]) > summary .dc-t-rank, details.promo:not([open]) > summary .dc-t-loc { display: none; }
   details.promo > summary .dc-head::before { right: 20px; top: 14px; font-size: 24px; }
+  details.promo[open] > summary .dc-head::before { font-size: 36px; }
   details.promo > summary .detail-card-placeholder-tag { right: 54px; top: 14px; }
   details.promo > summary .dc-score-overlay { font-size: 34px; bottom: 16px; right: 20px; }
   details.promo[open] > summary .dc-head { min-height: 320px; padding: 36px 26px 30px; }
