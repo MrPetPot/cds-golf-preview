@@ -1103,9 +1103,12 @@ if (rankBody) pintarRanking();
   const top = PROMOS.filter(p => p.top10).length;
   const num = n => String(['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'][n] || n);
   const t = document.getElementById('tituloRanking');
-  // La ganadora tiene pieza propia arriba, asi que la lista empieza en la segunda.
+  // La primera posicion tiene pieza propia arriba: la lista empieza en la segunda.
   const ultima = PROMOS.filter(p => p.top10).slice(-1)[0];
-  if (t) t.innerHTML = `Y detrás, <em>las otras ${num(top - 1)}</em>.`;
+  const ORD = ['', 'primera', 'segunda', 'tercera', 'cuarta', 'quinta', 'sexta', 'séptima',
+    'octava', 'novena', 'décima', 'undécima', 'duodécima'];
+  const ord = n => ORD[n] || n + '.ª';
+  if (t) t.innerHTML = `De la segunda a la <em>${ord(ultima.rank)} posición</em>.`;
   const l = document.getElementById('ledeRanking');
   if (l) l.textContent = `Del puesto 02 al ${String(ultima.rank).padStart(2, '0')}, en orden. Abre cada una para ver su desglose criterio a criterio.`;
   const m = document.getElementById('tituloMapaRanking');
@@ -1520,7 +1523,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         <img src="${foto ? foto.src : p.image}" alt="${p.name} — ${p.municipio}" loading="eager"/>
         <figcaption class="gana-cuerpo">
           <div>
-            <span class="gana-lbl">La ganadora · Edición #01</span>
+            <span class="gana-lbl">Primera posición · Edición #01</span>
             <h3 class="gana-nombre"><span class="gana-puesto">#${dosCifras(p.rank)}</span> ${p.name}</h3>
             <span class="gana-loc">${p.municipio}${p.zona ? ' · ' + p.zona : ''}</span>
           </div>
@@ -1530,7 +1533,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
       <div class="gana-intro">
         <div class="gana-texto">
-          <span class="gana-rot">Por qué gana</span>
+          <span class="gana-rot">Por qué puntúa así</span>
           <p class="gana-razon">${razon}</p>
         </div>
         ${mitades}
