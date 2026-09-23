@@ -185,7 +185,15 @@
 /* Ocho sub-tarjetas sueltas sobre el gris del bloque, en vez de una rejilla
    con lineas: cada dato se lee como una pieza y no como una celda de tabla. */
 .project-data { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 0; }
-.project-data > div { padding: 14px 16px 15px; background: var(--bg-0); border: 1px solid var(--line); }
+.project-data > div { padding: 14px 16px 15px; background: var(--bg-0); border: 1px solid var(--line);
+  transition: background-color .2s, border-color .2s, color .2s; }
+/* Al pasar por encima la sub-tarjeta se invierte: gris al 84 % de negro y
+   texto en blanco, con el rotulo un punto por debajo para que el dato siga
+   mandando. */
+.project-data > div:hover { background: #292929; border-color: #292929; }
+.project-data > div:hover dt { color: rgba(255,255,255,.72); }
+.project-data > div:hover dd { color: #FFFFFF; }
+.project-data > div:hover dd small { color: rgba(255,255,255,.68); }
 .project-data dt { margin-bottom: 5px; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--text-mute); }
 .project-data dd { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--text); }
 .project-data dd small { display: block; margin-top: 4px; font-size: 11px; font-weight: 400; color: var(--text-mute); }
