@@ -115,7 +115,7 @@
             <h3 class="gana-nombre"><span class="gana-puesto">#${dosCifras(p.rank)}</span> ${p.name}</h3>
             <span class="gana-loc">${p.municipio}${p.zona ? ' · ' + p.zona : ''}</span>
           </div>
-          <div class="gana-marcador">${p.total}<small>sobre 100</small></div>
+          <div class="gana-marcador">${p.total}<small>/100</small></div>
         </figcaption>
       </figure>
 

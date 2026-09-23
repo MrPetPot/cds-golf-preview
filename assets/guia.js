@@ -502,7 +502,7 @@ const PROMOS = [
         b1:7,  b1why:'Diseño sostenible certificado; sin firma internacional acreditada.',
         b4:10, b4why:'Acceso pleno a los servicios de La Reserva Club.' },
     tags:['In-resort 4★','Sostenible','Wellness'],
-    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su ★★★★ propio lo compensa: los otros dos campos de élite que tiene a mano son de socios. Pierde el podio por escala: 124 unidades reducen su factor de exclusividad.' },
+    rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única del podio que sí está dentro de La Reserva Club, y su campo de golf propio, La Reserva ★★★★, lo compensa: los otros dos campos de élite que tiene a mano son de socios. Pierde el podio por escala: 124 unidades reducen su factor de exclusividad.' },
 
   { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Piscina y terraza sobre el mar." }, name:'MAREA by Missoni', sub:'Finca Cortesín · Hotel · Golf · Spa',
     municipio:'Casares', zona:'Finca Cortesín Resort', lat:36.379, lng:-5.224,
@@ -519,7 +519,7 @@ const PROMOS = [
         b1:10, b1why:'Branded residence Missoni Casa — marca reconocida, entregada con el proyecto.',
         b4:10, b4why:'Hotel 5★ GL, spa, beach club, cuatro restaurantes, concierge.' },
     tags:['Branded Missoni','In-resort 4★','Solheim Cup 2023','Beach club'],
-    rationale:'<strong>Nuevo número uno.</strong> Su ★★★★ es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y el bloque B más alto de la lista, que comparte con EPIC Marbella. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
+    rationale:'<strong>Nuevo número uno.</strong> Su campo de golf, Finca Cortesín ★★★★, es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y el bloque B más alto de la lista, que comparte con EPIC Marbella. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
 
   { id:'quercus', render:{ dominio:"realdelaquinta.com", pie:"El lago de Real de La Quinta." }, name:'Real de La Quinta · Quercus', sub:'Future Banyan Tree Residences',
     municipio:'Benahavís', zona:'Real de La Quinta Resort', lat:36.515, lng:-5.000,
@@ -586,7 +586,7 @@ const PROMOS = [
         b1:7,  b1why:'Marca hotelera Marbella Club; sin estudio de arquitectura acreditado.',
         b4:10, b4why:'Privilegios del Marbella Club Hotel, spa, club house, beach club del hotel.' },
     tags:['In-resort 3★','Brand Marbella Club','Villa Padierna a 5\''],
-    rationale:'Nueve de sus doce campos admiten reserva, empezando por el suyo: Marbella Club Golf, Flamingos, Alferini y Tramores. No tiene ningún ★★★★ en quince minutos y por eso no sube más, pero es la mejor relación entre golf real y precio de entrada del ranking.' },
+    rationale:'Nueve de sus doce campos admiten reserva, empezando por el suyo: Marbella Club Golf, Flamingos, Alferini y Tramores. No tiene ningún campo ★★★★ en quince minutos y por eso no sube más, pero es la mejor relación entre golf real y precio de entrada del ranking.' },
 
   { id:'zew', render:{ dominio:"Concept Homes · NVOGA", pie:"La entrada de ZEW al atardecer.", origen:'render del promotor · brochure ZEW (Malashpina)' }, name:'ZEW', sub:'by Concept Homes',
     municipio:'Marbella', zona:'Elviria West', lat:36.503, lng:-4.810,
@@ -602,7 +602,7 @@ const PROMOS = [
         b1:4,  b1why:'Producto boutique cuidado; sin firma internacional.',
         b4:7,  b4why:'Piscina, gym, zonas comunes premium; sin resort propio.' },
     tags:['20 unidades','Boutique','A-7 directa','Conflicto declarado'],
-    rationale:'Diez campos en quince minutos y ninguno ★★★★, pero nueve de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
+    rationale:'Diez campos en quince minutos y ninguno de ★★★★, pero nueve de acceso público o resort: es golf diario, no golf de palmarés. Máxima exclusividad de la lista con 20 residencias. <strong>Conflicto de interés declarado</strong>: su catálogo fue aportado por Malashpina Creativos. Su precio es una estimación: el promotor no lo publica.' },
 
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
@@ -822,6 +822,19 @@ PROMOS.forEach(p => {
   p.A = p.score.a1 + p.score.a2 + p.score.a3 + p.score.a4 + p.score.a5 + p.score.a6;
   p.B = p.score.b1 + p.score.b2 + p.score.b3 + p.score.b4;
   p.total = p.A + p.B;
+});
+
+/* Las estrellas son la escala de campos de la guía, así que van siempre en su
+   amarillo —también dentro de los textos, donde hasta ahora salían del color del
+   párrafo—. Se marcan una sola vez aquí y no en cada sitio que las pinta. Las
+   que van pegadas a un número (un hotel 5★, un tag 'In-resort 4★') son otra
+   escala y se quedan como están. */
+const marcarEstrellas = t => typeof t === 'string'
+  ? t.replace(/([^0-9>]|^)(★+)/g, '$1<span class="star">$2</span>')
+  : t;
+PROMOS.forEach(p => {
+  p.rationale = marcarEstrellas(p.rationale);
+  if (p.why) Object.keys(p.why).forEach(k => { p.why[k] = marcarEstrellas(p.why[k]); });
 });
 
 // Orden y posición con empates (1,2,3,4,5,5,7…). El rank ya no se escribe a mano.
