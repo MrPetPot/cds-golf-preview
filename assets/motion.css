@@ -5,6 +5,53 @@
 
 /* ── Ficha de promoción: lectura inmediata ── */
 .compact-body { padding-top: 28px; }
+/* ── La ficha abierta, a pantalla completa ──────────────────────────────
+   Misma ficha, mismo orden, mismo diseno: solo cambia el contenedor. La lista
+   se queda debajo sin moverse, asi que al cerrar apareces donde estabas. */
+html.ficha-abierta { overflow: hidden; }
+/* La seccion que envuelve al ranking conserva la transformacion identidad
+   con la que entro al hacer scroll, y cualquier transform —aunque sea la
+   identidad— convierte al ancestro en el bloque contenedor de lo fijo: la
+   capa se anclaba a la seccion y no a la ventana. Mientras hay una ficha
+   abierta se anula; visualmente no cambia nada porque ya estaba en reposo. */
+html.ficha-abierta #main .reveal { transform: none !important; }
+.detail-grid details.promo[open] {
+  position: fixed; inset: 0; z-index: 200; margin: 0;
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  background: var(--bg-0); border: 0;
+  animation: ficha-entra .28s var(--ease) both;
+}
+@keyframes ficha-entra { from { opacity: 0; transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .detail-grid details.promo[open] { animation: none; } }
+
+/* Pie: volver al listado o seguir por el ranking. */
+.ficha-pie {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: 16px; align-items: stretch;
+  margin: 26px 0 0; padding: 26px 0 8px; border-top: 1px solid var(--line-strong);
+}
+.fp-atras { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; }
+.fp-volver {
+  padding: 15px 22px; background: transparent; border: 1px solid var(--text); color: var(--text);
+  font-family: var(--f-sans); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer; transition: background-color .2s, color .2s;
+}
+.fp-volver:hover { background: var(--text); color: #FFFFFF; }
+.fp-ant {
+  padding: 0; background: none; border: 0; color: var(--text-mute); cursor: pointer;
+  font-family: var(--f-sans); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  text-align: left; transition: color .2s;
+}
+.fp-ant:hover { color: var(--text); }
+.fp-sig {
+  display: flex; flex-direction: column; justify-content: center; gap: 6px; min-height: 84px;
+  padding: 18px 26px; background: var(--text); border: 0; color: #FFFFFF; text-decoration: none;
+  cursor: pointer; text-align: left; transition: background-color .2s;
+}
+.fp-sig:hover { background: #2E2E2E; }
+.fp-sig small { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--oro-1); }
+.fp-sig b { font-family: var(--f-display); font-weight: 700; font-size: clamp(20px, 2vw, 28px); line-height: 1.05; text-transform: uppercase; letter-spacing: -.005em; }
+.fp-volver:focus-visible, .fp-sig:focus-visible, .fp-ant:focus-visible { outline: 2px solid var(--oro-3); outline-offset: 3px; }
+
 /* ── Pases de la cabecera ────────────────────────────────────────────────
    Cuatro imagenes apiladas donde antes habia una. La que todavia no existe se
    queda en un hueco gris con su numero y el nombre de la promocion: se
@@ -258,6 +305,8 @@
   .project-data { grid-template-columns: 1fr 1fr; gap: 8px; }
   .promo-section-body { padding-left: 0; }
   .dc-pases { top: 14px; left: 20px; }
+  .ficha-pie { grid-template-columns: 1fr; gap: 14px; }
+  .fp-atras { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
   .fb { padding: 18px 16px 20px; }
   .fb-cab { grid-template-columns: auto auto; }
   .fb-tit { grid-column: 1 / -1; order: 3; }

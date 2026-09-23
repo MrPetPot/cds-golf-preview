@@ -1163,9 +1163,81 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         <ul class="project-warnings">${AVISOS.filter(a => a.p === p.name && a.t !== 'Imagen').map(a => `<li><strong>${a.t}:</strong> ${a.m}</li>`).join('')}</ul>
       </div></details>
       </div>
+      <nav class="ficha-pie" aria-label="Seguir por el ranking">
+        <div class="fp-atras">
+          <button type="button" class="fp-volver" data-cerrar-ficha>← Volver al ranking</button>
+          ${idx > 0 ? `<button type="button" class="fp-ant" data-ir-ficha="${PUBLICADAS[idx - 1].id}">Anterior · #${String(PUBLICADAS[idx - 1].rank).padStart(2, '0')} ${PUBLICADAS[idx - 1].name}</button>` : ''}
+        </div>
+        ${PUBLICADAS[idx + 1]
+          ? `<button type="button" class="fp-sig" data-ir-ficha="${PUBLICADAS[idx + 1].id}"><small>Siguiente en el ranking</small><b>#${String(PUBLICADAS[idx + 1].rank).padStart(2, '0')} · ${PUBLICADAS[idx + 1].name}</b></button>`
+          : `<a class="fp-sig" href="fuentes.html"><small>Y para comprobarlo</small><b>Las fuentes →</b></a>`}
+      </nav>
     </div>`;
   detailGrid.appendChild(card);
 });
+
+/* ═══════════════════════════════════
+   LA FICHA ABIERTA, A PANTALLA COMPLETA
+   Una ficha mide unas 2.100 px: desplegada dentro de la lista empujaba diez
+   pantallas de contenido entre un puesto y el siguiente y se perdia el sitio.
+   Abierta pasa a capa fija con scroll propio; la lista se queda debajo, quieta,
+   y al cerrar apareces donde estabas. El <details> sigue siendo el mecanismo:
+   sin JS y sin CSS esto sigue siendo un acordeon.
+════════════════════════════════════ */
+(function () {
+  if (!detailGrid) return;
+  const raiz = document.documentElement;
+  const abierta = () => detailGrid.querySelector('details.promo[open]');
+
+  const sincronizar = () => {
+    const d = abierta();
+    raiz.classList.toggle('ficha-abierta', !!d);
+    if (d) d.scrollTop = 0;
+  };
+
+  detailGrid.addEventListener('toggle', e => {
+    if (!e.target.matches('details.promo')) return;
+    sincronizar();
+    const d = abierta();
+    if (d) {
+      history.replaceState(null, '', '#f/' + d.id.replace('ficha-', ''));
+      d.querySelector('summary').focus({ preventScroll: true });
+    } else if (location.hash.startsWith('#f/')) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }, true);
+
+  const cerrar = () => {
+    const d = abierta();
+    if (!d) return;
+    d.open = false;
+    sincronizar();
+    d.querySelector('summary').focus({ preventScroll: true });
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && abierta()) { e.preventDefault(); cerrar(); }
+  });
+
+  detailGrid.addEventListener('click', e => {
+    const volver = e.target.closest('[data-cerrar-ficha]');
+    if (volver) { e.preventDefault(); cerrar(); return; }
+    const ir = e.target.closest('[data-ir-ficha]');
+    if (!ir) return;
+    e.preventDefault();
+    const destino = document.getElementById('ficha-' + ir.dataset.irFicha);
+    if (!destino) return;
+    const actual = abierta();
+    if (actual) actual.open = false;
+    destino.open = true;      // el name= del <details> ya excluye a las demas
+    sincronizar();
+  });
+
+  // Enlace directo: ranking.html#f/marea-missoni
+  const m = /^#f\/(.+)$/.exec(location.hash);
+  const primera = m && document.getElementById('ficha-' + m[1]);
+  if (primera) { primera.open = true; sincronizar(); }
+})();
 
 /* ═══════════════════════════════════
    PASES DE LA CABECERA · el clic no debe abrir ni cerrar la ficha
