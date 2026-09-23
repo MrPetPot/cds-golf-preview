@@ -415,9 +415,11 @@ html.ficha-abierta #main .reveal { transform: none !important; }
    explica. En la tarjeta basta una marca corta junto al puesto; en la
    ficha se dice entero, con la nota que comparten. */
 .dc-empate {
-  flex: none; align-self: center; padding: 4px 8px 3px; border: 1px solid var(--line-strong);
+  flex: none; align-self: center; padding: 4px 8px 3px;
   font: 700 9px/1 var(--f-sans); letter-spacing: .18em; text-transform: uppercase;
-  color: var(--text-mute); white-space: nowrap;
+  /* Oro oscuro y no el medio: a 9 px el blanco sobre el oro medio se queda en
+     3,0:1 y no pasa AA; sobre este llega a 4,9:1 y sigue leyendose dorado. */
+  background: var(--oro-3); color: #FFFFFF; white-space: nowrap;
 }
 .cm-empate {
   display: block; margin-top: 8px; max-width: 30ch; font-size: 11.5px; line-height: 1.45;

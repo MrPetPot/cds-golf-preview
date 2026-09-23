@@ -966,19 +966,11 @@ if (rankBody) pintarRanking();
   const m = document.getElementById('tituloMapaRanking');
   if (m) m.innerHTML = `Las ${num(top)}, <em>sobre el mapa</em>.`;
 
-  /* El lede del hero juntaba catorce, once y diez en una frase sin decir por
-     que el top 10 trae once: parecia una errata. Se calcula, y el empate que
-     lo explica se nombra donde nace la duda. */
+  /* El recuento del lede tambien se calcula: tres cifras a mano en la misma
+     frase es donde se cuela la contradiccion. El empate lo explican la marca
+     de la tarjeta y el marcador de la ficha, que es donde se ve. */
   const h = document.getElementById('ledeHero');
-  if (h) {
-    const ORD = { 2:'segundo', 3:'tercer', 4:'cuarto', 5:'quinto', 6:'sexto', 7:'s\u00e9ptimo', 8:'octavo', 9:'noveno', 10:'d\u00e9cimo' };
-    const empatados = PROMOS.filter(p => p.top10 && p.empatadas.length);
-    const mayus = t => t.replace(/^./, c => c.toUpperCase());
-    h.textContent = `${mayus(num(PROMOS.length))} promociones evaluadas sobre 100. Aqu\u00ed est\u00e1 el top 10 en orden` +
-      (empatados.length
-        ? `: ${num(top)} fichas, porque ${num(empatados.length)} empatan en el ${ORD[empatados[0].rank] || empatados[0].rank + '\u00ba'} puesto.`
-        : '.');
-  }
+  if (h) h.textContent = `${num(PROMOS.length).replace(/^./, c => c.toUpperCase())} promociones evaluadas sobre 100. Aqu\u00ed est\u00e1 el top 10 en orden.`;
   const f = document.getElementById('tituloFichas');
   if (f) f.innerHTML = `${num(PROMOS.length).replace(/^./, c => c.toUpperCase())} fichas, <em>criterio a criterio</em>.`;
 })();
