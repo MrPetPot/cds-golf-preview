@@ -1119,7 +1119,20 @@ if (rankBody) pintarRanking();
   const ord = n => ORD[n] || n + '.ª';
   if (t) t.innerHTML = `De la segunda a la <em>${ord(ultima.rank)} posición</em>.`;
   const l = document.getElementById('ledeRanking');
-  if (l) l.textContent = `Del puesto 02 al ${String(ultima.rank).padStart(2, '0')}, en orden. Abre cada una para ver su desglose criterio a criterio.`;
+  /* Con empates, la ordenacion competitiva se salta numeros: dos comparten el
+     06 y la siguiente va al 08. Visto en la lista parece una errata, asi que se
+     dice cuales faltan y por que. Se calcula: sin empates no aparece la frase. */
+  const dd = n => String(n).padStart(2, '0');
+  const ocupados = new Set(PROMOS.filter(p => p.top10).map(x => x.rank));
+  const saltados = [];
+  for (let n = 1; n <= ultima.rank; n++) if (!ocupados.has(n)) saltados.push(dd(n));
+  // El verbo tiene que concordar con cuantos puestos falten, que no es fijo.
+  const faltan = saltados.length === 1
+    ? `no existe el puesto ${saltados[0]}`
+    : `no existen los puestos ${saltados.slice(0, -1).join(', ')} y ${saltados[saltados.length - 1]}`;
+  if (l) l.textContent = `Del puesto 02 al ${dd(ultima.rank)}, en orden. ` +
+    (saltados.length ? `Los empates comparten posición y la siguiente salta, así que ${faltan}. ` : '') +
+    'Abre cada una para ver su desglose criterio a criterio.';
   const m = document.getElementById('tituloMapaRanking');
   if (m) m.innerHTML = `Las ${num(top)}, <em>sobre el mapa</em>.`;
 
