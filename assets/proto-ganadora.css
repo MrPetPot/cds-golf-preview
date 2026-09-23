@@ -11,16 +11,17 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ── La banda ──────────────────────────────────────────────────────────
-   A sangre: se sale de la caja de la sección con un margen negativo del
-   mismo valor que el padding lateral. Mismo lenguaje que el campo de
-   referencia de la ficha, pero al doble de altura. */
+   Dentro de la caja de la sección, no a sangre. El hero de la página sí
+   llega a los bordes, y si esta banda hiciera lo mismo competirían al
+   mismo nivel: los márgenes son lo que la deja un escalón por debajo del
+   titular del capítulo. Mismo lenguaje que el campo de referencia de la
+   ficha, pero al doble de altura. */
 .gana { margin-top: 44px; }
 .gana-banda {
   position: relative; overflow: hidden;
-  margin: 0 calc(var(--px) * -1);
-  min-height: clamp(420px, 62vh, 620px);
+  min-height: clamp(400px, 56vh, 560px);
   display: flex; align-items: flex-end;
-  padding: 56px var(--px) 44px;
+  padding: 48px 40px 38px;
   background: #0F1726; color: #FFFFFF;
 }
 .gana-banda img {
@@ -124,7 +125,7 @@
 .detail-grid details.promo.gana-fuera:not([open]) { display: none; }
 
 @media (max-width: 900px) {
-  .gana-banda { min-height: clamp(340px, 52vh, 460px); padding: 40px var(--px) 30px; }
+  .gana-banda { min-height: clamp(320px, 48vh, 430px); padding: 34px 22px 26px; }
   /* El rotulo ocupa mas alto al partirse el nombre, asi que el velo
      tiene que empezar a cerrar antes. */
   .gana-banda::after {
