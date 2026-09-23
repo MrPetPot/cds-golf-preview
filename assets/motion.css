@@ -409,3 +409,18 @@ html.ficha-abierta #main .reveal { transform: none !important; }
   .account-panel::before, .measure-fill { animation: none !important; transition: none !important; }
   .hero-title .hero-char { animation: none !important; opacity: 1; transform: none; }
 }
+
+/* ── Empate de puesto ───────────────────────────────────────────
+   Dos numeros 10 seguidos parecen un error de maquetacion si nada lo
+   explica. En la tarjeta basta una marca corta junto al puesto; en la
+   ficha se dice entero, con la nota que comparten. */
+.dc-empate {
+  flex: none; align-self: center; padding: 4px 8px 3px; border: 1px solid var(--line-strong);
+  font: 700 9px/1 var(--f-sans); letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text-mute); white-space: nowrap;
+}
+.cm-empate {
+  display: block; margin-top: 8px; max-width: 30ch; font-size: 11.5px; line-height: 1.45;
+  font-style: italic; color: var(--text-mute);
+}
+.cm-empate::before { content: '*'; margin-right: .4em; font-style: normal; }

@@ -607,7 +607,9 @@ const PROMOS = [
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
     image:'images/promos/soul-marbella.jpg',
-    promotor:'AEDAS Homes', estudio:'González & Jacobson + Manuel Burgos', estudioFuente:'gjarquitectura.com',
+    promotor:'AEDAS Homes', promotorGrupo:'Grupo Neinor Homes',
+    promotorNota:'AEDAS Homes es filial de Neinor Homes desde marzo de 2026, cuando la OPA dejó al grupo con el 96,83 % del capital. La promoción figura aquí con la marca del promotor original.',
+    estudio:'González & Jacobson + Manuel Burgos', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'AEDAS no publica derechos de golf sobre Santa Clara para propietarios.',
     tipologia:'Apartamentos, áticos y villas', unidades:200, unidadesNota:'Soul Marbella completo: 5 fases, 200 viviendas (AEDAS Homes).',
     precio:'€1.294.000 – €1.790.000', precioDesde:'€1.294.000', precioEstimado:false, eurM2:8000,
@@ -843,6 +845,12 @@ PROMOS.forEach((p, i) => {
   p.rank = (i > 0 && p.total === PROMOS[i - 1].total) ? PROMOS[i - 1].rank : i + 1;
   p.top10 = p.rank <= 10;
 });
+/* Dos promociones pueden acabar en el mismo puesto: con la misma nota la
+   matriz no las separa, y el documento no va a fingir un orden que no ha
+   calculado. Quien comparte puesto se marca aqui y se dice donde se ve. */
+PROMOS.forEach(p => {
+  p.empatadas = PROMOS.filter(x => x !== p && x.rank === p.rank && x.top10 === p.top10).map(x => x.name);
+});
 
 /* ═══════════════════════════════════
    PRUEBA DE IMPARCIALIDAD (Método) · se calcula, no se escribe
@@ -881,6 +889,7 @@ PROMOS.forEach(p => {
   if (!p.estudio) AVISOS.push({ p: p.name, t: 'Arquitectura', m: p.estudioNota || 'Estudio de arquitectura sin acreditar. B1 se sostiene sobre la marca, no sobre la firma.' });
   if (!p.derechosGolf) AVISOS.push({ p: p.name, t: 'Derechos de golf', m: p.derechosNota || 'Sin confirmar si la compra incluye membresía o green fees preferentes.' });
   if (p.unidadesNota) AVISOS.push({ p: p.name, t: 'Unidades', m: p.unidadesNota });
+  if (p.promotorNota) AVISOS.push({ p: p.name, t: 'Promotor', m: p.promotorNota });
   let placeholder = null;
   COURSES.forEach(c => { if (hav(p.lat, p.lng, c.lat, c.lng) < 0.25) placeholder = c.name; });
   if (placeholder) AVISOS.push({ p: p.name, t: 'Coordenada', m: `La coordenada de la promoción coincide con la del campo ${placeholder}: es una posición aproximada, no la parcela.` });
@@ -1105,6 +1114,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
             <span class="dc-f-name">${p.name}</span>
             <span class="dc-f-estrellas">${'★'.repeat(p.cercano.stars)}<span class="star-off">${'★'.repeat(4 - p.cercano.stars)}</span></span>
             <span class="dc-f-loc">${p.municipio}</span>
+            ${p.empatadas.length ? '<span class="dc-empate" title="Empate: misma puntuación que ' + p.empatadas.join(' y ') + '">empate</span>' : ''}
           </span>
           <span class="dc-f-nota">${p.total}<small>/100</small></span>
         </div>
@@ -1145,7 +1155,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span>
         </header>
         <dl class="project-data">
-          <div><dt>Promotor</dt><dd>${p.promotor}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
+          <div><dt>Promotor</dt><dd>${p.promotor}${p.promotorGrupo ? `<small>${p.promotorGrupo}</small>` : ''}</dd></div><div><dt>Arquitectura</dt><dd>${p.estudio || 'No acreditada'}</dd></div>
           <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Estado</dt><dd>${p.estado} · ${p.entrega}</dd></div>
           <div><dt>Desde</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Precio estimado</small>' : '<small>Precio de referencia</small>'}</dd></div>
           <div><dt>Recorrido de precio</dt><dd class="dd-texto">${p.precio}</dd></div>
@@ -1201,6 +1211,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <div class="cm-total">
             <strong>${p.total}<small>/100</small></strong>
             <span class="cm-lbl">${p.top10 ? 'Puesto ' + String(p.rank).padStart(2, '0') + ' de ' + PUBLICADAS.length : 'Mención honorífica'}</span>
+            ${p.empatadas.length ? `<span class="cm-empate">Empate técnico con ${p.empatadas.join(' y ')}: misma puntuación, ${p.total} de 100.</span>` : ''}
           </div>
         </div>
       </section>
@@ -1322,7 +1333,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
      una línea de datos seguidos no dice qué es cada cosa. */
   const dato = (t, v, sub) => v ? `<div><dt>${t}</dt><dd>${v}${sub ? `<small>${sub}</small>` : ''}</dd></div>` : '';
   const tecnica = [
-    dato('Promotor', p.promotor),
+    dato('Promotor', p.promotor, p.promotorGrupo),
     dato('Arquitectura', p.estudio),
     dato('Tipología', p.tipologia),
     dato('Unidades', p.unidades, 'desarrollo completo'),
