@@ -1140,7 +1140,10 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         <div class="crit-tira">${tira(FILAS_B)}</div>
         <div class="fb-pie">
           <p class="project-rights"><strong>Derechos de golf.</strong> ${p.derechosGolf || p.derechosNota || 'No publicados por el promotor.'}</p>
-          <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          <div class="fb-rasgos">
+            <span class="cm-lbl">Lo que la distingue</span>
+            <div class="dc-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>
         </div>
       </section>
 
