@@ -1859,6 +1859,23 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 /* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
 .hero-top .marca { text-transform: none; letter-spacing: .12em; color: #FFFFFF; }
 
+/* ── Pie de navegación en dos direcciones ────────────────────────────
+   Volver a la izquierda y seguir a la derecha, como se leen. El de volver va
+   sin caja y en gris: lo que la página propone es continuar, y dos botones
+   idénticos obligarían a elegir donde no hay elección. */
+.siguiente.doble { justify-content: space-between; align-items: center; gap: 20px; }
+.siguiente .nav-ant {
+  border: 0; padding: 18px 0; min-width: 0; color: var(--text-mute);
+}
+.siguiente .nav-ant b { font-size: 19px; color: var(--text-mid); transition: color .25s; }
+.siguiente .nav-ant:hover { background: transparent; color: var(--text-mute); border-color: transparent; }
+.siguiente .nav-ant:hover b { color: var(--text); }
+.siguiente .nav-ant:hover small { color: var(--text-mute); }
+@media (max-width: 640px) {
+  .siguiente.doble { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
+  .siguiente .nav-ant { padding: 14px 0 0; }
+}
+
 /* ── Matriz criterio a criterio ──────────────────────────────────
    Cada fila gana el código a la izquierda y una línea de explicación bajo la
    escala: qué mide y de dónde sale el dato. Los bloques abren con una entrada
