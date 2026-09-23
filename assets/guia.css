@@ -1859,6 +1859,36 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 /* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
 .hero-top .marca { text-transform: none; letter-spacing: .12em; color: #FFFFFF; }
 
+/* ── Matriz criterio a criterio ──────────────────────────────────
+   Cada fila gana el código a la izquierda y una línea de explicación bajo la
+   escala: qué mide y de dónde sale el dato. Los bloques abren con una entrada
+   y cierran con la salvedad que toca. */
+.method-row { grid-template-columns: 32px minmax(0, 1fr) auto; align-items: start; }
+.mr-cod {
+  font: 700 11px/1.5 var(--f-sans); letter-spacing: .12em; color: var(--text-mute); padding-top: 2px;
+}
+.mr-copy {
+  margin: 7px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--text-mid); max-width: 46ch;
+}
+.mr-copy b { color: var(--text); font-weight: 700; }
+.method-intro {
+  margin: 0 0 6px; font-size: 14px; line-height: 1.6; color: var(--text-mid);
+}
+.method-nota {
+  margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line-strong);
+  font-size: 12.5px; line-height: 1.55; font-style: italic; color: var(--text-mute);
+}
+.method-nota::before { content: '*'; margin-right: .45em; font-style: normal; }
+.method-nota a { color: var(--text); border-bottom: 1px solid var(--oro-3); text-decoration: none; }
+.method-nota em { font-style: normal; font-weight: 700; color: var(--text); }
+/* En pantalla estrecha el código deja de ser columna y pasa a linea propia:
+   robaba treinta píxeles al texto y partía los rótulos en tres renglones. */
+@media (max-width: 640px) {
+  .method-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .mr-cod { grid-column: 1 / -1; padding: 0 0 5px; }
+  .mr-copy { max-width: none; }
+}
+
 /* ── Estado de la edición ─────────────────────────────────────
    Cierra el capítulo diciendo de dónde sale el censo, qué se ha quedado
    fuera y cuándo se vuelve a mirar. El embudo va arriba, en cifras grandes;
