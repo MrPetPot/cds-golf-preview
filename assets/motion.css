@@ -214,18 +214,26 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 
 .fb-pie { margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid var(--line-strong); }
 .fb-pie .project-rights { margin: 0 0 12px; }
-.fb-cuenta { display: flex; align-items: center; gap: 24px; padding: 16px 24px; }
-/* La cuenta en un solo cuerpo: lo que distingue cada pieza es el peso, la
-   familia y el color, no el tamano. */
-/* Centrados entre si, no sobre la linea base: con cifras de 20 px y rotulos
-   de 12 la base dejaba las versalitas colgando por debajo del eje. */
-.fb-eq { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 9px; margin: 0; font-size: 20px; line-height: 1.1; }
-.fb-eq b { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--text); }
-/* Los rotulos y los operadores toman el cuerpo del rotulo de bloque: las
-   cifras mandan y el resto acompana en versalita. */
-.fb-eq i, .fb-eq em { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; color: var(--text-mute); }
-.fb-eq strong { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--oro-3); }
-.fb-eq strong small { font-family: var(--f-display); font-size: inherit; font-weight: 300; letter-spacing: -.01em; color: var(--text-mute); }
+/* ── La cuenta, como marcador ──────────────────────────────────────────
+   Era una linea de texto gris entre dos bloques grises y se leia como un pie
+   de pagina, cuando es el veredicto. Ahora va en oscuro —el unico del cuerpo,
+   que ademas enlaza con el CTA de abajo— con los dos sumandos a la izquierda,
+   cada uno con su barra, y el total dominando a la derecha. El reparto deja de
+   contarse y se ve. */
+.fb-cuenta { display: grid; gap: 20px; padding: 26px 28px 28px; background: var(--text); border-color: var(--text); }
+.fb-cuenta .account-step { color: var(--oro-1); }
+.cm { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px 40px; align-items: center; }
+.cm-partes { display: grid; gap: 16px; min-width: 0; }
+.cm-parte { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: baseline; gap: 4px 16px; }
+.cm-lbl { font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.52); }
+.cm-parte strong { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: #FFFFFF; }
+.cm-parte strong small { margin-left: 2px; font-family: var(--f-display); font-size: 1em; font-weight: 300; letter-spacing: -.01em; color: rgba(255,255,255,.45); }
+.cm-parte .measure-track { grid-column: 1 / -1; height: 3px; background: rgba(255,255,255,.14); margin-top: 6px; }
+.cm-parte .measure-fill { background: var(--oro-1); }
+.cm-parte.is-golf .measure-fill { background: var(--verde-1); }
+.cm-total { display: grid; justify-items: end; gap: 6px; text-align: right; }
+.cm-total strong { font-family: var(--f-display); font-weight: 700; font-size: clamp(58px, 6vw, 86px); line-height: .88; letter-spacing: -.025em; color: var(--oro-1); }
+.cm-total strong small { margin-left: 2px; font-family: var(--f-display); font-size: 1em; font-weight: 300; letter-spacing: -.02em; color: rgba(255,255,255,.34); }
 
 /* ── Progressive disclosure ── */
 .promo-sections { border-top: 1px solid var(--line); }
@@ -353,7 +361,9 @@ html.ficha-abierta #main .reveal { transform: none !important; }
   .golf-hero { min-height: 240px; padding: 24px 20px 20px; }
   .adn-svg { max-width: 320px; margin: 0 auto; }
   .fb-cuenta { padding: 16px; }
-  .fb-eq { font-size: 17px; }
+  .fb-cuenta { padding: 20px; }
+  .cm { grid-template-columns: 1fr; gap: 18px; }
+  .cm-total { justify-items: start; text-align: left; }
 }
 
 @media (max-width: 640px) {

@@ -1167,7 +1167,24 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
       <section class="fb fb-cuenta">
         <span class="account-step">03 · La cuenta</span>
-        <p class="fb-eq"><b>${p.A}</b><i>golf</i> <em>+</em> <b>${p.B}</b><i>proyecto</i> <em>=</em> <strong>${p.total}<small>/100</small></strong></p>
+        <div class="cm">
+          <div class="cm-partes">
+            <div class="cm-parte is-golf">
+              <span class="cm-lbl">A · Entorno de golf</span>
+              <strong>${p.A}<small>/60</small></strong>
+              <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.A / 60}"></span></span>
+            </div>
+            <div class="cm-parte">
+              <span class="cm-lbl">B · Calidad del proyecto</span>
+              <strong>${p.B}<small>/40</small></strong>
+              <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.B / 40}"></span></span>
+            </div>
+          </div>
+          <div class="cm-total">
+            <strong>${p.total}<small>/100</small></strong>
+            <span class="cm-lbl">${p.top10 ? 'Puesto #' + String(p.rank).padStart(2, '0') + ' de once' : 'Mención'}</span>
+          </div>
+        </div>
       </section>
 
       <div class="promo-sections">

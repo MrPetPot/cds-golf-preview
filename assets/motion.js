@@ -302,7 +302,14 @@
     reveal(bloque, 0, 24);
     bloque.querySelectorAll('.fb-nota').forEach(el => contar(el, 1500, 220));
     bloque.querySelectorAll('.crit > strong').forEach((el, i) => contar(el, 1100, 520 + Math.min(i, 9) * 105));
-    bloque.querySelectorAll('.fb-eq b, .fb-eq strong').forEach((el, i) => contar(el, 1400, 200 + i * 260));
+    bloque.querySelectorAll('.cm-parte strong').forEach((el, i) => contar(el, 1300, 260 + i * 240));
+    bloque.querySelectorAll('.cm-total strong').forEach(el => contar(el, 1700, 620));
+    bloque.querySelectorAll('.cm-parte .measure-fill').forEach((fill, i) => {
+      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
+      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
+        duration: 1500, delay: 320 + i * 240, easing: 'cubic-bezier(.2,.72,.2,1)'
+      });
+    });
     bloque.querySelectorAll('.quick-facts dd').forEach((el, i) => contar(el, 1200, 320 + i * 150));
     bloque.querySelectorAll('.fb-cab .measure-fill').forEach(fill => {
       const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
