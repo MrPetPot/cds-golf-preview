@@ -991,10 +991,26 @@ PROMOS.forEach(p => {
   if (p.why) Object.keys(p.why).forEach(k => { p.why[k] = marcarEstrellas(p.why[k]); });
 });
 
-// Orden y posición con empates (1,2,3,4,5,5,7…). El rank ya no se escribe a mano.
-PROMOS.sort((a, b) => b.total - a.total || a.name.localeCompare(b.name));
+/* ── Desempate en cascada ─────────────────────────────────────────
+   A igualdad de total manda el golf, que es lo que esta guía mide primero:
+   sesenta puntos de sus cien. No es una regla inventada para deshacer
+   empates, es la tesis del documento aplicada un escalón más abajo. Si el
+   bloque A también empata, decide la calidad del campo de referencia; si
+   también, la cercanía; y en último extremo el alfabeto, declarado.
+   Dos promociones solo comparten puesto si empatan en los cuatro. */
+const desempate = (a, b) =>
+  b.total - a.total ||
+  b.A - a.A ||
+  b.score.a1 - a.score.a1 ||
+  a.cercano.min - b.cercano.min ||
+  a.name.localeCompare(b.name);
+const igualadas = (a, b) =>
+  a.total === b.total && a.A === b.A &&
+  a.score.a1 === b.score.a1 && a.cercano.min === b.cercano.min;
+
+PROMOS.sort(desempate);
 PROMOS.forEach((p, i) => {
-  p.rank = (i > 0 && p.total === PROMOS[i - 1].total) ? PROMOS[i - 1].rank : i + 1;
+  p.rank = (i > 0 && igualadas(p, PROMOS[i - 1])) ? PROMOS[i - 1].rank : i + 1;
   p.top10 = p.rank <= 10;
 });
 /* Dos promociones pueden acabar en el mismo puesto: con la misma nota la
