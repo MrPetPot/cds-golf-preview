@@ -227,47 +227,66 @@
   // Al abrir una ficha entran los dos bloques y sus barras crecen desde cero.
   // Ya no hay panel de cuenta ni dial: la nota vive en la cabecera y el reparto,
   // en la barra de cada bloque.
-  function animateAccount(detail) {
-    if (!detail.open) return;
-    detail.querySelectorAll('.fb').forEach((bloque, index) => reveal(bloque, index * 190, 24));
-    detail.querySelectorAll('.fb-cab .measure-fill').forEach((fill, index) => {
-      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
-      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
-        duration: 1150, delay: 320 + index * 190, easing: 'cubic-bezier(.2,.72,.2,1)'
-      });
-    });
-    animateChain(detail);
-    detail.querySelectorAll('.crit .measure-fill').forEach((fill, index) => {
-      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
-      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
-        duration: 900, delay: 620 + Math.min(index, 9) * 75, easing: 'cubic-bezier(.2,.72,.2,1)'
-      });
-    });
-  }
-
-  // La cadena se monta al abrir la ficha: primero los anillos, despues cada
-  // radio crece desde el nucleo y el nodo aparece detras. El orden es el del
-  // DOM, que ya viene ordenado por minutos: se dibuja de dentro hacia fuera.
-  function animateChain(detail) {
-    const svg = detail.querySelector('.adn-svg');
+  function animateChain(svg) {
     if (!svg) return;
     const radios = svg.querySelectorAll('.adn-g');
     // El paso se reparte entre los campos que haya: con cinco se puede ir
-    // despacio y con dieciseis no, o la ultima rama entraria a los cuatro
-    // segundos. La suma total se queda siempre en torno a los dos segundos.
-    const paso = Math.max(72, Math.min(150, 1000 / Math.max(radios.length, 1)));
+    // despacio y con dieciseis no, o la ultima rama entraria muy tarde. La
+    // suma total se queda siempre en torno a los tres segundos.
+    const paso = Math.max(110, Math.min(230, 1500 / Math.max(radios.length, 1)));
     reveal(svg.querySelector('.adn-base'), 0, 0);
     play(svg.querySelector('.adn-core'), [{ transform: 'scale(.2)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }],
-      { duration: 620, delay: 200, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+      { duration: 840, delay: 260, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
     radios.forEach((g, i) => {
-      const t = 420 + i * paso;
+      const t = 560 + i * paso;
       play(g.querySelector('.adn-l'), [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
-        { duration: 780, delay: t, easing: 'cubic-bezier(.2,.72,.2,1)' });
+        { duration: 1100, delay: t, easing: 'cubic-bezier(.2,.72,.2,1)' });
       play(g.querySelector('.adn-n'), [{ transform: 'scale(0)' }, { transform: 'scale(1)' }],
-        { duration: 520, delay: t + 480, easing: 'cubic-bezier(.2,.9,.3,1.3)' });
+        { duration: 720, delay: t + 680, easing: 'cubic-bezier(.2,.9,.3,1.3)' });
       const ref = g.querySelector('.adn-ref');
       if (ref) play(ref, [{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1)' }],
-        { duration: 640, delay: t + 760, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+        { duration: 880, delay: t + 1060, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+    });
+  }
+
+  // Cada bloque se anima cuando entra en pantalla, no al abrir la ficha: la
+  // ficha mide casi tres pantallas y para cuando llegabas al golf la animacion
+  // habia terminado hacia rato. Como la ficha abierta es una capa con scroll
+  // propio, el observador mira dentro de ella y no dentro de la ventana.
+  function armarFicha(detail) {
+    if (!detail.open || !('IntersectionObserver' in window)) return;
+    const vistos = new WeakSet();
+    const ojo = new IntersectionObserver(entradas => {
+      entradas.forEach(e => {
+        if (!e.isIntersecting || vistos.has(e.target)) return;
+        vistos.add(e.target);
+        ojo.unobserve(e.target);
+        if (e.target.matches('.adn-svg')) animateChain(e.target);
+        else animarBloque(e.target);
+      });
+    // Umbral cero y margen inferior: un bloque puede medir mas que la ventana,
+    // asi que pedir un porcentaje de area visible no dispararia nunca. Salta en
+    // cuanto su borde superior entra en el 82 % alto de la capa.
+    }, { root: detail, rootMargin: '0px 0px -18% 0px', threshold: 0 });
+    // La cadena se observa aparte: vive unos 400 px por debajo del borde del
+    // bloque, detras del hero del campo, y arrancaria antes de verse.
+    detail.querySelectorAll('.fb, .adn-svg').forEach(b => ojo.observe(b));
+    detail.addEventListener('toggle', () => { if (!detail.open) ojo.disconnect(); }, { once: true });
+  }
+
+  function animarBloque(bloque) {
+    reveal(bloque, 0, 24);
+    bloque.querySelectorAll('.fb-cab .measure-fill').forEach(fill => {
+      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
+      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
+        duration: 1600, delay: 260, easing: 'cubic-bezier(.2,.72,.2,1)'
+      });
+    });
+    bloque.querySelectorAll('.crit .measure-fill').forEach((fill, index) => {
+      const ratio = Number.parseFloat(getComputedStyle(fill).getPropertyValue('--ratio')) || 0;
+      play(fill, [{ transform: 'scaleX(0)' }, { transform: `scaleX(${ratio})` }], {
+        duration: 1250, delay: 520 + Math.min(index, 9) * 105, easing: 'cubic-bezier(.2,.72,.2,1)'
+      });
     });
   }
 
@@ -364,6 +383,10 @@
     window.addEventListener('scroll', scheduleProgress, { passive: true });
     window.addEventListener('resize', scheduleProgress, { passive: true });
     startObservers();
+    // Si la ficha ya venia abierta por enlace directo, el <details> se abrio
+    // en guia.js antes de que esto existiera y su toggle no lo vio nadie.
+    const yaAbierta = document.querySelector('details.promo[open]');
+    if (yaAbierta) later(() => armarFicha(yaAbierta), 360);
     animateHero();
     animateTitle();
     if (heroVideo) { heroVideo.hidden = false; if (!heroVideoDone) heroVideo.play().catch(() => {}); }
@@ -381,7 +404,7 @@
   document.querySelectorAll('details.promo').forEach(detail => {
     detail.addEventListener('toggle', () => {
       if (!detail.open || !active) return;
-      later(() => animateAccount(detail), 420);
+      later(() => armarFicha(detail), 360);
     });
     detail.querySelectorAll('.promo-section').forEach(section => {
       section.addEventListener('toggle', () => {
