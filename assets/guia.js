@@ -1156,7 +1156,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         </header>
         ${heroCampo()}
         <div class="fb-golf-top">
-          ${p.rank === 1 ? adn() : ''}
+          ${adn()}
           <div class="fb-golf-col">
             <dl class="quick-facts">
               <div><dt>Distancia al de referencia</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
