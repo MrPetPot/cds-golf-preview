@@ -208,8 +208,9 @@ html.ficha-abierta #main .reveal { transform: none !important; }
    familia y el color, no el tamano. */
 .fb-eq { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 9px; margin: 0; font-size: 20px; line-height: 1.1; }
 .fb-eq b { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--text); }
-.fb-eq i { font-style: normal; font-size: inherit; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mute); }
-.fb-eq em { font-style: normal; font-size: inherit; font-weight: 400; color: var(--text-mute); }
+/* Los rotulos y los operadores toman el cuerpo del rotulo de bloque: las
+   cifras mandan y el resto acompana en versalita. */
+.fb-eq i, .fb-eq em { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; color: var(--text-mute); }
 .fb-eq strong { font-family: var(--f-display); font-size: inherit; font-weight: 700; color: var(--oro-3); }
 .fb-eq strong small { font-size: inherit; font-weight: 400; letter-spacing: .04em; color: var(--text-mute); }
 
