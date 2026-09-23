@@ -48,13 +48,10 @@
   /* La nota de «capacidad máxima» se retira: con la entrada del bloque encima y
      la escala de cada criterio debajo, nadie confunde ya 60 puntos con una nota
      obtenida, y eran tres renglones de letra pequeña seguidos. */
-  const method = document.querySelector('.method-grid');
-  if (method) {
-    const note = document.createElement('p');
-    note.className = 'motion-note';
-    note.textContent = 'Seis criterios salen de datos. A5, A6, B1 y B4 son valoraciones editoriales justificadas; no mediciones automáticas.';
-    method.after(note);
-  }
+  /* Tambien se retira la nota del pie de la matriz. Desde que cada criterio
+     editorial va marcado en su propia fila, lo que decía esta línea está en el
+     lede de la sección —con el reparto 65/35—, en las cuatro filas marcadas
+     como editoriales y en el desplegable que las desarrolla. */
 
   function setGolfCount() {
     if (!golf) return;
