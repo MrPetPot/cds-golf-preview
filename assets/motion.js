@@ -162,7 +162,10 @@
           [...node.textContent].forEach(ch => {
             const span = document.createElement('span');
             span.className = 'hero-char';
-            span.style.setProperty('--i', i++);
+            // El espacio no consume turno: si contara, el titular se quedaria
+            // parado en blanco entre palabra y palabra.
+            span.style.setProperty('--i', i);
+            if (ch !== ' ') i++;
             span.textContent = ch === ' ' ? '\u00A0' : ch;
             frag.appendChild(span);
           });

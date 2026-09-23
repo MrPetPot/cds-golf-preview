@@ -385,10 +385,13 @@ html.ficha-abierta #main .reveal { transform: none !important; }
 /* Titular del hero: entrada carácter a carácter, en orden de lectura. La especificidad
    de dos clases gana a «.hero-title span» (guia.css) sin depender del orden de los <link>. */
 .hero-title .hero-split { display: block; white-space: nowrap; }
+/* Cada letra sube la suya y despeja antes de que arranque la siguiente. Con
+   460 ms de recorrido y 14 de separacion habia treinta letras en el aire a la
+   vez y el titular se leia como una ola; ahora hay dos. */
 .hero-title .hero-char {
-  display: inline-block; opacity: 0; transform: translateY(65%);
-  animation: hero-char-in .46s cubic-bezier(.2,.72,.2,1) both;
-  animation-delay: calc(var(--i, 0) * 14ms);
+  display: inline-block; opacity: 0; transform: translateY(90%);
+  animation: hero-char-in .22s cubic-bezier(.16,.84,.34,1) both;
+  animation-delay: calc(var(--i, 0) * 95ms);
 }
 @keyframes hero-char-in { to { opacity: 1; transform: translateY(0); } }
 
