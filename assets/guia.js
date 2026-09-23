@@ -1415,6 +1415,16 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   const raiz = document.documentElement;
   const abierta = () => detailGrid.querySelector('details.promo[open]');
 
+  /* Volver debe devolverte donde estabas. Al abrir, el documento se desplaza
+     medio millar de pixeles y al cerrar se quedaba ahi, asi que salias de la
+     ficha en un punto de la lista que no habias elegido. Se guarda la ultima
+     posicion con la lista a la vista —no la del momento de abrir, que ya
+     llega movida— y se restituye al cerrar. */
+  let vuelta = 0;
+  window.addEventListener('scroll', () => {
+    if (!raiz.classList.contains('ficha-abierta')) vuelta = window.scrollY;
+  }, { passive: true });
+
   const sincronizar = () => {
     const d = abierta();
     raiz.classList.toggle('ficha-abierta', !!d);
@@ -1439,6 +1449,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     d.open = false;
     sincronizar();
     d.querySelector('summary').focus({ preventScroll: true });
+    window.scrollTo(0, vuelta);
   };
 
   document.addEventListener('keydown', e => {
