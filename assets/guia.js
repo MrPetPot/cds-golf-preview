@@ -1040,6 +1040,31 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
       <p>${p.why[k]}</p>
     </div>`).join('');
+  // El campo de referencia es la prueba de la que cuelga medio bloque A, asi que
+  // abre el bloque a lo ancho y con su ficha encima de la imagen, no como una
+  // miniatura de 270 px en una columna.
+  const heroCampo = () => {
+    const c = p.cercano;
+    const f = (typeof FOTOS_FICHA !== 'undefined' && FOTOS_FICHA[c.id]) || c.foto;
+    const ficha = [
+      '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`,
+      c.min === 0 ? 'in-resort' : 'a ' + c.min + '′',
+      ACCESO_LBL[c.acceso].toLowerCase(),
+      c.hoyos,
+      c.disenador ? c.disenador + (c.ano ? ', ' + c.ano : '') : null,
+      c.gf ? 'green fee €' + c.gf : null
+    ].filter(Boolean).join(' · ');
+    return `<figure class="golf-hero${f ? '' : ' sin-img'}">
+      ${f ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy" onerror="this.closest('.golf-hero').classList.add('sin-img')"/>` : ''}
+      <figcaption>
+        <span class="gh-lbl">Campo de referencia</span>
+        <h4 class="gh-nombre">${c.name}</h4>
+        <span class="gh-meta">${ficha}</span>
+        ${c.palmares && c.palmares !== '—' ? `<span class="gh-palmares">${c.palmares}</span>` : ''}
+      </figcaption>
+    </figure>`;
+  };
+
   // Cuatro pases en la cabecera. Hoy solo hay un render por promocion, asi que
   // los tres restantes se quedan en un hueco gris con el nombre y su numero: se
   // iran sustituyendo segun lleguen las imagenes, sin tocar el codigo. En cuanto
@@ -1126,16 +1151,18 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <span class="fb-nota">${p.A}<small>/60</small></span>
           <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.A / 60}"></span></span>
         </header>
+        ${heroCampo()}
         <div class="fb-golf-top">
-          ${fotoReferencia(p)}
           ${p.rank === 1 ? adn() : ''}
-          <dl class="quick-facts">
-            <div><dt>Distancia al de referencia</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
-            <div><dt>Campos ★★★+ en 15′</dt><dd>${p.n3}<small>de ${p.enQuince} en el umbral</small></dd></div>
-            <div><dt>Reservables sin ser socio</dt><dd>${p.jugables}<small>de ${p.enQuince}</small></dd></div>
-          </dl>
+          <div class="fb-golf-col">
+            <dl class="quick-facts">
+              <div><dt>Distancia al de referencia</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
+              <div><dt>Campos ★★★+ en 15′</dt><dd>${p.n3}<small>de ${p.enQuince} en el umbral</small></dd></div>
+              <div><dt>Reservables sin ser socio</dt><dd>${p.jugables}<small>de ${p.enQuince}</small></dd></div>
+            </dl>
+            <div class="crit-tira">${tira(FILAS_A)}</div>
+          </div>
         </div>
-        <div class="crit-tira">${tira(FILAS_A)}</div>
       </section>
 
       <section class="fb fb-cuenta">
