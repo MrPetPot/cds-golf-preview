@@ -1776,9 +1776,10 @@ function initAtlas(el) {
     pintarPanelCampo(c, suyas);
   }
 
-  // Al fijar una promocion el encuadre se cierra sobre ella hasta ver el 70 % de
-  // lo que veia, que es lo justo para leer su racimo sin perder la costa.
-  const CIERRE = 0.7;
+  // Al fijar una promocion el encuadre se cierra sobre ella: primero al 70 % de
+  // lo que veia y despues un 30 % mas, asi que acaba mostrando algo menos de la
+  // mitad del mapa con su racimo en el centro.
+  const CIERRE = 0.7 / 1.3;
   let tween;
   function irA(zDestino, xDestino, yDestino) {
     cancelAnimationFrame(tween);
