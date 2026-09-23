@@ -5,6 +5,39 @@
 
 /* ── Ficha de promoción: lectura inmediata ── */
 .compact-body { padding-top: 28px; }
+/* ── Pases de la cabecera ────────────────────────────────────────────────
+   Cuatro imagenes apiladas donde antes habia una. La que todavia no existe se
+   queda en un hueco gris con su numero y el nombre de la promocion: se
+   sustituye anadiendo la imagen, sin tocar el marcado. La regla .dc-head-bg de
+   guia.css ya no encuentra a nadie —la imagen vive dentro de .dc-slide—. */
+.dc-slides { position: absolute; inset: 0; z-index: -2; }
+.dc-slide {
+  position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .6s var(--ease);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+}
+.dc-slide.is-on { opacity: 1; }
+/* Absoluta, no en flujo: el centrado del flex es para el texto del hueco y
+   encogia la imagen en el eje transversal. */
+.dc-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .9s var(--ease); }
+.detail-card:hover .dc-slide.is-on img { transform: scale(1.035); }
+.dc-hueco, .dc-slide.sin-img { background: linear-gradient(150deg, #3A3E44 0%, #26292E 58%, #191B1F 100%); }
+/* Sobre el hueco el velo sobra: esta hecho para rebajar una fotografia, y
+   aqui solo ensucia el gris de navy. Se deja lo justo para el titular. */
+.dc-head:has(.dc-slide.dc-hueco.is-on)::after { opacity: .28; }
+.dc-slide.sin-img img { display: none; }
+.dc-hueco-n { margin-top: -30px; font: 700 112px/1 var(--f-display); letter-spacing: -.02em; color: rgba(255,255,255,.2); }
+.dc-hueco-t { padding: 0 24px; font-size: 11px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.46); text-align: center; }
+.dc-pases { position: absolute; top: 24px; right: 26px; z-index: 3; display: flex; align-items: center; gap: 8px; }
+.dc-pase-n { font: 400 13px/1 var(--f-display); letter-spacing: .08em; color: rgba(255,255,255,.82); }
+.dc-pase-b {
+  width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+  background: rgba(15,23,38,.34); border: 1px solid rgba(255,255,255,.4); color: #FFFFFF;
+  font-family: var(--f-sans); font-size: 15px; line-height: 1; cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.dc-pase-b:hover { background: #FFFFFF; color: var(--text); border-color: #FFFFFF; }
+.dc-pase-b:focus-visible { outline: 2px solid var(--oro-1); outline-offset: 2px; }
+
 /* ── Ficha de promocion: primero el proyecto, despues el golf ──
    Tres bloques con el mismo ritmo: rotulo, titular, nota del bloque y su barra;
    dentro, los datos; debajo, los criterios que producen esa nota con la razon
@@ -147,9 +180,10 @@
 .criterion > summary:focus-visible { outline: 2px solid var(--oro-1); outline-offset: -2px; }
 .criterion > p { margin: 0; padding: 0 14px 14px 56px; font-size: 12px; line-height: 1.45; color: var(--text-mid); }
 
-.project-data { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0; border: 1px solid var(--line); }
-.project-data > div { padding: 15px 17px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.project-data > div:nth-child(4n) { border-right: 0; }
+/* Ocho sub-tarjetas sueltas sobre el gris del bloque, en vez de una rejilla
+   con lineas: cada dato se lee como una pieza y no como una celda de tabla. */
+.project-data { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 0; }
+.project-data > div { padding: 14px 16px 15px; background: var(--bg-0); border: 1px solid var(--line); }
 .project-data dt { margin-bottom: 5px; font-size: 9px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--text-mute); }
 .project-data dd { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--text); }
 .project-data dd small { display: block; margin-top: 4px; font-size: 11px; font-weight: 400; color: var(--text-mute); }
@@ -211,8 +245,7 @@
   .quick-facts > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .account-insights { grid-template-columns: 1fr; }
   .criteria-grid, .image-credit-groups { grid-template-columns: 1fr; }
-  .project-data { grid-template-columns: 1fr 1fr; }
-  .project-data > div:nth-child(2n) { border-right: 0; }
+  .project-data { grid-template-columns: 1fr 1fr; gap: 8px; }
   .promo-section-body { padding-left: 0; }
   .fb { padding: 18px 16px 20px; }
   .fb-cab { grid-template-columns: auto auto; }
@@ -235,7 +268,6 @@
   .promo-section > summary > small { display: none; }
   .promo-section > summary::after { grid-column: 3; }
   .project-data { grid-template-columns: 1fr; }
-  .project-data > div { border-right: 0; }
 }
 
 /* Titular del hero: entrada carácter a carácter, en orden de lectura. La especificidad

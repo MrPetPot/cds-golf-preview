@@ -1040,6 +1040,16 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       <span class="measure-track" aria-hidden="true"><span class="measure-fill" style="--ratio:${p.score[k] / mx}"></span></span>
       <p>${p.why[k]}</p>
     </div>`).join('');
+  // Cuatro pases en la cabecera. Hoy solo hay un render por promocion, asi que
+  // los tres restantes se quedan en un hueco gris con el nombre y su numero: se
+  // iran sustituyendo segun lleguen las imagenes, sin tocar el codigo. En cuanto
+  // FOTOS_PROMO traiga mas de una para una promocion, entran por orden.
+  const PASES = 4;
+  const galeria = () => {
+    const reales = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id]) ||
+      [{ src: media.src, pie: media.pie, cred: media.tag }];
+    return Array.from({ length: Math.max(PASES, reales.length) }, (_, i) => reales[i] || null);
+  };
   const media = p.render
     ? { src: p.image, tag: '© ' + p.render.dominio, pie: p.render.pie, nota: 'Render del promotor · pendiente de autorización' }
     : (p.foto
@@ -1069,8 +1079,15 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       <span class="dc-f-plus" aria-hidden="true">+</span>
     </div>
     <header class="dc-head">
-      <img class="dc-head-bg" src="${media.src}" alt="${media.pie || p.name + ' — ' + p.municipio}" loading="lazy"
-           onerror="this.hidden=true;this.parentElement.classList.add('sin-img')"/>
+      <div class="dc-slides">${galeria().map((g, i) => g
+        ? `<figure class="dc-slide${i ? '' : ' is-on'}"><img src="${g.src}" alt="${(g.pie || p.name + ' — ' + p.municipio).replace(/"/g, '&quot;')}"${i ? ' loading="lazy"' : ''}
+             onerror="this.closest('.dc-slide').classList.add('sin-img')"/></figure>`
+        : `<figure class="dc-slide dc-hueco${i ? '' : ' is-on'}" aria-label="Imagen ${i + 1} pendiente"><span class="dc-hueco-n">${String(i + 1).padStart(2, '0')}</span><span class="dc-hueco-t">${p.name}</span></figure>`).join('')}</div>
+      <div class="dc-pases">
+        <button type="button" class="dc-pase-b" data-paso="-1" aria-label="Imagen anterior">‹</button>
+        <span class="dc-pase-n" aria-live="polite">1 / ${galeria().length}</span>
+        <button type="button" class="dc-pase-b" data-paso="1" aria-label="Imagen siguiente">›</button>
+      </div>
       <div class="dc-head-inner">
         <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
         <div class="dc-loc"><span class="dc-loc-extra">${p.zona} · ${p.sub}</span></div>
@@ -1149,6 +1166,26 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </div>`;
   detailGrid.appendChild(card);
 });
+
+/* ═══════════════════════════════════
+   PASES DE LA CABECERA · el clic no debe abrir ni cerrar la ficha
+   Los botones viven dentro del <summary>, asi que cualquier clic suyo llegaria
+   al acordeon: hay que pararlo antes de que lo haga.
+════════════════════════════════════ */
+(function () {
+  document.addEventListener('click', e => {
+    const b = e.target.closest?.('.dc-pase-b');
+    if (!b) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const head = b.closest('.dc-head');
+    const pases = [...head.querySelectorAll('.dc-slide')];
+    const i = pases.findIndex(s => s.classList.contains('is-on'));
+    const n = (i + Number(b.dataset.paso) + pases.length) % pases.length;
+    pases.forEach((s, j) => s.classList.toggle('is-on', j === n));
+    head.querySelector('.dc-pase-n').textContent = (n + 1) + ' / ' + pases.length;
+  }, true);
+})();
 
 /* ═══════════════════════════════════
    LA CADENA · señalar un campo escribe su ficha debajo del dibujo
