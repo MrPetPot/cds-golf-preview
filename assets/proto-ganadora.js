@@ -20,6 +20,24 @@
     `<span class="star">${'★'.repeat(n)}</span>` +
     (n < 4 ? `<span class="star-off"><span class="star">${'★'.repeat(4 - n)}</span></span>` : '');
 
+  /* ── El editorial, a la cabecera de la sección ────────────────────
+     El texto ya viene con su primera frase en <strong>: es el titular de
+     la pieza, no una negrita decorativa. Se saca de ahí y se sube a
+     tamaño de display, y lo que queda —la prueba— corre al lado como
+     cuerpo. Una afirmación grande y su respaldo, que es la jerarquía que
+     el texto ya tenía escrita. */
+  const cabecera = document.getElementById('veredictoIntro');
+  if (cabecera) {
+    const m = p.rationale.match(/^\s*<strong>(.*?)<\/strong>\s*([\s\S]*)$/);
+    const titular = m ? m[1].replace(/\.$/, '') : '';
+    const cuerpo = m ? m[2] : p.rationale;
+    cabecera.innerHTML = `
+      <div class="ver-intro${titular ? '' : ' ver-intro-sola'}">
+        ${titular ? `<p class="ver-titular">${titular}</p>` : ''}
+        <p class="ver-cuerpo">${cuerpo}</p>
+      </div>`;
+  }
+
   /* ── Por qué gana ───────────────────────────────────────────────────
      Lo interesante de esta edición es que la ganadora no lidera el bloque
      de golf: lidera el de proyecto. Eso es justo lo que justifica tener
@@ -103,9 +121,8 @@
 
       <div class="gana-intro">
         <div class="gana-texto">
-          <span class="gana-rot">La presentación</span>
-          <p class="gana-razon">${p.rationale}</p>
-          <p class="gana-razon gana-razon-cuenta">${razon}</p>
+          <span class="gana-rot">Por qué gana</span>
+          <p class="gana-razon">${razon}</p>
         </div>
         ${mitades}
       </div>
