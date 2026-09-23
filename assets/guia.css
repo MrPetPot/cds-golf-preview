@@ -1630,7 +1630,10 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-campo:focus-visible .at-golpe, .at-promo:focus-visible .at-promo-p { stroke: var(--oro-3); stroke-width: 2; }
 .at-promo-p { fill: var(--bg-0); stroke: var(--text); stroke-width: 1.6; transition: opacity .25s, fill .25s, stroke .25s; }
 .at-promo-n { fill: var(--text); font-family: var(--f-display); font-size: 13px; font-weight: 700; text-anchor: middle; transition: opacity .25s, fill .25s; }
-.atlas-svg.at-activo .at-promo .at-promo-p, .atlas-svg.at-activo .at-promo .at-promo-n { opacity: .2; }
+/* Los demas numeros no se apagan: son la referencia que permite situar al
+   senalado dentro del ranking. Los nucleos de poblacion si, porque ahi son
+   rotulo y compiten con la red. */
+.atlas-svg.at-activo .at-sitios { opacity: .2; }
 .atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--text); stroke: var(--text); }
 .atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: var(--bg-0); }
 /* Franja bajo el mapa. La altura está reservada de antemano: la ficha de campo
