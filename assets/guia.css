@@ -1108,7 +1108,10 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   border-bottom: 1px solid rgba(255,255,255,.14);
 }
 .topnav-brand { text-decoration: none; color: #FFFFFF; line-height: 1; min-width: 0; }
-.topnav-brand em { font-style: normal; color: rgba(255,255,255,.55); }
+/* El bloque de marca: PRIME y GOLF en negrita, el "and" y la coletilla en
+   la misma Antonio pero en fina. El "/" separa el nombre del descriptor. */
+.topnav-brand em { font-style: normal; font-weight: 300; }
+.topnav-brand .brand-sep { font-weight: 300; color: rgba(255,255,255,.45); margin: 0 .34em; }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
 .topnav-menu { position: relative; flex: none; }
@@ -1138,6 +1141,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,.10); }
 .topnav-links a[aria-current="page"] { color: #FFFFFF; border-left-color: var(--oro-1); }
 .topnav-links a.nav-ranking { color: #FFFFFF; }
+@media (max-width: 860px) { .topnav-brand .brand-sep, .topnav-brand em:last-child { display: none; } }
 @media (max-width: 640px) { .topnav-brand b { font-size: 21px; } }
 
 /* Portada · los tres pasos */
