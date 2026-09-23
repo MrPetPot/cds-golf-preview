@@ -187,10 +187,10 @@
 .project-data { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin: 0; }
 .project-data > div { padding: 14px 16px 15px; background: var(--bg-0); border: 1px solid var(--line);
   transition: background-color .2s, border-color .2s, color .2s; }
-/* Al pasar por encima la sub-tarjeta se invierte: gris al 84 % de negro y
+/* Al pasar por encima la sub-tarjeta se invierte: gris al 74 % de negro y
    texto en blanco, con el rotulo un punto por debajo para que el dato siga
    mandando. */
-.project-data > div:hover { background: #292929; border-color: #292929; }
+.project-data > div:hover { background: #424242; border-color: #424242; }
 .project-data > div:hover dt { color: rgba(255,255,255,.72); }
 .project-data > div:hover dd { color: #FFFFFF; }
 .project-data > div:hover dd small { color: rgba(255,255,255,.68); }
