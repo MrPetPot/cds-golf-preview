@@ -1111,14 +1111,12 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 /* El bloque de marca: PRIME y GOLF en negrita, el "and" y la coletilla en
    la misma Antonio pero en fina. El "/" separa el nombre del descriptor. */
 .topnav-brand em { font-style: normal; font-weight: 300; }
-.topnav-brand .brand-sep { font-weight: 300; color: rgba(255,255,255,.45); margin: 0 .34em; }
-/* Los dos colores de la guía repartidos en el nombre: el oro de la propiedad
-   en PRIME y el verde del golf en GOLF, con el nexo en blanco. Ambos son las
-   versiones claras, las que la guía reserva para fondo oscuro: 6,9:1 y 5,8:1
-   sobre el marengo del menú. */
-.topnav-brand .brand-prime { color: var(--oro-1); }
-.topnav-brand .brand-and { color: #FFFFFF; }
-.topnav-brand .brand-golf { color: var(--verde-1); }
+.topnav-brand .brand-sep { margin: 0 .4em 0 .55em; }
+/* Todo en blanco: el peso hace el trabajo que hacía el color. El nexo va en
+   fina con un pelo de aire a cada lado —no un espacio de palabra, que separa
+   demasiado— y el descriptor baja al 80 % para quedar por detrás del nombre. */
+.topnav-brand .brand-and { font-weight: 300; margin: 0 .13em; }
+.topnav-brand .brand-cola { font-weight: 300; color: rgba(255,255,255,.8); }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
 .topnav-menu { position: relative; flex: none; }
@@ -1148,7 +1146,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a:hover { color: #FFFFFF; background: rgba(255,255,255,.10); }
 .topnav-links a[aria-current="page"] { color: #FFFFFF; border-left-color: var(--oro-1); }
 .topnav-links a.nav-ranking { color: #FFFFFF; }
-@media (max-width: 860px) { .topnav-brand .brand-sep, .topnav-brand em:last-child { display: none; } }
+@media (max-width: 860px) { .topnav-brand .brand-cola { display: none; } }
 @media (max-width: 640px) { .topnav-brand b { font-size: 21px; } }
 
 /* Portada · los tres pasos */
