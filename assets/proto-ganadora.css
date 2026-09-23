@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/* ═══════════════════════════════════════════════════════════════════════
+   PROTOTIPO · LA GANADORA
+   Pieza propia para el primer puesto, delante de la lista. No toca ninguna
+   hoja del proyecto: esto solo lo carga ranking-ganadora.html.
+
+   La idea: el documento anuncia un veredicto durante tres páginas y hoy lo
+   suelta como primera fila de once tarjetas iguales. Aquí el 01 tiene su
+   escenario —banda a sangre, nombre a tamaño de portada y la puntuación
+   como cifra grande— y la lista arranca en el 02.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── La banda ──────────────────────────────────────────────────────────
+   A sangre: se sale de la caja de la sección con un margen negativo del
+   mismo valor que el padding lateral. Mismo lenguaje que el campo de
+   referencia de la ficha, pero al doble de altura. */
+.gana { margin-top: 44px; }
+.gana-banda {
+  position: relative; overflow: hidden;
+  margin: 0 calc(var(--px) * -1);
+  min-height: clamp(420px, 62vh, 620px);
+  display: flex; align-items: flex-end;
+  padding: 56px var(--px) 44px;
+  background: #0F1726; color: #FFFFFF;
+}
+.gana-banda img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.gana:hover .gana-banda img { transform: scale(1.02); }
+.gana-banda::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  /* Mas cuerpo en la mitad baja: el render tiene cielo y piscina claros
+     justo donde caen el rotulo y la cifra. */
+  background: linear-gradient(180deg, rgba(15,23,38,.26) 0%, rgba(15,23,38,.08) 26%, rgba(15,23,38,.58) 66%, rgba(15,23,38,.94) 100%);
+}
+
+.gana-cuerpo {
+  position: relative; z-index: 1; width: 100%;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end;
+}
+.gana-lbl {
+  display: block; font-size: 10px; font-weight: 700; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--oro-1); margin-bottom: 18px;
+  text-shadow: 0 1px 14px rgba(15,23,38,.9);
+}
+.gana-nombre {
+  margin: 0; font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(42px, 6.2vw, 96px); line-height: .94; letter-spacing: -.01em;
+  text-shadow: 0 2px 30px rgba(15,23,38,.55);
+}
+.gana-nombre .gana-puesto { color: var(--oro-1); }
+.gana-loc {
+  display: block; margin-top: 14px; font-size: 14px; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 14px rgba(15,23,38,.9);
+}
+/* La cifra: es el veredicto, así que va al tamaño del nombre. */
+.gana-marcador {
+  font-family: var(--f-display); font-weight: 700; line-height: .84;
+  font-size: clamp(64px, 8.4vw, 132px); text-align: right; white-space: nowrap;
+  text-shadow: 0 2px 30px rgba(15,23,38,.6);
+}
+.gana-marcador small {
+  display: block; font-size: 15px; font-weight: 500; letter-spacing: .26em;
+  color: rgba(255,255,255,.74); margin-top: 10px; text-shadow: 0 1px 14px rgba(15,23,38,.9);
+}
+
+/* ── El porqué y la cuenta ─────────────────────────────────────────── */
+.gana-pie {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 44px; padding-top: 38px;
+}
+.gana-razon { font-size: 17px; line-height: 1.58; color: var(--text-mid); margin: 0; max-width: 620px; }
+.gana-razon strong { color: var(--text); font-weight: 700; }
+.gana-razon + .gana-razon { margin-top: 14px; font-size: 15px; }
+.gana-razon .star { color: var(--amarillo); }
+
+.gana-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; margin: 0; }
+.gana-dato { border-top: 1px solid var(--line-strong); padding-top: 12px; }
+.gana-dato dt {
+  font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--text-mute); margin-bottom: 7px;
+}
+.gana-dato dd {
+  margin: 0; font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: 24px; line-height: 1.05; color: var(--text);
+}
+.gana-dato dd small {
+  display: block; margin-top: 5px; font-family: var(--f-sans); font-weight: 400;
+  font-size: 12.5px; letter-spacing: 0; text-transform: none; color: var(--text-mid);
+}
+.gana-dato dd .star { color: var(--amarillo); font-size: 18px; }
+
+.gana-ficha-tecnica {
+  margin: 26px 0 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ── La llamada ────────────────────────────────────────────────────────
+   Una sola, ancha y sin competencia: desde aquí solo se puede hacer una
+   cosa, que es abrir la ficha. Bajar al 02 ya lo hace el scroll. */
+.gana-acciones { margin-top: 34px; }
+.gana-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  width: 100%; padding: 26px 30px; text-decoration: none;
+  background: var(--marengo); color: #FFFFFF; border: 1px solid var(--marengo);
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.gana-cta:hover { background: transparent; color: var(--text); }
+.gana-cta b {
+  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: 26px; line-height: 1; letter-spacing: -.005em;
+}
+.gana-cta span {
+  font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--oro-1); white-space: nowrap;
+}
+
+/* ── La lista arranca en el 02 ─────────────────────────────────────────
+   La tarjeta del 01 no se borra: se esconde solo mientras está cerrada,
+   porque abierta sigue siendo la capa a pantalla completa de siempre y la
+   llamada de arriba la necesita entera en el DOM. */
+.detail-grid details.promo.gana-fuera:not([open]) { display: none; }
+
+@media (max-width: 900px) {
+  .gana-banda { min-height: clamp(340px, 52vh, 460px); padding: 40px var(--px) 30px; }
+  /* El rotulo ocupa mas alto al partirse el nombre, asi que el velo
+     tiene que empezar a cerrar antes. */
+  .gana-banda::after {
+    background: linear-gradient(180deg, rgba(15,23,38,.30) 0%, rgba(15,23,38,.16) 18%, rgba(15,23,38,.74) 56%, rgba(15,23,38,.95) 100%);
+  }
+  .gana-cuerpo { grid-template-columns: 1fr; gap: 18px; }
+  .gana-marcador { text-align: left; font-size: clamp(56px, 18vw, 96px); }
+  .gana-marcador small { margin-top: 6px; }
+  .gana-pie { grid-template-columns: 1fr; gap: 30px; }
+  .gana-datos { gap: 16px 24px; }
+  .gana-cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 22px; }
+  .gana-cta b { font-size: 21px; }
+}
+
+/* ── Aviso de prototipo ────────────────────────────────────────────────
+   Solo mientras esto sea una prueba: deja claro en que pagina estas y
+   permite saltar al ranking actual para comparar. Se cae con el archivo. */
+.proto-aviso {
+  padding: 13px var(--px); background: var(--marengo); color: rgba(255,255,255,.72);
+  font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+}
+.proto-aviso a { color: var(--oro-1); text-decoration: none; border-bottom: 1px solid rgba(180,143,60,.45); }
+.proto-aviso a:hover { color: #FFFFFF; border-bottom-color: #FFFFFF; }
