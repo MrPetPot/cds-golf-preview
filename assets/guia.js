@@ -485,7 +485,7 @@ const PROMOS = [
         b1:7,  b1why:'Torras y Sierra, estudio nacional de trayectoria; sin marca internacional.',
         b4:7,  b4why:'Jardín privado y piscina en cada casa, pista de pádel; sin club house ni beach club propios.' },
     tags:['Torras y Sierra','49 viviendas','Valderrama a 3′'],
-    rationale:'<strong>Ficha corregida en esta edición.</strong> La promoción no está dentro de La Reserva, como figuraba: ACCIONA la sitúa en <strong>Sotogrande Alto</strong>, y su coordenada publicada la deja a 1,2 km de Valderrama. Pierde el bonus de resort —no está dentro de ninguno— pero tiene tres campos de élite a tiro: Valderrama a seis minutos, La Reserva a siete y RCG Sotogrande a once. Que Valderrama y RCG sean clubes de socios es justo lo que el coeficiente de jugabilidad descuenta.' },
+    rationale:'<strong>Ficha corregida en esta edición.</strong> La promoción no está dentro de La Reserva, como figuraba: ACCIONA la sitúa en <strong>Sotogrande Alto</strong>, y su coordenada publicada la deja a 1,2 km de Valderrama. Pierde el bonus de resort —no está dentro de ninguno— pero tiene tres campos de élite a tiro: Valderrama a seis minutos, La Reserva a siete y RCG Sotogrande a once. Que Valderrama y RCG sean clubes de socios es justo lo que el coeficiente de acceso descuenta.' },
 
   { id:'village-verde', render:{ dominio:"villageverdesotogrande.com", pie:"El resort al atardecer." }, name:'Village Verde', sub:'La Reserva de Sotogrande',
     municipio:'Sotogrande (Cádiz)', zona:'La Reserva Club', lat:36.28943, lng:-5.32142,
@@ -745,7 +745,7 @@ const PROMOS = [
         b1:10, b1why:'Primer proyecto residencial de Karl Lagerfeld en el mundo, entregado con el proyecto.',
         b4:7,  b4why:'Parcela de 9.000 m² y servicio de lujo por villa; sin club house ni beach club propios.' },
     tags:['Branded Lagerfeld','5 villas','Milla de Oro'],
-    rationale:'<strong>El producto mas caro de la guia</strong> y una de las dos notas maximas de marca. Comparte entorno con Bentley y comparte su problema: el ★★★★ mas cercano es Las Brisas, de socios. El coeficiente de jugabilidad no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
+    rationale:'<strong>El producto mas caro de la guia</strong> y una de las dos notas maximas de marca. Comparte entorno con Bentley y comparte su problema: el ★★★★ mas cercano es Las Brisas, de socios. El coeficiente de acceso no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
 
   { id:'tierra-viva', render:null, foto:null, image:null,
     name:'Tierra Viva', sub:'by Automobili Lamborghini',
@@ -857,7 +857,7 @@ const PROMOS = [
    dato cambia el ranking: ésa es la garantía de reproducibilidad.
 ═══════════════════════════════════════════════════════════════ */
 
-// Coeficiente de jugabilidad: cuánto vale un campo que quizá no puedas jugar.
+// Coeficiente de acceso: cuánto vale un campo que quizá no puedas reservar.
 const ACCESO = {
   'Resort': 1, 'Resort de lujo': 1, 'Público': 1, 'Municipal': 1, 'Semi-privado': 1,
   'Privado / resort': 1, 'Privado / hotel': 1,
