@@ -14,39 +14,101 @@
   const p = top[0], segunda = top[1];
   const c = p.cercano;
   const dosCifras = n => String(n).padStart(2, '0');
+  const pct = (v, max) => Math.round(v / max * 100);
+  const lista = xs => xs.length === 1 ? xs[0] : xs.slice(0, -1).join(', ') + ' y ' + xs[xs.length - 1];
   const estrellas = n =>
     `<span class="star">${'★'.repeat(n)}</span>` +
     (n < 4 ? `<span class="star-off"><span class="star">${'★'.repeat(4 - n)}</span></span>` : '');
 
-  /* ── El porqué ──────────────────────────────────────────────────────
-     Lo interesante de esta edicion es que la ganadora no lidera el bloque
+  /* ── Por qué gana ───────────────────────────────────────────────────
+     Lo interesante de esta edición es que la ganadora no lidera el bloque
      de golf: lidera el de proyecto. Eso es justo lo que justifica tener
-     dos bloques, asi que la frase se construye desde los datos y no se
-     escribe a mano —si manana el lider cambia, el texto cambia con el. */
+     dos bloques, así que la frase se construye desde los datos y no se
+     escribe a mano —si mañana cambia el líder, cambia el texto con él. */
   const topA = top.slice().sort((a, b) => b.A - a.A)[0];
   const mejorB = Math.max(...top.map(x => x.B));
   const empatadasB = top.filter(x => x.B === mejorB && x !== p).map(x => x.name);
   const ventaja = p.total - segunda.total;
-  const LETRA = ['cero','un','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez'];
+  const LETRA = ['cero', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce', 'trece', 'catorce'];
   const puntos = n => n === 1 ? 'un punto' : (LETRA[n] || n) + ' puntos';
 
   let razon;
   if (topA !== p && p.B === mejorB) {
     razon = `<strong>No gana por el golf.</strong> ${topA.name} la supera en entorno —${topA.A} de 60 frente a ${p.A}—, ` +
       `pero ${p.name} firma la mejor nota de proyecto del ranking: <strong>${p.B} de 40</strong>` +
-      (empatadasB.length ? `, empatada con ${empatadasB.join(' y ')}` : '') + '. ' +
-      `Ahi estan los ${puntos(ventaja)} que la separan de la segunda.`;
+      (empatadasB.length ? `, empatada con ${lista(empatadasB)}` : '') + '. ' +
+      `Ahí están los ${puntos(ventaja)} que la separan de la segunda.`;
   } else if (p.A === Math.max(...top.map(x => x.A)) && p.B === mejorB) {
     razon = `<strong>Gana los dos bloques.</strong> ${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto: ` +
-      `nadie mas encabeza las dos mitades de la matriz. ${puntos(ventaja).replace(/^u/, 'U')} sobre la segunda.`;
+      `nadie más encabeza las dos mitades de la matriz. ${puntos(ventaja).replace(/^u/, 'U')} sobre la segunda.`;
   } else {
     razon = `<strong>${p.A} de 60 en entorno de golf y ${p.B} de 40 en proyecto.</strong> ` +
       `${puntos(ventaja).replace(/^u/, 'U')} sobre ${segunda.name}, que es la segunda.`;
   }
-  razon = razon.replace(/Ahi estan/, 'Ahí están').replace(/nadie mas/, 'nadie más');
 
-  const tecnica = [p.promotor, p.estudio, p.tipologia, p.unidades + ' unidades',
-    p.estado + (p.entrega ? ' · entrega ' + p.entrega : '')].filter(Boolean).join(' · ');
+  /* ── Gráfica 1 · de dónde sale la nota ──────────────────────────────
+     Descompone el total en sus dos mitades y, al ir las dos barras sobre
+     el mismo ancho, enseña algo que las cifras sueltas esconden: cuál de
+     los dos bloques está rindiendo más en proporción. */
+  const mitades = `
+    <figure class="gfx">
+      <figcaption class="gana-rot">De dónde salen los ${p.total}</figcaption>
+      <div class="gfx-mitades">
+        <div class="gfx-fila">
+          <span class="gfx-lbl">Entorno de golf</span>
+          <span class="gfx-cifra">${p.A}<small>/60</small></span>
+          <span class="gfx-track"><span class="gfx-fill gfx-golf" style="width:${pct(p.A, 60)}%"></span></span>
+        </div>
+        <div class="gfx-fila">
+          <span class="gfx-lbl">El proyecto</span>
+          <span class="gfx-cifra">${p.B}<small>/40</small></span>
+          <span class="gfx-track"><span class="gfx-fill gfx-proy" style="width:${pct(p.B, 40)}%"></span></span>
+        </div>
+      </div>
+      <p class="gfx-pie">Sobre su propio máximo, el proyecto rinde al ${pct(p.B, 40)} % y el golf al ${pct(p.A, 60)} %.</p>
+    </figure>`;
+
+  /* ── Gráfica 2 · las once en fila ───────────────────────────────────
+     Las columnas van a escala sobre 100, que es la escala real de la
+     puntuación: así la altura se puede leer como nota y no como ranking.
+     El pie busca el mayor escalón entre dos puestos consecutivos, que es
+     donde de verdad se parte la tabla. */
+  const saltos = top.map((x, i) => i ? top[i - 1].total - x.total : 0);
+  const mayor = Math.max(...saltos), iSalto = saltos.indexOf(mayor);
+  const arriba = top.slice(0, iSalto).map(x => x.name);
+  const pieTabla = `El mayor escalón de la tabla cae entre el puesto ${dosCifras(top[iSalto - 1].rank)} ` +
+    `y el ${dosCifras(top[iSalto].rank)}: ${mayor} puntos.` +
+    (iSalto <= 2 ? ` ${lista(arriba)} ${iSalto === 1 ? 'juega' : 'juegan'} aparte.` : '');
+
+  const columnas = top.map(x => `
+        <div class="gfx-col${x === p ? ' gfx-col-gana' : ''}" title="${x.name} · ${x.total}/100">
+          <span class="gfx-col-v">${x.total}</span>
+          <span class="gfx-col-t"><span class="gfx-col-b" style="height:${x.total}%"></span></span>
+          <span class="gfx-col-r">${dosCifras(x.rank)}</span>
+        </div>`).join('');
+
+  const tabla = `
+    <figure class="gfx gfx-ancha">
+      <figcaption class="gana-rot">Las ${LETRA[top.length] || top.length}, en fila</figcaption>
+      <div class="gfx-cols">${columnas}</div>
+      <p class="gfx-pie">${pieTabla}</p>
+    </figure>`;
+
+  /* ── La ficha en corto ──────────────────────────────────────────────
+     Deja de ser una línea de datos seguidos: cada dato con su etiqueta,
+     en la misma rejilla que ya usa la ficha del proyecto. */
+  const dato = (t, v, sub) => v ? `<div><dt>${t}</dt><dd>${v}${sub ? `<small>${sub}</small>` : ''}</dd></div>` : '';
+  const tecnica = [
+    dato('Promotor', p.promotor),
+    dato('Arquitectura', p.estudio),
+    dato('Tipología', p.tipologia),
+    dato('Unidades', p.unidades, 'desarrollo completo'),
+    dato('Estado', p.estado, p.entrega ? 'entrega ' + p.entrega : ''),
+    dato('Desde', p.precioDesde, p.precio),
+    dato('Posicionamiento', '€' + p.eurM2.toLocaleString('es-ES'), 'por m²'),
+    dato('Campo de referencia', estrellas(c.stars),
+      `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'}`)
+  ].join('');
 
   const foto = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id] && FOTOS_PROMO[p.id][0]) || null;
   const src = foto ? foto.src : p.image;
@@ -65,22 +127,21 @@
         </figcaption>
       </figure>
 
-      <div class="gana-pie">
-        <div>
-          <p class="gana-razon">${razon}</p>
-          <p class="gana-razon">${p.why.a5}</p>
+      <div class="gana-intro">
+        <div class="gana-texto">
+          <span class="gana-rot">La presentación</span>
+          <p class="gana-razon">${p.rationale}</p>
+          <p class="gana-razon gana-razon-cuenta">${razon}</p>
         </div>
-        <dl class="gana-datos">
-          <div class="gana-dato"><dt>Entorno de golf</dt><dd>${p.A}<small>de 60 puntos</small></dd></div>
-          <div class="gana-dato"><dt>El proyecto</dt><dd>${p.B}<small>de 40 puntos</small></dd></div>
-          <div class="gana-dato"><dt>Campo de referencia</dt>
-            <dd>${estrellas(c.stars)}<small>${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'}</small></dd></div>
-          <div class="gana-dato"><dt>Desde</dt>
-            <dd>${p.precioDesde}<small>${p.precio}</small></dd></div>
-        </dl>
+        ${mitades}
       </div>
 
-      <p class="gana-ficha-tecnica">${tecnica}</p>
+      ${tabla}
+
+      <div class="gana-proyecto">
+        <span class="gana-rot">La ficha en corto</span>
+        <dl class="project-data">${tecnica}</dl>
+      </div>
 
       <div class="gana-acciones">
         <a class="gana-cta" href="#f/${p.id}" data-abrir-ganadora="${p.id}">
@@ -103,7 +164,7 @@
   });
 
   /* El titular de la lista ya no puede decir "el top 10 en orden": empieza
-     en el 02. Se reescribe aqui para no tocar la plantilla. */
+     en el 02. Se reescribe aquí para no tocar la plantilla. */
   const t = document.getElementById('tituloRanking');
   const l = document.getElementById('ledeRanking');
   if (t) t.innerHTML = `Y detrás, <em>las otras ${top.length - 1}</em>.`;
