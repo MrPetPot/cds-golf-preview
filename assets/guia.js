@@ -1776,9 +1776,36 @@ function initAtlas(el) {
     pintarPanelCampo(c, suyas);
   }
 
-  function fijarPromo(p) { if (arrastre) return; fijado = { t: 'p', v: p }; verPromo(p); }
+  // Al fijar una promocion el encuadre se cierra sobre ella hasta ver el 70 % de
+  // lo que veia, que es lo justo para leer su racimo sin perder la costa.
+  const CIERRE = 0.7;
+  let tween;
+  function irA(zDestino, xDestino, yDestino) {
+    cancelAnimationFrame(tween);
+    const z0 = zoom, x0 = vistaX, y0 = vistaY, t0 = performance.now();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      zoom = zDestino; vistaX = xDestino; vistaY = yDestino; encuadrar(); return;
+    }
+    const paso = ahora => {
+      const r = Math.min(1, (ahora - t0) / 420);
+      const e = 1 - Math.pow(1 - r, 3);
+      zoom = z0 + (zDestino - z0) * e;
+      vistaX = x0 + (xDestino - x0) * e;
+      vistaY = y0 + (yDestino - y0) * e;
+      encuadrar();
+      if (r < 1) tween = requestAnimationFrame(paso);
+    };
+    tween = requestAnimationFrame(paso);
+  }
+
+  function fijarPromo(p) {
+    if (arrastre) return;
+    fijado = { t: 'p', v: p };
+    verPromo(p);
+    irA(Math.min(ZMAX, 1 / CIERRE), X(p.lng), Y(p.lat));
+  }
   function fijarCampo(c) { if (arrastre) return; fijado = { t: 'c', v: c }; verCampo(c); }
-  function soltar() { fijado = null; limpiar(); pintarPanelInicio(); }
+  function soltar() { fijado = null; limpiar(); pintarPanelInicio(); irA(1, W / 2, H / 2); }
 
   el.addEventListener('mouseleave', () => {
     if (fijado) { fijado.t === 'p' ? verPromo(fijado.v) : verCampo(fijado.v); }

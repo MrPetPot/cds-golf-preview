@@ -1606,7 +1606,10 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-guia { stroke: rgba(30,58,95,.42); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .at-ancla { fill: var(--text-mid); }
 .at-linea.at-fuera { stroke-dasharray: 3 5; }
-.atlas-svg.at-activo .at-linea { opacity: .07; }
+/* Con un nodo senalado, todo lo que flota sin vinculo con el baja a una
+   transparencia del 80 %. La cartografia —rejilla, costa, tierra y mar— no se
+   toca: es el sustrato, no un elemento de la red. */
+.atlas-svg.at-activo .at-linea { opacity: .2; }
 .atlas-svg .at-linea.at-on { opacity: .9; }
 .atlas-svg .at-linea.at-on.at-fuera { opacity: .5; stroke: var(--text-mute); }
 .at-campo-p { transition: opacity .25s, r .2s; }
@@ -1621,13 +1624,13 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .at-s3.at-cerrado .at-campo-p { stroke: #4A6B22; }
 .at-s2.at-cerrado .at-campo-p { stroke: #6E9130; }
 .at-s1.at-cerrado .at-campo-p { stroke: #9CB865; }
-.atlas-svg.at-activo .at-campo .at-campo-p { opacity: .28; }
+.atlas-svg.at-activo .at-campo .at-campo-p { opacity: .2; }
 .atlas-svg .at-campo.at-on .at-campo-p { opacity: 1; }
 .at-campo, .at-promo { cursor: pointer; outline: none; }
 .at-campo:focus-visible .at-golpe, .at-promo:focus-visible .at-promo-p { stroke: var(--oro-3); stroke-width: 2; }
 .at-promo-p { fill: var(--bg-0); stroke: var(--text); stroke-width: 1.6; transition: opacity .25s, fill .25s, stroke .25s; }
 .at-promo-n { fill: var(--text); font-family: var(--f-display); font-size: 13px; font-weight: 700; text-anchor: middle; transition: opacity .25s, fill .25s; }
-.atlas-svg.at-activo .at-promo .at-promo-p, .atlas-svg.at-activo .at-promo .at-promo-n { opacity: .45; }
+.atlas-svg.at-activo .at-promo .at-promo-p, .atlas-svg.at-activo .at-promo .at-promo-n { opacity: .2; }
 .atlas-svg .at-promo.at-on .at-promo-p { opacity: 1; fill: var(--text); stroke: var(--text); }
 .atlas-svg .at-promo.at-on .at-promo-n { opacity: 1; fill: var(--bg-0); }
 /* Franja bajo el mapa. La altura está reservada de antemano: la ficha de campo
