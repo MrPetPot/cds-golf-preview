@@ -2181,6 +2181,19 @@ function initAtlas(el) {
   }));
 
   const panel = document.getElementById('atlasPanel');
+  // Con el panel lateral la ficha puede no caber en la altura del mapa. Se marca
+  // el desborde para pintar un degradado al pie —solo cuando hay más contenido
+  // por debajo— y se retira al llegar al final. La barra la decide el navegador.
+  function marcarDesborde() {
+    if (!panel) return;
+    const sobra = panel.scrollHeight - panel.clientHeight > 2;
+    const alFinal = sobra && panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2;
+    panel.classList.toggle('ap-desborda', sobra && !alFinal);
+  }
+  if (panel) {
+    panel.addEventListener('scroll', marcarDesborde, { passive: true });
+    window.addEventListener('resize', marcarDesborde, { passive: true });
+  }
   let fijado = null;
 
   // Los <g> de SVG reciben el foco pero este motor no despacha ningún evento de
@@ -2296,6 +2309,7 @@ function initAtlas(el) {
             <div><dt>Reservables</dt><dd>${jugables}</dd></div>
           </dl>
         </div>`;
+      panel.scrollTop = 0; marcarDesborde();
       return;
     }
     panel.innerHTML = `
@@ -2316,6 +2330,7 @@ function initAtlas(el) {
           <div><dt>Relaciones</dt><dd>${enlaces}</dd></div>
         </dl>
       </div>`;
+    panel.scrollTop = 0; marcarDesborde();
   }
 
   function pintarPanelPromo(p) {
@@ -2350,6 +2365,7 @@ function initAtlas(el) {
       ficha.open = true;
       ficha.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+    panel.scrollTop = 0; marcarDesborde();
   }
 
   function pintarPanelCampo(c, suyas) {
@@ -2377,6 +2393,7 @@ function initAtlas(el) {
             : '<p class="ap-citas">Ninguna promoción del top 10 lo cuenta en su entorno.</p>'}
         </div>
       </div>`;
+    panel.scrollTop = 0; marcarDesborde();
   }
 
   const lienzo = el.querySelector('.atlas-lienzo') || el;
