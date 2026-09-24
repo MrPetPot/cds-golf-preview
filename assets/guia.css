@@ -1750,6 +1750,34 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   .ap-quien { grid-template-columns: 1fr; font-size: 12.5px; }
   .atlas-zoom button { width: 42px; height: 42px; font-size: 18px; }
 }
+/* ── Atlas con panel lateral ─────────────────────────────────
+   Prueba: la ficha del punto va a la derecha del lienzo, a la altura del
+   mapa, en vez de debajo. Se pierde ancho de mapa y se gana que la
+   información se vea sin desplazar la página. Reversible quitando la
+   clase atlas--lateral en el marcado. Por debajo de 900 px vuelve a
+   apilarse, que es lo que cabe en un móvil. */
+@media (min-width: 901px) {
+  .atlas.atlas--lateral { display: grid; grid-template-columns: minmax(0,1fr) 300px; align-items: stretch; }
+  .atlas--lateral .atlas-lienzo { min-width: 0; }
+  .atlas--lateral .atlas-svg { height: auto; }
+  .atlas--lateral .atlas-panel {
+    border-top: 0; border-left: 1px solid var(--line-strong); min-height: 0; height: 100%;
+    padding: 22px 22px 20px; display: block; overflow-y: auto; overscroll-behavior: contain;
+  }
+  .atlas--lateral .ap-cols, .atlas--lateral .ap-cols-campo, .atlas--lateral .ap-cols-reposo { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+  .atlas--lateral .ap-cifras { grid-template-columns: repeat(3, auto); gap: 18px; padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line-strong); }
+  .atlas--lateral .ap-cifras dd { font-size: 22px; }
+  .atlas--lateral .ap-hechos { padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line-strong); }
+  .atlas--lateral .ap-marcador { flex-direction: row; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .atlas--lateral .ap-nota strong { font-size: 40px; }
+  .atlas--lateral .ap-nombre { font-size: 22px; }
+  .atlas--lateral .ap-intro { font-size: 12px; }
+  .atlas--lateral .ap-accion { justify-self: stretch; }
+  .atlas--lateral .ap-cta { width: 100%; white-space: normal; text-align: left; }
+  .atlas--lateral .ap-quien { grid-template-columns: 1fr; gap: 6px; }
+  .atlas--lateral .ap-quien li b { white-space: normal; }
+  .atlas--lateral .atlas-zoom { right: 12px; }
+}
 /* Marcadores del mapa Leaflet */
 .pin-promo { background: none; border: none; }
 .pin-promo-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #2C5384, #7FA3C9); border: 2.5px solid #FFFFFF; box-shadow: 0 2px 10px rgba(15,23,38,.42); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-size: 14px; font-weight: 700; color: #FFFFFF; }
