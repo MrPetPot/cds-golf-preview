@@ -1575,11 +1575,6 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
         ${mitades}
       </div>
 
-      <div class="gana-proyecto">
-        <span class="gana-rot">La ficha en corto</span>
-        <dl class="project-data">${tecnica}</dl>
-      </div>
-
       <div class="gana-acciones">
         <a class="gana-cta" href="#f/${p.id}" data-abrir-ganadora="${p.id}">
           <b>Ver la ficha completa</b>
