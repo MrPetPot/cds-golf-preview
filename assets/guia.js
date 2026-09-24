@@ -2587,8 +2587,8 @@ pintarEstrellas();
     });
   };
 
-  if (lead) preparar(lead, 'Prime & Golf · Consulta de comprador');
-  if (pro) preparar(pro, 'Prime & Golf · Aportación de promotora');
+  if (lead) preparar(lead, 'PRIMEandGOLF · Consulta general');
+  if (pro) preparar(pro, 'PRIMEandGOLF · Aportación de promotora');
 })();
 
 /* ═══════════════════════════════════
