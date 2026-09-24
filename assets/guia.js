@@ -519,7 +519,7 @@ const PROMOS = [
         b1:10, b1why:'Branded residence Missoni Casa — marca reconocida, entregada con el proyecto.',
         b4:10, b4why:'Hotel 5★ GL, spa, beach club, cuatro restaurantes, concierge.' },
     tags:['Branded Missoni','In-resort 4★','Solheim Cup 2023','Beach club'],
-    rationale:'<strong>Nuevo número uno.</strong> Su campo de golf, Finca Cortesín ★★★★, es <strong>uno de los dos del ranking que un propietario puede jugar sin ser socio</strong>, y el único de resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, con residencia de marca y uno de los bloques de proyecto más altos de la lista. Casares le sigue costando densidad, pero ya no le cuesta el podio.' },
+    rationale:'<strong>Nuevo número uno.</strong> Finca Cortesín ★★★★ es <strong>uno de los dos campos del ranking accesibles sin ser socio</strong> y el único integrado en un resort. Sede de la Solheim Cup 2023 y del Volvo World Match Play, refuerza una propuesta que combina residencia de marca y una de las puntuaciones de proyecto más altas.' },
 
   { id:'quercus', render:{ dominio:"realdelaquinta.com", pie:"El lago de Real de La Quinta." }, name:'Real de La Quinta · Quercus', sub:'Future Banyan Tree Residences',
     municipio:'Benahavís', zona:'Real de La Quinta Resort', lat:36.515, lng:-5.000,
