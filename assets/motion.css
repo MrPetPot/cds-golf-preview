@@ -8,7 +8,10 @@
 /* ── La ficha abierta, a pantalla completa ──────────────────────────────
    Misma ficha, mismo orden, mismo diseno: solo cambia el contenedor. La lista
    se queda debajo sin moverse, asi que al cerrar apareces donde estabas. */
-html.ficha-abierta { overflow: hidden; }
+html.ficha-abierta { overflow: hidden; padding-right: var(--barra, 0px); }
+/* scrollbar-gutter no cubre este caso: el navegador solo reserva el hueco
+   mientras el desbordamiento es auto o scroll, y aqui es hidden. El ancho
+   real se mide en engine.js justo antes de bloquear. */
 /* La seccion que envuelve al ranking conserva la transformacion identidad
    con la que entro al hacer scroll, y cualquier transform —aunque sea la
    identidad— convierte al ancestro en el bloque contenedor de lo fijo: la

@@ -1146,9 +1146,9 @@ if (rankBody) pintarRanking();
   const faltan = saltados.length === 1
     ? `no existe el puesto ${saltados[0]}`
     : `no existen los puestos ${saltados.slice(0, -1).join(', ')} y ${saltados[saltados.length - 1]}`;
-  if (l) l.textContent = `Del puesto 02 al ${dd(ultima.rank)}, en orden. ` +
+  if (l) l.textContent =
     (saltados.length ? `Los empates comparten posición y la siguiente salta, así que ${faltan}. ` : '') +
-    'Abre cada una para ver su desglose criterio a criterio.';
+    'Abre cada una para ver su desglose criterio a criterio, su cuenta y lo que sigue sin verificar.';
   const m = document.getElementById('tituloMapaRanking');
   if (m) m.innerHTML = `Las ${num(top)}, <em>sobre el mapa</em>.`;
 
@@ -1628,8 +1628,11 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
   const sincronizar = () => {
     const d = abierta();
+    if (d && !raiz.classList.contains('ficha-abierta'))
+      raiz.style.setProperty('--barra', (window.innerWidth - raiz.clientWidth) + 'px');
     raiz.classList.toggle('ficha-abierta', !!d);
     if (d) d.scrollTop = 0;
+    else raiz.style.removeProperty('--barra');
   };
 
   detailGrid.addEventListener('toggle', e => {
@@ -1650,7 +1653,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     d.open = false;
     sincronizar();
     d.querySelector('summary').focus({ preventScroll: true });
-    window.scrollTo(0, vuelta);
+    window.scrollTo({ top: vuelta, behavior: 'instant' });
   };
 
   document.addEventListener('keydown', e => {
@@ -2595,6 +2598,7 @@ pintarEstrellas();
     (p.top10 ? ` <span>· puesto ${String(p.rank).padStart(2, '0')}</span>` : ' <span>· mención</span>') + '</li>';
 
   caja.innerHTML = `
+    <div class="ed-panel">
     <dl class="ed-embudo">
       <div class="ed-paso"><dt>Localizadas</dt>
         <dd>${d.localizadas}<small>Promociones encontradas en el barrido del mercado</small></dd></div>
@@ -2605,7 +2609,7 @@ pintarEstrellas();
     </dl>
 
     <div class="ed-columnas">
-      <div class="ed-bloque">
+      <div class="ed-bloque ed-ancho">
         <h3>Incorporadas en el barrido</h3>
         <ul class="ed-lista">${barrido.map(fila).join('')}</ul>
       </div>
@@ -2614,6 +2618,7 @@ pintarEstrellas();
         <ul class="ed-lista">${espera.map(e =>
           `<li><b>${e.name}</b> <span>· ${e.municipio}</span><em>${e.motivo}</em></li>`).join('')}</ul>
       </div>
+    </div>
     </div>
 
     <p class="ed-cierre">Datos cerrados a <b>${d.fecha}</b> con la matriz <b>${d.matriz}</b>.

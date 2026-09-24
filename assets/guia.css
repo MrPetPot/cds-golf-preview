@@ -39,7 +39,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* El hueco de la barra se reserva siempre: al bloquear el fondo con
+   .ficha-abierta la barra desaparece y, sin gutter, toda la pagina se
+   desplazaba lateralmente al abrir y al cerrar la ficha. */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
 body {
   background: var(--bg-0);
   color: var(--text);
@@ -527,9 +530,16 @@ section {
   font-family: var(--f-display); font-size: 76px; font-weight: 700; color: #FFFFFF;
   line-height: 1; letter-spacing: -.02em; text-shadow: 0 2px 22px rgba(15,23,38,.7);
 }
+/* El "/ 100" se alinea con el numero: su linea de texto mide exactamente lo
+   que mide la cifra, de la izquierda del primer digito a la derecha del
+   ultimo. En em, para que la proporcion aguante en los cuatro tamanos que
+   toma el marcador (44 y 76 px, 34 y 52 en movil). El margen derecho negativo
+   descuenta el espaciado que .3em anade DESPUES del ultimo caracter y que,
+   sin compensar, separaba el texto del borde. */
 .dc-score-overlay small {
-  display: block; font-size: 10px; color: rgba(255,255,255,.85); font-weight: 600;
-  letter-spacing: .3em; margin-top: 8px; text-align: right; font-family: var(--f-sans);
+  display: block; font-size: .27em; color: rgba(255,255,255,.85); font-weight: 600;
+  letter-spacing: .3em; margin-right: -.3em; margin-top: 9px;
+  text-align: right; font-family: var(--f-sans);
 }
 
 .dc-body {
@@ -1859,21 +1869,14 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 /* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
 .hero-top .marca { text-transform: none; letter-spacing: .12em; color: #FFFFFF; }
 
-/* ── Pie de navegación en dos direcciones ────────────────────────────
-   Volver a la izquierda y seguir a la derecha, como se leen. El de volver va
-   sin caja y en gris: lo que la página propone es continuar, y dos botones
-   idénticos obligarían a elegir donde no hay elección. */
+/* ── Pie de navegación en dos direcciones ────────────────────
+   Volver a la izquierda y seguir a la derecha, como se leen. Los dos con la
+   misma caja: se repiten al pie de todas las páginas, y un par que aparece
+   tanto se reconoce antes si es siempre la misma pieza. Lo único que cambia
+   es hacia dónde apunta la flecha. */
 .siguiente.doble { justify-content: space-between; align-items: center; gap: 20px; }
-.siguiente .nav-ant {
-  border: 0; padding: 18px 0; min-width: 0; color: var(--text-mute);
-}
-.siguiente .nav-ant b { font-size: 19px; color: var(--text-mid); transition: color .25s; }
-.siguiente .nav-ant:hover { background: transparent; color: var(--text-mute); border-color: transparent; }
-.siguiente .nav-ant:hover b { color: var(--text); }
-.siguiente .nav-ant:hover small { color: var(--text-mute); }
 @media (max-width: 640px) {
-  .siguiente.doble { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
-  .siguiente .nav-ant { padding: 14px 0 0; }
+  .siguiente.doble { flex-direction: column-reverse; align-items: stretch; gap: 12px; }
 }
 
 /* ── Matriz criterio a criterio ──────────────────────────────────
@@ -1906,14 +1909,17 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .mr-copy { max-width: none; }
 }
 
-/* ── Estado de la edición ─────────────────────────────────────
+/* ── Estado de la edición ─────────────────────────
    Cierra el capítulo diciendo de dónde sale el censo, qué se ha quedado
-   fuera y cuándo se vuelve a mirar. El embudo va arriba, en cifras grandes;
-   debajo, dos columnas: lo que entró y lo que espera. */
-.ed-embudo {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+   fuera y cuándo se vuelve a mirar. Todo en un panel único de tres columnas:
+   arriba el embudo en cifras grandes, debajo lo que entró y lo que espera.
+   El filete que separa las dos listas cae sobre el mismo eje que el de las
+   cifras, así que las dos filas se leen como una sola retícula aunque las
+   celdas de abajo no midan lo mismo. */
+.ed-panel {
   border: 1px solid var(--line-strong); background: var(--bg-2); margin-top: 38px;
 }
+.ed-embudo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0; }
 .ed-paso { padding: 26px 28px 24px; }
 .ed-paso + .ed-paso { border-left: 1px solid var(--line-strong); }
 .ed-paso dt {
@@ -1926,7 +1932,18 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 }
 .ed-paso:last-child dd { color: var(--oro-2); }
 
-.ed-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 34px; }
+.ed-columnas {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border-top: 1px solid var(--line-strong);
+}
+.ed-bloque { padding: 26px 28px 24px; }
+.ed-bloque + .ed-bloque { border-left: 1px solid var(--line-strong); }
+/* Las incorporadas ocupan dos tercios, y su lista se parte en dos dentro de
+   la celda: así cada línea mide lo mismo que las de la columna vecina en vez
+   de dejar medio panel en blanco. */
+.ed-ancho { grid-column: span 2; }
+.ed-ancho .ed-lista { display: grid; grid-template-columns: 1fr 1fr; column-gap: 34px; }
+.ed-ancho .ed-lista li:nth-child(-n+2) { border-top: 0; padding-top: 0; }
 .ed-bloque h3 {
   margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em;
   text-transform: uppercase; color: var(--text-mute);
@@ -1945,8 +1962,13 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 @media (max-width: 900px) {
   .ed-embudo { grid-template-columns: 1fr; }
   .ed-paso + .ed-paso { border-left: 0; border-top: 1px solid var(--line-strong); }
-  .ed-columnas { grid-template-columns: 1fr; gap: 26px; }
+  .ed-columnas { grid-template-columns: 1fr; }
+  .ed-bloque + .ed-bloque { border-left: 0; border-top: 1px solid var(--line-strong); }
+  .ed-ancho { grid-column: auto; }
+  .ed-ancho .ed-lista { grid-template-columns: 1fr; column-gap: 0; }
+  .ed-ancho .ed-lista li:nth-child(2) { border-top: 1px solid var(--line); padding-top: 11px; }
 }
+
 
 /* ── Formularios de contacto ─────────────────────────────────────
    Dos bloques en paralelo: comprador y promotora. Mismo tratamiento de caja
