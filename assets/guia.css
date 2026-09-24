@@ -2121,10 +2121,10 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    titular del capítulo. */
 .gana-banda {
   position: relative; overflow: hidden;
-  min-height: clamp(300px, 40vh, 420px);
-  margin: 28px -40px 0;
-  display: flex; align-items: flex-end;
-  padding: 36px 40px 30px;
+  min-height: clamp(380px, 50vh, 520px);
+  margin: -32px -40px 0;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+  padding: 32px 40px 30px;
   background: #0F1726; color: #FFFFFF;
 }
 .gana-banda img {
@@ -2136,9 +2136,25 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   content: ''; position: absolute; inset: 0; pointer-events: none;
   /* Más cuerpo en la mitad baja: el render tiene cielo y piscina claros
      justo donde caen el rótulo y la cifra. */
-  background: linear-gradient(180deg, rgba(15,23,38,.26) 0%, rgba(15,23,38,.08) 26%, rgba(15,23,38,.58) 66%, rgba(15,23,38,.94) 100%);
+  background: linear-gradient(180deg, rgba(15,23,38,.66) 0%, rgba(15,23,38,.34) 34%, rgba(15,23,38,.58) 66%, rgba(15,23,38,.94) 100%);
 }
 
+/* ── El editorial, dentro de la banda ────────────────────────────
+   Columna a la derecha, en blanco sobre el velo. El rótulo de edición sube
+   con él; abajo quedan el nombre y el marcador. */
+.gana-editorial {
+  position: relative; z-index: 1; margin-left: auto; max-width: 480px; color: #FFFFFF;
+}
+.gana-editorial .gana-lbl { margin-bottom: 10px; }
+.gana-editorial .ver-titular {
+  color: #FFFFFF; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.06; margin: 0 0 12px;
+  text-shadow: 0 2px 24px rgba(15,23,38,.7);
+}
+.gana-editorial .ver-cuerpo {
+  color: rgba(255,255,255,.88); font-size: 15px; line-height: 1.55;
+  text-shadow: 0 1px 14px rgba(15,23,38,.85);
+}
+.gana-editorial .ver-cuerpo strong { color: #FFFFFF; }
 .gana-cuerpo {
   position: relative; z-index: 1; width: 100%;
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end;
@@ -2235,7 +2251,9 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 
 @media (max-width: 900px) {
   .gana { padding: 24px; }
-  .gana-banda { min-height: clamp(320px, 48vh, 430px); margin: 26px -24px 0; padding: 34px 22px 26px; }
+  .gana-banda { min-height: 0; margin: -24px -24px 0; padding: 26px 22px 24px; gap: 22px; }
+  .gana-editorial { margin-left: 0; max-width: none; }
+  .gana-editorial .ver-cuerpo { font-size: 14.5px; }
   /* El rótulo ocupa más alto al partirse el nombre, así que el velo tiene
      que empezar a cerrar antes. */
   .gana-banda::after {

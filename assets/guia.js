@@ -1485,8 +1485,12 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
      tenía escrita. */
   const corte = p.rationale.match(/^\s*<strong>(.*?)<\/strong>\s*([\s\S]*)$/);
   const titular = corte ? corte[1].replace(/\.$/, '') : '';
+  /* Prueba 24/09: el editorial vive dentro de la banda de imagen, arriba a
+     la derecha, sobre el velo. La pieza abre por la foto y no por un bloque
+     gris de texto, y se ahorra la altura de ese bloque sin esconder nada. */
   const entradilla = `
-      <div class="ver-intro${titular ? '' : ' ver-intro-sola'}">
+      <div class="gana-editorial">
+        <span class="gana-lbl">Primera posición · Edición #01</span>
         ${titular ? `<p class="ver-titular">${titular}</p>` : ''}
         <p class="ver-cuerpo">${corte ? corte[2] : p.rationale}</p>
       </div>`;
@@ -1555,13 +1559,11 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 
   destino.innerHTML = `
     <div class="gana">
-      ${entradilla}
-
       <figure class="gana-banda">
         <img src="${foto ? foto.src : p.image}" alt="${p.name} — ${p.municipio}" loading="eager"/>
+        ${entradilla}
         <figcaption class="gana-cuerpo">
           <div>
-            <span class="gana-lbl">Primera posición · Edición #01</span>
             <h3 class="gana-nombre"><span class="gana-puesto">#${dosCifras(p.rank)}</span> ${p.name}</h3>
             <span class="gana-loc">${p.municipio}${p.zona ? ' · ' + p.zona : ''}</span>
           </div>
