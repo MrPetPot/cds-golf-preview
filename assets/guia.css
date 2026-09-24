@@ -2143,7 +2143,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    Columna a la derecha, en blanco sobre el velo. El rótulo de edición sube
    con él; abajo quedan el nombre y el marcador. */
 .gana-editorial {
-  position: relative; z-index: 1; margin-left: auto; max-width: 480px; color: #FFFFFF;
+  position: relative; z-index: 1; max-width: 520px; color: #FFFFFF;
 }
 .gana-editorial .gana-lbl { margin-bottom: 10px; }
 .gana-editorial .ver-titular {
