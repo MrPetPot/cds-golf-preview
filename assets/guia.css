@@ -1732,12 +1732,16 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .atlas-pie a { color: var(--text-mid); }
 /* La leyenda del atlas usa su propia rampa: aquí a más estrellas, más oscuro.
    La de Campos sigue con la de Leaflet, que va al revés sobre las teselas. */
-.map-legend-atlas .legend-dot { border-color: var(--bg-0); }
+/* En la leyenda del atlas los puntos son todos del mismo tamaño y sin anillo:
+   el anillo blanco de la leyenda de Leaflet leía como «élite hueco», y el rojo
+   de «solo socios» salía al tamaño base (16 px) frente a los verdes decrecientes. */
+.map-legend-atlas .legend-dot { width: 12px; height: 12px; border: 0; box-shadow: none; }
 .map-legend-atlas .legend-dot.g4 { background: #2F4A16; }
 .map-legend-atlas .legend-dot.g3 { background: #4A6B22; }
 .map-legend-atlas .legend-dot.g2 { background: #6E9130; }
 .map-legend-atlas .legend-dot.g1 { background: #9CB865; }
 .legend-dot.hueco { background: #C0392B; border-color: #C0392B; }
+.map-legend-atlas .legend-dot.hueco { width: 12px; height: 12px; }
 .legend-linea { display: inline-block; width: 22px; height: 0; border-top: 1.5px solid var(--verde-2); vertical-align: middle; }
 .legend-linea.punteada { border-top-style: dashed; }
 @media (max-width: 900px) {
