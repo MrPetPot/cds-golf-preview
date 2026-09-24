@@ -1817,6 +1817,8 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 .respaldo-texto strong { color: var(--text); font-weight: 600; }
 .respaldo-conflicto { margin-top: 12px !important; font-size: 13px !important; color: var(--text-mute) !important; }
 @media (max-width: 900px) { .respaldo { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; } }
+/* El pie ya cambia de fondo: el filete superior sobra. */
+footer { border-top: 0; }
 /* Marcadores del mapa Leaflet */
 .pin-promo { background: none; border: none; }
 .pin-promo-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #2C5384, #7FA3C9); border: 2.5px solid #FFFFFF; box-shadow: 0 2px 10px rgba(15,23,38,.42); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-size: 14px; font-weight: 700; color: #FFFFFF; }
