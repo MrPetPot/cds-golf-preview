@@ -343,6 +343,18 @@ const FOTOS_CAMPO = {
   "credito": "Wikimedia Commons · CC BY 3.0 · Jose Luis Filpo Cabana",
   "url": "https://commons.wikimedia.org/wiki/File%3AAlcaidesa_Heathland.jpg"
  },
+ "real-club-el-candado": {
+   "src": "images/golf/real-club-el-candado.jpg",
+   "pie": "Green y búnker con el mar al fondo.",
+   "credito": "Archivo Malashpina",
+   "url": null
+ },
+ "real-club-guadalhorce": {
+   "src": "images/golf/real-club-guadalhorce.jpg",
+   "pie": "Calle hacia la casa club, entre palmeras.",
+   "credito": "Archivo Malashpina",
+   "url": null
+ },
  "rio-real-golf": {
   "src": "images/golf/rio-real-golf.jpg",
   "pie": "El recorrido de Javier Arana junto al mar.",

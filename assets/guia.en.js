@@ -74,355 +74,367 @@ const NUCLEOS = [{"n":"Sotogrande","lat":36.28206,"lng":-5.29706,"tipo":"suburb"
    (CC BY / CC BY-SA exigen atribución); el resto son archivo del estudio. */
 const FOTOS_CAMPO = {
  "valle-romano-golf": {
-   "src": "images/golf/valle-romano-golf.jpg",
+   "src": "../images/golf/valle-romano-golf.jpg",
    "pie": "The 3rd green beside the lake.",
    "credito": "Malashpina archive",
    "url": null
  },
  "santana-golf": {
-   "src": "images/golf/santana-golf.jpg",
+   "src": "../images/golf/santana-golf.jpg",
    "pie": "The sea of bunkers at the 15th, with the sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-duquesa-golf": {
-   "src": "images/golf/la-duquesa-golf.jpg",
+   "src": "../images/golf/la-duquesa-golf.jpg",
    "pie": "A fountain lake in front of the clubhouse.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-cala-resort-europa": {
-   "src": "images/golf/la-cala-resort-europa.jpg",
+   "src": "../images/golf/la-cala-resort-europa.jpg",
    "pie": "The course through the hills, with the Mijas sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "casares-costa-golf": {
-   "src": "images/golf/casares-costa-golf.jpg",
+   "src": "../images/golf/casares-costa-golf.jpg",
    "pie": "The 18th green in front of the clubhouse.",
    "credito": "Malashpina archive",
    "url": null
  },
  "tramores-villa-padierna": {
-   "src": "images/golf/tramores-villa-padierna.jpg",
+   "src": "../images/golf/tramores-villa-padierna.jpg",
    "pie": "A green ringed by jacarandas in flower.",
    "credito": "Malashpina archive",
    "url": null
  },
  "santa-clara-golf-marbella": {
-   "src": "images/golf/santa-clara-golf-marbella.jpg",
+   "src": "../images/golf/santa-clara-golf-marbella.jpg",
    "pie": "A fountain lake among the palms, into the light.",
    "credito": "Malashpina archive",
    "url": null
  },
  "miraflores-golf": {
-   "src": "images/golf/miraflores-golf.jpg",
+   "src": "../images/golf/miraflores-golf.jpg",
    "pie": "Green and fairway above the valley, with the sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-siesta-golf": {
-   "src": "images/golf/la-siesta-golf.jpg",
+   "src": "../images/golf/la-siesta-golf.jpg",
    "pie": "A wooded fairway, with the sea beyond.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-noria-golf": {
-   "src": "images/golf/la-noria-golf.jpg",
+   "src": "../images/golf/la-noria-golf.jpg",
    "pie": "A fountain lake beside the green.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-canada-golf": {
-   "src": "images/golf/la-canada-golf.jpg",
+   "src": "../images/golf/la-canada-golf.jpg",
    "pie": "Aerial view of the course and its lake.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-cala-resort-america": {
-   "src": "images/golf/la-cala-resort-america.jpg",
+   "src": "../images/golf/la-cala-resort-america.jpg",
    "pie": "A tee shot towards the lake, with the Mijas sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-hacienda-alcaidesa-links": {
-   "src": "images/golf/la-hacienda-alcaidesa-links.jpg",
+   "src": "../images/golf/la-hacienda-alcaidesa-links.jpg",
    "pie": "A links green, with the Rock of Gibraltar behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "greenlife-golf": {
-   "src": "images/golf/greenlife-golf.jpg",
+   "src": "../images/golf/greenlife-golf.jpg",
    "pie": "A fountain lake, between the fairways.",
    "credito": "Malashpina archive",
    "url": null
  },
  "dona-julia-golf": {
-   "src": "images/golf/dona-julia-golf.jpg",
+   "src": "../images/golf/dona-julia-golf.jpg",
    "pie": "A fairway running down towards the sea.",
    "credito": "Malashpina archive",
    "url": null
  },
  "el-chaparral-golf": {
-   "src": "images/golf/el-chaparral-golf.jpg",
+   "src": "../images/golf/el-chaparral-golf.jpg",
    "pie": "A green among the pines, with the Mediterranean beyond.",
    "credito": "Malashpina archive",
    "url": null
  },
  "calanova-golf": {
-   "src": "images/golf/calanova-golf.jpg",
+   "src": "../images/golf/calanova-golf.jpg",
    "pie": "An open fairway across the hills of La Cala.",
    "credito": "Malashpina archive",
    "url": null
  },
  "baviera-golf": {
-   "src": "images/golf/baviera-golf.jpg",
+   "src": "../images/golf/baviera-golf.jpg",
    "pie": "The lake in front of the clubhouse, with the Axarquía behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "azata-golf": {
-   "src": "images/golf/azata-golf.jpg",
+   "src": "../images/golf/azata-golf.jpg",
    "pie": "A green beside the lake at dusk, with the sea behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "the-alto-club-almenara": {
-   "src": "images/golf/the-alto-club-almenara.jpg",
+   "src": "../images/golf/the-alto-club-almenara.jpg",
    "pie": "Sunrise over the course, among the cork oaks.",
    "credito": "Malashpina archive",
    "url": null
  },
  "el-paraiso-golf": {
-   "src": "images/golf/el-paraiso-golf.jpg",
+   "src": "../images/golf/el-paraiso-golf.jpg",
    "pie": "A fountain lake between fairways, with La Concha behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "magna-marbella": {
-   "src": "images/golf/magna-marbella.jpg",
+   "src": "../images/golf/magna-marbella.jpg",
    "pie": "Green and fairway, with the Nueva Andalucía sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "guadalmina-norte": {
-   "src": "images/golf/guadalmina-norte.jpg",
+   "src": "../images/golf/guadalmina-norte.jpg",
    "pie": "Greenside bunker, with San Pedro behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "el-higueral": {
-   "src": "images/golf/el-higueral.jpg",
+   "src": "../images/golf/el-higueral.jpg",
    "pie": "A green ringed by water, with the Benahavís sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "dama-de-noche": {
-   "src": "images/golf/dama-de-noche.jpg",
+   "src": "../images/golf/dama-de-noche.jpg",
    "pie": "A green at dusk: the course is floodlit and also played at night.",
    "credito": "Malashpina archive",
    "url": null
  },
  "los-arqueros-golf": {
-   "src": "images/golf/los-arqueros-golf.jpg",
+   "src": "../images/golf/los-arqueros-golf.jpg",
    "pie": "A green beside the lake, framed by palms.",
    "credito": "Malashpina archive",
    "url": null
  },
  "alferini-villa-padierna": {
-   "src": "images/golf/alferini-villa-padierna.jpg",
+   "src": "../images/golf/alferini-villa-padierna.jpg",
    "pie": "A fairway falling down the valley, through the hills of Benahavís.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-zagaleta-los-barrancos": {
-   "src": "images/golf/la-zagaleta-los-barrancos.jpg",
+   "src": "../images/golf/la-zagaleta-los-barrancos.jpg",
    "pie": "Fairway with lake and palms; beyond, the sea and Africa.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-zagaleta-old": {
-   "src": "images/golf/la-zagaleta-old.jpg",
+   "src": "../images/golf/la-zagaleta-old.jpg",
    "pie": "The La Zagaleta valley at dusk, fairways dropping away through the pines.",
    "credito": "Malashpina archive",
    "url": null
  },
  "flamingos-villa-padierna": {
-   "src": "images/golf/flamingos-villa-padierna.jpg",
+   "src": "../images/golf/flamingos-villa-padierna.jpg",
    "pie": "Aerial view with the Villa Padierna hotel.",
    "credito": "Malashpina archive",
    "url": null
  },
  "san-roque-club-new": {
-   "src": "images/golf/san-roque-club-new.jpg",
+   "src": "../images/golf/san-roque-club-new.jpg",
    "pie": "A green beside the lake at dusk.",
    "credito": "Malashpina archive",
    "url": null
  },
  "san-roque-club-old": {
-   "src": "images/golf/san-roque-club-old.jpg",
+   "src": "../images/golf/san-roque-club-old.jpg",
    "pie": "The climb to the farmhouse clubhouse, through cork oaks.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-quinta-golf": {
-   "src": "images/golf/la-quinta-golf.jpg",
+   "src": "../images/golf/la-quinta-golf.jpg",
    "pie": "A lake with palms, and La Concha behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "alhaurin-golf": {
-   "src": "images/golf/alhaurin-golf.jpg",
+   "src": "../images/golf/alhaurin-golf.jpg",
    "pie": "The course lake, with the sierra behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "atalaya-new": {
-   "src": "images/golf/atalaya-new.jpg",
+   "src": "../images/golf/atalaya-new.jpg",
    "pie": "A lake at Atalaya (the source does not say whether Old or New).",
    "credito": "Wikimedia Commons · CC BY-SA 3.0 · R-E-AL",
    "url": "https://commons.wikimedia.org/wiki/File:2009-03-12-Atalaya-1.JPG"
  },
  "parador-malaga-golf": {
-   "src": "images/golf/parador-malaga-golf.jpg",
+   "src": "../images/golf/parador-malaga-golf.jpg",
    "pie": "The green in front of the Parador building.",
    "credito": "Wikimedia Commons · CC BY-SA 4.0 · Paradores",
    "url": "https://commons.wikimedia.org/wiki/File:Parador_de_M%C3%A1laga_Golf4.jpg"
  },
  "mijas-golf-los-olivos": {
-   "src": "images/golf/mijas-golf-los-olivos.jpg",
+   "src": "../images/golf/mijas-golf-los-olivos.jpg",
    "pie": "The Los Olivos fairway, with the development behind.",
    "credito": "Wikimedia Commons · CC BY 3.0 · Roger Husvik (Panoramio)",
    "url": "https://commons.wikimedia.org/wiki/File:Los_Olivos_-_panoramio.jpg"
  },
  "estepona-golf": {
-   "src": "images/golf/estepona-golf.jpg",
+   "src": "../images/golf/estepona-golf.jpg",
    "pie": "From the 10th tee, the club’s signature hole.",
    "credito": "Wikimedia Commons · CC BY 3.0 · TheLegalEditor",
    "url": "https://commons.wikimedia.org/wiki/File:View_from_10th_Tee.jpg"
  },
  "real-club-valderrama": {
-  "src": "images/golf/real-club-valderrama.jpg",
+  "src": "../images/golf/real-club-valderrama.jpg",
   "pie": "A green and its bunkers.",
   "credito": "Wikimedia Commons · CC BY 2.0 · Pablo Herrero",
   "url": "https://commons.wikimedia.org/wiki/File%3AReal_Club_Valderrama_-_2008_%281%29.jpg"
  },
  "la-reserva-club-sotogrande": {
-  "src": "images/golf/la-reserva-club-sotogrande.jpg",
+  "src": "../images/golf/la-reserva-club-sotogrande.jpg",
   "pie": "The course, with the clubhouse behind.",
   "credito": "Wikimedia Commons · CC BY 4.0 · sotogrande",
   "url": "https://commons.wikimedia.org/wiki/File%3ASotogrande-lareserva.jpg"
  },
  "los-naranjos-golf": {
-  "src": "images/golf/los-naranjos-golf.jpg",
+  "src": "../images/golf/los-naranjos-golf.jpg",
   "pie": "Fairway and clubhouse, with La Concha behind.",
   "credito": "Wikimedia Commons · CC BY-SA 3.0 · FalGordo",
   "url": "https://commons.wikimedia.org/wiki/File%3ALos_Naranjos_Golf_Club.JPG"
  },
  "golf-torrequebrada": {
-  "src": "images/golf/golf-torrequebrada.jpg",
+  "src": "../images/golf/golf-torrequebrada.jpg",
   "pie": "The course lake and its palms.",
   "credito": "Wikimedia Commons · CC BY-SA 4.0 · Beata77",
   "url": "https://commons.wikimedia.org/wiki/File%3ABenalmadena-golf-costa-del-sol-torrequebrada.jpg"
  },
  "atalaya-old": {
-  "src": "images/golf/atalaya-old.jpg",
+  "src": "../images/golf/atalaya-old.jpg",
   "pie": "The course at dusk.",
   "credito": "Wikimedia Commons · CC BY-SA 4.0 · ANAGSPC",
   "url": "https://commons.wikimedia.org/wiki/File%3AAtalaya_Golf_%26_Country_Club_en_Estepona.jpg"
  },
  "mijas-golf-los-lagos": {
-   "src": "images/golf/mijas-golf-los-lagos.jpg",
+   "src": "../images/golf/mijas-golf-los-lagos.jpg",
    "pie": "Aerial view of the lakes the course is named after.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-hacienda-heathland": {
-  "src": "images/golf/la-hacienda-heathland.jpg",
+  "src": "../images/golf/la-hacienda-heathland.jpg",
   "pie": "The coastal links at Heathland.",
   "credito": "Wikimedia Commons · CC BY 3.0 · Jose Luis Filpo Cabana",
   "url": "https://commons.wikimedia.org/wiki/File%3AAlcaidesa_Heathland.jpg"
  },
+ "real-club-el-candado": {
+   "src": "../images/golf/real-club-el-candado.jpg",
+   "pie": "Green and bunker, with the sea beyond.",
+   "credito": "Malashpina archive",
+   "url": null
+ },
+ "real-club-guadalhorce": {
+   "src": "../images/golf/real-club-guadalhorce.jpg",
+   "pie": "Fairway towards the clubhouse, through the palms.",
+   "credito": "Malashpina archive",
+   "url": null
+ },
  "rio-real-golf": {
-  "src": "images/golf/rio-real-golf.jpg",
+  "src": "../images/golf/rio-real-golf.jpg",
   "pie": "Javier Arana’s course beside the sea.",
   "credito": "Malashpina archive",
   "url": null
  },
  "real-club-de-golf-sotogrande": {
-  "src": "images/golf/real-club-de-golf-sotogrande.jpg",
+  "src": "../images/golf/real-club-de-golf-sotogrande.jpg",
   "pie": "A green between palms and lake.",
   "credito": "© golfsotogrande.com",
   "url": "https://golfsotogrande.com"
  },
  "finca-cortesin-golf": {
-   "src": "images/golf/finca-cortesin-golf.jpg",
+   "src": "../images/golf/finca-cortesin-golf.jpg",
    "pie": "Fairways and bunkers, with the Sierra Bermeja behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "real-club-de-golf-las-brisas": {
-   "src": "images/golf/real-club-de-golf-las-brisas.jpg",
+   "src": "../images/golf/real-club-de-golf-las-brisas.jpg",
    "pie": "A green among the palms, with La Concha behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "aloha-golf-club": {
-  "src": "images/golf/aloha-golf-club.jpg",
+  "src": "../images/golf/aloha-golf-club.jpg",
   "pie": "Bunker and fairway at dusk.",
   "credito": "© clubdegolfaloha.com",
   "url": "https://clubdegolfaloha.com"
  },
  "real-club-de-golf-guadalmina-sur": {
-  "src": "images/golf/real-club-de-golf-guadalmina-sur.jpg",
+  "src": "../images/golf/real-club-de-golf-guadalmina-sur.jpg",
   "pie": "Aerial view of the course.",
   "credito": "© guadalminagolf.com",
   "url": "https://guadalminagolf.com"
  },
  "marbella-club-golf-resort": {
-  "src": "images/golf/marbella-club-golf-resort.jpg",
+  "src": "../images/golf/marbella-club-golf-resort.jpg",
   "pie": "The 18th, beside the lake.",
   "credito": "© marbellaclub.com",
   "url": "https://marbellaclub.com"
  },
  "la-cala-resort-asia": {
-  "src": "images/golf/la-cala-resort-asia.jpg",
+  "src": "../images/golf/la-cala-resort-asia.jpg",
   "pie": "The 18th on the Asia course, with the Mijas sierra behind.",
   "credito": "© lacala.com",
   "url": "https://lacala.com"
  },
  "lauro-golf": {
-  "src": "images/golf/lauro-golf.jpg",
+  "src": "../images/golf/lauro-golf.jpg",
   "pie": "Fairway with holm oaks and the sierra behind.",
   "credito": "Malashpina archive",
   "url": null
  },
  "higueron-marbella-golf": {
-  "src": "images/golf/higueron-marbella-golf.jpg",
+  "src": "../images/golf/higueron-marbella-golf.jpg",
   "pie": "Aerial view of the course, formerly Marbella G&CC.",
   "credito": "Malashpina archive",
   "url": null
  },
  "santa-maria-golf": {
-  "src": "images/golf/santa-maria-golf.jpg",
+  "src": "../images/golf/santa-maria-golf.jpg",
   "pie": "A broad green against the Elviria pines.",
   "credito": "Malashpina archive",
   "url": null
  },
  "cabopino-golf": {
-  "src": "images/golf/cabopino-golf.jpg",
+  "src": "../images/golf/cabopino-golf.jpg",
   "pie": "A green above the sea at Cabopino.",
   "credito": "Malashpina archive",
   "url": null
  },
  "anoreta-golf": {
-  "src": "images/golf/anoreta-golf.jpg",
+  "src": "../images/golf/anoreta-golf.jpg",
   "pie": "Lake and palm grove, with the Mediterranean beyond.",
   "credito": "Malashpina archive",
   "url": null
  },
  "la-resina-golf": {
-  "src": "images/golf/la-resina-golf.jpg",
+  "src": "../images/golf/la-resina-golf.jpg",
   "pie": "Fairway between the lake and a line of cypresses.",
   "credito": "Malashpina archive",
   "url": null
@@ -438,31 +450,31 @@ const FOTOS_CAMPO = {
 /* Segunda imagen de un campo: la que se usa en la ficha de la promoción. */
 const FOTOS_FICHA = {
  "calanova-golf": {
-   "src": "images/golf/calanova-golf-ficha.jpg",
+   "src": "../images/golf/calanova-golf-ficha.jpg",
    "pie": "The course lake, with the sea beyond.",
    "credito": "Malashpina archive",
    "url": null
  },
  "guadalmina-norte": {
-   "src": "images/golf/guadalmina-norte-ficha.jpg",
+   "src": "../images/golf/guadalmina-norte-ficha.jpg",
    "pie": "A fairway with the village behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-canada-golf": {
-   "src": "images/golf/la-canada-golf-ficha.jpg",
+   "src": "../images/golf/la-canada-golf-ficha.jpg",
    "pie": "Fairway with the sierra and the bay behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "la-quinta-golf": {
-   "src": "images/golf/la-quinta-golf-ficha.jpg",
+   "src": "../images/golf/la-quinta-golf-ficha.jpg",
    "pie": "A green beside the lake, with the village behind.",
    "credito": "Malashpina archive",
    "url": null
  },
  "santa-clara-golf-marbella": {
-   "src": "images/golf/santa-clara-golf-marbella-ficha.jpg",
+   "src": "../images/golf/santa-clara-golf-marbella-ficha.jpg",
    "pie": "Aerial view of the course and its clubhouse.",
    "credito": "Malashpina archive",
    "url": null
@@ -473,10 +485,10 @@ const PROMOS = [
 
   { id:'villas-alamos', render:{ dominio:"sotograndehome.com", pie:"Villa with pool and garden." }, name:'Las Villas de los Álamos', sub:'ACCIONA Inmobiliaria',
     municipio:'Sotogrande (Cádiz)', zona:'Sotogrande Alto · Los Álamos', lat:36.29192, lng:-5.31299,
-    image:'images/promos/villas-alamos.jpg',
+    image:'../images/promos/villas-alamos.jpg',
     promotor:'ACCIONA Inmobiliaria', estudio:'Torras y Sierra', estudioFuente:'inmobiliaria.acciona.com', derechosGolf:null,
     tipologia:'Three- to four-bedroom villas and townhouses', unidades:49,
-    precio:'€830.000 – €3.500.000', precioDesde:'€830.000', precioEstimado:false, eurM2:8500,
+    precio:'€830,000 – €3,500,000', precioDesde:'€830,000', precioEstimado:false, eurM2:8500,
     estado:'Under construction', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['la-canada-golf',1,''],['real-club-valderrama',6,''],['la-reserva-club-sotogrande',7,''],['san-roque-club-old',8,''],['the-alto-club-almenara',8,''],['san-roque-club-new',10,''],['real-club-de-golf-sotogrande',11,''],['la-hacienda-alcaidesa-links',12,''],['la-hacienda-heathland',14,'']],
@@ -489,11 +501,11 @@ const PROMOS = [
 
   { id:'village-verde', render:{ dominio:"villageverdesotogrande.com", pie:"The resort at dusk." }, name:'Village Verde', sub:'La Reserva de Sotogrande',
     municipio:'Sotogrande (Cádiz)', zona:'La Reserva Club', lat:36.28943, lng:-5.32142,
-    image:'images/promos/village-verde.jpg',
+    image:'../images/promos/village-verde.jpg',
     promotor:'Sotogrande SA', estudio:'L35 Architects', estudioFuente:'l35.com',
     derechosGolf:'Membership of La Reserva Club is taken out separately: it is not included in the purchase. An 18-hole green fee starts at €199.', derechosFuente:'lareservaclubsotogrande.com',
     tipologia:'Two- to four-bedroom sustainable apartments and penthouses', unidades:124,
-    precio:'€830.000 – €2.400.000', precioDesde:'€830.000', precioEstimado:false, eurM2:7500,
+    precio:'€830,000 – €2,400,000', precioDesde:'€830,000', precioEstimado:false, eurM2:7500,
     estado:'Phase 1 delivered · Phase 2 under way', entrega:'2024–2025',
     campoPropio:'la-reserva-club-sotogrande', campoPropioPendiente:null,
     cursos:[['la-reserva-club-sotogrande',0,'In-resort'],['real-club-valderrama',3,''],['la-canada-golf',4,''],['the-alto-club-almenara',6,''],['san-roque-club-old',7,''],['san-roque-club-new',8,''],['real-club-de-golf-sotogrande',9,''],['la-hacienda-alcaidesa-links',10,''],['la-hacienda-heathland',12,'']],
@@ -506,11 +518,11 @@ const PROMOS = [
 
   { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Pool and terrace above the sea." }, name:'MAREA by Missoni', sub:'Finca Cortesín · Hotel · Golf · Spa',
     municipio:'Casares', zona:'Finca Cortesín Resort', lat:36.379, lng:-5.224,
-    image:'images/promos/marea-missoni.jpg',
+    image:'../images/promos/marea-missoni.jpg',
     promotor:'Dar Global', estudio:'HCP Arquitectos', estudioFuente:'hcparquitectos.com',
     derechosGolf:null, derechosNota:'Dar Global does not publish any golf rights for owners at Finca Cortesín.',
     tipologia:'Two- to four-bedroom branded residences', unidades:64,
-    precio:'€1.000.000 – €3.560.000', precioDesde:'€1.000.000', precioEstimado:false, eurM2:14000,
+    precio:'€1,000,000 – €3,560,000', precioDesde:'€1,000,000', precioEstimado:false, eurM2:14000,
     estado:'Under construction', entrega:'2027',
     campoPropio:'finca-cortesin-golf', campoPropioPendiente:null,
     cursos:[['finca-cortesin-golf',0,'In-resort'],['dona-julia-golf',4,''],['la-duquesa-golf',6,''],['azata-golf',12,''],['casares-costa-golf',12,''],['estepona-golf',12,''],['valle-romano-golf',14,'']],
@@ -523,11 +535,11 @@ const PROMOS = [
 
   { id:'quercus', render:{ dominio:"realdelaquinta.com", pie:"The lake at Real de La Quinta." }, name:'Real de La Quinta · Quercus', sub:'Future Banyan Tree Residences',
     municipio:'Benahavís', zona:'Real de La Quinta Resort', lat:36.515, lng:-5.000,
-    image:'images/promos/quercus.jpg',
+    image:'../images/promos/quercus.jpg',
     promotor:'Grupo La Quinta', estudio:'González & Jacobson', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'El Lago Club is described as being for residents, but the developer does not state whether purchase includes membership.',
     tipologia:'Two- to four-bedroom apartments and penthouses', unidades:102, unidadesNota:'Phases I and II complete, 18 blocks (González & Jacobson).',
-    precio:'€1.300.000 – €3.000.000', precioDesde:'€1.300.000', precioEstimado:false, eurM2:9000,
+    precio:'€1,300,000 – €3,000,000', precioDesde:'€1,300,000', precioEstimado:false, eurM2:9000,
     estado:'Under construction', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:'El Lago Club · Jack Nicklaus Design — in development, not yet open',
     marcaPendiente:true,
@@ -541,10 +553,10 @@ const PROMOS = [
 
   { id:'epic-fendi', render:{ dominio:"epicmarbella.com", pie:"The scheme with La Concha behind." }, name:'EPIC Marbella by Fendi', sub:'Casa Branded Residences',
     municipio:'Marbella', zona:'Golden Mile · Nagüeles', lat:36.516, lng:-4.911,
-    image:'images/promos/epic-fendi.jpg',
+    image:'../images/promos/epic-fendi.jpg',
     promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Comprobado en epicmarbella.com y sierrablancaestates.com: no acreditan estudio de arquitectura. Fendi Casa y The One Atelier firman interiorismo y mobiliario, no el edificio.', derechosGolf:null, derechosNota:'Checked at epicmarbella.com: golf appears only as a nearby amenity, with no rights for owners.',
     tipologia:'Branded apartments and penthouses', unidades:56,
-    precio:'€1.750.000 – €4.450.000', precioDesde:'€1.750.000', precioEstimado:false, eurM2:15000,
+    precio:'€1,750,000 – €4,450,000', precioDesde:'€1,750,000', precioEstimado:false, eurM2:15000,
     estado:'Phased · under construction', entrega:'2024–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['dama-de-noche',8,''],['aloha-golf-club',10,''],['los-naranjos-golf',13,''],['real-club-de-golf-las-brisas',13,''],['rio-real-golf',13,''],['santa-maria-golf',13,''],['magna-marbella',14,'']],
@@ -557,10 +569,10 @@ const PROMOS = [
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Stepped terraces above the valley." }, name:'Tiara', sub:'La Quinta · NVOGA',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
-    image:'images/promos/tiara.jpg',
+    image:'../images/promos/tiara.jpg',
     promotor:'NVOGA Marbella Realty', estudio:null, estudioNota:'Checked at nvoga.com: no architectural practice documented.', derechosGolf:null,
     tipologia:'Three- to four-bedroom apartments and penthouses', unidades:56,
-    precio:'€1.550.000 – €2.300.000', precioDesde:'€1.550.000', precioEstimado:false, eurM2:8500,
+    precio:'€1,550,000 – €2,300,000', precioDesde:'€1,550,000', precioEstimado:false, eurM2:8500,
     estado:'Pre-sales · under construction', entrega:'2026+',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['la-quinta-golf',4,''],['los-arqueros-golf',4,''],['los-naranjos-golf',7,''],['magna-marbella',8,''],['el-higueral',9,''],['aloha-golf-club',10,''],['real-club-de-golf-las-brisas',10,''],['la-zagaleta-old',11,''],['guadalmina-norte',12,''],['real-club-de-golf-guadalmina-sur',12,''],['atalaya-new',13,''],['atalaya-old',13,''],['la-zagaleta-los-barrancos',13,''],['alferini-villa-padierna',14,''],['dama-de-noche',15,''],['el-paraiso-golf',15,'']],
@@ -573,11 +585,11 @@ const PROMOS = [
 
   { id:'mc-hills', render:{ dominio:"marbellaclubhills.com", pie:"Aerial view towards the sea." }, name:'Marbella Club Hills', sub:'Phase 2',
     municipio:'Benahavís', zona:'Carretera del Madroñal', lat:36.495, lng:-5.045,
-    image:'images/promos/mc-hills.jpg',
+    image:'../images/promos/mc-hills.jpg',
     promotor:'Mena Capital · Marbella Club', estudio:'Villarroel Torrico', estudioFuente:'marbellaclubhills.com',
     derechosGolf:'Stated access to Marbella Club Golf and the equestrian centre; no terms or green fees published.', derechosFuente:'marbellaclubhills.com',
     tipologia:'Apartments and semi-detached villas', unidades:120,
-    precio:'€690.000 – €1.350.000+', precioDesde:'€690.000', precioEstimado:false, eurM2:6500,
+    precio:'€690,000 – €1,350,000+', precioDesde:'€690,000', precioEstimado:false, eurM2:6500,
     estado:'Phased construction', entrega:'2026+',
     campoPropio:'marbella-club-golf-resort', campoPropioPendiente:null,
     cursos:[['marbella-club-golf-resort',0,'In-resort'],['alferini-villa-padierna',2,''],['el-higueral',7,''],['atalaya-new',9,''],['atalaya-old',9,''],['flamingos-villa-padierna',10,''],['el-paraiso-golf',13,''],['guadalmina-norte',14,''],['la-quinta-golf',14,''],['los-arqueros-golf',14,''],['real-club-de-golf-guadalmina-sur',14,''],['tramores-villa-padierna',15,'']],
@@ -590,10 +602,10 @@ const PROMOS = [
 
   { id:'zew', render:{ dominio:"Concept Homes · NVOGA", pie:"The entrance to ZEW at dusk.", origen:'render del promotor · brochure ZEW (Malashpina)' }, name:'ZEW', sub:'by Concept Homes',
     municipio:'Marbella', zona:'Elviria West', lat:36.503, lng:-4.810,
-    image:'images/promos/zew.jpg',
+    image:'../images/promos/zew.jpg',
     promotor:'Concept Homes · NVOGA', estudio:null, estudioNota:'Concept Homes / NVOGA catalogue v19: no architectural practice documented.', derechosGolf:null,
     tipologia:'Residencias boutique 3–4 dorm.', unidades:20,
-    precio:'€1.500.000 – €2.800.000 (estimado)', precioDesde:'€1.500.000', precioEstimado:true, eurM2:10000,
+    precio:'€1,500,000 – €2,800,000 (estimado)', precioDesde:'€1,500,000', precioEstimado:true, eurM2:10000,
     estado:'Pre-sales · under construction', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['higueron-marbella-golf',4,''],['rio-real-golf',4,''],['greenlife-golf',7,''],['santa-clara-golf-marbella',7,''],['cabopino-golf',11,''],['santa-maria-golf',11,''],['dama-de-noche',12,''],['aloha-golf-club',14,''],['la-siesta-golf',14,''],['miraflores-golf',15,'']],
@@ -606,13 +618,13 @@ const PROMOS = [
 
   { id:'soul-marbella', render:{ dominio:"aedashomes.com", pie:"Piscina del resort." }, name:'Soul Marbella Sunlife', sub:'Santa Clara Resort',
     municipio:'Marbella', zona:'Marbella Este · Santa Clara', lat:36.495, lng:-4.823,
-    image:'images/promos/soul-marbella.jpg',
+    image:'../images/promos/soul-marbella.jpg',
     promotor:'AEDAS Homes', promotorGrupo:'Grupo Neinor Homes',
     promotorNota:'AEDAS Homes has been a subsidiary of Neinor Homes since March 2026, when the takeover left the group holding 96.83% of the capital. The development appears here under the original developer’s name.',
     estudio:'González & Jacobson + Manuel Burgos', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'AEDAS publishes no golf rights over Santa Clara for owners.',
     tipologia:'Apartments, penthouses and villas', unidades:200, unidadesNota:'Soul Marbella completo: 5 fases, 200 viviendas (AEDAS Homes).',
-    precio:'€1.294.000 – €1.790.000', precioDesde:'€1.294.000', precioEstimado:false, eurM2:8000,
+    precio:'€1,294,000 – €1,790,000', precioDesde:'€1,294,000', precioEstimado:false, eurM2:8000,
     estado:'Sunlife entregada · Fase II en marcha', entrega:'2025',
     campoPropio:'santa-clara-golf-marbella', campoPropioPendiente:null,
     cursos:[['santa-clara-golf-marbella',0,'In-resort'],['rio-real-golf',5,''],['higueron-marbella-golf',7,''],['greenlife-golf',10,''],['santa-maria-golf',12,''],['cabopino-golf',13,''],['dama-de-noche',13,''],['aloha-golf-club',14,'']],
@@ -625,11 +637,11 @@ const PROMOS = [
 
   { id:'higueron-valley', render:{ dominio:"higueron-valley.com", pie:"Terrace overlooking the bay." }, name:'Higuerón Valley', sub:'Higuerón Resort',
     municipio:'Fuengirola', zona:'El Higuerón', lat:36.553, lng:-4.595,
-    image:'images/promos/higueron-valley.jpg',
+    image:'../images/promos/higueron-valley.jpg',
     promotor:'Higuerón Resort', estudio:null, estudioNota:'Checked at higueronvalley.com: no architectural practice documented.',
     derechosGolf:'Resort membership included — Nagomi Spa, gym, Wave Beach Club and restaurants. No golf rights: Higuerón has no course of its own.', derechosFuente:'higueronvalley.com',
     tipologia:'Two- to three-bedroom apartments and penthouses', unidades:224,
-    precio:'€595.000 – €1.950.000', precioDesde:'€595.000', precioEstimado:false, eurM2:8000,
+    precio:'€595,000 – €1,950,000', precioDesde:'€595,000', precioEstimado:false, eurM2:8000,
     estado:'Phased construction', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['golf-torrequebrada',11,''],['mijas-golf-los-lagos',12,''],['calanova-golf',14,''],['el-chaparral-golf',15,''],['mijas-golf-los-olivos',15,'']],
@@ -642,10 +654,10 @@ const PROMOS = [
 
   { id:'velaya', render:{ dominio:"velaya.stonewegliving.com", pie:"El conjunto beachfront." }, name:'Vélaya Estepona', sub:'Stoneweg Living',
     municipio:'Estepona', zona:'Beachfront New Golden Mile', lat:36.473, lng:-5.005,
-    image:'images/promos/velaya.jpg',
+    image:'../images/promos/velaya.jpg',
     promotor:'Stoneweg Living', estudio:null, estudioNota:'Checked at stonewegliving.com: no architectural practice documented. Developed by Stoneweg and Jamsa.', derechosGolf:null,
     tipologia:'Apartments, penthouses, townhouses and villas', unidades:38,
-    precio:'€792.000 – €2.500.000', precioDesde:'€792.000', precioEstimado:false, eurM2:8000,
+    precio:'€792,000 – €2,500,000', precioDesde:'€792,000', precioEstimado:false, eurM2:8000,
     estado:'Entrega en curso', entrega:'2024–2025',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['guadalmina-norte',5,''],['real-club-de-golf-guadalmina-sur',5,''],['atalaya-new',7,''],['atalaya-old',7,''],['el-paraiso-golf',8,''],['el-higueral',10,''],['la-quinta-golf',11,''],['los-naranjos-golf',11,''],['magna-marbella',11,''],['real-club-de-golf-las-brisas',11,''],['aloha-golf-club',12,''],['dama-de-noche',12,''],['los-arqueros-golf',12,''],['alferini-villa-padierna',13,''],['tramores-villa-padierna',13,''],['flamingos-villa-padierna',14,'']],
@@ -658,10 +670,10 @@ const PROMOS = [
 
   { id:'the-view', render:{ dominio:"marbella-ev.com", pie:"A residential block above Las Colinas." }, name:'The View Marbella', sub:'Las Colinas de Marbella',
     municipio:'Benahavís', zona:'Las Colinas', lat:36.510, lng:-4.97,
-    image:'images/promos/the-view.jpg',
+    image:'../images/promos/the-view.jpg',
     promotor:'The View Companies', estudio:'Teodoro Cabrilla + González & Jacobson', estudioFuente:'gjarquitectura.com', derechosGolf:null,
     tipologia:'Two- to four-bedroom apartments and penthouses', unidades:119,
-    precio:'€799.000 – €2.499.000', precioDesde:'€799.000', precioEstimado:false, eurM2:6500,
+    precio:'€799,000 – €2,499,000', precioDesde:'€799,000', precioEstimado:false, eurM2:6500,
     estado:'Phase 1 delivered · Phase 2 under way', entrega:'2024–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['los-naranjos-golf',2,''],['aloha-golf-club',3,''],['magna-marbella',3,''],['real-club-de-golf-las-brisas',5,''],['la-quinta-golf',7,''],['dama-de-noche',13,''],['guadalmina-norte',13,''],['los-arqueros-golf',13,''],['real-club-de-golf-guadalmina-sur',13,''],['atalaya-new',15,''],['atalaya-old',15,''],['el-higueral',15,'']],
@@ -674,10 +686,10 @@ const PROMOS = [
 
   { id:'calanova', render:{ dominio:"avantespacia.com", pie:"The scheme at dusk, from the pool." }, name:'Calanova Collection', sub:'Avantespacia',
     municipio:'Mijas', zona:'La Cala de Mijas', lat:36.520, lng:-4.692,
-    image:'images/promos/calanova.jpg',
+    image:'../images/promos/calanova.jpg',
     promotor:'Avantespacia', estudio:null, estudioNota:'Checked at avantespacia.com: no architectural practice documented. Built by Ferrovial.', derechosGolf:null,
     tipologia:'Apartamentos 2–3 dorm.', unidades:154,
-    precio:'€520.000 – €710.000', precioDesde:'€520.000', precioEstimado:false, eurM2:5000,
+    precio:'€520,000 – €710,000', precioDesde:'€520,000', precioEstimado:false, eurM2:5000,
     estado:'Under construction', entrega:'2025–2026',
     campoPropio:'calanova-golf', campoPropioPendiente:null,
     cursos:[['calanova-golf',0,'In-resort'],['la-noria-golf',5,''],['el-chaparral-golf',12,''],['miraflores-golf',12,''],['santana-golf',12,''],['la-cala-resort-asia',13,''],['cabopino-golf',14,''],['la-cala-resort-europa',14,''],['la-siesta-golf',14,''],['la-cala-resort-america',15,'']],
@@ -690,11 +702,11 @@ const PROMOS = [
 
   { id:'quintessence', render:{ dominio:"quintessencemarbella.com", pie:"The scheme with its central pool." }, name:'Quintessence Marbella', sub:'Altos de Los Monteros',
     municipio:'Marbella', zona:'Marbella Este', lat:36.499, lng:-4.787,
-    image:'images/promos/quintessence.jpg',
+    image:'../images/promos/quintessence.jpg',
     promotor:'Grupo Insur', estudio:'DPYA Arquitectura', estudioFuente:'dpya.com',
     derechosGolf:null, derechosNota:'Grupo Insur publishes no golf rights for owners.',
     tipologia:'Apartamentos 2–3 dorm.', unidades:96,
-    precio:'€575.000 – €1.350.000', precioDesde:'€575.000', precioEstimado:false, eurM2:6500,
+    precio:'€575,000 – €1,350,000', precioDesde:'€575,000', precioEstimado:false, eurM2:6500,
     estado:'Under construction', entrega:'Q4 2025',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['greenlife-golf',3,''],['higueron-marbella-golf',6,''],['rio-real-golf',6,''],['cabopino-golf',10,''],['santa-clara-golf-marbella',10,''],['santa-maria-golf',13,''],['dama-de-noche',14,''],['la-siesta-golf',14,''],['miraflores-golf',14,''],['la-noria-golf',15,'']],
@@ -716,7 +728,7 @@ const PROMOS = [
     promotor:'RGZ Developers', estudio:null, estudioNota:'Interiors by Bentley Home with Luxury Living Group; the architectural practice is not documented.',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights: the Golden Mile does not offer them.',
     tipologia:'Three- to four-bedroom branded duplexes', unidades:8,
-    precio:'€3.450.000 – €4.150.000', precioDesde:'€3.450.000', precioEstimado:false, eurM2:9900,
+    precio:'€3,450,000 – €4,150,000', precioDesde:'€3,450,000', precioEstimado:false, eurM2:9900,
     eurM2Nota:'€/m² derived from the entry price against the smallest unit (350 m²); the developer does not publish the figure.',
     estado:'For sale', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -735,7 +747,7 @@ const PROMOS = [
     promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Designed in collaboration with Karl Lagerfeld; the architectural practice is not documented.',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights.',
     tipologia:'Branded villas', unidades:5,
-    precio:'€16.500.000 (Villa St. Germain)', precioDesde:'€16.500.000', precioEstimado:false, eurM2:20000,
+    precio:'€16,500,000 (Villa St. Germain)', precioDesde:'€16,500,000', precioEstimado:false, eurM2:20000,
     eurM2Nota:'€/m² estimated: a price is published for only one of the five villas, and not its built area. Above €10,000 the scale tops out, so the estimate does not change the score.',
     estado:'Under construction', entrega:'2026',
     campoPropio:null, campoPropioPendiente:null,
@@ -753,7 +765,7 @@ const PROMOS = [
     promotor:'Dar Global', estudio:null, estudioNota:'Design inspired by Automobili Lamborghini; the architectural practice is not documented.',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights.',
     tipologia:'Four- to six-bedroom villas', unidades:53,
-    precio:'desde €8.488.653', precioDesde:'€8.488.653', precioEstimado:false, eurM2:10400,
+    precio:'desde €8,488,653', precioDesde:'€8,488,653', precioEstimado:false, eurM2:10400,
     eurM2Nota:'€/m² derived from the entry price against the smallest villa (819 m²).',
     estado:'Under construction', entrega:'2028',
     campoPropio:null, campoPropioPendiente:null,
@@ -773,7 +785,7 @@ const PROMOS = [
     estudio:'Cacopardo Arquitectos', estudioFuente:'spintohills.homes',
     derechosGolf:null, derechosNota:'Views over Finca Cortesín, with no golf rights on the course.',
     tipologia:'Four- to five-bedroom villas', unidades:17,
-    precio:'€2.150.000 – €2.900.000', precioDesde:'€2.150.000', precioEstimado:false, eurM2:5400,
+    precio:'€2,150,000 – €2,900,000', precioDesde:'€2,150,000', precioEstimado:false, eurM2:5400,
     eurM2Nota:'€/m² estimated against a built area of around 400 m²: the sources do not publish the figure.',
     estado:'For sale', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -797,7 +809,7 @@ const PROMOS = [
     promotor:'Prestige Expo Group + Grupo BZH', estudio:'Yodezeen + Arata Arquitectura', estudioFuente:'ejeprime.com',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights.',
     tipologia:'Villas en altura 300–1.060 m²', unidades:40,
-    precio:'€3.500.000 – €6.900.000', precioDesde:'€3.500.000', precioEstimado:false, eurM2:11700,
+    precio:'€3,500,000 – €6,900,000', precioDesde:'€3,500,000', precioEstimado:false, eurM2:11700,
     eurM2Nota:'€/m² derived from the entry price against the smallest unit (300 m²).',
     estado:'Under construction · 60% sold', entrega:'2026',
     campoPropio:null, campoPropioPendiente:null,
@@ -816,7 +828,7 @@ const PROMOS = [
     estudio:null, estudioNota:'Architectural practice not documented in the sources consulted.',
     derechosGolf:null, derechosNota:'On the edge of Estepona Golf, with no golf rights published for owners.',
     tipologia:'Three-bedroom villas with basement', unidades:10,
-    precio:'€1.440.000 – €1.850.000', precioDesde:'€1.440.000', precioEstimado:false, eurM2:3600,
+    precio:'€1,440,000 – €1,850,000', precioDesde:'€1,440,000', precioEstimado:false, eurM2:3600,
     eurM2Nota:'€/m² derived from the entry price against the 400 m² built area the sources publish.',
     estado:'Under construction', entrega:'2026',
     campoPropio:'estepona-golf', campoPropioPendiente:null,
@@ -835,7 +847,7 @@ const PROMOS = [
     promotor:'Taylor Wimpey España', estudio:null, estudioNota:'Architectural practice not documented in the sources consulted.',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights.',
     tipologia:'Two- to three-bedroom apartments and penthouses', unidades:60,
-    precio:'desde €585.000', precioDesde:'€585.000', precioEstimado:false, eurM2:4900,
+    precio:'desde €585,000', precioDesde:'€585,000', precioEstimado:false, eurM2:4900,
     eurM2Nota:'€/m² estimated against around 120 m² built: the sources publish the price but not the average floor area.',
     estado:'For sale', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -964,13 +976,13 @@ PROMOS.forEach(p => {
     b1: p.d.b1, b2: escB2(p.unidades), b3: escB3(p.eurM2), b4: p.d.b4
   };
   p.why = {
-    a1: `Campo ★★+ más próximo: ${cercano.name} (${'★'.repeat(cercano.stars)}).`,
-    a2: `${p.n4} campo${p.n4 === 1 ? '' : 's'} ★★★★ en 15′; ponderado${p.n4 === 1 ? '' : 's'} por acceso = ${p.ef4}.`,
-    a3: `${p.n3} campo${p.n3 === 1 ? '' : 's'} ★★★+ en 15′; ponderado${p.n3 === 1 ? '' : 's'} por acceso = ${p.ef3}.`,
+    a1: `Nearest ★★+ course: ${cercano.name} (${'★'.repeat(cercano.stars)}).`,
+    a2: `${p.n4} ★★★★ course${p.n4 === 1 ? '' : 's'} within 15 min; weighted by access = ${p.ef4}.`,
+    a3: `${p.n3} ★★★+ course${p.n3 === 1 ? '' : 's'} within 15 min; weighted by access = ${p.ef3}.`,
     a4: `${cercano.min === 0 ? 'In-resort' : cercano.min + ' min'} to ${cercano.name}.`,
     a5: p.d.a5why, a6: p.d.a6why, b1: p.d.b1why,
-    b2: `${p.unidades} unidades.`,
-    b3: `≈ €${p.eurM2.toLocaleString('es-ES')}/m².`,
+    b2: `${p.unidades} units.`,
+    b3: `≈ €${p.eurM2.toLocaleString('en-GB')}/m².`,
     b4: p.d.b4why
   };
   p.A = p.score.a1 + p.score.a2 + p.score.a3 + p.score.a4 + p.score.a5 + p.score.a6;
@@ -1164,7 +1176,7 @@ if (rankBody) pintarRanking();
      porque no hay criterio que lo fije. */
   const SUELO = 500000;
   const pr = PROMOS.map(x => Number(String(x.precioDesde).replace(/[^0-9]/g, ''))).filter(Boolean);
-  const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + 'M' : Math.round(n / 1000) + 'k';
+  const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '') + 'M' : Math.round(n / 1000) + 'k';
   const kr = document.getElementById('kpiRango');
   if (kr && pr.length) kr.textContent = '\u20ac' + mm(SUELO) + '\u2013' + mm(Math.max(...pr));
   const pie = document.getElementById('pieRecuento');
@@ -1194,7 +1206,7 @@ function fotoReferencia(p) {
   const c = p.cercano;
   const f = (typeof FOTOS_FICHA !== 'undefined' && FOTOS_FICHA[c.id]) || c.foto;
   if (!f) return '';
-  const cuando = c.min === 0 ? 'in-resort' : 'a ' + c.min + '′';
+  const cuando = c.min === 0 ? 'in-resort' : c.min + '′';
   return `<figure class="dc-ref">
       <img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy"/>
       <figcaption>
@@ -1227,8 +1239,8 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     // Dos versiones del mismo renglon: una en texto plano para el aria-label y
     // otra con las estrellas marcadas como en el resto de la guia, porque el
     // pintor de estrellas solo pasa una vez al cargar y esto se escribe despues.
-    const ficha = c => `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'} · ${'★'.repeat(c.stars)} · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
-    const fichaHtml = c => `<b>${c.name}</b> · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'} · <span class="star">${'★'.repeat(c.stars)}</span><span class="star-off"><span class="star">${'★'.repeat(4 - c.stars)}</span></span> · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
+    const ficha = c => `${c.name} · ${c.min === 0 ? 'in-resort' : c.min + '′'} · ${'★'.repeat(c.stars)} · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
+    const fichaHtml = c => `<b>${c.name}</b> · ${c.min === 0 ? 'in-resort' : c.min + '′'} · <span class="star">${'★'.repeat(c.stars)}</span><span class="star-off"><span class="star">${'★'.repeat(4 - c.stars)}</span></span> · ${ACCESO_LBL[c.acceso].toLowerCase()}`;
     const nodos = campos.map((c, i) => {
       // Medio paso de desfase: así el eje vertical queda libre para las
       // etiquetas de los anillos y ningún nodo se sienta encima de ellas.
@@ -1279,7 +1291,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     const f = (typeof FOTOS_FICHA !== 'undefined' && FOTOS_FICHA[c.id]) || c.foto;
     const ficha = [
       '★'.repeat(c.stars) + `<span class="star-off">${'★'.repeat(4 - c.stars)}</span>`,
-      c.min === 0 ? 'in-resort' : 'a ' + c.min + '′',
+      c.min === 0 ? 'in-resort' : c.min + '′',
       ACCESO_LBL[c.acceso].toLowerCase(),
       c.hoyos,
       c.disenador ? c.disenador + (c.ano ? ', ' + c.ano : '') : null,
@@ -1329,7 +1341,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <span class="dc-f-nota">${p.total}<small>/100</small></span>
           <div class="dc-b-prueba">
             <span class="dc-f-label">Benchmark course</span>
-            <span class="dc-f-prueba">${p.cercano.name} · ${p.cercano.min === 0 ? 'in-resort' : 'a ' + p.cercano.min + '′'} · ${'★'.repeat(p.cercano.stars)}<span class="star-off">${'★'.repeat(4 - p.cercano.stars)}</span> · ${ACCESO_LBL[p.cercano.acceso].toLowerCase()}</span>
+            <span class="dc-f-prueba">${p.cercano.name} · ${p.cercano.min === 0 ? 'in-resort' : p.cercano.min + '′'} · ${'★'.repeat(p.cercano.stars)}<span class="star-off">${'★'.repeat(4 - p.cercano.stars)}</span> · ${ACCESO_LBL[p.cercano.acceso].toLowerCase()}</span>
           </div>
         </div>
       </div>
@@ -1366,8 +1378,8 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <div><dt>Property type</dt><dd>${p.tipologia}</dd></div><div><dt>Status</dt><dd>${p.estado} · ${p.entrega}</dd></div>
           <div><dt>From</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Estimated price</small>' : '<small>Guide price</small>'}</dd></div>
           <div><dt>Price range</dt><dd class="dd-texto">${p.precio}</dd></div>
-          <div><dt>Positioning</dt><dd>€${p.eurM2.toLocaleString('es-ES')}<small>per m²</small></dd></div>
-          <div><dt>Units</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : '<small>desarrollo completo</small>'}</dd></div>
+          <div><dt>Positioning</dt><dd>€${p.eurM2.toLocaleString('en-GB')}<small>per m²</small></dd></div>
+          <div><dt>Units</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : '<small>whole development</small>'}</dd></div>
         </dl>
         <div class="crit-tira">${tira(FILAS_B)}</div>
         <div class="fb-pie">
@@ -1393,7 +1405,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
             <dl class="quick-facts">
               <div><dt>Distance to the benchmark</dt><dd>${p.cercano.min === 0 ? 'In-resort' : p.cercano.min + '′'}<small>${ACCESO_LBL[p.cercano.acceso].toLowerCase()} · ${'★'.repeat(p.cercano.stars)}</small></dd></div>
               <div><dt>★★★+ courses within 15 min</dt><dd>${p.n3}<small>of ${p.enQuince} inside the threshold</small></dd></div>
-              <div><dt>Bookable without membership</dt><dd>${p.jugables}<small>de ${p.enQuince}</small></dd></div>
+              <div><dt>Bookable without membership</dt><dd>${p.jugables}<small>of ${p.enQuince}</small></dd></div>
             </dl>
             <div class="crit-tira">${tira(FILAS_A)}</div>
           </div>
@@ -1524,7 +1536,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
      es justo lo que cuenta el texto de al lado. */
   const mitades = `
     <figure class="gfx">
-      <figcaption class="gana-rot">De dónde salen los ${p.total}</figcaption>
+      <figcaption class="gana-rot">Where the ${p.total} comes from</figcaption>
       <div class="gfx-mitades">
         <div class="gfx-fila">
           <span class="gfx-lbl">Golf setting</span>
@@ -1550,9 +1562,9 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     dato('Units', p.unidades, 'desarrollo completo'),
     dato('Status', p.estado, p.entrega ? 'entrega ' + p.entrega : ''),
     dato('From', p.precioDesde, p.precio),
-    dato('Positioning', '€' + p.eurM2.toLocaleString('es-ES'), 'por m²'),
+    dato('Positioning', '€' + p.eurM2.toLocaleString('en-GB'), 'por m²'),
     dato('Benchmark course', estrellas(c.stars),
-      `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'}`)
+      `${c.name} · ${c.min === 0 ? 'in-resort' : c.min + '′'}`)
   ].join('');
 
   const foto = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id] && FOTOS_PROMO[p.id][0]) || null;
@@ -2352,7 +2364,7 @@ function initAtlas(el) {
         <ul class="ap-hechos">
           <li><strong>${en15.length}</strong> campo${en15.length === 1 ? '' : 's'} en quince minutos.</li>
           <li><strong>${reservables}</strong> admite${reservables === 1 ? '' : 'n'} reserva sin ser socio.</li>
-          <li>The nearest, <strong>${p.cercano.name}</strong>${p.cercano.min === 0 ? ', in-resort' : `, a ${p.cercano.min}′`}.</li>
+          <li>The nearest, <strong>${p.cercano.name}</strong>${p.cercano.min === 0 ? ', in-resort' : `, ${p.cercano.min}′`}.</li>
           ${fuera ? `<li class="ap-fuera">${fuera} declarado${fuera === 1 ? '' : 's'} beyond fifteen minutes: does not score${fuera === 1 ? '' : 'n'}.</li>` : ''}
         </ul>
         <div class="ap-bloque ap-accion">

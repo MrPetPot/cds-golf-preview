@@ -2,9 +2,8 @@
 (() => {
   'use strict';
 
-  const LETRAS = [...'PRIMEandGOLF'];
+  const LETRAS = [...'PRIMEANDGOLF'];
   const MS = 920;
-  const VUELTAS = 2;
   const LADO = 64;
 
   const canvas = document.createElement('canvas');
@@ -32,9 +31,14 @@
     };
   }
 
+  // Sin tarjeta de fondo: el icono se recorta sobre la barra de pestanas y se
+  // integra con ella. Pero un negro fijo desaparece sobre una barra oscura, que
+  // es la mitad de los navegadores, asi que la tinta sigue al tema del sistema.
+  const oscuro = matchMedia('(prefers-color-scheme: dark)');
+  const TINTA = () => oscuro.matches ? '#FFFFFF' : '#1A1A1A';
+
   function fotograma(letra) {
-    ctx.fillStyle = '#1A1A1A';
-    ctx.fillRect(0, 0, LADO, LADO);
+    ctx.clearRect(0, 0, LADO, LADO);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
 
@@ -46,27 +50,32 @@
     const m = tinta(letra, tam);
 
     ctx.font = `700 ${tam}px ${FUENTE}`;
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = TINTA();
     ctx.fillText(letra, LADO / 2, (LADO + m.ascenso - m.descenso) / 2);
     return canvas.toDataURL('image/png');
   }
 
   function arrancar() {
-    // Se rasterizan las doce letras una sola vez; después solo se cambia el href.
-    // Las minusculas de "and" se escalan hasta llenar el icono como las mayusculas:
-    // a 64 px cada fotograma es una letra sola, y la distincion de peso del logotipo
-    // no cabe. Se prefiere la grafia correcta a una jerarquia que no se veria.
-    const frames = LETRAS.map(fotograma);
+    // Se rasterizan las doce letras y se vuelven a rasterizar si cambia el tema
+    // del sistema: la tinta es distinta y las imagenes ya generadas no valen.
+    let frames = LETRAS.map(fotograma);
+    let i = 0;
     link.type = 'image/png';
     link.href = frames[0];
+
+    const repintar = () => {
+      frames = LETRAS.map(fotograma);
+      link.href = frames[i % frames.length];
+    };
+    if (oscuro.addEventListener) oscuro.addEventListener('change', repintar);
+    else if (oscuro.addListener) oscuro.addListener(repintar);   // Safari antiguo
+
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    // Dos vueltas y se detiene en la P: el último paso cae otra vez en frames[0].
-    const pasos = frames.length * VUELTAS;
-    let i = 0;
-    const reloj = setInterval(() => {
+    // Sin fin: la pestaña sigue deletreando la marca mientras la página viva.
+    // El modulo hace que al llegar a la F vuelva a la P sin corte.
+    setInterval(() => {
       i += 1;
       link.href = frames[i % frames.length];
-      if (i >= pasos) clearInterval(reloj);
     }, MS);
   }
 

@@ -186,7 +186,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 12px;
   letter-spacing: .42em;
   text-transform: uppercase;
-  color: #A8C4E0;
+  color: #C8A45C;           /* oro claro — antes azul claro #A8C4E0 */
+  /* La foto de portada es gris media justo en esta franja: sin sombra ningun
+     color llega a AA aqui, ni el blanco (4,4:1). Es la misma mitigacion que
+     ya llevaban las siete paginas interiores. */
+  text-shadow: 0 1px 14px rgba(15,23,38,.8);
   margin-bottom: 32px;
   font-weight: 700;
 }
@@ -566,7 +570,7 @@ section {
   font-size: 10px;
   letter-spacing: .32em;
   text-transform: uppercase;
-  color: #A8C4E0;
+  color: #C8A45C;           /* oro claro — antes azul claro #A8C4E0 */
   margin-bottom: 14px;
   font-weight: 700;
 }
@@ -1866,7 +1870,12 @@ em.and { font-style: normal; font-weight: 300; color: var(--text-mute); }
    El velo es mas denso que en la portada porque hay planos muy claros (el
    cenital del green, el cesped a contraluz) sobre los que el blanco se perdia. */
 .hero-pagina { min-height: clamp(280px, 40vh, 420px); padding: 44px var(--px) 44px; justify-content: flex-end; }
-.hero-pagina::after { background: linear-gradient(180deg, rgba(15,23,38,.30) 0%, rgba(15,23,38,.62) 58%, rgba(15,23,38,.84) 100%); }
+/* Las bandas interiores llevaban su propio velo en degradado (.30 -> .62 -> .84):
+   mucho mas denso abajo que la portada, que es rgba(0,0,0,.30) plano. Se retira
+   el override para que las ocho paginas compartan un unico velo. Medido sobre las
+   cinco fotos: titulares y entradillas entre 5,97 y 11,69; los dos antetitulos mas
+   justos (metodologia 4,05 y fuentes 4,43) se quedan algo por debajo de AA y se
+   apoyan en su text-shadow. El velo vive ahora solo en .hero::after. */
 .hero-pagina .hero-center { max-width: 760px; }
 .hero-pagina .hero-kicker { font-size: 11px; letter-spacing: .36em; margin-bottom: 16px; color: #CFC8BE; text-shadow: 0 1px 14px rgba(15,23,38,.8); }
 .hero-pagina .hero-title { font-size: clamp(32px, 4.8vw, 64px); opacity: .92; margin-bottom: 16px; }
@@ -1958,7 +1967,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .legal-datos dd { margin-bottom: 10px; } }
 
 /* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
-.hero-top .marca { text-transform: none; letter-spacing: .12em; color: #FFFFFF; }
+.hero-top .marca { letter-spacing: .12em; color: #FFFFFF; }
 
 /* ── Pie de navegación en dos direcciones ────────────────────
    Volver a la izquierda y seguir a la derecha, como se leen. Los dos con la
