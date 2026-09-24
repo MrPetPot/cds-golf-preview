@@ -1292,7 +1292,8 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
 .contacto-cta { margin-top: 24px; }
 .contacto-usos h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 26px; margin: 8px 0 18px; letter-spacing: -.005em; }
 .contacto-nota { margin: 26px 0 0; padding: 16px 20px; border-left: 3px solid var(--sec); background: var(--bg-1); font-size: 13px; line-height: 1.55; color: var(--text-mid); }
-footer .foot-col-item a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+footer .foot-col-item a, footer .foot-tag a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+footer .foot-tag a:hover { color: var(--text); }
 footer .foot-col-item a:hover { color: var(--text); }
 @media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 0; } .contacto-datos { grid-template-columns: 1fr; }
   .contacto-datos > div { grid-template-columns: 24px 1fr; gap: 12px; } }
