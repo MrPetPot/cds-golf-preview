@@ -1764,9 +1764,13 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   .atlas.atlas--lateral { display: grid; grid-template-columns: minmax(0,1fr) 300px; align-items: stretch; }
   .atlas--lateral .atlas-lienzo { min-width: 0; }
   .atlas--lateral .atlas-svg { height: auto; }
+  /* contain: size hace que el panel no aporte altura a la fila: la fila la
+     fija el mapa y, si la ficha es más alta, el panel desplaza por dentro en
+     vez de estirar el lienzo y descubrir el fondo bajo el mapa. */
   .atlas--lateral .atlas-panel {
     border-top: 0; border-left: 1px solid var(--line-strong); min-height: 0; height: 100%;
     padding: 22px 22px 20px; display: block; overflow-y: auto; overscroll-behavior: contain;
+    contain: size; box-sizing: border-box; scrollbar-width: thin;
   }
   .atlas--lateral .ap-cols, .atlas--lateral .ap-cols-campo, .atlas--lateral .ap-cols-reposo { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
   .atlas--lateral .ap-cifras { grid-template-columns: repeat(3, auto); gap: 18px; padding: 14px 0 0; border-left: 0; border-top: 1px solid var(--line-strong); }
