@@ -1282,6 +1282,7 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
    filas; la firma baja de cuerpo para que el bloque pese lo que le toca. */
 .contacto-datos { margin: 0; padding: 0; border-top: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 40px; }
 .contacto-datos > div { display: grid; grid-template-columns: 24px 1fr; gap: 12px; padding: 4px 0; border-bottom: 0; align-items: center; }
+.contacto-datos > .contacto-dato--ancho { grid-column: 1 / -1; }
 .contacto-datos dt { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); padding-top: 3px; }
 .ico-contacto { width: 16px; height: 16px; flex: none; color: var(--sec-text); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }

@@ -2516,7 +2516,7 @@ pintarEstrellas();
 ════════════════════════════════════ */
 (function () {
   const ENVIO = '';                       // endpoint https://… o '' para correo
-  const BUZON = 'p@malashpina.es';
+  const BUZON = 'nicetomeetyou@primeandgolf.com';
   const lead = document.getElementById('formLead');
   const pro = document.getElementById('formPro');
   if (!lead && !pro) return;
