@@ -1272,7 +1272,9 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
 
 /* Página de contacto */
 .contacto-grid { display: grid; grid-template-columns: minmax(0,520px); gap: 28px; margin-top: 40px; align-items: start; }
-.contacto-card { border: 1px solid var(--line); background: var(--bg-1); padding: 36px 40px 34px; }
+/* Sin caja (24/09): los datos del estudio van directamente sobre la página,
+   como el resto de la sección. */
+.contacto-card { border: 0; background: transparent; padding: 0; }
 .contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 34px; line-height: 1; letter-spacing: -.005em; }
 .contacto-persona { margin: 10px 0 26px; font-size: 15px; color: var(--text-mid); font-weight: 600; }
 .contacto-persona span { color: var(--text-mute); font-weight: 400; }
@@ -1289,7 +1291,7 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
 .contacto-nota { margin: 26px 0 0; padding: 16px 20px; border-left: 3px solid var(--sec); background: var(--bg-1); font-size: 13px; line-height: 1.55; color: var(--text-mid); }
 footer .foot-col-item a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 footer .foot-col-item a:hover { color: var(--text); }
-@media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 28px 24px; } .contacto-datos > div { grid-template-columns: 32px 1fr; gap: 16px; } }
+@media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 0; } .contacto-datos > div { grid-template-columns: 32px 1fr; gap: 16px; } }
 
 /* Paleta "verdes_01" (registrada 16 septiembre) */
 :root {
