@@ -159,14 +159,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero::before {
   content: ''; position: absolute; inset: 0; z-index: -2;
-  background-image: url('../images/hero/hero-golf.jpg');
+  background-image: url('../images/hero/hero-golf.jpg?v=5f2a3452');
   background-size: cover; background-position: 50% 58%;
 }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: rgba(0,0,0,.30);
 }
-@media (max-width: 900px) { .hero::before { background-image: url('../images/hero/hero-golf-m.jpg'); } }
+@media (max-width: 900px) { .hero::before { background-image: url('../images/hero/hero-golf-m.jpg?v=81d97f1d'); } }
 .hero-top {
   display: flex;
   justify-content: space-between;
@@ -1860,11 +1860,11 @@ em.and { font-style: normal; font-weight: 300; color: var(--text-mute); }
 .hero-pagina .hero-title { font-size: clamp(32px, 4.8vw, 64px); opacity: .92; margin-bottom: 16px; }
 .hero-pagina .hero-title b { color: var(--oro-1); font-weight: inherit; }
 .hero-pagina .hero-lede { font-size: 17px; max-width: 580px; color: #FFFFFF; text-shadow: 0 1px 16px rgba(15,23,38,.8); }
-.hero-m::before  { background-image: url('../images/hero/pag-metodo.jpg'); }
-.hero-c::before  { background-image: url('../images/hero/pag-campos.jpg'); }
-.hero-r::before  { background-image: url('../images/hero/pag-ranking.jpg'); }
-.hero-f::before  { background-image: url('../images/hero/pag-fuentes.jpg'); }
-.hero-k::before  { background-image: url('../images/hero/pag-contacto.jpg'); }
+.hero-m::before  { background-image: url('../images/hero/pag-metodo.jpg?v=c86557f1'); }
+.hero-c::before  { background-image: url('../images/hero/pag-campos.jpg?v=013782ec'); }
+.hero-r::before  { background-image: url('../images/hero/pag-ranking.jpg?v=b06dd683'); }
+.hero-f::before  { background-image: url('../images/hero/pag-fuentes.jpg?v=41c4923c'); }
+.hero-k::before  { background-image: url('../images/hero/pag-contacto.jpg?v=df7ddd48'); }
 .hero-pagina::before { background-position: 50% 50%; }
 @media (max-width: 640px) {
   .hero-pagina { min-height: 240px; padding: 32px var(--px) 32px; }

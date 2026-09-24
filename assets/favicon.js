@@ -2,7 +2,7 @@
 (() => {
   'use strict';
 
-  const LETRAS = [...'PRIME&GOLF'];
+  const LETRAS = [...'PRIMEandGOLF'];
   const MS = 920;
   const VUELTAS = 2;
   const LADO = 64;
@@ -39,7 +39,7 @@
     ctx.textBaseline = 'alphabetic';
 
     // La letra se mide a un tamaño de referencia y se escala hasta llenar el icono:
-    // a sangre en vertical, y limitada por el ancho cuando el glifo es ancho (M, &).
+    // a sangre en vertical, y limitada por el ancho cuando el glifo es ancho (M, W).
     const base = tinta(letra, 100);
     const escala = Math.min(LADO / base.alto, LADO / base.ancho);
     const tam = 100 * escala;
@@ -52,7 +52,10 @@
   }
 
   function arrancar() {
-    // Se rasterizan las diez letras una sola vez; después solo se cambia el href.
+    // Se rasterizan las doce letras una sola vez; después solo se cambia el href.
+    // Las minusculas de "and" se escalan hasta llenar el icono como las mayusculas:
+    // a 64 px cada fotograma es una letra sola, y la distincion de peso del logotipo
+    // no cabe. Se prefiere la grafia correcta a una jerarquia que no se veria.
     const frames = LETRAS.map(fotograma);
     link.type = 'image/png';
     link.href = frames[0];
