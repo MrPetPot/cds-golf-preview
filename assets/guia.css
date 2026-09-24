@@ -1271,27 +1271,30 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
 .mem-dot.mem-cer { background: #C0392B; border-color: #C0392B; }
 
 /* Página de contacto */
-.contacto-grid { display: grid; grid-template-columns: minmax(0,520px); gap: 28px; margin-top: 40px; align-items: start; }
+.contacto-grid { display: grid; grid-template-columns: minmax(0,760px); gap: 28px; margin-top: 32px; align-items: start; }
 /* Sin caja (24/09): los datos del estudio van directamente sobre la página,
    como el resto de la sección. */
 .contacto-card { border: 0; background: transparent; padding: 0; }
-.contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 34px; line-height: 1; letter-spacing: -.005em; }
-.contacto-persona { margin: 10px 0 26px; font-size: 15px; color: var(--text-mid); font-weight: 600; }
+.contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: -.005em; }
+.contacto-persona { margin: 8px 0 22px; font-size: 14px; color: var(--text-mid); font-weight: 600; }
 .contacto-persona span { color: var(--text-mute); font-weight: 400; }
-.contacto-datos { margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.contacto-datos > div { display: grid; grid-template-columns: 32px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: center; }
+/* Remaquetado 24/09: los cuatro datos en dos columnas, sin filetes entre
+   filas; la firma baja de cuerpo para que el bloque pese lo que le toca. */
+.contacto-datos { margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 40px; }
+.contacto-datos > div { display: grid; grid-template-columns: 24px 1fr; gap: 12px; padding: 4px 0; border-bottom: 0; align-items: center; }
 .contacto-datos dt { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .24em; text-transform: uppercase; font-weight: 700; color: var(--text-mute); padding-top: 3px; }
 .ico-contacto { width: 16px; height: 16px; flex: none; color: var(--sec-text); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.contacto-datos dd { margin: 0; font-size: 17px; color: var(--text); }
+.contacto-datos dd { margin: 0; font-size: 15px; color: var(--text); }
 .contacto-datos a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--sec-line); transition: color .2s; }
 .contacto-datos a:hover { color: var(--sec-text); }
-.contacto-cta { margin-top: 28px; }
+.contacto-cta { margin-top: 24px; }
 .contacto-usos h3 { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 26px; margin: 8px 0 18px; letter-spacing: -.005em; }
 .contacto-nota { margin: 26px 0 0; padding: 16px 20px; border-left: 3px solid var(--sec); background: var(--bg-1); font-size: 13px; line-height: 1.55; color: var(--text-mid); }
 footer .foot-col-item a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-strong); }
 footer .foot-col-item a:hover { color: var(--text); }
-@media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 0; } .contacto-datos > div { grid-template-columns: 32px 1fr; gap: 16px; } }
+@media (max-width: 900px) { .contacto-grid { grid-template-columns: 1fr; } .contacto-card { padding: 0; } .contacto-datos { grid-template-columns: 1fr; }
+  .contacto-datos > div { grid-template-columns: 24px 1fr; gap: 12px; } }
 
 /* Paleta "verdes_01" (registrada 16 septiembre) */
 :root {
