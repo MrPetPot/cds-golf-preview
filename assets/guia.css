@@ -2081,7 +2081,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    arranca en el segundo. La monta el motor desde PROMOS.
    ──────────────────────────────────────────────────────── */
 .gana {
-  margin-top: 44px; padding: 40px;
+  margin-top: 44px; padding: 32px 40px 36px;
   border: 1px solid var(--line-strong); background: var(--bg-2);
 }
 
@@ -2121,10 +2121,10 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    titular del capítulo. */
 .gana-banda {
   position: relative; overflow: hidden;
-  min-height: clamp(400px, 56vh, 560px);
-  margin: 36px -40px 0;
+  min-height: clamp(300px, 40vh, 420px);
+  margin: 28px -40px 0;
   display: flex; align-items: flex-end;
-  padding: 48px 40px 38px;
+  padding: 36px 40px 30px;
   background: #0F1726; color: #FFFFFF;
 }
 .gana-banda img {
@@ -2175,7 +2175,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    lado porque es justo lo que el texto está contando. */
 /* Sin el párrafo de «por qué puntúa así» (24/09): la descomposición de la
    nota ocupa el ancho entero, con las dos barras en paralelo. */
-.gana-intro { display: block; margin-top: 36px; }
+.gana-intro { display: block; margin-top: 28px; }
 .gana-razon { font-size: 16.5px; line-height: 1.6; color: var(--text-mid); margin: 0; }
 .gana-razon strong { color: var(--text); font-weight: 700; }
 .gana-razon .star { color: var(--amarillo); }
@@ -2185,7 +2185,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    barra solo sirve para comparar de un vistazo. */
 .gfx { margin: 0; }
 .gfx-pie {
-  margin: 14px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--text-mute); font-style: italic;
+  margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--text-mute); font-style: italic;
 }
 .gfx-pie::before { content: '*'; margin-right: .45em; font-style: normal; }
 
@@ -2203,17 +2203,17 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    Reutiliza la rejilla de datos de la ficha del proyecto —etiqueta encima,
    dato debajo, inversión al pasar por encima— en lugar de la línea de
    datos seguidos que había antes, que no decía qué era cada cosa. */
-.gana-proyecto { margin-top: 46px; }
+.gana-proyecto { margin-top: 32px; }
 .gana-proyecto .project-data dd .star { color: var(--amarillo); font-size: 16px; }
 .gana-proyecto .project-data dd .star-off .star { color: transparent; -webkit-text-stroke: 1px var(--amarillo); }
 
 /* ── La llamada ────────────────────────────────────────────────────────
    Una sola, ancha y sin competencia: desde aquí solo se puede hacer una
    cosa, que es abrir la ficha. Bajar al 02 ya lo hace el scroll. */
-.gana-acciones { margin-top: 40px; }
+.gana-acciones { margin-top: 28px; }
 .gana-cta {
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
-  width: 100%; padding: 26px 30px; text-decoration: none;
+  width: 100%; padding: 20px 30px; text-decoration: none;
   background: var(--marengo); color: #FFFFFF; border: 1px solid var(--marengo);
   transition: background-color .3s var(--ease), color .3s var(--ease);
 }
