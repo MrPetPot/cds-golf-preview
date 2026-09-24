@@ -1125,7 +1125,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 /* Todo en blanco: el peso hace el trabajo que hacía el color. El nexo va en
    fina con un pelo de aire a cada lado —no un espacio de palabra, que separa
    demasiado— y el descriptor baja al 80 % para quedar por detrás del nombre. */
-.topnav-brand .brand-and { font-weight: 300; margin: 0 .13em; }
+.topnav-brand .brand-and { font-weight: 300; margin: 0 .13em; color: rgba(255,255,255,.72); }
 .topnav-brand .brand-cola { font-weight: 300; color: rgba(255,255,255,.8); }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
@@ -1820,7 +1820,9 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
 /* El pie ya cambia de fondo: el filete superior sobra. */
 footer { border-top: 0; }
 /* La marca: «and» siempre en el peso más fino de la familia, esté donde esté. */
-em.and { font-style: normal; font-weight: 300; }
+em.and { font-style: normal; font-weight: 300; color: var(--text-mute); }
+/* Sobre fondo oscuro o imagen, el «and» baja a blanco al 72 %, como en la barra. */
+.hero-top .marca em.and, .gana-editorial em.and { color: rgba(255,255,255,.72); }
 /* Dos formularios, dos grises: el general un punto más claro que el de
    promotoras, para que se lean como dos piezas sin recurrir al color. */
 #formLead { background: var(--bg-1); }
