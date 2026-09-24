@@ -27,7 +27,31 @@
   let titlePlayed = false;
   let heroVideoDone = false;
 
-  heroVideo?.addEventListener('ended', () => { heroVideoDone = true; });
+  // Varios videos de cabecera, uno detras de otro y en orden aleatorio: la
+  // lista viene en data-lista separada por «|». Al acabar el ultimo se para,
+  // como antes con uno solo. El poster sigue siendo el del primero del HTML.
+  const heroLista = (() => {
+    const l = (heroVideo?.dataset.lista || '').split('|').map(s => s.trim()).filter(Boolean);
+    for (let i = l.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [l[i], l[j]] = [l[j], l[i]]; }
+    return l;
+  })();
+  let heroIdx = 0;
+  if (heroVideo && heroLista.length) {
+    const src = heroVideo.querySelector('source');
+    if (src) src.src = heroLista[0]; else heroVideo.src = heroLista[0];
+    heroVideo.load();
+  }
+  heroVideo?.addEventListener('ended', () => {
+    heroIdx += 1;
+    if (heroIdx < heroLista.length) {
+      const src = heroVideo.querySelector('source');
+      if (src) src.src = heroLista[heroIdx]; else heroVideo.src = heroLista[heroIdx];
+      heroVideo.load();
+      heroVideo.play().catch(() => {});
+      return;
+    }
+    heroVideoDone = true;
+  });
 
   const progress = document.createElement('div');
   progress.className = 'motion-progress';
