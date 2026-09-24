@@ -17,7 +17,11 @@ html.ficha-abierta { overflow: hidden; padding-right: var(--barra, 0px); }
    identidad— convierte al ancestro en el bloque contenedor de lo fijo: la
    capa se anclaba a la seccion y no a la ventana. Mientras hay una ficha
    abierta se anula; visualmente no cambia nada porque ya estaba en reposo. */
-html.ficha-abierta #main .reveal { transform: none !important; }
+html.ficha-abierta #main .reveal { transform: none !important; transition-property: opacity !important; }
+/* Sin la segunda declaracion, el paso de translateY(0) a none se animaba con
+   la transicion de .reveal (700 ms) y, mientras tanto, la capa seguia
+   anclada a la seccion: la ficha aparecia bajo la pieza de la ganadora y
+   luego saltaba a la ventana. */
 .detail-grid details.promo[open] {
   position: fixed; inset: 0; z-index: 200; margin: 0;
   overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;

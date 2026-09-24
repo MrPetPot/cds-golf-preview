@@ -216,6 +216,11 @@
       observer?.unobserve(card);
       if (revealed.has(card)) return;
       revealed.add(card);
+      // La tarjeta de la ganadora no esta en la lista: cerrada va oculta y solo
+      // se ve abierta, como capa a pantalla completa. Entrar con la animacion
+      // de tarjeta (desplazamiento y recorte) la mostraba a medio desplegar
+      // bajo la pieza de la ganadora. La capa ya tiene su propia entrada.
+      if (card.open || card.classList.contains('gana-fuera')) return;
       reveal(card, Math.min(index, 5) * 82, 34);
     });
   }
@@ -399,7 +404,7 @@
           else reveal(entry.target, 0, 22);
         });
       }, { rootMargin: '0px 0px -5% 0px', threshold: .08 });
-      document.querySelectorAll('details.promo, .method-block, .formula-item, .pin-promo-num').forEach(el => observer.observe(el));
+      document.querySelectorAll('details.promo:not(.gana-fuera), .method-block, .formula-item, .pin-promo-num').forEach(el => observer.observe(el));
     }
     if (golf && 'MutationObserver' in window) {
       mutation = new MutationObserver(() => schedule(flipGolf));

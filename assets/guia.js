@@ -1599,7 +1599,15 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
   destino.addEventListener('click', e => {
     if (!e.target.closest('[data-abrir-ganadora]') || !tarjeta) return;
     e.preventDefault();
-    tarjeta.open = true;   // el resto lo hace el 'toggle' de la capa
+    // El 'toggle' que convierte la tarjeta en capa llega en una tarea aparte y
+    // el navegador puede pintar antes: durante ese instante la tarjeta salia
+    // en flujo, bajo la pieza de la ganadora. Se fija el estado de capa en el
+    // mismo clic; el 'toggle' posterior solo lo confirma.
+    const raiz = document.documentElement;
+    raiz.style.setProperty('--barra', (window.innerWidth - raiz.clientWidth) + 'px');
+    tarjeta.open = true;
+    raiz.classList.add('ficha-abierta');
+    tarjeta.scrollTop = 0;
   });
 })();
 
