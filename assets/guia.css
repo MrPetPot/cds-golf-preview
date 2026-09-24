@@ -1878,9 +1878,11 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
    de la ganadora y empieza en el puesto que ella deja libre. Se le quita el
    filete y la calle baja a un tercio, para que se lea como "y detrás" y no
    como un bloque aparte. */
-#veredicto { padding-bottom: 46px; border-bottom: 0; }
-#fichas { padding-top: 38px; }
-@media (max-width: 900px) { #veredicto { padding-bottom: 32px; } #fichas { padding-top: 26px; } }
+#veredicto { padding-bottom: 0; border-bottom: 0; }
+/* Sin cabecera intermedia (prueba 24/09): la 02 sigue a la 01 con la misma
+   calle que separa dos fichas de la lista. La numeración lleva la continuidad. */
+#fichas { padding-top: 12px; }
+@media (max-width: 900px) { #veredicto { padding-bottom: 0; } #fichas { padding-top: 12px; } }
 
 /* ── Página legal ──────────────────────────────────────────────
    Columna estrecha y jerarquía simple: aquí se viene a leer, no a mirar. */
