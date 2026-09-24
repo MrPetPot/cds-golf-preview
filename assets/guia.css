@@ -1275,7 +1275,7 @@ body[data-pagina="ranking"] .legend-dot.promo { background: var(--bg-0); border:
 /* Sin caja (24/09): los datos del estudio van directamente sobre la página,
    como el resto de la sección. */
 .contacto-card { border: 0; background: transparent; padding: 0; }
-.contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: -.005em; }
+.contacto-firma { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 24px; line-height: 1; letter-spacing: -.005em; margin-bottom: 20px; }
 .contacto-persona { margin: 8px 0 22px; font-size: 14px; color: var(--text-mid); font-weight: 600; }
 .contacto-persona span { color: var(--text-mute); font-weight: 400; }
 /* Remaquetado 24/09: los cuatro datos en dos columnas, sin filetes entre
