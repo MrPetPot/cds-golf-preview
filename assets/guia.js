@@ -1570,10 +1570,6 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       </figure>
 
       <div class="gana-intro">
-        <div class="gana-texto">
-          <span class="gana-rot">Por qué puntúa así</span>
-          <p class="gana-razon">${razon}</p>
-        </div>
         ${mitades}
       </div>
 

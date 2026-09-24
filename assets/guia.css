@@ -2173,10 +2173,9 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 /* ── La presentación y la primera gráfica ─────────────────────────────
    El texto manda en la columna ancha; la descomposición de la nota va al
    lado porque es justo lo que el texto está contando. */
-.gana-intro {
-  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 48px; margin-top: 36px;
-}
+/* Sin el párrafo de «por qué puntúa así» (24/09): la descomposición de la
+   nota ocupa el ancho entero, con las dos barras en paralelo. */
+.gana-intro { display: block; margin-top: 36px; }
 .gana-razon { font-size: 16.5px; line-height: 1.6; color: var(--text-mid); margin: 0; }
 .gana-razon strong { color: var(--text); font-weight: 700; }
 .gana-razon .star { color: var(--amarillo); }
@@ -2190,7 +2189,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 }
 .gfx-pie::before { content: '*'; margin-right: .45em; font-style: normal; }
 
-.gfx-mitades { display: grid; gap: 18px; }
+.gfx-mitades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 48px; }
 .gfx-fila { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: baseline; }
 .gfx-lbl { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--text); }
 .gfx-cifra { font: 700 26px/1 var(--f-display); color: var(--text); }
@@ -2246,7 +2245,8 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .gana-marcador { text-align: left; font-size: clamp(56px, 18vw, 96px); }
   .ver-intro { grid-template-columns: 1fr; gap: 14px; }
   .ver-cuerpo { font-size: 15.5px; }
-  .gana-intro { grid-template-columns: 1fr; gap: 34px; margin-top: 26px; }
+  .gana-intro { margin-top: 26px; }
+  .gfx-mitades { grid-template-columns: 1fr; }
   .gana-proyecto { margin-top: 34px; }
   .gana-cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 22px; }
   .gana-cta b { font-size: 21px; }
