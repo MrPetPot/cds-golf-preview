@@ -1803,6 +1803,19 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
    es declaración y no comentario. */
 .sec-lede--recta { font-style: normal; }
 .sec-lede strong { color: var(--text); font-weight: 600; }
+/* ── Respaldo del estudio (contacto) ─────────────────────────────
+   PRIMEandGOLF habla en primera persona; Malashpina aparece como garantía,
+   a un escalón por debajo: filete arriba, dos columnas, cuerpo pequeño. */
+.respaldo { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line-strong); display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 20px 48px; align-items: start; max-width: 1040px; }
+.respaldo .gana-rot { margin-bottom: 8px; }
+.respaldo-firma { margin: 0; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 22px; line-height: 1; letter-spacing: -.005em; color: var(--text); }
+.respaldo-enlaces { margin: 12px 0 0; font-size: 13px; color: var(--text-mute); }
+.respaldo-enlaces a { color: var(--text-mid); text-decoration: none; border-bottom: 1px solid var(--sec-line); }
+.respaldo-enlaces a:hover { color: var(--sec-text); }
+.respaldo-texto p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-mid); }
+.respaldo-texto strong { color: var(--text); font-weight: 600; }
+.respaldo-conflicto { margin-top: 12px !important; font-size: 13px !important; color: var(--text-mute) !important; }
+@media (max-width: 900px) { .respaldo { grid-template-columns: 1fr; gap: 16px; margin-top: 40px; } }
 /* Marcadores del mapa Leaflet */
 .pin-promo { background: none; border: none; }
 .pin-promo-num { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #2C5384, #7FA3C9); border: 2.5px solid #FFFFFF; box-shadow: 0 2px 10px rgba(15,23,38,.42); display: flex; align-items: center; justify-content: center; font-family: var(--f-display); font-size: 14px; font-weight: 700; color: #FFFFFF; }
