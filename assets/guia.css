@@ -875,6 +875,7 @@ footer {
   gap: 56px;
   align-items: start;
 }
+.foot-logo { height: 28px; width: auto; display: block; }
 .foot-brand {
   font-family: var(--f-display);
   font-size: 32px;
@@ -1127,7 +1128,10 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,.14);
 }
-.topnav-brand { text-decoration: none; color: #FFFFFF; line-height: 1; min-width: 0; }
+.topnav-brand { display: flex; align-items: center; text-decoration: none; color: #FFFFFF; line-height: 1; min-width: 0; }
+/* La altura se fija a la altura de mayuscula del rotulo que lo acompana, no al
+   cuerpo: el logotipo es solo caja alta y si se iguala al font-size sobresale. */
+.brand-logo { height: 18px; width: auto; flex: none; display: block; margin-right: .1em; }
 /* El bloque de marca: PRIME y GOLF en negrita, el "and" y la coletilla en
    la misma Antonio pero en fina. El "/" separa el nombre del descriptor. */
 .topnav-brand em { font-style: normal; font-weight: 300; }
@@ -1135,7 +1139,6 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 /* Todo en blanco: el peso hace el trabajo que hacía el color. El nexo va en
    fina con un pelo de aire a cada lado —no un espacio de palabra, que separa
    demasiado— y el descriptor baja al 80 % para quedar por detrás del nombre. */
-.topnav-brand .brand-and { font-weight: 300; margin: 0 .13em; color: rgba(255,255,255,.72); }
 .topnav-brand .brand-cola { font-weight: 300; color: rgba(255,255,255,.8); }
 .topnav-brand b { font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 25px; letter-spacing: .005em; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Menú desplegable */
@@ -1179,7 +1182,7 @@ html.js-reveal-armed .reveal:not(.in) { opacity: 0; transform: translateY(20px);
 .topnav-links a[aria-current="page"] { color: #FFFFFF; border-left-color: var(--oro-1); }
 .topnav-links a.nav-ranking { color: #FFFFFF; }
 @media (max-width: 860px) { .topnav-brand .brand-cola { display: none; } }
-@media (max-width: 640px) { .topnav-brand b { font-size: 21px; } }
+@media (max-width: 640px) { .topnav-brand b { font-size: 21px; } .brand-logo { height: 15px; } }
 
 /* Portada · los tres pasos */
 .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -1844,7 +1847,10 @@ footer { border-top: 0; }
 /* La marca: «and» siempre en el peso más fino de la familia, esté donde esté. */
 em.and { font-style: normal; font-weight: 300; color: var(--text-mute); }
 /* Sobre fondo oscuro o imagen, el «and» baja a blanco al 72 %, como en la barra. */
-.hero-top .marca em.and, .gana-editorial em.and { color: rgba(255,255,255,.72); }
+.gana-editorial em.and { color: rgba(255,255,255,.72); }
+/* El logotipo en la cabecera: algo mas alto que la altura de mayuscula de la
+   linea, porque va entre versales muy espaciadas y si se iguala se pierde. */
+.marca-logo { height: 12px; width: auto; display: inline-block; vertical-align: -1px; margin-right: .16em; }
 /* Dos formularios, dos grises: el general un punto más claro que el de
    promotoras, para que se lean como dos piezas sin recurrir al color. */
 #formLead { background: var(--bg-1); }
@@ -1970,7 +1976,6 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .legal-datos dd { margin-bottom: 10px; } }
 
 /* El nombre de la marca lleva su caja: la versalita del kicker la borraba. */
-.hero-top .marca { letter-spacing: .12em; color: #FFFFFF; }
 
 /* ── Pie de navegación en dos direcciones ────────────────────
    Volver a la izquierda y seguir a la derecha, como se leen. Los dos con la
