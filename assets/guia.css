@@ -164,7 +164,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: rgba(0,0,0,.30);
+  /* Un solo velo para los ocho heros. Antes eran dos: la portada plana al 30 %
+     y las bandas interiores en degradado hasta el 84 %. Este es el punto medio.
+     En negro puro, no en el navy que llevaban las bandas interiores: decision de
+     Pedro. El negro ademas oscurece algo mas a igual alfa, asi que el contraste
+     sube un poco. Medido sobre las cinco fotos interiores y sobre catorce
+     fotogramas de los dos videos de portada, peor 5 % de pixeles. */
+  background: linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.50) 58%, rgba(0,0,0,.64) 100%);
 }
 @media (max-width: 900px) { .hero::before { background-image: url('../images/hero/hero-golf-m.jpg?v=81d97f1d'); } }
 .hero-top {
@@ -1870,12 +1876,9 @@ em.and { font-style: normal; font-weight: 300; color: var(--text-mute); }
    El velo es mas denso que en la portada porque hay planos muy claros (el
    cenital del green, el cesped a contraluz) sobre los que el blanco se perdia. */
 .hero-pagina { min-height: clamp(280px, 40vh, 420px); padding: 44px var(--px) 44px; justify-content: flex-end; }
-/* Las bandas interiores llevaban su propio velo en degradado (.30 -> .62 -> .84):
-   mucho mas denso abajo que la portada, que es rgba(0,0,0,.30) plano. Se retira
-   el override para que las ocho paginas compartan un unico velo. Medido sobre las
-   cinco fotos: titulares y entradillas entre 5,97 y 11,69; los dos antetitulos mas
-   justos (metodologia 4,05 y fuentes 4,43) se quedan algo por debajo de AA y se
-   apoyan en su text-shadow. El velo vive ahora solo en .hero::after. */
+/* Las bandas interiores tenian velo propio y la portada el suyo. Ahora hay uno
+   solo, en .hero::after (onepage.html), a medio camino de los dos. No reponer el
+   override aqui: cualquier ajuste del velo se hace en ese unico sitio. */
 .hero-pagina .hero-center { max-width: 760px; }
 .hero-pagina .hero-kicker { font-size: 11px; letter-spacing: .36em; margin-bottom: 16px; color: #CFC8BE; text-shadow: 0 1px 14px rgba(15,23,38,.8); }
 .hero-pagina .hero-title { font-size: clamp(32px, 4.8vw, 64px); opacity: .92; margin-bottom: 16px; }
@@ -2323,4 +2326,192 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .gana-proyecto { margin-top: 34px; }
   .gana-cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 22px; }
   .gana-cta b { font-size: 21px; }
+}
+
+/* ═══════════════════════════════════════════════
+   VUELTA AL INICIO
+   Boton flotante en la esquina inferior derecha. Comparte caja y color con la
+   pestana de suscripcion —misma familia de elementos flotantes— y se quita de
+   en medio mientras el modal esta abierto.
+═══════════════════════════════════════════════ */
+.ir-arriba {
+  position: fixed; right: 26px; bottom: 26px; z-index: 55;
+  width: 46px; height: 46px;
+  background: var(--marengo); border: 1px solid var(--marengo);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease),
+              visibility .3s var(--ease), background-color .3s var(--ease);
+}
+.ir-arriba.ver { opacity: 1; visibility: visible; transform: none; }
+.ir-arriba:hover { background: var(--oro-3); border-color: var(--oro-3); }
+.ir-arriba:focus-visible { outline: 3px solid var(--oro-1); outline-offset: 3px; }
+/* La punta de flecha, dibujada con dos filetes: un glifo cambia de forma y de
+   peso segun la fuente, y aqui tiene que casar con el aspa del modal. */
+.ir-arriba::before {
+  content: ''; position: absolute; left: 50%; top: 54%;
+  width: 11px; height: 11px;
+  border-left: 2px solid #FFFFFF; border-top: 2px solid #FFFFFF;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+/* Con el modal abierto no pinta nada: la pagina de debajo esta bloqueada. */
+html.panel-abierto .ir-arriba { opacity: 0; visibility: hidden; }
+
+@media (max-width: 880px) {
+  /* La pestana de suscripcion baja al centro inferior; el boton se queda a la
+     derecha y sube lo justo para no compartir linea con ella. */
+  .ir-arriba { right: 16px; bottom: 60px; width: 42px; height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ir-arriba { transition: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   PANEL DE SUSCRIPCION
+   Pestana fija en el borde derecho que abre un modal flotante centrado, a dos
+   columnas: imagen y formulario. Es un modal de verdad, asi que atenua la
+   pagina, bloquea el scroll y atrapa el foco.
+   Reutiliza el sistema de formulario ya existente (.campo, .campo-check,
+   .form-enviar, .form-estado) para que no parezca una pieza de otra web.
+═══════════════════════════════════════════════ */
+
+/* Bloquear el scroll quita la barra y la pagina se desplaza de lado. El ancho
+   se mide en JS antes de bloquear y vuelve como relleno: es el mismo remedio
+   que ya usan las fichas, porque scrollbar-gutter no sirve con overflow hidden. */
+html.panel-abierto { overflow: hidden; padding-right: var(--barra-pnl, 0px); }
+
+.pnl { position: fixed; top: 0; left: 0; width: 0; height: 0; z-index: 80; }
+
+/* La pestana: texto vertical pegado al borde, a la altura de la mirada.
+   writing-mode y no rotate: con la rotacion, el translate opera sobre el ancho
+   sin girar y la pestana se sale del viewport por la derecha. Asi el navegador
+   calcula la caja ya vertical y no hay medida magica que mantener cuando el
+   rotulo cambie de idioma. */
+.pnl-pestana {
+  position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+  writing-mode: vertical-rl; white-space: nowrap;
+  padding: 20px 11px 20px 12px;
+  background: var(--marengo); color: #FFFFFF;
+  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: 14px; letter-spacing: .12em;
+  border: 1px solid var(--marengo); border-right: none;
+  transition: background-color .3s var(--ease), color .3s var(--ease);
+}
+.pnl-pestana:hover { background: var(--oro-3); border-color: var(--oro-3); }
+.pnl-pestana:focus-visible { outline: 3px solid var(--oro-1); outline-offset: 3px; }
+.pnl.abierto .pnl-pestana { opacity: 0; pointer-events: none; }
+
+.pnl-fondo {
+  position: fixed; inset: 0; z-index: 1;
+  background: rgba(10,10,10,.62);
+  animation: pnl-fundido .3s var(--ease) both;
+}
+.pnl-fondo[hidden] { display: none; }
+@keyframes pnl-fundido { from { opacity: 0; } to { opacity: 1; } }
+
+.pnl-caja {
+  position: fixed; z-index: 2;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: min(1040px, calc(100vw - 48px));
+  /* Altura flexible: el paso 1 es corto y el 2 con la rama de compra es alto.
+     Con una altura fija, el segundo sacaba barra de scroll en una pantalla que
+     tenia sitio de sobra. El minimo evita que el paso 1 quede achatado. */
+  height: auto;
+  min-height: min(560px, calc(100vh - 48px));
+  max-height: calc(100vh - 48px);
+  display: grid; grid-template-columns: 1fr 1.12fr;
+  background: var(--bg-0);
+  box-shadow: 0 30px 90px rgba(10,10,10,.30);
+  overflow: hidden;
+  animation: pnl-entra .36s var(--ease) both;
+}
+/* El atributo hidden lo pone la UA como display:none, y cualquier display del
+   autor lo gana. Sin esta linea el modal nace abierto. */
+.pnl-caja[hidden] { display: none; }
+@keyframes pnl-entra {
+  from { opacity: 0; transform: translate(-50%, -47%) scale(.985); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.pnl-imagen { margin: 0; overflow: hidden; background: var(--marengo); }
+.pnl-imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pnl-cara {
+  position: relative; padding: 44px 50px 38px; overflow-y: auto;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+/* Aspa de cierre dibujada con dos filetes: un glifo tipografico no casa de
+   tamano con el resto de la interfaz y cambia de forma segun la fuente. */
+.pnl-cerrar {
+  position: absolute; top: 14px; right: 16px; width: 34px; height: 34px; z-index: 3;
+}
+.pnl-cerrar::before, .pnl-cerrar::after {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 15px; height: 1.5px;
+  background: var(--text-mid); transition: background-color .25s var(--ease);
+}
+.pnl-cerrar::before { transform: translate(-50%,-50%) rotate(45deg); }
+.pnl-cerrar::after  { transform: translate(-50%,-50%) rotate(-45deg); }
+.pnl-cerrar:hover::before, .pnl-cerrar:hover::after { background: var(--oro-3); }
+
+.pnl-paso { display: flex; flex-direction: column; gap: 14px; }
+.pnl-paso[hidden] { display: none; }
+/* La cabecera va centrada y los campos alineados a la izquierda: centrar una
+   etiqueta sobre su campo obliga a buscar donde empieza cada linea. */
+.pnl-paso .gana-rot, .pnl-paso .form-tit, .pnl-paso .form-intro { text-align: center; }
+.pnl-paso .gana-rot { margin-bottom: 0; }
+.pnl-paso .form-tit { font-size: clamp(27px, 2.5vw, 36px); }
+.pnl-paso .form-intro { margin: 0 auto; max-width: 42ch; }
+.pnl-paso .form-enviar { margin-top: 6px; }
+.pnl-paso.tocado :invalid { border-color: #B23A2E; }
+
+.pnl-legal { margin: 0; font-size: 11.5px; line-height: 1.55; color: var(--text-mute); text-align: center; }
+.pnl-legal a { color: var(--oro-3); text-decoration: underline; text-underline-offset: 2px; }
+
+.pnl-grupo { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+.pnl-grupo legend {
+  padding: 0; margin-bottom: 4px;
+  font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--text-mute);
+}
+.pnl-op { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.pnl-op input { flex: none; width: 16px; height: 16px; margin-top: 2px; accent-color: var(--oro-3); }
+.pnl-op span { font-size: 13.5px; line-height: 1.45; color: var(--text-mid); }
+.pnl-op:hover span { color: var(--text); }
+
+.pnl-rama { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; padding: 18px; background: var(--bg-2); border: 1px solid var(--line); }
+.pnl-rama[hidden] { display: none; }
+.pnl-rama .campo-check { grid-column: 1 / -1; }
+
+.pnl-saltar {
+  align-self: center; padding: 4px 2px; font-size: 12.5px; color: var(--text-mute);
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color .25s var(--ease);
+}
+.pnl-saltar:hover { color: var(--text); }
+
+@media (max-width: 880px) {
+  /* La imagen pasa a ser una banda superior: en vertical, una columna de foto
+     se come el ancho que necesita el formulario. */
+  .pnl-caja {
+    grid-template-columns: 1fr; grid-template-rows: 124px 1fr;
+    width: calc(100vw - 24px); height: auto;
+    /* Sin minimo: en vertical el modal debe medir lo que mida su contenido, o
+       el paso 1 arrastra un hueco muerto debajo. */
+    min-height: 0; max-height: calc(100vh - 24px);
+  }
+  .pnl-cara { padding: 30px 26px 26px; }
+  .pnl-rama { grid-template-columns: 1fr; }
+  .pnl-pestana {
+    top: auto; bottom: 0; right: 50%;
+    transform: translateX(50%);
+    writing-mode: horizontal-tb; padding: 12px 22px 13px;
+    border: 1px solid var(--marengo); border-bottom: none;
+  }
+}
+@media (max-width: 560px) {
+  .pnl-caja { grid-template-rows: 96px 1fr; width: calc(100vw - 16px); }
+  .pnl-cara { padding: 26px 20px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pnl-caja, .pnl-fondo { animation: none; }
 }

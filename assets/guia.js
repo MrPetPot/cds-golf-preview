@@ -346,13 +346,13 @@ const FOTOS_CAMPO = {
  "real-club-el-candado": {
    "src": "images/golf/real-club-el-candado.jpg",
    "pie": "Green y búnker con el mar al fondo.",
-   "credito": "Archivo Malashpina",
+   "credito": null,
    "url": null
  },
  "real-club-guadalhorce": {
    "src": "images/golf/real-club-guadalhorce.jpg",
    "pie": "Calle hacia la casa club, entre palmeras.",
-   "credito": "Archivo Malashpina",
+   "credito": null,
    "url": null
  },
  "rio-real-golf": {
@@ -1763,12 +1763,15 @@ if (creditosImagenes) {
   };
   Object.entries(FOTOS_CAMPO).forEach(([id, f]) => sumarCredito(id, f, 'Ficha de campo'));
   if (typeof FOTOS_FICHA !== 'undefined') Object.entries(FOTOS_FICHA).forEach(([id, f]) => sumarCredito(id, f, 'Campo de referencia'));
-  const credito = f => f.url
-    ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>`
-    : f.credito;
+  // Una foto puede no llevar credito (procedencia sin confirmar): en ese caso
+  // no se inventa ninguno y la entrada se queda solo con su uso.
+  const credito = f => !f.credito ? ''
+    : f.url
+      ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>`
+      : f.credito;
   const promocionesCred = PROMOS.map(p => {
     if (p.render) return `<li><strong>${p.name}</strong><span>Render del promotor · ${p.render.dominio}</span></li>`;
-    if (p.foto) return `<li><strong>${p.name}</strong><span>${credito(p.foto)}</span></li>`;
+    if (p.foto) return `<li><strong>${p.name}</strong><span>${credito(p.foto) || 'Imagen de archivo'}</span></li>`;
     return `<li><strong>${p.name}</strong><span>Imagen de archivo</span></li>`;
   }).join('');
   creditosImagenes.innerHTML = `
@@ -1776,7 +1779,7 @@ if (creditosImagenes) {
       <summary>Consultar créditos y procedencia <small>${camposCred.length} imágenes de campo · ${PROMOS.length} promociones</small></summary>
       <div class="image-credit-groups">
         <section><h3>Promociones</h3><ul>${promocionesCred}</ul></section>
-        <section><h3>Campos de golf</h3><ul>${camposCred.map(f => `<li><strong>${(CX[f.id] && CX[f.id].name) || f.id}</strong><span>${credito(f)} · ${f.uso}</span></li>`).join('')}</ul></section>
+        <section><h3>Campos de golf</h3><ul>${camposCred.map(f => `<li><strong>${(CX[f.id] && CX[f.id].name) || f.id}</strong><span>${[credito(f), f.uso].filter(Boolean).join(' · ')}</span></li>`).join('')}</ul></section>
       </div>
     </details>`;
 }
@@ -2657,6 +2660,439 @@ pintarEstrellas();
     <a href="fuentes.html">página de fuentes</a>.</p>`;
 })();
 
+/* ═══════════════════════════════════
+   PANEL DE SUSCRIPCIÓN
+   Pestaña fija que abre un modal flotante centrado, a dos columnas: imagen a la
+   izquierda y formulario a la derecha. Dos pasos: el primero pide solo el email,
+   el segundo cualifica y se puede saltar sin perder la suscripción.
+
+   Al ser un modal de verdad —y no el lateral de antes— se comporta como tal:
+   fondo que atenúa la página, scroll bloqueado, foco atrapado dentro y devuelto
+   a la pestaña al cerrar.
+
+   NO SE MONTA MIENTRAS NO HAYA ENDPOINT. Sin servidor detrás, un formulario de
+   suscripción solo puede mentir: el visitante deja su correo y no lo recibe
+   nadie. Además la política de privacidad dice hoy que la guía no guarda nada
+   en el navegador, y este panel usa almacenamiento para no repetirse. Las dos
+   cosas se resuelven el mismo día: se rellena ENDPOINT y se reescribe
+   privacidad.html EN EL MISMO COMMIT.
+
+   Para revisarlo antes de que exista el servidor, basta con añadir ?panel a
+   cualquier URL: se monta y el envío se queda en un ensayo que no sale del
+   navegador.
+════════════════════════════════════ */
+(function () {
+  /* ── Configuración ─────────────────────────────────────────── */
+  const ENDPOINT = '';                    // https://… — vacío: el panel no se monta
+  const BUZON = 'nicetomeetyou@primeandgolf.com';
+  const ENSAYO = /[?&]panel\b/.test(location.search);
+  if (!ENDPOINT && !ENSAYO) return;
+
+  const cuerpo = document.body;
+  if (!cuerpo) return;
+  const EDICION = cuerpo.dataset.edicion || '#01';
+  const PAGINA = cuerpo.dataset.pagina || '';
+
+  /* Todo el texto visible, en literales con comillas: así el catálogo de
+     traducción lo sustituye sin tocar clases ni identificadores. */
+  const TX = {
+    pestana: 'Seguir el ranking',
+    cerrar: 'Cerrar',
+    kicker: 'PRIMEandGOLF · EDICIÓN ',
+    titulo: 'Recibe la siguiente edición',
+    intro: 'Te avisaremos cuando publiquemos una nueva edición, cambie de forma relevante el ranking o abramos un nuevo análisis del mercado prime.',
+    email: 'Email',
+    enviar: 'Seguir el ranking',
+    legal: 'Solo pedimos el email. Puedes darte de baja cuando quieras: cada aviso lleva su enlace. Tratamos tus datos según la ',
+    legalEnlace: 'política de privacidad',
+    enviando: 'Enviando…',
+    malEmail: 'Revisa el correo: falta algo o está mal escrito.',
+    malEnvio: 'No se ha podido completar. Escríbenos a ',
+    ensayo: 'Ensayo de revisión: no hay servidor detrás y no se ha guardado nada.',
+    dentroTitulo: 'Ya estás dentro.',
+    dentroIntro: 'Si quieres, cuéntanos desde dónde miras el mercado. Es opcional y no cambia tu suscripción.',
+    posicion: '¿Desde qué posición sigues el mercado?',
+    opMercado: 'Sigo el mercado y sus tendencias.',
+    opCompra: 'Estoy valorando una compra en la Costa del Sol.',
+    opPro: 'Trabajo en promoción, comercialización o inversión inmobiliaria.',
+    opOtro: 'Otro interés.',
+    rango: 'Rango orientativo',
+    rango1: 'Hasta 1 M€',
+    rango2: '1–3 M€',
+    rango3: '3–5 M€',
+    rango4: 'Más de 5 M€',
+    horizonte: 'Horizonte',
+    hor1: 'Explorando',
+    hor2: 'Próximos 12 meses',
+    hor3: 'Próximos 6 meses',
+    avisoPromo: 'Podéis escribirme si detectáis una promoción especialmente relevante para mi búsqueda.',
+    empresa: 'Empresa',
+    opcional: 'opcional',
+    actividad: 'Actividad',
+    act1: 'Promotora',
+    act2: 'Comercializadora o agencia',
+    act3: 'Inversor o fondo',
+    act4: 'Arquitectura o consultoría',
+    act5: 'Otra',
+    guardar: 'Guardar',
+    saltar: 'Saltar este paso',
+    graciasTitulo: 'Gracias.',
+    graciasIntro: 'Lo tendremos en cuenta al preparar la próxima edición.',
+    listo: 'Listo',
+    pieImagen: 'Nueva Andalucía · el Golf Valley desde el aire'
+  };
+
+  /* El texto exacto que acepta quien se suscribe viaja con el registro: sin
+     eso el consentimiento no es demostrable, y demostrarlo es la mitad del
+     trabajo de cumplir. */
+  const TEXTO_CONSENTIMIENTO = TX.intro + ' ' + TX.legal + TX.legalEnlace + '.';
+
+  /* ── Memoria de sesión ─────────────────────────────────────────
+     En navegación privada o con el almacenamiento bloqueado esto lanza; el
+     panel tiene que seguir funcionando, solo que sin recordar nada. */
+  const leer = (almacen, clave) => {
+    try { return window[almacen].getItem(clave); } catch (e) { return null; }
+  };
+  const guardar = (almacen, clave, valor) => {
+    try { window[almacen].setItem(clave, valor); } catch (e) { /* sin memoria */ }
+  };
+  const CERRADO = 'pyg-panel-cerrado';
+  const SUSCRITO = 'pyg-panel-suscrito';
+
+  if (leer('localStorage', SUSCRITO)) return;   // ya está dentro: no se le persigue
+
+  /* ── Marcado ───────────────────────────────────────────────── */
+  const raiz = document.createElement('aside');
+  raiz.className = 'pnl';
+  raiz.id = 'panelSuscripcion';
+  raiz.innerHTML = `
+    <button type="button" class="pnl-pestana" aria-expanded="false" aria-controls="pnlCaja">${TX.pestana}</button>
+    <div class="pnl-fondo" hidden></div>
+    <div class="pnl-caja" id="pnlCaja" role="dialog" aria-modal="true" aria-labelledby="pnlTitulo" hidden>
+      <figure class="pnl-imagen">
+        <img src="images/zona/nueva-andalucia.jpg" alt="${TX.pieImagen}" loading="lazy"/>
+      </figure>
+      <div class="pnl-cara">
+      <button type="button" class="pnl-cerrar" aria-label="${TX.cerrar}"></button>
+
+      <form class="pnl-paso pnl-paso-1" novalidate>
+        <span class="gana-rot">${TX.kicker}${EDICION}</span>
+        <h2 class="form-tit" id="pnlTitulo">${TX.titulo}</h2>
+        <p class="form-intro">${TX.intro}</p>
+        <label class="campo">
+          <span>${TX.email}</span>
+          <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="tu@correo.com"/>
+        </label>
+        <button type="submit" class="form-enviar">${TX.enviar}<span>&rarr;</span></button>
+        <p class="pnl-legal">${TX.legal}<a href="privacidad.html">${TX.legalEnlace}</a>.</p>
+        <p class="form-estado" role="status" aria-live="polite"></p>
+      </form>
+
+      <form class="pnl-paso pnl-paso-2" hidden>
+        <h2 class="form-tit">${TX.dentroTitulo}</h2>
+        <p class="form-intro">${TX.dentroIntro}</p>
+        <fieldset class="pnl-grupo">
+          <legend>${TX.posicion}</legend>
+          <label class="pnl-op"><input type="radio" name="posicion" value="mercado"><span>${TX.opMercado}</span></label>
+          <label class="pnl-op"><input type="radio" name="posicion" value="compra"><span>${TX.opCompra}</span></label>
+          <label class="pnl-op"><input type="radio" name="posicion" value="profesional"><span>${TX.opPro}</span></label>
+          <label class="pnl-op"><input type="radio" name="posicion" value="otro"><span>${TX.opOtro}</span></label>
+        </fieldset>
+
+        <div class="pnl-rama" data-rama="compra" hidden>
+          <label class="campo">
+            <span>${TX.rango}</span>
+            <select name="rango">
+              <option value=""></option>
+              <option value="hasta-1M">${TX.rango1}</option>
+              <option value="1-3M">${TX.rango2}</option>
+              <option value="3-5M">${TX.rango3}</option>
+              <option value="mas-5M">${TX.rango4}</option>
+            </select>
+          </label>
+          <label class="campo">
+            <span>${TX.horizonte}</span>
+            <select name="horizonte">
+              <option value=""></option>
+              <option value="explorando">${TX.hor1}</option>
+              <option value="12m">${TX.hor2}</option>
+              <option value="6m">${TX.hor3}</option>
+            </select>
+          </label>
+          <label class="campo-check">
+            <input type="checkbox" name="avisoPromocion" value="si">
+            <span>${TX.avisoPromo}</span>
+          </label>
+        </div>
+
+        <div class="pnl-rama" data-rama="profesional" hidden>
+          <label class="campo">
+            <span>${TX.empresa} <i>${TX.opcional}</i></span>
+            <input type="text" name="empresa" autocomplete="organization"/>
+          </label>
+          <label class="campo">
+            <span>${TX.actividad}</span>
+            <select name="actividad">
+              <option value=""></option>
+              <option value="promotora">${TX.act1}</option>
+              <option value="agencia">${TX.act2}</option>
+              <option value="inversor">${TX.act3}</option>
+              <option value="arquitectura">${TX.act4}</option>
+              <option value="otra">${TX.act5}</option>
+            </select>
+          </label>
+        </div>
+
+        <button type="submit" class="form-enviar">${TX.guardar}<span>&rarr;</span></button>
+        <button type="button" class="pnl-saltar">${TX.saltar}</button>
+        <p class="form-estado" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="pnl-paso pnl-paso-3" hidden>
+        <h2 class="form-tit">${TX.graciasTitulo}</h2>
+        <p class="form-intro">${TX.graciasIntro}</p>
+        <button type="button" class="form-enviar pnl-listo">${TX.listo}<span>&rarr;</span></button>
+      </div>
+      </div>
+    </div>`;
+  cuerpo.appendChild(raiz);
+
+  const pestana = raiz.querySelector('.pnl-pestana');
+  const caja = raiz.querySelector('.pnl-caja');
+  const fondo = raiz.querySelector('.pnl-fondo');
+  const paso1 = raiz.querySelector('.pnl-paso-1');
+  const paso2 = raiz.querySelector('.pnl-paso-2');
+  const paso3 = raiz.querySelector('.pnl-paso-3');
+
+  /* ── Apertura y cierre ─────────────────────────────────────── */
+  let abierto = false;
+  const doc = document.documentElement;
+
+  /* Bloquear el scroll quita la barra y la pagina entera se desplaza de lado.
+     Se mide antes de bloquear y se devuelve como relleno, que es como ya lo
+     resuelven las fichas. scrollbar-gutter no vale: el navegador solo reserva
+     el hueco mientras el desbordamiento es auto o scroll. */
+  const bloquear = (v) => {
+    if (v) doc.style.setProperty('--barra-pnl', (window.innerWidth - doc.clientWidth) + 'px');
+    doc.classList.toggle('panel-abierto', v);
+    if (!v) doc.style.removeProperty('--barra-pnl');
+  };
+
+  const enfocables = () => [...caja.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled])'
+  )].filter(e => e.offsetParent !== null);
+
+  const abrir = (v) => {
+    abierto = v;
+    caja.hidden = !v;
+    fondo.hidden = !v;
+    bloquear(v);
+    raiz.classList.toggle('abierto', v);
+    pestana.setAttribute('aria-expanded', String(v));
+    if (v) {
+      const foco = caja.querySelector('.pnl-paso:not([hidden]) input, .pnl-paso:not([hidden]) button');
+      if (foco) foco.focus({ preventScroll: true });
+    } else {
+      pestana.focus({ preventScroll: true });
+    }
+  };
+  /* Cerrar a mano es una respuesta, no un descuido: no se vuelve a abrir solo
+     en toda la sesión. La pestaña se queda, por si cambia de idea. */
+  const cerrar = () => { abrir(false); guardar('sessionStorage', CERRADO, '1'); };
+
+  pestana.addEventListener('click', () => (abierto ? cerrar() : abrir(true)));
+  raiz.querySelector('.pnl-cerrar').addEventListener('click', cerrar);
+  fondo.addEventListener('click', cerrar);
+  document.addEventListener('keydown', e => {
+    if (!abierto) return;
+    if (e.key === 'Escape') { cerrar(); return; }
+    // El foco no puede salirse de un dialogo modal mientras esta abierto.
+    if (e.key !== 'Tab') return;
+    const f = enfocables();
+    if (!f.length) return;
+    const primero = f[0], ultimo = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+    else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
+  });
+
+  /* ── Disparadores ──────────────────────────────────────────────
+     Nada al entrar. Se abre solo una vez, cuando el visitante ya ha
+     demostrado interés: al abrir la segunda ficha, o cuando lleva recorrida
+     buena parte de una página de lectura. */
+  let yaDisparado = false;
+  const disparar = () => {
+    if (yaDisparado || abierto) return;
+    if (leer('sessionStorage', CERRADO)) return;
+    yaDisparado = true;
+    abrir(true);
+  };
+
+  const fichasAbiertas = new Set();
+  document.addEventListener('toggle', e => {
+    // toggle no burbujea: hay que escucharlo en captura.
+    const d = e.target;
+    if (!d || !d.matches || !d.matches('details.promo') || !d.open) return;
+    fichasAbiertas.add(d.id || fichasAbiertas.size + 1);
+    if (fichasAbiertas.size >= 2) disparar();
+  }, true);
+
+  const UMBRAL = { ranking: .5, metodologia: .65, fuentes: .65 };
+  if (UMBRAL[PAGINA]) {
+    let pendiente = false;
+    const mirar = () => {
+      pendiente = false;
+      const alto = document.documentElement.scrollHeight - window.innerHeight;
+      if (alto > 0 && window.scrollY / alto >= UMBRAL[PAGINA]) {
+        window.removeEventListener('scroll', encolar);
+        disparar();
+      }
+    };
+    const encolar = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(mirar);
+    };
+    window.addEventListener('scroll', encolar, { passive: true });
+  }
+
+  /* ── Envío ─────────────────────────────────────────────────────
+     El contrato con el servidor está en ESPECIFICACION-BACKEND.md. Dos
+     llamadas al mismo endpoint: la suscripción y, si la completa, el perfil,
+     que viaja con el id que devolvió la primera. */
+  let idRegistro = null;
+
+  const mandar = async (datos) => {
+    if (!ENDPOINT) {                       // ensayo de revisión
+      await new Promise(r => setTimeout(r, 400));
+      return { ok: true, id: 'ensayo' };
+    }
+    const r = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(datos)
+    });
+    if (!r.ok) throw new Error(r.status);
+    return await r.json().catch(() => ({ ok: true }));
+  };
+
+  const verPaso = (n) => {
+    [paso1, paso2, paso3].forEach((p, i) => { p.hidden = (i + 1) !== n; });
+    const foco = caja.querySelector('.pnl-paso:not([hidden]) input, .pnl-paso:not([hidden]) button');
+    if (foco) foco.focus({ preventScroll: true });
+  };
+
+  paso1.addEventListener('submit', async e => {
+    e.preventDefault();
+    const estado = paso1.querySelector('.form-estado');
+    const boton = paso1.querySelector('.form-enviar');
+    const campo = paso1.querySelector('input[name="email"]');
+    paso1.classList.add('tocado');
+    estado.className = 'form-estado';
+    if (!paso1.checkValidity()) {
+      estado.classList.add('mal');
+      estado.textContent = TX.malEmail;
+      campo.focus();
+      return;
+    }
+    boton.disabled = true;
+    estado.textContent = TX.enviando;
+    try {
+      const r = await mandar({
+        tipo: 'suscripcion',
+        email: campo.value.trim(),
+        edicion: EDICION,
+        idioma: cuerpo.dataset.lang || 'es',
+        origen: location.href,
+        consentimiento: { texto: TEXTO_CONSENTIMIENTO, momento: new Date().toISOString() }
+      });
+      idRegistro = r.id || null;
+      // En ensayo no se marca nada: no hay suscripcion que recordar y dejar la
+      // marca haria que el panel no volviera a montarse para revisarlo.
+      if (ENDPOINT) guardar('localStorage', SUSCRITO, '1');
+      verPaso(2);
+      if (!ENDPOINT) {
+        const aviso = paso2.querySelector('.form-estado');
+        aviso.className = 'form-estado mal';
+        aviso.textContent = TX.ensayo;
+      }
+    } catch (err) {
+      estado.classList.add('mal');
+      estado.textContent = TX.malEnvio + BUZON + '.';
+    } finally { boton.disabled = false; }
+  });
+
+  /* Las ramas se abren según la posición elegida, y solo viaja la que está
+     visible: preguntar por presupuesto a quien dijo que es promotora sería
+     recoger un dato que no hemos pedido. */
+  const ramas = [...paso2.querySelectorAll('.pnl-rama')];
+  paso2.addEventListener('change', e => {
+    if (e.target.name !== 'posicion') return;
+    ramas.forEach(r => { r.hidden = r.dataset.rama !== e.target.value; });
+  });
+
+  const cerrarConGracias = () => {
+    verPaso(3);
+    guardar('sessionStorage', CERRADO, '1');
+  };
+
+  paso2.addEventListener('submit', async e => {
+    e.preventDefault();
+    const estado = paso2.querySelector('.form-estado');
+    const boton = paso2.querySelector('.form-enviar');
+    estado.className = 'form-estado';
+    const elegida = paso2.querySelector('input[name="posicion"]:checked');
+    const perfil = { posicion: elegida ? elegida.value : null };
+    const visible = ramas.find(r => !r.hidden);
+    if (visible) {
+      visible.querySelectorAll('[name]').forEach(c => {
+        const v = c.type === 'checkbox' ? c.checked : c.value.trim();
+        if (v) perfil[c.name] = v;
+      });
+    }
+    boton.disabled = true;
+    estado.textContent = TX.enviando;
+    try {
+      await mandar({ tipo: 'perfil', id: idRegistro, perfil: perfil });
+      cerrarConGracias();
+    } catch (err) {
+      // La suscripción ya está hecha: un fallo aquí no puede parecer un fallo
+      // de aquella, así que se cierra en bien y se pierde solo el perfil.
+      cerrarConGracias();
+    } finally { boton.disabled = false; }
+  });
+
+  paso2.querySelector('.pnl-saltar').addEventListener('click', cerrarConGracias);
+  paso3.querySelector('.pnl-listo').addEventListener('click', () => { abrir(false); });
+})();
+
+
+/* Vuelta al inicio
+   Aparece cuando ya se ha bajado una pantalla larga: antes de eso el inicio
+   esta a la vista y el boton solo estorbaria. Se oculta con visibility y no
+   con hidden para que pueda atenuarse al entrar y salir, y para que mientras
+   no se ve tampoco entre en el orden de tabulacion. */
+(function () {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'ir-arriba';
+  b.setAttribute('aria-label', 'Volver al inicio');
+  document.body.appendChild(b);
+
+  const suave = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let pendiente = false;
+  const mirar = () => {
+    pendiente = false;
+    b.classList.toggle('ver', window.scrollY > window.innerHeight * 0.9);
+  };
+  const encolar = () => { if (pendiente) return; pendiente = true; requestAnimationFrame(mirar); };
+  window.addEventListener('scroll', encolar, { passive: true });
+  window.addEventListener('resize', encolar, { passive: true });
+  mirar();
+
+  b.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: suave ? 'smooth' : 'instant' });
+  });
+})();
 
 /* Menú desplegable del nav */
 (function () {

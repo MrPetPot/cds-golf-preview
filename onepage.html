@@ -178,7 +178,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: rgba(0,0,0,.30);
+  /* Un solo velo para los ocho heros. Antes eran dos: la portada plana al 30 %
+     y las bandas interiores en degradado hasta el 84 %. Este es el punto medio.
+     En negro puro, no en el navy que llevaban las bandas interiores: decision de
+     Pedro. El negro ademas oscurece algo mas a igual alfa, asi que el contraste
+     sube un poco. Medido sobre las cinco fotos interiores y sobre catorce
+     fotogramas de los dos videos de portada, peor 5 % de pixeles. */
+  background: linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.50) 58%, rgba(0,0,0,.64) 100%);
 }
 @media (max-width: 900px) { .hero::before { background-image: url('images/hero/hero-golf-m.jpg'); } }
 .hero-top {
