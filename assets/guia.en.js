@@ -2741,7 +2741,7 @@ pintarEstrellas();
     graciasTitulo: 'Thank you.',
     graciasIntro: 'We will take it into account as we put the next edition together.',
     listo: 'Done',
-    pieImagen: 'Nueva Andalucía · Golf Valley from the air',
+    pieImagen: 'The PRIMEandGOLF guide · Edition #01',
     vistaPrevia: 'Preview. This form does not send anywhere yet: nothing you type is stored or reaches anyone.'
   };
 
@@ -2768,14 +2768,14 @@ pintarEstrellas();
 
   /* ── Marcado ───────────────────────────────────────────────── */
   const raiz = document.createElement('aside');
-  raiz.className = 'pnl';
+  raiz.className = VISTA_PREVIA ? 'pnl vista-previa' : 'pnl';
   raiz.id = 'panelSuscripcion';
   raiz.innerHTML = `
     <button type="button" class="pnl-pestana" aria-expanded="false" aria-controls="pnlCaja">${TX.pestana}</button>
     <div class="pnl-fondo" hidden></div>
     <div class="pnl-caja" id="pnlCaja" role="dialog" aria-modal="true" aria-labelledby="pnlTitulo" hidden>
       <figure class="pnl-imagen">
-        <img src="../images/zona/nueva-andalucia.jpg" alt="${TX.pieImagen}" loading="lazy"/>
+        <img src="../images/marca/edicion-01.jpg" alt="${TX.pieImagen}" loading="lazy"/>
       </figure>
       <div class="pnl-cara">
       <button type="button" class="pnl-cerrar" aria-label="${TX.cerrar}"></button>

@@ -2432,7 +2432,9 @@ html.panel-abierto { overflow: hidden; padding-right: var(--barra-pnl, 0px); }
   to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
-.pnl-imagen { margin: 0; overflow: hidden; background: var(--marengo); }
+/* El filete separa las dos mitades: el mock de la guia va sobre fondo claro y
+   sin el se funde con la columna blanca del formulario. */
+.pnl-imagen { margin: 0; overflow: hidden; background: var(--marengo); border-right: 1px solid var(--line-strong); }
 .pnl-imagen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .pnl-cara {
@@ -2503,7 +2505,14 @@ html.panel-abierto { overflow: hidden; padding-right: var(--barra-pnl, 0px); }
        el paso 1 arrastra un hueco muerto debajo. */
     min-height: 0; max-height: calc(100vh - 24px);
   }
+  /* La banda es una franja muy apaisada de una foto 4:3: centrada cae en la
+     mitad del libro y no se reconoce. Subiendo el encuadre entra el titulo. */
+  .pnl-imagen { border-right: none; border-bottom: 1px solid var(--line-strong); }
+  .pnl-imagen img { object-position: 50% 30%; }
   .pnl-cara { padding: 30px 26px 26px; }
+  /* Con el aviso de vista previa el aspa le caia encima: aqui el padding es la
+     mitad que en escritorio y ya no le queda sitio propio. */
+  .pnl.vista-previa .pnl-cara { padding-top: 52px; }
   .pnl-rama { grid-template-columns: 1fr; }
   .pnl-pestana {
     top: auto; bottom: 0; right: 50%;
