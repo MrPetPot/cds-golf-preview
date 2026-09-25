@@ -2453,6 +2453,11 @@ html.panel-abierto { overflow: hidden; padding-right: var(--barra-pnl, 0px); }
 .pnl-cerrar::after  { transform: translate(-50%,-50%) rotate(-45deg); }
 .pnl-cerrar:hover::before, .pnl-cerrar:hover::after { background: var(--oro-3); }
 
+.pnl-aviso {
+  margin: 0 0 20px; padding: 11px 14px;
+  background: var(--oro-soft); border: 1px solid var(--oro-line);
+  font-size: 12px; line-height: 1.5; color: var(--oro-3); text-align: center;
+}
 .pnl-paso { display: flex; flex-direction: column; gap: 14px; }
 .pnl-paso[hidden] { display: none; }
 /* La cabecera va centrada y los campos alineados a la izquierda: centrar una

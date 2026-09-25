@@ -2670,23 +2670,26 @@ pintarEstrellas();
    fondo que atenúa la página, scroll bloqueado, foco atrapado dentro y devuelto
    a la pestaña al cerrar.
 
-   NO SE MONTA MIENTRAS NO HAYA ENDPOINT. Sin servidor detrás, un formulario de
-   suscripción solo puede mentir: el visitante deja su correo y no lo recibe
-   nadie. Además la política de privacidad dice hoy que la guía no guarda nada
-   en el navegador, y este panel usa almacenamiento para no repetirse. Las dos
-   cosas se resuelven el mismo día: se rellena ENDPOINT y se reescribe
-   privacidad.html EN EL MISMO COMMIT.
+   DOS MODOS, según haya endpoint o no.
 
-   Para revisarlo antes de que exista el servidor, basta con añadir ?panel a
-   cualquier URL: se monta y el envío se queda en un ensayo que no sale del
-   navegador.
+   SIN ENDPOINT es vista previa: se monta para poder enseñarlo, pero no se abre
+   solo, no escribe nada en el navegador —la política de privacidad dice que la
+   guía no guarda nada, y en vista previa sigue siendo verdad— y lleva un aviso
+   a la vista en todos los pasos. Eso último no es un detalle: sin él, quien
+   escriba su correo leería «Ya estás dentro» sin estarlo, que es peor que no
+   enseñar nada. Añadiendo ?panel a la URL se activan además los disparadores,
+   para poder probarlos.
+
+   CON ENDPOINT funciona entero. Ese día hay que rellenar ENDPOINT y reescribir
+   privacidad.html EN EL MISMO COMMIT: el panel pasa a usar almacenamiento y a
+   tratar datos personales.
 ════════════════════════════════════ */
 (function () {
   /* ── Configuración ─────────────────────────────────────────── */
   const ENDPOINT = '';                    // https://… — vacío: el panel no se monta
   const BUZON = 'nicetomeetyou@primeandgolf.com';
-  const ENSAYO = /[?&]panel\b/.test(location.search);
-  if (!ENDPOINT && !ENSAYO) return;
+  const VISTA_PREVIA = !ENDPOINT;
+  const CON_DISPARADORES = !VISTA_PREVIA || /[?&]panel\b/.test(location.search);
 
   const cuerpo = document.body;
   if (!cuerpo) return;
@@ -2708,7 +2711,6 @@ pintarEstrellas();
     enviando: 'Sending…',
     malEmail: 'Check the address: something is missing or mistyped.',
     malEnvio: 'That did not go through. Write to us at ',
-    ensayo: 'Review rehearsal: there is no server behind this and nothing has been stored.',
     dentroTitulo: 'You are in.',
     dentroIntro: 'If you like, tell us where you watch the market from. It is optional and it does not affect your subscription.',
     posicion: 'Where do you watch the market from?',
@@ -2739,7 +2741,8 @@ pintarEstrellas();
     graciasTitulo: 'Thank you.',
     graciasIntro: 'We will take it into account as we put the next edition together.',
     listo: 'Done',
-    pieImagen: 'Nueva Andalucía · Golf Valley from the air'
+    pieImagen: 'Nueva Andalucía · Golf Valley from the air',
+    vistaPrevia: 'Preview. This form does not send anywhere yet: nothing you type is stored or reaches anyone.'
   };
 
   /* El texto exacto que acepta quien se suscribe viaja con el registro: sin
@@ -2751,9 +2754,11 @@ pintarEstrellas();
      En navegación privada o con el almacenamiento bloqueado esto lanza; el
      panel tiene que seguir funcionando, solo que sin recordar nada. */
   const leer = (almacen, clave) => {
+    if (VISTA_PREVIA) return null;
     try { return window[almacen].getItem(clave); } catch (e) { return null; }
   };
   const guardar = (almacen, clave, valor) => {
+    if (VISTA_PREVIA) return;
     try { window[almacen].setItem(clave, valor); } catch (e) { /* sin memoria */ }
   };
   const CERRADO = 'pyg-panel-cerrado';
@@ -2774,6 +2779,7 @@ pintarEstrellas();
       </figure>
       <div class="pnl-cara">
       <button type="button" class="pnl-cerrar" aria-label="${TX.cerrar}"></button>
+      ${VISTA_PREVIA ? `<p class="pnl-aviso">${TX.vistaPrevia}</p>` : ''}
 
       <form class="pnl-paso pnl-paso-1" novalidate>
         <span class="gana-rot">${TX.kicker}${EDICION}</span>
@@ -2863,6 +2869,10 @@ pintarEstrellas();
   const paso1 = raiz.querySelector('.pnl-paso-1');
   const paso2 = raiz.querySelector('.pnl-paso-2');
   const paso3 = raiz.querySelector('.pnl-paso-3');
+  const cerrarBoton = raiz.querySelector('.pnl-cerrar');
+  // Si alguna pieza no esta, se sale en silencio en vez de reventar el resto
+  // del paquete: el panel es accesorio y el ranking no lo es.
+  if (!pestana || !caja || !fondo || !paso1 || !paso2 || !paso3 || !cerrarBoton) return;
 
   /* ── Apertura y cierre ─────────────────────────────────────── */
   let abierto = false;
@@ -2901,7 +2911,7 @@ pintarEstrellas();
   const cerrar = () => { abrir(false); guardar('sessionStorage', CERRADO, '1'); };
 
   pestana.addEventListener('click', () => (abierto ? cerrar() : abrir(true)));
-  raiz.querySelector('.pnl-cerrar').addEventListener('click', cerrar);
+  cerrarBoton.addEventListener('click', cerrar);
   fondo.addEventListener('click', cerrar);
   document.addEventListener('keydown', e => {
     if (!abierto) return;
@@ -2921,6 +2931,7 @@ pintarEstrellas();
      buena parte de una página de lectura. */
   let yaDisparado = false;
   const disparar = () => {
+    if (!CON_DISPARADORES) return;   // en vista previa solo se abre al pulsar la pestana
     if (yaDisparado || abierto) return;
     if (leer('sessionStorage', CERRADO)) return;
     yaDisparado = true;
@@ -2928,6 +2939,7 @@ pintarEstrellas();
   };
 
   const fichasAbiertas = new Set();
+
   document.addEventListener('toggle', e => {
     // toggle no burbujea: hay que escucharlo en captura.
     const d = e.target;
@@ -3010,11 +3022,6 @@ pintarEstrellas();
       // marca haria que el panel no volviera a montarse para revisarlo.
       if (ENDPOINT) guardar('localStorage', SUSCRITO, '1');
       verPaso(2);
-      if (!ENDPOINT) {
-        const aviso = paso2.querySelector('.form-estado');
-        aviso.className = 'form-estado mal';
-        aviso.textContent = TX.ensayo;
-      }
     } catch (err) {
       estado.classList.add('mal');
       estado.textContent = TX.malEnvio + BUZON + '.';
