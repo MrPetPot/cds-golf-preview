@@ -2531,7 +2531,7 @@ pintarEstrellas();
 ════════════════════════════════════ */
 (function () {
   const ENVIO = '';                       // endpoint https://… o '' para correo
-  const BUZON = 'nicetomeetyou@primeandgolf.com';
+  const BUZON = 'ranking@primeandgolf.com';
   const lead = document.getElementById('formLead');
   const pro = document.getElementById('formPro');
   if (!lead && !pro) return;
@@ -2672,13 +2672,15 @@ pintarEstrellas();
 
    DOS MODOS, según haya endpoint o no.
 
-   SIN ENDPOINT es vista previa: se monta para poder enseñarlo, pero no se abre
-   solo, no escribe nada en el navegador —la política de privacidad dice que la
-   guía no guarda nada, y en vista previa sigue siendo verdad— y lleva un aviso
-   a la vista en todos los pasos. Eso último no es un detalle: sin él, quien
-   escriba su correo leería «Ya estás dentro» sin estarlo, que es peor que no
-   enseñar nada. Añadiendo ?panel a la URL se activan además los disparadores,
-   para poder probarlos.
+   SIN ENDPOINT es vista previa: se comporta entero —se abre solo con sus
+   disparadores y recuerda que lo has cerrado— pero no envía, y lleva un aviso a
+   la vista en todos los pasos diciéndolo. Ese aviso no es un detalle: sin él,
+   quien escriba su correo leería «Ya estás dentro» sin estarlo, que es peor que
+   no enseñar nada. Lo único que no hace en vista previa es marcar a nadie como
+   suscrito, porque no lo está.
+
+   La marca de «ya lo he cerrado» vive en sessionStorage y dura lo que la visita.
+   Está declarada en privacidad.html: si se toca aquí, se toca allí.
 
    CON ENDPOINT funciona entero. Ese día hay que rellenar ENDPOINT y reescribir
    privacidad.html EN EL MISMO COMMIT: el panel pasa a usar almacenamiento y a
@@ -2686,10 +2688,14 @@ pintarEstrellas();
 ════════════════════════════════════ */
 (function () {
   /* ── Configuración ─────────────────────────────────────────── */
-  const ENDPOINT = '';                    // https://… — vacío: el panel no se monta
-  const BUZON = 'nicetomeetyou@primeandgolf.com';
+  /* En local apunta al prototipo (prototipo/servidor.py, puerto 8730). En lo
+     publicado se queda vacio, porque el host nunca es localhost: no hay manera
+     de que la web en produccion capture nada mientras no se escriba aqui una
+     URL de verdad. Ese dia, ademas, toca reescribir privacidad.html. */
+  const EN_LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const ENDPOINT = EN_LOCAL ? 'http://localhost:8730/api/suscripcion' : '';
+  const BUZON = 'ranking@primeandgolf.com';
   const VISTA_PREVIA = !ENDPOINT;
-  const CON_DISPARADORES = !VISTA_PREVIA || /[?&]panel\b/.test(location.search);
 
   const cuerpo = document.body;
   if (!cuerpo) return;
@@ -2754,11 +2760,9 @@ pintarEstrellas();
      En navegación privada o con el almacenamiento bloqueado esto lanza; el
      panel tiene que seguir funcionando, solo que sin recordar nada. */
   const leer = (almacen, clave) => {
-    if (VISTA_PREVIA) return null;
     try { return window[almacen].getItem(clave); } catch (e) { return null; }
   };
   const guardar = (almacen, clave, valor) => {
-    if (VISTA_PREVIA) return;
     try { window[almacen].setItem(clave, valor); } catch (e) { /* sin memoria */ }
   };
   const CERRADO = 'pyg-panel-cerrado';
@@ -2931,7 +2935,6 @@ pintarEstrellas();
      buena parte de una página de lectura. */
   let yaDisparado = false;
   const disparar = () => {
-    if (!CON_DISPARADORES) return;   // en vista previa solo se abre al pulsar la pestana
     if (yaDisparado || abierto) return;
     if (leer('sessionStorage', CERRADO)) return;
     yaDisparado = true;
