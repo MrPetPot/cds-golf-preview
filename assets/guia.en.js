@@ -673,7 +673,7 @@ const PROMOS = [
     image:'../images/promos/the-view.jpg',
     promotor:'The View Companies', estudio:'Teodoro Cabrilla + González & Jacobson', estudioFuente:'gjarquitectura.com', derechosGolf:null,
     tipologia:'Two- to four-bedroom apartments and penthouses', unidades:119,
-    precio:'€799,000 – €2,499,000', precioDesde:'€799,000', precioEstimado:false, eurM2:6500,
+    precio:'€899,000 – €2,499,000', precioDesde:'€899,000', precioEstimado:false, eurM2:6500,
     estado:'Phase 1 delivered · Phase 2 under way', entrega:'2024–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['los-naranjos-golf',2,''],['aloha-golf-club',3,''],['magna-marbella',3,''],['real-club-de-golf-las-brisas',5,''],['la-quinta-golf',7,''],['dama-de-noche',13,''],['guadalmina-norte',13,''],['los-arqueros-golf',13,''],['real-club-de-golf-guadalmina-sur',13,''],['atalaya-new',15,''],['atalaya-old',15,''],['el-higueral',15,'']],
