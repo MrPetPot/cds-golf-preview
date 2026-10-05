@@ -2133,6 +2133,9 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 .form-estado { margin: 0; font-size: 13px; line-height: 1.5; min-height: 1px; }
 .form-estado.ok { color: var(--verde-2); font-weight: 600; }
 .form-estado.mal { color: #B23A2E; font-weight: 600; }
+/* Campo trampa contra robots: enviar.php descarta lo que llegue con 'web' relleno.
+   Fuera de la vista y del tabulador, pero no display:none, que algunos robots lo saltan. */
+.campo-trampa { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 @media (max-width: 900px) {
   .form-grid { grid-template-columns: 1fr; gap: 18px; }

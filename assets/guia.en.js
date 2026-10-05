@@ -2523,14 +2523,18 @@ pintarEstrellas();
 
 /* ═══════════════════════════════════
    FORMULARIOS DE CONTACTO
-   La guia es un sitio estatico: no hay servidor que reciba un POST. Mientras
-   no lo haya, el formulario compone el correo y lo abre en el cliente del
-   visitante, que funciona en cualquier parte y no mete a un tercero entre
-   medias. El dia que haya endpoint —Formspree, Basin, una funcion propia—
-   se rellena ENVIO y pasa a enviarse por fetch sin tocar nada mas.
+   Se envian por fetch a enviar.php, en la raiz del sitio, que los manda por
+   SMTP al buzon configurado en correo.php. Eso solo existe en el dominio de
+   produccion: en cualquier otro host —la previsualizacion, una copia local—
+   ENVIO queda vacio y el formulario vuelve a componer el correo en el cliente
+   del visitante. Asi el mismo bundle sirve para los dos sitios y no hay que
+   editarlo a mano al subirlo.
 ════════════════════════════════════ */
 (function () {
-  const ENVIO = '';                       // endpoint https://… o '' para correo
+  const EN_PRODUCCION = /(^|\.)primeandgolf\.com$/.test(location.hostname);
+  const ENVIO = EN_PRODUCCION
+    ? new URL('../enviar.php', (document.currentScript && document.currentScript.src) || location.href).href
+    : '';
   const BUZON = 'ranking@primeandgolf.com';
   const lead = document.getElementById('formLead');
   const pro = document.getElementById('formPro');
@@ -2582,7 +2586,12 @@ pintarEstrellas();
         estado.textContent = 'Sending…';
         try {
           const r = await fetch(ENVIO, {
-            method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form)
+            method: 'POST', headers: { Accept: 'application/json' }, body: (() => {
+              const fd = new FormData(form);
+              fd.append('formulario', form.id);
+              fd.append('pagina', location.href);
+              return fd;
+            })()
           });
           if (!r.ok) throw new Error(r.status);
           form.reset(); form.classList.remove('tocado');
@@ -2688,12 +2697,18 @@ pintarEstrellas();
 ════════════════════════════════════ */
 (function () {
   /* ── Configuración ─────────────────────────────────────────── */
-  /* En local apunta al prototipo (prototipo/servidor.py, puerto 8730). En lo
-     publicado se queda vacio, porque el host nunca es localhost: no hay manera
-     de que la web en produccion capture nada mientras no se escriba aqui una
-     URL de verdad. Ese dia, ademas, toca reescribir privacidad.html. */
+  /* Tres destinos segun el host, para que el mismo bundle valga en todos:
+     - en local, el prototipo (prototipo/servidor.py, puerto 8730);
+     - en primeandgolf.com, enviar.php en la raiz del sitio, que reenvia por
+       correo y guarda la suscripcion en el registro del servidor;
+     - en cualquier otro —la previsualizacion—, vacio: el panel se ensena
+       pero no captura nada.
+     privacidad.html declara el caso de produccion. */
   const EN_LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  const ENDPOINT = EN_LOCAL ? 'http://localhost:8730/api/suscripcion' : '';
+  const EN_PRODUCCION = /(^|\.)primeandgolf\.com$/.test(location.hostname);
+  const ENDPOINT = EN_LOCAL ? 'http://localhost:8730/api/suscripcion'
+    : EN_PRODUCCION ? new URL('../enviar.php', (document.currentScript && document.currentScript.src) || location.href).href
+    : '';
   const BUZON = 'ranking@primeandgolf.com';
   const VISTA_PREVIA = !ENDPOINT;
 
