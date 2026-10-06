@@ -1956,9 +1956,14 @@ function initAtlas(el) {
   // van apareciendo solos.
   function ordenarRotulos() {
     const puestos = [];
-    const anchoV = W / zoom;
+    const anchoV = W / zoom, altoV = H / zoom;
     const izq = vistaX - anchoV / 2 + 4, der = vistaX + anchoV / 2 - 4;
+    const arriba = vistaY - altoV / 2, abajo = vistaY + altoV / 2;
     rotulos.forEach(r => {
+      // Un núcleo que ha quedado fuera del encuadre no se rotula: al ampliar y
+      // desplazar, recostar su nombre contra el borde los iba apilando todos en
+      // la orilla del lienzo, señalando sitios que no estaban en pantalla.
+      if (r.x < izq || r.x > der || r.y < arriba || r.y > abajo) { r.t.style.display = 'none'; return; }
       const alto = 11 / escala;
       const ancho = r.letras * alto * .78;
       // Contra el borde, el rótulo se recuesta en vez de recortarse.
