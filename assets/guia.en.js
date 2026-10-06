@@ -483,7 +483,7 @@ const FOTOS_FICHA = {
 
 const PROMOS = [
 
-  { id:'villas-alamos', render:{ dominio:"sotograndehome.com", pie:"Villa with pool and garden." }, name:'Las Villas de los Álamos', sub:'ACCIONA Inmobiliaria',
+  { id:'villas-alamos', render:{ dominio:"sotograndehome.com", pie:"Villa with pool and garden." }, name:'Las Villas – Sotogrande', sub:'ACCIONA Inmobiliaria',
     municipio:'Sotogrande (Cádiz)', zona:'Sotogrande Alto · Los Álamos', lat:36.29192, lng:-5.31299,
     image:'../images/promos/villas-alamos.jpg',
     promotor:'ACCIONA Inmobiliaria', estudio:'Torras y Sierra', estudioFuente:'inmobiliaria.acciona.com', derechosGolf:null,
@@ -567,10 +567,10 @@ const PROMOS = [
     tags:['Fendi Casa','Golden Mile','€15k/m²'],
     rationale:'It overtakes Tiara by three points after a correction to its count of ★★★+ courses, which was wrong in the previous edition. Its golf is within reach rather than on the doorstep: four ★★★+ courses between 10 and 13 minutes, and what sits at eight minutes is a nine-hole course. Here golf is an amenity; what you are paying for is Fendi and the €15,000 per square metre.' },
 
-  { id:'tiara', render:{ dominio:"nvoga.com", pie:"Stepped terraces above the valley." }, name:'Tiara', sub:'La Quinta · NVOGA',
+  { id:'tiara', render:{ dominio:"nvoga.com", pie:"Stepped terraces above the valley." }, name:'Tiara', sub:'La Quinta · Metrovacesa',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
     image:'../images/promos/tiara.jpg',
-    promotor:'NVOGA Marbella Realty', estudio:null, estudioNota:'Checked at nvoga.com: no architectural practice documented.', derechosGolf:null,
+    promotor:'Metrovacesa', estudio:null, estudioNota:'Checked at nvoga.com: no architectural practice documented.', derechosGolf:null,
     tipologia:'Three- to four-bedroom apartments and penthouses', unidades:56,
     precio:'€1,550,000 – €2,300,000', precioDesde:'€1,550,000', precioEstimado:false, eurM2:8500,
     estado:'Pre-sales · under construction', entrega:'2026+',
@@ -578,9 +578,9 @@ const PROMOS = [
     cursos:[['la-quinta-golf',4,''],['los-arqueros-golf',4,''],['los-naranjos-golf',7,''],['magna-marbella',8,''],['el-higueral',9,''],['aloha-golf-club',10,''],['real-club-de-golf-las-brisas',10,''],['la-zagaleta-old',11,''],['guadalmina-norte',12,''],['real-club-de-golf-guadalmina-sur',12,''],['atalaya-new',13,''],['atalaya-old',13,''],['la-zagaleta-los-barrancos',13,''],['alferini-villa-padierna',14,''],['dama-de-noche',15,''],['el-paraiso-golf',15,'']],
     d:{ a5:5,  a5why:'On the edge of La Quinta Golf’s 27 holes, without being in-resort.',
         a6:3,  a6why:'Good access via the Benahavís road; occasional congestion at San Pedro.',
-        b1:4,  b1why:'A considered NVOGA product; no international signature.',
+        b1:4,  b1why:'A considered Metrovacesa product; no international signature.',
         b4:7,  b4why:'Spa, gym, piscinas, zonas comunes; sin club house ni beach club propios.' },
-    tags:['A pie La Quinta','Golf Valley','Boutique NVOGA'],
+    tags:['A pie La Quinta','Golf Valley','Metrovacesa'],
     rationale:'Uno de los mejores bloques A fuera de Sotogrande y Cortesín: 30 sobre 60, con La Quinta Golf a cuatro minutos y de acceso resort. Queda séptima por el bloque B: sin marca, sin beach club y con 56 unidades, Fendi le saca doce puntos en la mitad que puntúa el proyecto.' },
 
   { id:'mc-hills', render:{ dominio:"marbellaclubhills.com", pie:"Aerial view towards the sea." }, name:'Marbella Club Hills', sub:'Phase 2',
@@ -671,7 +671,7 @@ const PROMOS = [
   { id:'the-view', render:{ dominio:"marbella-ev.com", pie:"A residential block above Las Colinas." }, name:'The View Marbella', sub:'Las Colinas de Marbella',
     municipio:'Benahavís', zona:'Las Colinas', lat:36.510, lng:-4.97,
     image:'../images/promos/the-view.jpg',
-    promotor:'The View Companies', estudio:'Teodoro Cabrilla + González & Jacobson', estudioFuente:'gjarquitectura.com', derechosGolf:null,
+    promotor:'Wilma Sierra Blanca', estudio:'Teodoro Cabrilla + González & Jacobson', estudioFuente:'gjarquitectura.com', derechosGolf:null,
     tipologia:'Two- to four-bedroom apartments and penthouses', unidades:119,
     precio:'€899,000 – €2,499,000', precioDesde:'€899,000', precioEstimado:false, eurM2:6500,
     estado:'Phase 1 delivered · Phase 2 under way', entrega:'2024–2026',
@@ -723,7 +723,7 @@ const PROMOS = [
      de precio suprimido. Sus tiempos son OSRM medidos, no declarados. */
 
   { id:'bentley-puente-romano', barrido:true, render:null, foto:null, image:null,
-    name:'Mirador de Puente Romano', sub:'Furnished by Bentley Home',
+    name:'AÍDA', sub:'Furnished by Bentley Home',
     municipio:'Marbella', zona:'Golden Mile', lat:36.504509, lng:-4.9241547,
     promotor:'RGZ Developers', estudio:null, estudioNota:'Interiors by Bentley Home with Luxury Living Group; the architectural practice is not documented.',
     derechosGolf:null, derechosNota:'No course of its own and no published golf rights: the Golden Mile does not offer them.',
