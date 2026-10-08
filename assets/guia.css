@@ -2129,6 +2129,12 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
 .form-enviar:hover { background: transparent; color: var(--text); }
 .form-enviar span { color: var(--oro-1); font-size: 15px; }
 .form-enviar[disabled] { opacity: .55; cursor: default; }
+/* suscripcion.html: todos los estados vienen escritos y el JS elige uno. */
+.sus-estados [data-estado][hidden] { display: none; }
+.sus-estados .form-enviar { display: inline-flex; min-width: 300px; margin: 10px 0 0; }
+.sus-estados .form-estado { margin-top: 14px; }
+.sus-estados .sec-title:focus { outline: none; }
+@media (max-width: 560px) { .sus-estados .form-enviar { display: flex; width: 100%; min-width: 0; } }
 
 .form-estado { margin: 0; font-size: 13px; line-height: 1.5; min-height: 1px; }
 .form-estado.ok { color: var(--verde-2); font-weight: 600; }

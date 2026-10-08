@@ -2699,6 +2699,14 @@ pintarEstrellas();
    CON ENDPOINT funciona entero. Ese día hay que rellenar ENDPOINT y reescribir
    privacidad.html EN EL MISMO COMMIT: el panel pasa a usar almacenamiento y a
    tratar datos personales.
+
+   DOBLE CONFIRMACIÓN. Escribir el correo no basta: el servidor manda un enlace
+   a esa dirección y la suscripción solo cuenta cuando se pulsa. El enlace lleva
+   a suscripcion.html, que pide un clic más antes de confirmar: los antivirus del
+   correo abren los enlaces por su cuenta y, si bastara con abrirlo, confirmarían
+   ellos por el usuario. La baja funciona igual. Esa página también la gestiona
+   este archivo, al final. El contrato con el servidor está en
+   servidor/CONFIRMACION-Y-BAJA.md.
 ════════════════════════════════════ */
 (function () {
   /* ── Configuración ─────────────────────────────────────────── */
@@ -2732,13 +2740,15 @@ pintarEstrellas();
     intro: 'Te avisaremos cuando publiquemos una nueva edición, cambie de forma relevante el ranking o abramos un nuevo análisis del mercado prime.',
     email: 'Email',
     enviar: 'Seguir el ranking',
-    legal: 'Solo pedimos el email. Puedes darte de baja cuando quieras: cada aviso lleva su enlace. Tratamos tus datos según la ',
+    legal: 'Solo pedimos el email, y que lo confirmes desde el enlace que te enviaremos. Puedes darte de baja cuando quieras: cada aviso lleva su enlace. Tratamos tus datos según la ',
     legalEnlace: 'política de privacidad',
     enviando: 'Enviando…',
     malEmail: 'Revisa el correo: falta algo o está mal escrito.',
     malEnvio: 'No se ha podido completar. Escríbenos a ',
-    dentroTitulo: 'Ya estás dentro.',
-    dentroIntro: 'Si quieres, cuéntanos desde dónde miras el mercado. Es opcional y no cambia tu suscripción.',
+    dentroTitulo: 'Revisa tu correo.',
+    enviadoA: 'Te hemos enviado un enlace a ',
+    enviadoFin: '. Púlsalo para confirmar la suscripción: hasta entonces no te escribiremos.',
+    dentroIntro: 'Mientras tanto, si quieres, cuéntanos desde dónde miras el mercado. Es opcional.',
     posicion: '¿Desde qué posición sigues el mercado?',
     opMercado: 'Sigo el mercado y sus tendencias.',
     opCompra: 'Estoy valorando una compra en la Costa del Sol.',
@@ -2765,7 +2775,8 @@ pintarEstrellas();
     guardar: 'Guardar',
     saltar: 'Saltar este paso',
     graciasTitulo: 'Gracias.',
-    graciasIntro: 'Lo tendremos en cuenta al preparar la próxima edición.',
+    graciasIntro: 'Lo tendremos en cuenta al preparar la próxima edición. Recuerda pulsar el enlace del correo: sin eso, la suscripción no se activa.',
+    susError: 'No se ha podido completar. Inténtalo de nuevo en un momento o escríbenos a ',
     listo: 'Listo',
     pieImagen: 'La guía PRIMEandGOLF · Edición #01',
     vistaPrevia: 'Vista previa. Este formulario todavía no envía a ningún sitio: nada de lo que escribas se guarda ni llega a nadie.'
@@ -2788,6 +2799,27 @@ pintarEstrellas();
   const CERRADO = 'pyg-panel-cerrado';
   const SUSCRITO = 'pyg-panel-suscrito';
 
+  /* Todas las llamadas al servidor. Sin endpoint es ensayo: contesta que sí.
+     Un error con cuerpo JSON —enlace caducado, token que no existe— se
+     devuelve tal cual, porque la página de suscripción necesita distinguirlos;
+     solo un fallo de red o una respuesta ilegible se lanzan como error. */
+  const mandar = async (datos) => {
+    if (!ENDPOINT) {
+      await new Promise(r => setTimeout(r, 400));
+      return { ok: true, id: 'ensayo' };
+    }
+    const r = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(datos)
+    });
+    const j = await r.json().catch(() => null);
+    if (j && typeof j.ok === 'boolean') return j;
+    if (!r.ok) throw new Error(r.status);
+    return { ok: true };
+  };
+
+  if (PAGINA === 'suscripcion') { paginaSuscripcion(); return; }
   if (leer('localStorage', SUSCRITO)) return;   // ya está dentro: no se le persigue
 
   /* ── Marcado ───────────────────────────────────────────────── */
@@ -2820,6 +2852,7 @@ pintarEstrellas();
 
       <form class="pnl-paso pnl-paso-2" hidden>
         <h2 class="form-tit">${TX.dentroTitulo}</h2>
+        <p class="form-intro pnl-enviado"></p>
         <p class="form-intro">${TX.dentroIntro}</p>
         <fieldset class="pnl-grupo">
           <legend>${TX.posicion}</legend>
@@ -2991,24 +3024,9 @@ pintarEstrellas();
   }
 
   /* ── Envío ─────────────────────────────────────────────────────
-     El contrato con el servidor está en ESPECIFICACION-BACKEND.md. Dos
-     llamadas al mismo endpoint: la suscripción y, si la completa, el perfil,
-     que viaja con el id que devolvió la primera. */
+     Dos llamadas al mismo endpoint: la suscripción y, si la completa, el
+     perfil, que viaja con el id que devolvió la primera. */
   let idRegistro = null;
-
-  const mandar = async (datos) => {
-    if (!ENDPOINT) {                       // ensayo de revisión
-      await new Promise(r => setTimeout(r, 400));
-      return { ok: true, id: 'ensayo' };
-    }
-    const r = await fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(datos)
-    });
-    if (!r.ok) throw new Error(r.status);
-    return await r.json().catch(() => ({ ok: true }));
-  };
 
   const verPaso = (n) => {
     [paso1, paso2, paso3].forEach((p, i) => { p.hidden = (i + 1) !== n; });
@@ -3040,10 +3058,16 @@ pintarEstrellas();
         origen: location.href,
         consentimiento: { texto: TEXTO_CONSENTIMIENTO, momento: new Date().toISOString() }
       });
+      if (!r.ok) throw new Error(r.error || 'rechazada');
       idRegistro = r.id || null;
       // En ensayo no se marca nada: no hay suscripcion que recordar y dejar la
       // marca haria que el panel no volviera a montarse para revisarlo.
       if (ENDPOINT) guardar('localStorage', SUSCRITO, '1');
+      // El correo lo escribio el visitante: va como texto, nunca como HTML.
+      const enviado = paso2.querySelector('.pnl-enviado');
+      const negrita = document.createElement('strong');
+      negrita.textContent = campo.value.trim();
+      enviado.replaceChildren(TX.enviadoA, negrita, TX.enviadoFin);
       verPaso(2);
     } catch (err) {
       estado.classList.add('mal');
@@ -3093,6 +3117,57 @@ pintarEstrellas();
 
   paso2.querySelector('.pnl-saltar').addEventListener('click', cerrarConGracias);
   paso3.querySelector('.pnl-listo').addEventListener('click', () => { abrir(false); });
+
+  /* ── suscripcion.html ──────────────────────────────────────────
+     Adonde llevan los enlaces del correo: ?confirmar=TOKEN o ?baja=TOKEN.
+     La página trae todos los estados escritos y ocultos; aquí solo se elige
+     cuál se ve. Nada se confirma ni se da de baja al cargar: hace falta pulsar
+     el botón (ver la cabecera de este archivo). */
+  function paginaSuscripcion() {
+    const caja = document.getElementById('suscripcionEstados');
+    if (!caja) return;
+    const q = new URLSearchParams(location.search);
+    const ver = (estado) => {
+      caja.querySelectorAll('[data-estado]').forEach(b => { b.hidden = b.dataset.estado !== estado; });
+      const t = caja.querySelector('[data-estado="' + estado + '"] .sec-title');
+      if (t) { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
+    };
+    const accion = (estado, tipo, token, siOk) => {
+      ver(estado);
+      const bloque = caja.querySelector('[data-estado="' + estado + '"]');
+      const boton = bloque.querySelector('.sus-accion');
+      const aviso = bloque.querySelector('.form-estado');
+      boton.addEventListener('click', async () => {
+        boton.disabled = true;
+        aviso.className = 'form-estado';
+        aviso.textContent = TX.enviando;
+        try {
+          const r = await mandar({ tipo: tipo, token: token });
+          if (r.ok) { siOk(); return; }
+          ver(r.error === 'caducado' ? 'caducado' : 'invalido');
+        } catch (err) {
+          aviso.classList.add('mal');
+          aviso.textContent = TX.susError + BUZON + '.';
+          boton.disabled = false;
+        }
+      });
+    };
+    const confirmar = q.get('confirmar'), baja = q.get('baja');
+    if (confirmar) {
+      accion('confirmar', 'confirmar', confirmar, () => {
+        // Ya está dentro: el panel no se le vuelve a ofrecer en este navegador.
+        if (ENDPOINT) guardar('localStorage', SUSCRITO, '1');
+        ver('confirmada');
+      });
+    } else if (baja) {
+      accion('baja', 'baja', baja, () => {
+        try { localStorage.removeItem(SUSCRITO); } catch (e) { /* sin memoria */ }
+        ver('baja-hecha');
+      });
+    } else {
+      ver('invalido');
+    }
+  }
 })();
 
 
