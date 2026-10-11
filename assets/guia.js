@@ -540,9 +540,53 @@ const FOTOS_PROMO = {
  "bentley-puente-romano": [
   {
    "src": "images/promos/bentley-puente-romano/01.jpg",
-   "pie": "Jardín y piscina privada de un dúplex",
+   "pie": "Fachada principal",
    "tipo": "render",
    "credito": "RGZ Developers"
+  },
+  {
+   "src": "images/promos/bentley-puente-romano/02.jpg",
+   "pie": "Acceso desde la calle",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  },
+  {
+   "src": "images/promos/bentley-puente-romano/03.jpg",
+   "pie": "Terraza con piscina privada",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  },
+  {
+   "src": "images/promos/bentley-puente-romano/04.jpg",
+   "pie": "La fachada de noche",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  }
+ ],
+ "lagerfeld-villas": [
+  {
+   "src": "images/promos/lagerfeld-villas/01.jpg",
+   "pie": "Vista aérea con el mar al fondo",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/lagerfeld-villas/02.jpg",
+   "pie": "Fachada de una villa",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/lagerfeld-villas/03.jpg",
+   "pie": "Villa con piscina entre palmeras",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/lagerfeld-villas/04.jpg",
+   "pie": "Solárium con piscina y vistas al mar",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
   }
  ],
  "villas-alamos": [

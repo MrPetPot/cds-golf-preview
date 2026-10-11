@@ -540,9 +540,53 @@ const FOTOS_PROMO = {
  "bentley-puente-romano": [
   {
    "src": "../images/promos/bentley-puente-romano/01.jpg",
-   "pie": "Garden and private pool of a duplex",
+   "pie": "Main façade",
    "tipo": "render",
    "credito": "RGZ Developers"
+  },
+  {
+   "src": "../images/promos/bentley-puente-romano/02.jpg",
+   "pie": "Entrance from the street",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  },
+  {
+   "src": "../images/promos/bentley-puente-romano/03.jpg",
+   "pie": "Terrace with private pool",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  },
+  {
+   "src": "../images/promos/bentley-puente-romano/04.jpg",
+   "pie": "The façade at night",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  }
+ ],
+ "lagerfeld-villas": [
+  {
+   "src": "../images/promos/lagerfeld-villas/01.jpg",
+   "pie": "Aerial view with the sea beyond",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "../images/promos/lagerfeld-villas/02.jpg",
+   "pie": "Façade of a villa",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "../images/promos/lagerfeld-villas/03.jpg",
+   "pie": "Villa with pool among the palms",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "../images/promos/lagerfeld-villas/04.jpg",
+   "pie": "Roof terrace with pool and sea views",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
   }
  ],
  "villas-alamos": [
