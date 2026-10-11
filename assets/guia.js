@@ -710,7 +710,7 @@ const PROMOS = [
     image:'images/promos/villas-alamos.jpg',
     promotor:'ACCIONA Inmobiliaria', estudio:'Torras y Sierra', estudioFuente:'inmobiliaria.acciona.com', derechosGolf:null,
     tipologia:'Villas y townhouses 3–4 dorm.', unidades:49,
-    precio:'€830.000 – €3.500.000', precioDesde:'€830.000', precioEstimado:false, eurM2:8500,
+    precio:'830.000 – 3.500.000 €', precioDesde:'830.000 €', precioEstimado:false, eurM2:8500,
     estado:'En construcción', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['la-canada-golf',1,''],['real-club-valderrama',6,''],['la-reserva-club-sotogrande',7,''],['san-roque-club-old',8,''],['the-alto-club-almenara',8,''],['san-roque-club-new',10,''],['real-club-de-golf-sotogrande',11,''],['la-hacienda-alcaidesa-links',12,''],['la-hacienda-heathland',14,'']],
@@ -727,7 +727,7 @@ const PROMOS = [
     promotor:'Sotogrande SA', estudio:'L35 Architects', estudioFuente:'l35.com',
     derechosGolf:'La membresía de La Reserva Club se contrata aparte: no va incluida en la compra. Green fee de 18 hoyos desde 199 €.', derechosFuente:'lareservaclubsotogrande.com',
     tipologia:'Apartamentos y áticos sostenibles 2–4 dorm.', unidades:124,
-    precio:'€830.000 – €2.400.000', precioDesde:'€830.000', precioEstimado:false, eurM2:7500,
+    precio:'830.000 – 2.400.000 €', precioDesde:'830.000 €', precioEstimado:false, eurM2:7500,
     estado:'Fase 1 entregada · Fase 2 en marcha', entrega:'2024–2025',
     campoPropio:'la-reserva-club-sotogrande', campoPropioPendiente:null,
     cursos:[['la-reserva-club-sotogrande',0,'In-resort'],['real-club-valderrama',3,''],['la-canada-golf',4,''],['the-alto-club-almenara',6,''],['san-roque-club-old',7,''],['san-roque-club-new',8,''],['real-club-de-golf-sotogrande',9,''],['la-hacienda-alcaidesa-links',10,''],['la-hacienda-heathland',12,'']],
@@ -744,7 +744,7 @@ const PROMOS = [
     promotor:'Dar Global', estudio:'HCP Arquitectos', estudioFuente:'hcparquitectos.com',
     derechosGolf:null, derechosNota:'Dar Global no publica derechos de golf sobre Finca Cortesín para propietarios.',
     tipologia:'Branded residences 2–4 dorm.', unidades:64,
-    precio:'€1.000.000 – €3.560.000', precioDesde:'€1.000.000', precioEstimado:false, eurM2:14000,
+    precio:'1.000.000 – 3.560.000 €', precioDesde:'1.000.000 €', precioEstimado:false, eurM2:14000,
     estado:'En construcción', entrega:'2027',
     campoPropio:'finca-cortesin-golf', campoPropioPendiente:null,
     cursos:[['finca-cortesin-golf',0,'In-resort'],['dona-julia-golf',4,''],['la-duquesa-golf',6,''],['azata-golf',12,''],['casares-costa-golf',12,''],['estepona-golf',12,''],['valle-romano-golf',14,'']],
@@ -761,7 +761,7 @@ const PROMOS = [
     promotor:'Grupo La Quinta', estudio:'González & Jacobson', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'El Lago Club se describe para residentes, pero el promotor no publica si la compra incluye membresía (realdelaquinta.com).',
     tipologia:'Apartamentos y áticos 2–4 dorm.', unidades:102, unidadesNota:'Fases I+II completas, 18 bloques (González & Jacobson).',
-    precio:'€1.300.000 – €3.000.000', precioDesde:'€1.300.000', precioEstimado:false, eurM2:9000,
+    precio:'1.300.000 – 3.000.000 €', precioDesde:'1.300.000 €', precioEstimado:false, eurM2:9000,
     estado:'En construcción', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:'El Lago Club · Jack Nicklaus Design — en desarrollo, no operativo',
     marcaPendiente:true,
@@ -778,7 +778,7 @@ const PROMOS = [
     image:'images/promos/epic-fendi.jpg',
     promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Comprobado en epicmarbella.com y sierrablancaestates.com: no acreditan estudio de arquitectura. Fendi Casa y The One Atelier firman interiorismo y mobiliario, no el edificio.', derechosGolf:null, derechosNota:'Comprobado en epicmarbella.com: el golf solo aparece como un servicio cercano, sin derechos para propietarios.',
     tipologia:'Branded apartments y áticos', unidades:56,
-    precio:'€1.750.000 – €4.450.000', precioDesde:'€1.750.000', precioEstimado:false, eurM2:15000,
+    precio:'1.750.000 – 4.450.000 €', precioDesde:'1.750.000 €', precioEstimado:false, eurM2:15000,
     estado:'En fases · construcción', entrega:'2024–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['dama-de-noche',8,''],['aloha-golf-club',10,''],['los-naranjos-golf',13,''],['real-club-de-golf-las-brisas',13,''],['rio-real-golf',13,''],['santa-maria-golf',13,''],['magna-marbella',14,'']],
@@ -786,15 +786,15 @@ const PROMOS = [
         a6:1,  a6why:'Depende del eje Marbella centro — el peor tramo de congestión de la costa.',
         b1:10, b1why:'Fendi Casa: marca internacional reconocida, interiorismo entregado con la unidad.',
         b4:10, b4why:'Spa, gym, cine, concierge 24h, piscinas premium, servicio de hotel.' },
-    tags:['Fendi Casa','Golden Mile','€15k/m²'],
-    rationale:'Adelanta a Tiara por tres puntos tras corregirse, durante la preparación de esta edición, un error en su recuento de campos ★★★+. Su golf es de acceso, más que de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es un servicio más; lo que paga es Fendi y los €15.000/m².' },
+    tags:['Fendi Casa','Golden Mile','15.000 €/m²'],
+    rationale:'Adelanta a Tiara por tres puntos tras corregirse, durante la preparación de esta edición, un error en su recuento de campos ★★★+. Su golf es de acceso, más que de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es un servicio más; lo que paga es Fendi y los 15.000 €/m².' },
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Terrazas escalonadas sobre el valle." }, name:'Tiara', sub:'La Quinta · Metrovacesa',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
     image:'images/promos/tiara.jpg',
     promotor:'Metrovacesa', estudio:null, estudioNota:'Comprobado en nvoga.com: no acredita estudio de arquitectura.', derechosGolf:null,
     tipologia:'Apartamentos y áticos 3–4 dorm.', unidades:56,
-    precio:'€1.550.000 – €2.300.000', precioDesde:'€1.550.000', precioEstimado:false, eurM2:8500,
+    precio:'1.550.000 – 2.300.000 €', precioDesde:'1.550.000 €', precioEstimado:false, eurM2:8500,
     estado:'Pre-venta · construcción', entrega:'2026+',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['la-quinta-golf',4,''],['los-arqueros-golf',4,''],['los-naranjos-golf',7,''],['magna-marbella',8,''],['el-higueral',9,''],['aloha-golf-club',10,''],['real-club-de-golf-las-brisas',10,''],['la-zagaleta-old',11,''],['guadalmina-norte',12,''],['real-club-de-golf-guadalmina-sur',12,''],['atalaya-new',13,''],['atalaya-old',13,''],['la-zagaleta-los-barrancos',13,''],['alferini-villa-padierna',14,''],['dama-de-noche',15,''],['el-paraiso-golf',15,'']],
@@ -811,7 +811,7 @@ const PROMOS = [
     promotor:'Mena Capital · Marbella Club', estudio:'Villarroel Torrico', estudioFuente:'marbellaclubhills.com',
     derechosGolf:'Acceso declarado al Marbella Club Golf y al centro ecuestre; sin condiciones ni green fees publicados.', derechosFuente:'marbellaclubhills.com',
     tipologia:'Apartamentos y semi-detached villas', unidades:120,
-    precio:'€690.000 – €1.350.000+', precioDesde:'€690.000', precioEstimado:false, eurM2:6500,
+    precio:'690.000 – 1.350.000+ €', precioDesde:'690.000 €', precioEstimado:false, eurM2:6500,
     estado:'Construcción por fases', entrega:'2026+',
     campoPropio:'marbella-club-golf-resort', campoPropioPendiente:null,
     cursos:[['marbella-club-golf-resort',0,'In-resort'],['alferini-villa-padierna',2,''],['el-higueral',7,''],['atalaya-new',9,''],['atalaya-old',9,''],['flamingos-villa-padierna',10,''],['el-paraiso-golf',13,''],['guadalmina-norte',14,''],['la-quinta-golf',14,''],['los-arqueros-golf',14,''],['real-club-de-golf-guadalmina-sur',14,''],['tramores-villa-padierna',15,'']],
@@ -827,7 +827,7 @@ const PROMOS = [
     image:'images/promos/zew.jpg',
     promotor:'Concept Homes · NVOGA', estudio:null, estudioNota:'Catálogo v19 de Concept Homes / NVOGA: no acredita estudio de arquitectura.', derechosGolf:null,
     tipologia:'Residencias boutique 3–4 dorm.', unidades:20,
-    precio:'€1.500.000 – €2.800.000 (estimado)', precioDesde:'€1.500.000', precioEstimado:true, eurM2:10000,
+    precio:'1.500.000 – 2.800.000 € (estimado)', precioDesde:'1.500.000 €', precioEstimado:true, eurM2:10000,
     estado:'Pre-venta · construcción', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['higueron-marbella-golf',4,''],['rio-real-golf',4,''],['greenlife-golf',7,''],['santa-clara-golf-marbella',7,''],['cabopino-golf',11,''],['santa-maria-golf',11,''],['dama-de-noche',12,''],['aloha-golf-club',14,''],['la-siesta-golf',14,''],['miraflores-golf',15,'']],
@@ -846,7 +846,7 @@ const PROMOS = [
     estudio:'González & Jacobson + Manuel Burgos', estudioFuente:'gjarquitectura.com',
     derechosGolf:null, derechosNota:'AEDAS no publica derechos de golf sobre Santa Clara para propietarios.',
     tipologia:'Apartamentos, áticos y villas', unidades:200, unidadesNota:'Soul Marbella completo: 5 fases, 200 viviendas (AEDAS Homes).',
-    precio:'€1.294.000 – €1.790.000', precioDesde:'€1.294.000', precioEstimado:false, eurM2:8000,
+    precio:'1.294.000 – 1.790.000 €', precioDesde:'1.294.000 €', precioEstimado:false, eurM2:8000,
     estado:'Sunlife entregada · Fase II en marcha', entrega:'2025',
     campoPropio:'santa-clara-golf-marbella', campoPropioPendiente:null,
     cursos:[['santa-clara-golf-marbella',0,'In-resort'],['rio-real-golf',5,''],['higueron-marbella-golf',7,''],['greenlife-golf',10,''],['santa-maria-golf',12,''],['cabopino-golf',13,''],['dama-de-noche',13,''],['aloha-golf-club',14,'']],
@@ -863,7 +863,7 @@ const PROMOS = [
     promotor:'Higuerón Resort', estudio:null, estudioNota:'Comprobado en higueronvalley.com: no acredita estudio de arquitectura.',
     derechosGolf:'Membresía del resort incluida — Nagomi Spa, gimnasio, Wave Beach Club y restaurantes. Sin derechos de golf: Higuerón no tiene campo propio.', derechosFuente:'higueronvalley.com',
     tipologia:'Apartamentos y áticos 2–3 dorm.', unidades:224,
-    precio:'€595.000 – €1.950.000', precioDesde:'€595.000', precioEstimado:false, eurM2:8000,
+    precio:'595.000 – 1.950.000 €', precioDesde:'595.000 €', precioEstimado:false, eurM2:8000,
     estado:'Construcción por fases', entrega:'2025–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['golf-torrequebrada',11,''],['mijas-golf-los-lagos',12,''],['calanova-golf',14,''],['el-chaparral-golf',15,''],['mijas-golf-los-olivos',15,'']],
@@ -879,7 +879,7 @@ const PROMOS = [
     image:'images/promos/velaya.jpg',
     promotor:'Stoneweg Living', estudio:null, estudioNota:'Comprobado en stonewegliving.com: no acredita estudio de arquitectura. Promueven Stoneweg y Jamsa.', derechosGolf:null,
     tipologia:'Apartamentos, áticos, townhouses, villas', unidades:38,
-    precio:'€792.000 – €2.500.000', precioDesde:'€792.000', precioEstimado:false, eurM2:8000,
+    precio:'792.000 – 2.500.000 €', precioDesde:'792.000 €', precioEstimado:false, eurM2:8000,
     estado:'Entrega en curso', entrega:'2024–2025',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['guadalmina-norte',5,''],['real-club-de-golf-guadalmina-sur',5,''],['atalaya-new',7,''],['atalaya-old',7,''],['el-paraiso-golf',8,''],['el-higueral',10,''],['la-quinta-golf',11,''],['los-naranjos-golf',11,''],['magna-marbella',11,''],['real-club-de-golf-las-brisas',11,''],['aloha-golf-club',12,''],['dama-de-noche',12,''],['los-arqueros-golf',12,''],['alferini-villa-padierna',13,''],['tramores-villa-padierna',13,''],['flamingos-villa-padierna',14,'']],
@@ -895,7 +895,7 @@ const PROMOS = [
     image:'images/promos/the-view.jpg',
     promotor:'Wilma Sierra Blanca', estudio:'Teodoro Cabrilla + González & Jacobson', estudioFuente:'gjarquitectura.com', derechosGolf:null,
     tipologia:'Apartamentos y áticos 2–4 dorm.', unidades:119,
-    precio:'€899.000 – €2.499.000', precioDesde:'€899.000', precioEstimado:false, eurM2:6500,
+    precio:'899.000 – 2.499.000 €', precioDesde:'899.000 €', precioEstimado:false, eurM2:6500,
     estado:'Fase 1 entregada · Fase 2 en marcha', entrega:'2024–2026',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['los-naranjos-golf',2,''],['aloha-golf-club',3,''],['magna-marbella',3,''],['real-club-de-golf-las-brisas',5,''],['la-quinta-golf',7,''],['dama-de-noche',13,''],['guadalmina-norte',13,''],['los-arqueros-golf',13,''],['real-club-de-golf-guadalmina-sur',13,''],['atalaya-new',15,''],['atalaya-old',15,''],['el-higueral',15,'']],
@@ -911,7 +911,7 @@ const PROMOS = [
     image:'images/promos/calanova.jpg',
     promotor:'Avantespacia', estudio:null, estudioNota:'Comprobado en avantespacia.com: no acredita estudio de arquitectura. Construye Ferrovial.', derechosGolf:null,
     tipologia:'Apartamentos 2–3 dorm.', unidades:154,
-    precio:'€520.000 – €710.000', precioDesde:'€520.000', precioEstimado:false, eurM2:5000,
+    precio:'520.000 – 710.000 €', precioDesde:'520.000 €', precioEstimado:false, eurM2:5000,
     estado:'En construcción', entrega:'2025–2026',
     campoPropio:'calanova-golf', campoPropioPendiente:null,
     cursos:[['calanova-golf',0,'In-resort'],['la-noria-golf',5,''],['el-chaparral-golf',12,''],['miraflores-golf',12,''],['santana-golf',12,''],['la-cala-resort-asia',13,''],['cabopino-golf',14,''],['la-cala-resort-europa',14,''],['la-siesta-golf',14,''],['la-cala-resort-america',15,'']],
@@ -928,7 +928,7 @@ const PROMOS = [
     promotor:'Grupo Insur', estudio:'DPYA Arquitectura', estudioFuente:'dpya.com',
     derechosGolf:null, derechosNota:'Grupo Insur no publica derechos de golf para propietarios.',
     tipologia:'Apartamentos 2–3 dorm.', unidades:96,
-    precio:'€575.000 – €1.350.000', precioDesde:'€575.000', precioEstimado:false, eurM2:6500,
+    precio:'575.000 – 1.350.000 €', precioDesde:'575.000 €', precioEstimado:false, eurM2:6500,
     estado:'En construcción', entrega:'Q4 2025',
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['greenlife-golf',3,''],['higueron-marbella-golf',6,''],['rio-real-golf',6,''],['cabopino-golf',10,''],['santa-clara-golf-marbella',10,''],['santa-maria-golf',13,''],['dama-de-noche',14,''],['la-siesta-golf',14,''],['miraflores-golf',14,''],['la-noria-golf',15,'']],
@@ -950,7 +950,7 @@ const PROMOS = [
     promotor:'RGZ Developers', estudio:null, estudioNota:'Interiorismo de Bentley Home con Luxury Living Group; el estudio de arquitectura no se acredita.',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados: la Milla de Oro no los ofrece.',
     tipologia:'Dúplex branded 3–4 dorm.', unidades:8,
-    precio:'€3.450.000 – €4.150.000', precioDesde:'€3.450.000', precioEstimado:false, eurM2:9900,
+    precio:'3.450.000 – 4.150.000 €', precioDesde:'3.450.000 €', precioEstimado:false, eurM2:9900,
     eurM2Nota:'€/m² derivado del precio de entrada sobre la unidad menor (350 m²); el promotor no publica el ratio.',
     estado:'En comercialización', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -969,7 +969,7 @@ const PROMOS = [
     promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Diseño en colaboración con Karl Lagerfeld; el estudio de arquitectura no se acredita.',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Villas branded', unidades:5,
-    precio:'€16.500.000 (Villa St. Germain)', precioDesde:'€16.500.000', precioEstimado:false, eurM2:20000,
+    precio:'16.500.000 € (Villa St. Germain)', precioDesde:'16.500.000 €', precioEstimado:false, eurM2:20000,
     eurM2Nota:'€/m² estimado: solo se publica el precio de una de las cinco villas y no su superficie construida. Por encima de 10.000 la escala satura, así que la estimación no altera la puntuación.',
     estado:'En construcción', entrega:'2026',
     campoPropio:null, campoPropioPendiente:null,
@@ -987,7 +987,7 @@ const PROMOS = [
     promotor:'Dar Global', estudio:null, estudioNota:'Diseño inspirado por Automobili Lamborghini; el estudio de arquitectura no se acredita.',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Villas 4–6 dorm.', unidades:53,
-    precio:'desde €8.488.653', precioDesde:'€8.488.653', precioEstimado:false, eurM2:10400,
+    precio:'desde 8.488.653 €', precioDesde:'8.488.653 €', precioEstimado:false, eurM2:10400,
     eurM2Nota:'€/m² derivado del precio de entrada sobre la villa menor (819 m²).',
     estado:'En construcción', entrega:'2028',
     campoPropio:null, campoPropioPendiente:null,
@@ -1007,7 +1007,7 @@ const PROMOS = [
     estudio:'Cacopardo Arquitectos', estudioFuente:'spintohills.homes',
     derechosGolf:null, derechosNota:'Vistas a Finca Cortesín, sin derechos de golf sobre el campo.',
     tipologia:'Villas 4–5 dorm.', unidades:17,
-    precio:'€2.150.000 – €2.900.000', precioDesde:'€2.150.000', precioEstimado:false, eurM2:5400,
+    precio:'2.150.000 – 2.900.000 €', precioDesde:'2.150.000 €', precioEstimado:false, eurM2:5400,
     eurM2Nota:'€/m² estimado sobre una superficie construida de unos 400 m²: las fuentes no publican el dato.',
     estado:'En comercialización', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -1031,7 +1031,7 @@ const PROMOS = [
     promotor:'Prestige Expo Group + Grupo BZH', estudio:'Yodezeen + Arata Arquitectura', estudioFuente:'ejeprime.com',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Villas en altura 300–1.060 m²', unidades:40,
-    precio:'€3.500.000 – €6.900.000', precioDesde:'€3.500.000', precioEstimado:false, eurM2:11700,
+    precio:'3.500.000 – 6.900.000 €', precioDesde:'3.500.000 €', precioEstimado:false, eurM2:11700,
     eurM2Nota:'€/m² derivado del precio de entrada sobre la unidad menor (300 m²).',
     estado:'En construcción · 60 % vendido', entrega:'2026',
     campoPropio:null, campoPropioPendiente:null,
@@ -1050,7 +1050,7 @@ const PROMOS = [
     estudio:null, estudioNota:'Estudio de arquitectura sin acreditar en las fuentes consultadas.',
     derechosGolf:null, derechosNota:'A pie de Estepona Golf, sin derechos de golf publicados para propietarios.',
     tipologia:'Villas 3 dorm. + sótano', unidades:10,
-    precio:'€1.440.000 – €1.850.000', precioDesde:'€1.440.000', precioEstimado:false, eurM2:3600,
+    precio:'1.440.000 – 1.850.000 €', precioDesde:'1.440.000 €', precioEstimado:false, eurM2:3600,
     eurM2Nota:'€/m² derivado del precio de entrada sobre los 400 m² construidos que publican las fuentes.',
     estado:'En construcción', entrega:'2026',
     campoPropio:'estepona-golf', campoPropioPendiente:null,
@@ -1069,7 +1069,7 @@ const PROMOS = [
     promotor:'Taylor Wimpey España', estudio:null, estudioNota:'Estudio de arquitectura sin acreditar en las fuentes consultadas.',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Apartamentos y áticos 2–3 dorm.', unidades:60,
-    precio:'desde €585.000', precioDesde:'€585.000', precioEstimado:false, eurM2:4900,
+    precio:'desde 585.000 €', precioDesde:'585.000 €', precioEstimado:false, eurM2:4900,
     eurM2Nota:'€/m² estimado sobre unos 120 m² construidos: las fuentes publican el precio pero no la superficie media.',
     estado:'En comercialización', entrega:null,
     campoPropio:null, campoPropioPendiente:null,
@@ -1078,7 +1078,7 @@ const PROMOS = [
         a6:4,  a6why:'Carretera de Benahavís hasta la A-7, corta y sin travesías.',
         b1:4,  b1why:'Taylor Wimpey, promotor internacional de volumen; sin firma diferenciada.',
         b4:7,  b4why:'Cuatro piscinas, jardines, bar y conserjería dentro del Señorío de Cifuentes.' },
-    tags:['13 campos en 15′','Taylor Wimpey','Desde €585.000'],
+    tags:['13 campos en 15′','Taylor Wimpey','Desde 585.000 €'],
     rationale:'<strong>La puerta de entrada más barata de la guía</strong> y con trece campos en quince minutos, el segundo entorno más denso de la lista. Le pasa factura el reparto: los buenos de ese radio —Las Brisas y Aloha— son de socios, y el producto es de volumen. Mucho golf alrededor y poco argumento propio.' }
 
 ];
@@ -1108,6 +1108,15 @@ const ACCESO = {
   'Estrict. privado': 0
 };
 const ACCESO_LBL = { 1: 'Reservable', 0.5: 'Socios', 0: 'Cerrado' };
+// Importes en euros. En castellano la cifra va delante y el símbolo detrás, con un
+// espacio que no se parte (1.000.000 €); la versión inglesa los invierte (€1,000,000)
+// desde el catálogo de fragmentos.
+// El punto de millar va siempre, también con cuatro cifras (9.000 €), para que todas
+// las cifras de la guía se lean igual que los precios publicados.
+const EUR = n => String(Math.round(Number(n))).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '\u00a0€';
+const EUR_TXT = t => t + '\u00a0€';
+// El green fee es un tramo de texto («230–285») o «Solo socios»: el símbolo solo si hay cifra.
+const GF = g => /\d/.test(g) ? g + '\u00a0€' : g;
 // Código de color de la columna "Hoyos · membresía": verde → naranja claro → naranja oscuro → rojo.
 function nivelAcceso(m) {
   if (m === 'Público' || m === 'Municipal') return 'pub';
@@ -1204,7 +1213,7 @@ PROMOS.forEach(p => {
     a4: `${cercano.min === 0 ? 'In-resort' : cercano.min + ' min'} hasta ${cercano.name}.`,
     a5: p.d.a5why, a6: p.d.a6why, b1: p.d.b1why,
     b2: `${p.unidades} unidades.`,
-    b3: `≈ €${p.eurM2.toLocaleString('es-ES')}/m².`,
+    b3: `≈ ${EUR(p.eurM2)}/m².`,
     b4: p.d.b4why
   };
   p.A = p.score.a1 + p.score.a2 + p.score.a3 + p.score.a4 + p.score.a5 + p.score.a6;
@@ -1400,7 +1409,7 @@ if (rankBody) pintarRanking();
   const pr = PROMOS.map(x => Number(String(x.precioDesde).replace(/[^0-9]/g, ''))).filter(Boolean);
   const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '').replace('.', ',') + 'M' : Math.round(n / 1000) + 'k';
   const kr = document.getElementById('kpiRango');
-  if (kr && pr.length) kr.textContent = '\u20ac' + mm(SUELO) + '\u2013' + mm(Math.max(...pr));
+  if (kr && pr.length) kr.textContent = EUR_TXT(mm(SUELO) + '\u2013' + mm(Math.max(...pr)));
   const pie = document.getElementById('pieRecuento');
   if (pie) pie.textContent = `${PROMOS.length} promociones evaluadas \u00b7 top 10 publicado \u00b7 ${COURSES.length} campos`;
 
@@ -1517,7 +1526,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       ACCESO_LBL[c.acceso].toLowerCase(),
       c.hoyos,
       c.disenador ? c.disenador + (c.ano ? ', ' + c.ano : '') : null,
-      c.gf ? 'green fee €' + c.gf : null
+      c.gf ? 'green fee ' + GF(c.gf) : null
     ].filter(Boolean).join(' · ');
     return `<figure class="golf-hero${f ? '' : ' sin-img'}">
       ${f ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy" onerror="this.closest('.golf-hero').classList.add('sin-img')"/>` : ''}
@@ -1602,7 +1611,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <div><dt>Tipología</dt><dd>${p.tipologia}</dd></div><div><dt>Estado</dt><dd>${p.estado} · ${p.entrega}</dd></div>
           <div><dt>Desde</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Precio estimado</small>' : '<small>Precio de referencia</small>'}</dd></div>
           <div><dt>Recorrido de precio</dt><dd class="dd-texto">${p.precio}</dd></div>
-          <div><dt>Posicionamiento</dt><dd>€${p.eurM2.toLocaleString('es-ES')}<small>por m²</small></dd></div>
+          <div><dt>Posicionamiento</dt><dd>${EUR(p.eurM2)}<small>por m²</small></dd></div>
           <div><dt>Unidades</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : '<small>desarrollo completo</small>'}</dd></div>
         </dl>
         <div class="crit-tira">${tira(FILAS_B)}</div>
@@ -1786,7 +1795,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     dato('Unidades', p.unidades, 'desarrollo completo'),
     dato('Estado', p.estado, p.entrega ? 'entrega ' + p.entrega : ''),
     dato('Desde', p.precioDesde, p.precio),
-    dato('Posicionamiento', '€' + p.eurM2.toLocaleString('es-ES'), 'por m²'),
+    dato('Posicionamiento', EUR(p.eurM2), 'por m²'),
     dato('Campo de referencia', estrellas(c.stars),
       `${c.name} · ${c.min === 0 ? 'in-resort' : 'a ' + c.min + '′'}`)
   ].join('');
@@ -2085,7 +2094,7 @@ function renderGolf(filter) {
         <div class="cc-meta">${c.municipio} · ${c.disenador}, ${c.ano}</div>
         <dl class="cc-datos">
           <div><dt>Hoyos</dt><dd>${c.hoyos}</dd></div>
-          <div><dt>Green fee</dt><dd>€${c.gf}</dd></div>
+          <div><dt>Green fee</dt><dd>${GF(c.gf)}</dd></div>
           <div class="cc-acceso"><dt>Acceso</dt><dd><span class="mem mem-${nivelAcceso(c.membresia)}">${c.membresia}</span></dd></div>
         </dl>
         <p class="cc-palmares">${c.palmares}</p>
@@ -2669,7 +2678,7 @@ function initAtlas(el) {
         </div>
         <ul class="ap-hechos">
           <li>${c.hoyos} · ${c.disenador}${c.ano ? ' · ' + c.ano : ''}</li>
-          <li>Green fee ${c.gf ? '€' + c.gf : 'no publicado'}.</li>
+          <li>Green fee ${c.gf ? GF(c.gf) : 'no publicado'}.</li>
         </ul>
         <div class="ap-bloque ap-citado">
           ${lista.length

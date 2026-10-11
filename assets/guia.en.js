@@ -1078,7 +1078,7 @@ const PROMOS = [
         a6:4,  a6why:'The Benahavís road down to the A-7, short and with no towns to cross.',
         b1:4,  b1why:'Taylor Wimpey, an international volume developer; no distinctive signature.',
         b4:7,  b4why:'Four pools, gardens, a bar and a concierge inside Señorío de Cifuentes.' },
-    tags:['13 campos en 15′','Taylor Wimpey','Desde €585.000'],
+    tags:['13 campos en 15′','Taylor Wimpey','From €585,000'],
     rationale:'<strong>The cheapest way into the guide</strong> y con trece campos en quince minutos, el segundo entorno más denso de la lista. Le pasa factura el reparto: los buenos de ese radio —Las Brisas y Aloha— son de socios, y el producto es de volumen. Mucho golf alrededor y poco argumento propio.' }
 
 ];
@@ -1108,6 +1108,15 @@ const ACCESO = {
   'Strictly private': 0
 };
 const ACCESO_LBL = { 1: 'Bookable', 0.5: 'Members only', 0: 'Closed' };
+// Importes en euros. En castellano la cifra va delante y el símbolo detrás, con un
+// espacio que no se parte (1.000.000 €); la versión inglesa los invierte (€1,000,000)
+// desde el catálogo de fragmentos.
+// El punto de millar va siempre, también con cuatro cifras (9.000 €), para que todas
+// las cifras de la guía se lean igual que los precios publicados.
+const EUR = n => '€' + Number(n).toLocaleString('en-GB');
+const EUR_TXT = t => '€' + t;
+// El green fee es un tramo de texto («230–285») o «Solo socios»: el símbolo solo si hay cifra.
+const GF = g => /\d/.test(g) ? '€' + g : g;
 // Código de color de la columna "Holes · membership": verde → naranja claro → naranja oscuro → rojo.
 function nivelAcceso(m) {
   if (m === 'Public' || m === 'Municipal') return 'pub';
@@ -1204,7 +1213,7 @@ PROMOS.forEach(p => {
     a4: `${cercano.min === 0 ? 'In-resort' : cercano.min + ' min'} to ${cercano.name}.`,
     a5: p.d.a5why, a6: p.d.a6why, b1: p.d.b1why,
     b2: `${p.unidades} units.`,
-    b3: `≈ €${p.eurM2.toLocaleString('en-GB')}/m².`,
+    b3: `≈ ${EUR(p.eurM2)}/m².`,
     b4: p.d.b4why
   };
   p.A = p.score.a1 + p.score.a2 + p.score.a3 + p.score.a4 + p.score.a5 + p.score.a6;
@@ -1400,7 +1409,7 @@ if (rankBody) pintarRanking();
   const pr = PROMOS.map(x => Number(String(x.precioDesde).replace(/[^0-9]/g, ''))).filter(Boolean);
   const mm = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '') + 'M' : Math.round(n / 1000) + 'k';
   const kr = document.getElementById('kpiRango');
-  if (kr && pr.length) kr.textContent = '\u20ac' + mm(SUELO) + '\u2013' + mm(Math.max(...pr));
+  if (kr && pr.length) kr.textContent = EUR_TXT(mm(SUELO) + '\u2013' + mm(Math.max(...pr)));
   const pie = document.getElementById('pieRecuento');
   if (pie) pie.textContent = `${PROMOS.length} developments assessed \u00b7 top 10 published \u00b7 ${COURSES.length} courses`;
 
@@ -1517,7 +1526,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
       ACCESO_LBL[c.acceso].toLowerCase(),
       c.hoyos,
       c.disenador ? c.disenador + (c.ano ? ', ' + c.ano : '') : null,
-      c.gf ? 'green fee €' + c.gf : null
+      c.gf ? 'green fee ' + GF(c.gf) : null
     ].filter(Boolean).join(' · ');
     return `<figure class="golf-hero${f ? '' : ' sin-img'}">
       ${f ? `<img src="${f.src}" alt="${c.name} — ${c.municipio}" loading="lazy" onerror="this.closest('.golf-hero').classList.add('sin-img')"/>` : ''}
@@ -1602,7 +1611,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
           <div><dt>Property type</dt><dd>${p.tipologia}</dd></div><div><dt>Status</dt><dd>${p.estado} · ${p.entrega}</dd></div>
           <div><dt>From</dt><dd>${p.precioDesde}${p.precioEstimado ? '<small>Estimated price</small>' : '<small>Guide price</small>'}</dd></div>
           <div><dt>Price range</dt><dd class="dd-texto">${p.precio}</dd></div>
-          <div><dt>Positioning</dt><dd>€${p.eurM2.toLocaleString('en-GB')}<small>per m²</small></dd></div>
+          <div><dt>Positioning</dt><dd>${EUR(p.eurM2)}<small>per m²</small></dd></div>
           <div><dt>Units</dt><dd>${p.unidades}${p.unidadesNota ? '<small>' + p.unidadesNota + '</small>' : '<small>whole development</small>'}</dd></div>
         </dl>
         <div class="crit-tira">${tira(FILAS_B)}</div>
@@ -1786,7 +1795,7 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     dato('Units', p.unidades, 'desarrollo completo'),
     dato('Status', p.estado, p.entrega ? 'entrega ' + p.entrega : ''),
     dato('From', p.precioDesde, p.precio),
-    dato('Positioning', '€' + p.eurM2.toLocaleString('en-GB'), 'por m²'),
+    dato('Positioning', EUR(p.eurM2), 'per m²'),
     dato('Benchmark course', estrellas(c.stars),
       `${c.name} · ${c.min === 0 ? 'in-resort' : c.min + '′'}`)
   ].join('');
@@ -2085,7 +2094,7 @@ function renderGolf(filter) {
         <div class="cc-meta">${c.municipio} · ${c.disenador}, ${c.ano}</div>
         <dl class="cc-datos">
           <div><dt>Holes</dt><dd>${c.hoyos}</dd></div>
-          <div><dt>Green fee</dt><dd>€${c.gf}</dd></div>
+          <div><dt>Green fee</dt><dd>${GF(c.gf)}</dd></div>
           <div class="cc-acceso"><dt>Access</dt><dd><span class="mem mem-${nivelAcceso(c.membresia)}">${c.membresia}</span></dd></div>
         </dl>
         <p class="cc-palmares">${c.palmares}</p>
@@ -2669,7 +2678,7 @@ function initAtlas(el) {
         </div>
         <ul class="ap-hechos">
           <li>${c.hoyos} · ${c.disenador}${c.ano ? ' · ' + c.ano : ''}</li>
-          <li>Green fee ${c.gf ? '€' + c.gf : 'no publicado'}.</li>
+          <li>Green fee ${c.gf ? GF(c.gf) : 'not published'}.</li>
         </ul>
         <div class="ap-bloque ap-citado">
           ${lista.length
