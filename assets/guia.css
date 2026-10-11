@@ -1608,6 +1608,10 @@ details.promo:not([open]) > summary .detail-card-placeholder-tag { display: none
   details.promo > summary .dc-score-overlay { font-size: 34px; bottom: 16px; right: 20px; }
   details.promo[open] > summary .dc-head { min-height: 320px; padding: 36px 26px 30px; }
   details.promo[open] > summary .dc-score-overlay { font-size: 52px; bottom: 28px; right: 26px; }
+  /* Con la ficha abierta el nombre y la zona pasaban por debajo de la nota: en
+     «EPIC Marbella by Fendi» el 55 tapaba «Marbella» y el /100, la zona. */
+  details.promo[open] > summary .dc-head-inner { padding-right: 78px; }
+  details.promo[open] > summary .dc-title { font-size: 32px; }
   .siguiente a { min-width: 0; width: 100%; }
 }
 
@@ -2341,6 +2345,7 @@ html { scroll-padding-top: calc(var(--nav-h) + 18px); }
   .gana-proyecto { margin-top: 34px; }
   .gana-cta { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 22px; }
   .gana-cta b { font-size: 21px; }
+  .gana-cta span { white-space: normal; }
 }
 
 /* ═══════════════════════════════════════════════

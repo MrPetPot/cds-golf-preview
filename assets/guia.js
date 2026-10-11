@@ -481,6 +481,228 @@ const FOTOS_FICHA = {
  }
 };
 
+/* Galería de las fichas del top 10. Generado por src/galeria_promos.py:
+   no se edita a mano. tipo: render | fotografía. credito: a quien
+   corresponde la imagen (la promoción o su promotor). */
+const FOTOS_PROMO = {
+ "marea-missoni": [
+  {
+   "src": "images/promos/marea-missoni/01.jpg",
+   "pie": "Vista aérea del conjunto hacia el mar",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/marea-missoni/02.jpg",
+   "pie": "El conjunto sobre Finca Cortesín, con Sierra Bermeja al fondo",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/marea-missoni/03.jpg",
+   "pie": "La piscina desbordante sobre la costa",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/marea-missoni/04.jpg",
+   "pie": "Terrazas ajardinadas de los edificios",
+   "tipo": "render",
+   "credito": "Dar Global"
+  }
+ ],
+ "village-verde": [
+  {
+   "src": "images/promos/village-verde/01.jpg",
+   "pie": "Vista aérea de los edificios entre el arbolado",
+   "tipo": "fotografía",
+   "credito": "Sotogrande S.A."
+  },
+  {
+   "src": "images/promos/village-verde/02.jpg",
+   "pie": "Fachada de uno de los edificios",
+   "tipo": "fotografía",
+   "credito": "Sotogrande S.A."
+  },
+  {
+   "src": "images/promos/village-verde/03.jpg",
+   "pie": "La piscina comunitaria",
+   "tipo": "fotografía",
+   "credito": "Sotogrande S.A."
+  },
+  {
+   "src": "images/promos/village-verde/04.jpg",
+   "pie": "Paseo interior ajardinado",
+   "tipo": "render",
+   "credito": "Sotogrande S.A."
+  }
+ ],
+ "bentley-puente-romano": [
+  {
+   "src": "images/promos/bentley-puente-romano/01.jpg",
+   "pie": "Jardín y piscina privada de un dúplex",
+   "tipo": "render",
+   "credito": "RGZ Developers"
+  }
+ ],
+ "villas-alamos": [
+  {
+   "src": "images/promos/villas-alamos/01.jpg",
+   "pie": "Vista aérea con el campo de golf y el mar al fondo",
+   "tipo": "render",
+   "credito": "ACCIONA Inmobiliaria"
+  },
+  {
+   "src": "images/promos/villas-alamos/02.jpg",
+   "pie": "Villa con piscina",
+   "tipo": "render",
+   "credito": "ACCIONA Inmobiliaria"
+  },
+  {
+   "src": "images/promos/villas-alamos/03.jpg",
+   "pie": "Porche y piscina de una villa",
+   "tipo": "render",
+   "credito": "ACCIONA Inmobiliaria"
+  },
+  {
+   "src": "images/promos/villas-alamos/04.jpg",
+   "pie": "Acceso a las viviendas",
+   "tipo": "render",
+   "credito": "ACCIONA Inmobiliaria"
+  }
+ ],
+ "mc-hills": [
+  {
+   "src": "images/promos/mc-hills/01.jpg",
+   "pie": "Villa independiente con piscina",
+   "tipo": "render",
+   "credito": "Mena Capital · Marbella Club"
+  },
+  {
+   "src": "images/promos/mc-hills/02.jpg",
+   "pie": "Villa pareada con jardín",
+   "tipo": "render",
+   "credito": "Mena Capital · Marbella Club"
+  },
+  {
+   "src": "images/promos/mc-hills/03.jpg",
+   "pie": "Edificios terminados sobre el valle",
+   "tipo": "fotografía",
+   "credito": "Mena Capital · Marbella Club"
+  },
+  {
+   "src": "images/promos/mc-hills/04.jpg",
+   "pie": "Vista aérea de las fases en la ladera",
+   "tipo": "render",
+   "credito": "Mena Capital · Marbella Club"
+  }
+ ],
+ "tierra-viva": [
+  {
+   "src": "images/promos/tierra-viva/01.jpg",
+   "pie": "Villa Diamante",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/tierra-viva/02.jpg",
+   "pie": "Villa Esmeralda",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/tierra-viva/03.jpg",
+   "pie": "Terraza y piscina de la villa Diamante",
+   "tipo": "render",
+   "credito": "Dar Global"
+  },
+  {
+   "src": "images/promos/tierra-viva/04.jpg",
+   "pie": "Vista aérea de la urbanización",
+   "tipo": "render",
+   "credito": "Dar Global"
+  }
+ ],
+ "spinto-hills": [
+  {
+   "src": "images/promos/spinto-hills/01.jpg",
+   "pie": "Villa con piscina y jardín",
+   "tipo": "render",
+   "credito": "Spinto Hills"
+  },
+  {
+   "src": "images/promos/spinto-hills/02.jpg",
+   "pie": "Las villas desde la calle",
+   "tipo": "render",
+   "credito": "Spinto Hills"
+  },
+  {
+   "src": "images/promos/spinto-hills/03.jpg",
+   "pie": "Villa iluminada al anochecer",
+   "tipo": "render",
+   "credito": "Spinto Hills"
+  },
+  {
+   "src": "images/promos/spinto-hills/04.jpg",
+   "pie": "La urbanización sobre la ladera, hacia el mar",
+   "tipo": "render",
+   "credito": "Spinto Hills"
+  }
+ ],
+ "epic-fendi": [
+  {
+   "src": "images/promos/epic-fendi/01.jpg",
+   "pie": "Vista aérea con La Concha al fondo",
+   "tipo": "fotografía",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/epic-fendi/02.jpg",
+   "pie": "El conjunto completo bajo La Concha",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/epic-fendi/03.jpg",
+   "pie": "Edificio de acceso",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  },
+  {
+   "src": "images/promos/epic-fendi/04.jpg",
+   "pie": "El conjunto al anochecer, hacia el mar",
+   "tipo": "render",
+   "credito": "Sierra Blanca Estates"
+  }
+ ],
+ "quercus": [
+  {
+   "src": "images/promos/quercus/01.jpg",
+   "pie": "Los edificios y la piscina",
+   "tipo": "render",
+   "credito": "Grupo La Quinta"
+  },
+  {
+   "src": "images/promos/quercus/02.jpg",
+   "pie": "La plaza ajardinada",
+   "tipo": "render",
+   "credito": "Grupo La Quinta"
+  },
+  {
+   "src": "images/promos/quercus/03.jpg",
+   "pie": "Vista aérea de la fase I",
+   "tipo": "render",
+   "credito": "Grupo La Quinta"
+  },
+  {
+   "src": "images/promos/quercus/04.jpg",
+   "pie": "Piscina de la fase II con La Concha al fondo",
+   "tipo": "render",
+   "credito": "Grupo La Quinta"
+  }
+ ]
+};
+
 const PROMOS = [
 
   { id:'villas-alamos', render:{ dominio:"sotograndehome.com", pie:"Villa con piscina y jardín." }, name:'Las Villas – Sotogrande', sub:'ACCIONA Inmobiliaria',
@@ -516,7 +738,7 @@ const PROMOS = [
     tags:['In-resort 4★','Sostenible','Wellness'],
     rationale:'La operación residencial más ambiciosa de Sotogrande SA, con arquitectura de L35 y certificación BREEAM. Es la única promoción del ranking realmente dentro de La Reserva Club, y su campo de golf propio, La Reserva ★★★★, lo compensa: los otros dos campos de élite que tiene a mano son de socios. No alcanza el primer puesto por escala: 124 unidades reducen su factor de exclusividad.' },
 
-  { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Piscina y terraza sobre el mar." }, name:'MAREA by Missoni', sub:'Finca Cortesín · Hotel · Golf · Spa',
+  { id:'marea-missoni', render:{ dominio:"marea-marbella.com", pie:"Piscina y terraza sobre el mar." }, name:'MAREA by Missoni', sub:'Hotel · Golf · Spa',
     municipio:'Casares', zona:'Finca Cortesín Resort', lat:36.379, lng:-5.224,
     image:'images/promos/marea-missoni.jpg',
     promotor:'Dar Global', estudio:'HCP Arquitectos', estudioFuente:'hcparquitectos.com',
@@ -549,12 +771,12 @@ const PROMOS = [
         b1:7,  b1why:'Banyan Tree anunciada para 2026 pero no entregada: tope de 7 por regla de marca pendiente.',
         b4:10, b4why:'Lago navegable, club deportivo, spa y beach club previstos en el masterplan.' },
     tags:['Banyan Tree 2026','Golf Valley','102 unidades'],
-    rationale:'Le cuesta caro el rigor: pierde el bonus de campo propio porque El Lago todavía no está operativo y su acceso a Golf Valley se descuenta porque Las Brisas, Aloha y Guadalmina Sur son de socios. Lo que sostiene la posición es un amenity deck de resort completo, pese a las 102 unidades del desarrollo.' },
+    rationale:'Le cuesta caro el rigor: pierde el bonus de campo propio porque El Lago todavía no está operativo y su acceso a Golf Valley se descuenta porque Las Brisas, Aloha y Guadalmina Sur son de socios. Lo que sostiene la posición es una dotación de servicios de resort completa, pese a las 102 unidades del desarrollo.' },
 
   { id:'epic-fendi', render:{ dominio:"epicmarbella.com", pie:"El conjunto con La Concha al fondo." }, name:'EPIC Marbella by Fendi', sub:'Casa Branded Residences',
     municipio:'Marbella', zona:'Golden Mile · Nagüeles', lat:36.516, lng:-4.911,
     image:'images/promos/epic-fendi.jpg',
-    promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Comprobado en epicmarbella.com y sierrablancaestates.com: no acreditan estudio de arquitectura. Fendi Casa y The One Atelier firman interiorismo y mobiliario, no el edificio.', derechosGolf:null, derechosNota:'Comprobado en epicmarbella.com: el golf sólo aparece como amenidad cercana, sin derechos para propietarios.',
+    promotor:'Sierra Blanca Estates', estudio:null, estudioNota:'Comprobado en epicmarbella.com y sierrablancaestates.com: no acreditan estudio de arquitectura. Fendi Casa y The One Atelier firman interiorismo y mobiliario, no el edificio.', derechosGolf:null, derechosNota:'Comprobado en epicmarbella.com: el golf solo aparece como un servicio cercano, sin derechos para propietarios.',
     tipologia:'Branded apartments y áticos', unidades:56,
     precio:'€1.750.000 – €4.450.000', precioDesde:'€1.750.000', precioEstimado:false, eurM2:15000,
     estado:'En fases · construcción', entrega:'2024–2026',
@@ -565,7 +787,7 @@ const PROMOS = [
         b1:10, b1why:'Fendi Casa: marca internacional reconocida, interiorismo entregado con la unidad.',
         b4:10, b4why:'Spa, gym, cine, concierge 24h, piscinas premium, servicio de hotel.' },
     tags:['Fendi Casa','Golden Mile','€15k/m²'],
-    rationale:'Adelanta a Tiara por tres puntos tras corregirse el recuento de campos ★★★+ que tenía mal en la edición anterior. Su golf es de acceso, más que de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es amenity; lo que paga es Fendi y los €15.000/m².' },
+    rationale:'Adelanta a Tiara por tres puntos tras corregirse, durante la preparación de esta edición, un error en su recuento de campos ★★★+. Su golf es de acceso, más que de puerta: cuatro campos ★★★+ entre 10 y 13 minutos, y lo que tiene a ocho es un nueve hoyos. Aquí el golf es un servicio más; lo que paga es Fendi y los €15.000/m².' },
 
   { id:'tiara', render:{ dominio:"nvoga.com", pie:"Terrazas escalonadas sobre el valle." }, name:'Tiara', sub:'La Quinta · Metrovacesa',
     municipio:'Benahavís', zona:'La Quinta', lat:36.52034, lng:-5.00014,
@@ -757,7 +979,7 @@ const PROMOS = [
         b1:10, b1why:'Primer proyecto residencial de Karl Lagerfeld en el mundo, entregado con el proyecto.',
         b4:7,  b4why:'Parcela de 9.000 m² y servicio de lujo por villa; sin club house ni beach club propios.' },
     tags:['Branded Lagerfeld','5 villas','Milla de Oro'],
-    rationale:'<strong>El producto más caro de la guía</strong> y una de las dos notas máximas de marca. Comparte entorno con Bentley y comparte su problema: el ★★★★ más cercano es Las Brisas, de socios. El coeficiente de acceso no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
+    rationale:'<strong>El producto más caro de la guía</strong> y una de las dos notas máximas de marca. Comparte entorno con AÍDA y comparte su problema: el ★★★★ más cercano es Las Brisas, de socios. El coeficiente de acceso no premia tener campos al lado si no se pueden reservar, y eso es lo que le impide subir pese a tener el bloque B casi lleno.' },
 
   { id:'tierra-viva', barrido:true, render:null, foto:null, image:null,
     name:'Tierra Viva', sub:'by Automobili Lamborghini',
@@ -780,7 +1002,7 @@ const PROMOS = [
   { id:'spinto-hills', barrido:true, render:null, foto:null, image:null,
     name:'Spinto Hills', sub:'Casares Costa',
     municipio:'Casares', zona:'Camarate', lat:36.381273, lng:-5.2108077,
-    coordNota:'Coordenada tomada sobre Casares Costa: las fuentes situan las villas en la zona de Camarate, a unos 2 km de la playa, sin publicar el punto exacto.',
+    coordNota:'Coordenada tomada sobre Casares Costa: las fuentes sitúan las villas en la zona de Camarate, a unos 2 km de la playa, sin publicar el punto exacto.',
     promotor:null, promotorNota:'Promotor sin acreditar en las fuentes consultadas.',
     estudio:'Cacopardo Arquitectos', estudioFuente:'spintohills.homes',
     derechosGolf:null, derechosNota:'Vistas a Finca Cortesín, sin derechos de golf sobre el campo.',
@@ -805,7 +1027,7 @@ const PROMOS = [
   { id:'tyrian-residences', barrido:true, render:null, foto:null, image:null,
     name:'Tyrian Residences', sub:'Prestige Expo · BZH',
     municipio:'Estepona', zona:'Primera línea de playa', lat:36.4268068, lng:-5.1468484,
-    coordNota:'Coordenada sobre el casco de Estepona: las fuentes situan el edificio junto al bulevar, en primera linea, sin publicar el punto exacto.',
+    coordNota:'Coordenada sobre el casco de Estepona: las fuentes sitúan el edificio junto al bulevar, en primera línea, sin publicar el punto exacto.',
     promotor:'Prestige Expo Group + Grupo BZH', estudio:'Yodezeen + Arata Arquitectura', estudioFuente:'ejeprime.com',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Villas en altura 300–1.060 m²', unidades:40,
@@ -843,7 +1065,7 @@ const PROMOS = [
   { id:'altura-160', barrido:true, render:null, foto:null, image:null,
     name:'Altura 160', sub:'Señorío de Cifuentes',
     municipio:'Benahavís', zona:'La Hacienda del Señorío de Cifuentes', lat:36.4870132, lng:-5.0425696,
-    coordNota:'Coordenada sobre el Cerro de los Jaralillos, que es la referencia publicada de la urbanizacion.',
+    coordNota:'Coordenada sobre el Cerro de los Jaralillos, que es la referencia publicada de la urbanización.',
     promotor:'Taylor Wimpey España', estudio:null, estudioNota:'Estudio de arquitectura sin acreditar en las fuentes consultadas.',
     derechosGolf:null, derechosNota:'Sin campo propio ni derechos de golf publicados.',
     tipologia:'Apartamentos y áticos 2–3 dorm.', unidades:60,
@@ -853,9 +1075,9 @@ const PROMOS = [
     campoPropio:null, campoPropioPendiente:null,
     cursos:[['la-quinta-golf',9,''],['los-arqueros-golf',10,''],['el-higueral',11,''],['real-club-de-golf-guadalmina-sur',11,''],['guadalmina-norte',11,''],['los-naranjos-golf',11,''],['magna-marbella',12,''],['dama-de-noche',12,''],['atalaya-old',13,''],['atalaya-new',13,''],['real-club-de-golf-las-brisas',13,''],['el-paraiso-golf',14,''],['aloha-golf-club',14,'']],
     d:{ a5:0,  a5why:'Dentro del Señorío de Cifuentes, que no es un resort de golf.',
-        a6:4,  a6why:'Carretera de Benahavís hasta la A-7, corta y sin travesias.',
+        a6:4,  a6why:'Carretera de Benahavís hasta la A-7, corta y sin travesías.',
         b1:4,  b1why:'Taylor Wimpey, promotor internacional de volumen; sin firma diferenciada.',
-        b4:7,  b4why:'Cuatro piscinas, jardines, bar y conserjeria dentro del Señorío de Cifuentes.' },
+        b4:7,  b4why:'Cuatro piscinas, jardines, bar y conserjería dentro del Señorío de Cifuentes.' },
     tags:['13 campos en 15′','Taylor Wimpey','Desde €585.000'],
     rationale:'<strong>La puerta de entrada más barata de la guía</strong> y con trece campos en quince minutos, el segundo entorno más denso de la lista. Le pasa factura el reparto: los buenos de ese radio —Las Brisas y Aloha— son de socios, y el producto es de volumen. Mucho golf alrededor y poco argumento propio.' }
 
@@ -1308,16 +1530,17 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </figure>`;
   };
 
-  // Cuatro pases en la cabecera. Hoy solo hay un render por promocion, asi que
-  // los tres restantes se quedan en un hueco gris con el nombre y su numero: se
-  // iran sustituyendo segun lleguen las imagenes, sin tocar el codigo. En cuanto
-  // FOTOS_PROMO traiga mas de una para una promocion, entran por orden.
-  const PASES = 4;
+  // Pases de la cabecera: los de FOTOS_PROMO (src/galeria.js, hasta cuatro por
+  // promoción) o, si no hay galería, el render suelto. Solo se ven imágenes
+  // reales: un hueco gris aparece únicamente cuando no hay ninguna, y las
+  // flechas, solo cuando hay más de una.
+  const tipoLbl = t => t === 'fotografía' ? 'Fotografía' : 'Render';
   const galeria = () => {
     const reales = (typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id]) ||
-      (media.src ? [{ src: media.src, pie: media.pie, cred: media.tag }] : []);
-    return Array.from({ length: Math.max(PASES, reales.length) }, (_, i) => reales[i] || null);
+      (media.src ? [{ src: media.src, pie: media.pie, tipo: 'render', credito: p.render ? p.render.dominio : null }] : []);
+    return reales.length ? reales : [null];
   };
+  const credSlide = g => g && g.credito ? tipoLbl(g.tipo) + ' · ' + g.credito : '';
   const media = p.render
     ? { src: p.image, tag: '© ' + p.render.dominio, pie: p.render.pie, nota: 'Render del promotor · pendiente de autorización' }
     : (p.foto
@@ -1349,14 +1572,15 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
     </div>
     <header class="dc-head">
       <div class="dc-slides">${galeria().map((g, i) => g
-        ? `<figure class="dc-slide${i ? '' : ' is-on'}"><img src="${g.src}" alt="${(g.pie || p.name + ' — ' + p.municipio).replace(/"/g, '&quot;')}"${i ? ' loading="lazy"' : ''}
+        ? `<figure class="dc-slide${i ? '' : ' is-on'}" data-cred="${credSlide(g).replace(/"/g, '&quot;')}"><img src="${g.src}" alt="${(g.pie || p.name + ' — ' + p.municipio).replace(/"/g, '&quot;')}"${i ? ' loading="lazy"' : ''}
              onerror="this.closest('.dc-slide').classList.add('sin-img')"/></figure>`
         : `<figure class="dc-slide dc-hueco${i ? '' : ' is-on'}" aria-label="Imagen ${i + 1} pendiente"><span class="dc-hueco-n">${String(i + 1).padStart(2, '0')}</span><span class="dc-hueco-t">${p.name}</span></figure>`).join('')}</div>
-      <div class="dc-pases">
+      ${galeria().length > 1 ? `<div class="dc-pases">
         <button type="button" class="dc-pase-b" data-paso="-1" aria-label="Imagen anterior">‹</button>
         <span class="dc-pase-n" aria-live="polite">1 / ${galeria().length}</span>
         <button type="button" class="dc-pase-b" data-paso="1" aria-label="Imagen siguiente">›</button>
-      </div>
+      </div>` : ''}
+      ${credSlide(galeria()[0]) ? `<span class="dc-cred">${credSlide(galeria()[0])}</span>` : ''}
       <div class="dc-head-inner">
         <h3 class="dc-title"><span class="dc-t-rank">${p.top10 ? '#' + String(p.rank).padStart(2, '0') : '#' + p.rank + ' · Mención'}</span> <span class="dc-t-name">${p.name}</span> <span class="dc-t-loc">${p.municipio}</span></h3>
         <div class="dc-loc"><span class="dc-loc-extra">${p.zona} · ${p.sub}</span></div>
@@ -1699,17 +1923,44 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
    al acordeon: hay que pararlo antes de que lo haga.
 ════════════════════════════════════ */
 (function () {
+  const pasar = (head, paso) => {
+    const pases = [...head.querySelectorAll('.dc-slide')];
+    if (pases.length < 2) return;
+    const i = pases.findIndex(s => s.classList.contains('is-on'));
+    const n = (i + paso + pases.length) % pases.length;
+    pases.forEach((s, j) => s.classList.toggle('is-on', j === n));
+    const cont = head.querySelector('.dc-pase-n');
+    if (cont) cont.textContent = (n + 1) + ' / ' + pases.length;
+    const cred = head.querySelector('.dc-cred');
+    if (cred) cred.textContent = pases[n].dataset.cred || '';
+  };
   document.addEventListener('click', e => {
     const b = e.target.closest?.('.dc-pase-b');
     if (!b) return;
     e.preventDefault();
     e.stopPropagation();
-    const head = b.closest('.dc-head');
-    const pases = [...head.querySelectorAll('.dc-slide')];
-    const i = pases.findIndex(s => s.classList.contains('is-on'));
-    const n = (i + Number(b.dataset.paso) + pases.length) % pases.length;
-    pases.forEach((s, j) => s.classList.toggle('is-on', j === n));
-    head.querySelector('.dc-pase-n').textContent = (n + 1) + ' / ' + pases.length;
+    pasar(b.closest('.dc-head'), Number(b.dataset.paso));
+  }, true);
+  /* En el móvil se pasa deslizando. Un deslizamiento horizontal claro cambia
+     de imagen y no abre ni cierra la ficha; un toque normal sigue haciéndolo. */
+  let ini = null, deslizado = false;
+  document.addEventListener('touchstart', e => {
+    const head = e.target.closest?.('details[open] .dc-head');
+    ini = head && e.touches.length === 1 ? { head, x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
+  document.addEventListener('touchend', e => {
+    if (!ini) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - ini.x, dy = t.clientY - ini.y;
+    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      pasar(ini.head, dx < 0 ? 1 : -1);
+      deslizado = true;
+      setTimeout(() => { deslizado = false; }, 400);
+    }
+    ini = null;
+  }, { passive: true });
+  document.addEventListener('click', e => {
+    if (deslizado && e.target.closest?.('.dc-head')) { e.preventDefault(); e.stopPropagation(); }
   }, true);
 })();
 
@@ -1750,36 +2001,52 @@ if (detailGrid) PUBLICADAS.forEach((p, idx) => {
 })();
 
 /* ═══════════════════════════════════
-   CRÉDITOS DE IMAGEN · centralizados fuera de las fichas
+   CRÉDITOS DE IMAGEN · al final de la página de fuentes
+   Imagen a imagen y sin enlaces: cada una se atribuye a quien corresponde, la
+   promoción (o su promotor) o el campo de golf. Las de Wikimedia Commons
+   conservan autor y licencia, que es condición de uso.
 ════════════════════════════════════ */
 const creditosImagenes = document.getElementById('creditosImagenes');
 if (creditosImagenes) {
-  const vistos = new Set();
-  const camposCred = [];
-  const sumarCredito = (id, f, uso) => {
-    if (!f || vistos.has(f.src)) return;
+  const tipoCred = t => t === 'fotografía' ? 'Fotografía' : 'Render';
+  const promosCred = PUBLICADAS.filter(p => typeof FOTOS_PROMO !== 'undefined' && FOTOS_PROMO[p.id]);
+  const nPromo = promosCred.reduce((n, p) => n + FOTOS_PROMO[p.id].length, 0);
+  const listaPromos = promosCred.map(p => `<li><strong>${p.name}</strong><ol>${FOTOS_PROMO[p.id].map(f =>
+    `<li><span>${f.pie}</span><em>${tipoCred(f.tipo)} · ${f.credito}</em></li>`).join('')}</ol></li>`).join('');
+
+  // Cada fotografía de campo una sola vez, aunque salga en la página de campos
+  // y en la ficha de una promoción. Los créditos que eran el dominio del club
+  // se atribuyen al club por su nombre.
+  const vistos = new Set(), fotosCampo = [];
+  const sumar = (id, f) => {
+    if (!f || !f.src || f.placeholder || vistos.has(f.src)) return;
     vistos.add(f.src);
-    camposCred.push({ id, uso, ...f });
+    fotosCampo.push({ id, f });
   };
-  Object.entries(FOTOS_CAMPO).forEach(([id, f]) => sumarCredito(id, f, 'Ficha de campo'));
-  if (typeof FOTOS_FICHA !== 'undefined') Object.entries(FOTOS_FICHA).forEach(([id, f]) => sumarCredito(id, f, 'Campo de referencia'));
-  // Una foto puede no llevar credito (procedencia sin confirmar): en ese caso
-  // no se inventa ninguno y la entrada se queda solo con su uso.
-  const credito = f => !f.credito ? ''
-    : f.url
-      ? `<a href="${f.url}" target="_blank" rel="noopener">${f.credito}</a>`
-      : f.credito;
-  const promocionesCred = PROMOS.map(p => {
-    if (p.render) return `<li><strong>${p.name}</strong><span>Render del promotor · ${p.render.dominio}</span></li>`;
-    if (p.foto) return `<li><strong>${p.name}</strong><span>${credito(p.foto) || 'Imagen de archivo'}</span></li>`;
-    return `<li><strong>${p.name}</strong><span>Imagen de archivo</span></li>`;
-  }).join('');
+  Object.entries(FOTOS_CAMPO).forEach(([id, f]) => sumar(id, f));
+  if (typeof FOTOS_FICHA !== 'undefined') Object.entries(FOTOS_FICHA).forEach(([id, f]) => sumar(id, f));
+  const nombreCampo = id => (CX[id] && CX[id].name) || id;
+  const credCampo = (id, f) => !f.credito ? 'Procedencia sin confirmar'
+    : /^©\s*[\w.-]+\.[a-z]{2,}$/i.test(f.credito) ? '© ' + nombreCampo(id)
+    : f.credito;
+  fotosCampo.sort((a, b) => nombreCampo(a.id).localeCompare(nombreCampo(b.id), 'es'));
+  const listaCampos = fotosCampo.map(({ id, f }) =>
+    `<li><strong>${nombreCampo(id)}</strong><em>${credCampo(id, f)}</em></li>`).join('');
+
   creditosImagenes.innerHTML = `
     <details class="image-credits">
-      <summary>Consultar créditos y procedencia <small>${camposCred.length} imágenes de campo · ${PROMOS.length} promociones</small></summary>
+      <summary>Créditos de las imágenes <small>${nPromo + ' imágenes de promociones · ' + fotosCampo.length + ' de campos de golf'}</small></summary>
       <div class="image-credit-groups">
-        <section><h3>Promociones</h3><ul>${promocionesCred}</ul></section>
-        <section><h3>Campos de golf</h3><ul>${camposCred.map(f => `<li><strong>${(CX[f.id] && CX[f.id].name) || f.id}</strong><span>${[credito(f), f.uso].filter(Boolean).join(' · ')}</span></li>`).join('')}</ul></section>
+        <div class="ic-grupo">
+          <h3>Promociones</h3>
+          <p>Renders y fotografías del material comercial de cada promoción, reproducidos con finalidad informativa y pendientes de autorización expresa. Cualquier titular puede pedir su retirada.</p>
+          <ul class="ic-promos">${listaPromos}</ul>
+        </div>
+        <div class="ic-grupo">
+          <h3>Campos de golf</h3>
+          <p>Las fotografías de Wikimedia Commons se publican con la licencia y la autoría indicadas.</p>
+          <ul class="ic-campos">${listaCampos}</ul>
+        </div>
       </div>
     </details>`;
 }
